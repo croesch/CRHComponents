@@ -35,7 +35,22 @@ class StringArrayUtil {
         throw new IllegalArgumentException();
       }
     }
-    this.lines = s;
+    this.lines = s.clone();
+  }
+
+  /**
+   * Constructs the utility class with the given array
+   * 
+   * @author croesch
+   * @since Date: 17.02.2011 21:04:20
+   * @param s the array of {@link String}s
+   * @param t if the given array is already trimmed
+   * @throws IllegalArgumentException if the array or one entry is {@code null}
+   * @see com.github.croesch.util.Util#of(String[])
+   */
+  private StringArrayUtil(final String[] s, final boolean t) throws IllegalArgumentException {
+    this(s);
+    this.trimmed = t;
   }
 
   /**
@@ -45,32 +60,25 @@ class StringArrayUtil {
    * @since Date: 17.02.2011 21:19:25
    * @return this instance of the analyser
    * @see String#trim()
-   * @see #isTrimmed()
    */
   public final StringArrayUtil trim() {
 
-    if (isTrimmed()) {
+    if (this.trimmed) {
       return this;
     }
 
+    String[] lns = new String[this.lines.length];
     for (int i = 0; i < this.lines.length; ++i) {
-      this.lines[i] = this.lines[i].trim();
+      lns[i] = this.lines[i].trim();
     }
 
-    this.trimmed = true;
-    return this;
-  }
+    // if nothing has changed then return this and store the information, that this array don't need to be trimmed.
+    if (Arrays.equals(lns, this.lines)) {
+      this.trimmed = true;
+      return this;
+    }
 
-  /**
-   * Returns whether the array of lines already had been trimmed.
-   * 
-   * @author croesch
-   * @since Date: 17.02.2011 21:21:23
-   * @return {@code true}, if the {@link #trim()} method already has been called
-   * @see #trim()
-   */
-  protected final boolean isTrimmed() {
-    return this.trimmed;
+    return new StringArrayUtil(lns, true);
   }
 
   /**
@@ -107,7 +115,7 @@ class StringArrayUtil {
     for (int i = 0; i < this.lines.length; ++i) {
       this.lines[i] += new StringUtil(" ").toStringMultipliedWith(maxLength - this.lines[i].length());
     }
-    return this.lines;
+    return this.lines.clone();
   }
 
   /**
@@ -126,7 +134,7 @@ class StringArrayUtil {
     for (int i = 0; i < this.lines.length; ++i) {
       this.lines[i] = new StringUtil(" ").toStringMultipliedWith(maxLength - this.lines[i].length()) + this.lines[i];
     }
-    return this.lines;
+    return this.lines.clone();
   }
 
   /**
@@ -148,7 +156,7 @@ class StringArrayUtil {
       this.lines[i] = spaces + this.lines[i];
       this.lines[i] += new StringUtil(" ").toStringMultipliedWith(right);
     }
-    return this.lines;
+    return this.lines.clone();
   }
 
   @Override
