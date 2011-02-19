@@ -8,7 +8,7 @@ package com.github.croesch.util;
  */
 public final class StringUtil {
 
-  /** the {@link String} to multiply */
+  /** the {@link String} to work with - ensured to be not {@code null} */
   private final String string;
 
   /**
@@ -20,6 +20,7 @@ public final class StringUtil {
    */
   StringUtil(final String s) {
     if (s == null) {
+      // important, because we want to ensure that this.string is not null
       throw new IllegalArgumentException();
     }
     this.string = s;
@@ -76,11 +77,7 @@ public final class StringUtil {
       return false;
     }
     StringUtil other = (StringUtil)obj;
-    if (this.string == null) {
-      if (other.string != null) {
-        return false;
-      }
-    } else if (!this.string.equals(other.string)) {
+    if (!this.string.equals(other.string)) {
       return false;
     }
     return true;
