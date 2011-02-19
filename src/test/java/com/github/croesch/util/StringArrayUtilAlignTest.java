@@ -6,7 +6,9 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
 /**
- * Provides test cases for {@link Util#of(String))} and {@link Util#of(String), boolean)}
+ * Provides test cases for:<br>
+ * <li>{@link StringArrayUtil#toCentreAlignedArray()}</li> <li>{@link StringArrayUtil#toLeftAlignedArray()}</li> <li>
+ * {@link StringArrayUtil#toRightAlignedArray()}</li>
  * 
  * @author croesch
  * @since Date: 15.02.2011 20:31:01
