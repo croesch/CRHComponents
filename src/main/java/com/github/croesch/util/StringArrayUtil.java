@@ -9,7 +9,7 @@ import java.util.Arrays;
  * @since Date: 17.02.2011 20:58:03
  */
 @SuppressWarnings("nls")
-class StringArrayUtil {
+public final class StringArrayUtil {
 
   /** the array to work with */
   private final String[] lines;
@@ -26,7 +26,7 @@ class StringArrayUtil {
    * @throws IllegalArgumentException if the array or one entry is {@code null}
    * @see com.github.croesch.util.Util#of(String[])
    */
-  protected StringArrayUtil(final String[] s) throws IllegalArgumentException {
+  StringArrayUtil(final String[] s) throws IllegalArgumentException {
     if (s == null) {
       throw new IllegalArgumentException();
     }
@@ -61,7 +61,7 @@ class StringArrayUtil {
    * @return this instance of the analyser
    * @see String#trim()
    */
-  public final StringArrayUtil trim() {
+  public StringArrayUtil trim() {
 
     if (this.trimmed) {
       return this;
@@ -88,7 +88,7 @@ class StringArrayUtil {
    * @since Date: 17.02.2011 19:11:37
    * @return the length of the longest line
    */
-  public final int getMaxLineLength() {
+  public int getMaxLineLength() {
 
     int maxLength = -1;
     for (String ln : this.lines) {
@@ -109,7 +109,7 @@ class StringArrayUtil {
    * @see #toCentreAlignedArray()
    * @see #toRightAlignedArray()
    */
-  public final String[] toLeftAlignedArray() {
+  public String[] toLeftAlignedArray() {
     int maxLength = getMaxLineLength();
 
     for (int i = 0; i < this.lines.length; ++i) {
@@ -128,7 +128,7 @@ class StringArrayUtil {
    * @see #toCentreAlignedArray()
    * @see #toLeftAlignedArray()
    */
-  public final String[] toRightAlignedArray() {
+  public String[] toRightAlignedArray() {
     int maxLength = getMaxLineLength();
 
     for (int i = 0; i < this.lines.length; ++i) {
@@ -147,7 +147,7 @@ class StringArrayUtil {
    * @see #toLeftAlignedArray()
    * @see #toRightAlignedArray()
    */
-  public final String[] toCentreAlignedArray() {
+  public String[] toCentreAlignedArray() {
     int maxLength = getMaxLineLength();
 
     for (int i = 0; i < this.lines.length; ++i) {

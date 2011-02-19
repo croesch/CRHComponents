@@ -6,7 +6,7 @@ package com.github.croesch.util;
  * @author croesch
  * @since Date: 17.02.2011 19:45:31
  */
-class StringUtil {
+public final class StringUtil {
 
   /** the {@link String} to multiply */
   private final String string;
@@ -18,7 +18,7 @@ class StringUtil {
    * @since Date: 17.02.2011 20:32:39
    * @param s the {@link String} to prepare for being multiplied
    */
-  protected StringUtil(final String s) {
+  StringUtil(final String s) {
     if (s == null) {
       throw new IllegalArgumentException();
     }
