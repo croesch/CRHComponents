@@ -8,6 +8,7 @@ import java.util.Arrays;
  * @author croesch
  * @since Date: 17.02.2011 20:58:03
  */
+@SuppressWarnings("nls")
 class StringArrayUtil {
 
   /** the array to work with */
@@ -47,17 +48,12 @@ class StringArrayUtil {
    * @see #isTrimmed()
    */
   public final StringArrayUtil trim() {
-    if (this.lines == null) {
-      throw new IllegalArgumentException();
-    }
+
     if (isTrimmed()) {
       return this;
     }
 
     for (int i = 0; i < this.lines.length; ++i) {
-      if (this.lines[i] == null) {
-        throw new IllegalArgumentException();
-      }
       this.lines[i] = this.lines[i].trim();
     }
 
@@ -73,7 +69,7 @@ class StringArrayUtil {
    * @return {@code true}, if the {@link #trim()} method already has been called
    * @see #trim()
    */
-  public final boolean isTrimmed() {
+  protected final boolean isTrimmed() {
     return this.trimmed;
   }
 
@@ -85,15 +81,9 @@ class StringArrayUtil {
    * @return the length of the longest line
    */
   public final int getMaxLineLength() {
-    if (this.lines == null) {
-      throw new IllegalArgumentException();
-    }
 
     int maxLength = -1;
     for (String ln : this.lines) {
-      if (ln == null) {
-        throw new IllegalArgumentException();
-      }
       if (ln.length() > maxLength) {
         maxLength = ln.length();
       }
@@ -101,37 +91,68 @@ class StringArrayUtil {
     return maxLength;
   }
 
-  public String[] toLeftAlignedArray() {
+  /**
+   * Returns the array stored in this utility class. But each row will have the same length and they will be filled up
+   * with spaces, so that each entry is left aligned.
+   * 
+   * @author croesch
+   * @since Date: 19.02.2011 15:09:00
+   * @return the array left aligned, each row has the same number of chars
+   * @see #toCentreAlignedArray()
+   * @see #toRightAlignedArray()
+   */
+  public final String[] toLeftAlignedArray() {
     int maxLength = getMaxLineLength();
 
     for (int i = 0; i < this.lines.length; ++i) {
-      this.lines[i] += Util.of(" ").times(maxLength - this.lines[i].length()); //$NON-NLS-1$
+      this.lines[i] += new StringUtil(" ").toStringMultipliedWith(maxLength - this.lines[i].length());
     }
     return this.lines;
   }
 
-  public String[] toRightAlignedArray() {
+  /**
+   * Returns the array stored in this utility class. But each row will have the same length and they will be filled up
+   * with spaces, so that each entry is right aligned.
+   * 
+   * @author croesch
+   * @since Date: 19.02.2011 15:09:00
+   * @return the array right aligned, each row has the same number of chars
+   * @see #toCentreAlignedArray()
+   * @see #toLeftAlignedArray()
+   */
+  public final String[] toRightAlignedArray() {
     int maxLength = getMaxLineLength();
 
     for (int i = 0; i < this.lines.length; ++i) {
-      this.lines[i] = Util.of(" ").times(maxLength - this.lines[i].length()) + this.lines[i]; //$NON-NLS-1$
+      this.lines[i] = new StringUtil(" ").toStringMultipliedWith(maxLength - this.lines[i].length()) + this.lines[i];
     }
     return this.lines;
   }
 
-  public String[] toCentreAlignedArray() {
+  /**
+   * Returns the array stored in this utility class. But each row will have the same length and they will be filled up
+   * with spaces, so that each entry is centre aligned.
+   * 
+   * @author croesch
+   * @since Date: 19.02.2011 15:09:00
+   * @return the array centre aligned, each row has the same number of chars
+   * @see #toLeftAlignedArray()
+   * @see #toRightAlignedArray()
+   */
+  public final String[] toCentreAlignedArray() {
     int maxLength = getMaxLineLength();
 
     for (int i = 0; i < this.lines.length; ++i) {
       int right = (maxLength - this.lines[i].length()) / 2;
-      this.lines[i] = Util.of(" ").times(maxLength - this.lines[i].length() - right) + this.lines[i]; //$NON-NLS-1$
-      this.lines[i] += Util.of(" ").times(right); //$NON-NLS-1$
+      final String spaces = new StringUtil(" ").toStringMultipliedWith(maxLength - this.lines[i].length() - right);
+      this.lines[i] = spaces + this.lines[i];
+      this.lines[i] += new StringUtil(" ").toStringMultipliedWith(right);
     }
     return this.lines;
   }
 
   @Override
-  public final int hashCode() {
+  public int hashCode() {
     final int prime = 31;
     int result = 1;
     result = prime * result + Arrays.hashCode(this.lines);
@@ -143,7 +164,7 @@ class StringArrayUtil {
   }
 
   @Override
-  public final boolean equals(final Object obj) {
+  public boolean equals(final Object obj) {
     if (this == obj) {
       return true;
     }

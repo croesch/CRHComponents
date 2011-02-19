@@ -1,30 +1,12 @@
 package com.github.croesch.util;
 
 /**
- * Provides some utility methods for working with {@link String}s
+ * Provides some utility methods that constructs utility classes for the given object.
  * 
  * @author croesch
  * @since Date: 15.02.2011 18:54:22
  */
 public final class Util {
-
-  /** enumeration for the alignment of a string */
-  public static enum ALIGNMENT {
-    /** the constant for left alignment */
-    LEFT,
-    /** the constant for centre alignment */
-    CENTRE,
-    /** the constant for right alignment */
-    RIGHT
-  }
-
-  /** enumeration for the trim policy */
-  public static enum TRIM {
-    /** the constant to trim */
-    YES,
-    /** the constant to not trim */
-    NO
-  }
 
   /**
    * Don't call it! Hide constructor of utility class.
