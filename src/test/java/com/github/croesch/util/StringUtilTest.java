@@ -32,17 +32,17 @@ public class StringUtilTest {
     StringUtil su1 = new StringUtil(arr1_1);
     StringUtil su2 = new StringUtil(arr1_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.hashCode() == su1.hashCode());
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
     su2 = new StringUtil(arr2_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.hashCode() == su1.hashCode());
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr3_1);
     su2 = new StringUtil(arr3_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.hashCode() == su1.hashCode());
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
   }
 
   /**
@@ -53,17 +53,17 @@ public class StringUtilTest {
     StringUtil su1 = new StringUtil(arr1_1);
     StringUtil su2 = new StringUtil(arr2_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.hashCode() == su1.hashCode());
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr1_1);
     su2 = new StringUtil(arr3_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.hashCode() == su1.hashCode());
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
     su2 = new StringUtil(arr3_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.hashCode() == su1.hashCode());
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
   }
 
   /**
@@ -72,13 +72,13 @@ public class StringUtilTest {
   @Test
   public void testEquals_Reflexive() {
     StringUtil su = new StringUtil(arr1_1);
-    assertThat(su.equals(su)).isTrue();
+    assertThat(su).isEqualTo(su);
 
     su = new StringUtil(arr2_1);
-    assertThat(su.equals(su)).isTrue();
+    assertThat(su).isEqualTo(su);
 
     su = new StringUtil(arr3_1);
-    assertThat(su.equals(su)).isTrue();
+    assertThat(su).isEqualTo(su);
   }
 
   /**
@@ -89,92 +89,92 @@ public class StringUtilTest {
     StringUtil su1 = new StringUtil(arr1_1);
     StringUtil su2 = new StringUtil(arr1_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr1_1);
     su2 = new StringUtil(arr2_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr1_1);
     su2 = new StringUtil(arr3_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
     su2 = new StringUtil(arr1_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
     su2 = new StringUtil(arr2_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
     su2 = new StringUtil(arr3_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr3_1);
     su2 = new StringUtil(arr1_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr3_1);
     su2 = new StringUtil(arr2_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr3_1);
     su2 = new StringUtil(arr3_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr1_1);
     su2 = new StringUtil(arr1_1);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr1_1);
     su2 = new StringUtil(arr2_1);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr1_1);
     su2 = new StringUtil(arr3_1);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
     su2 = new StringUtil(arr1_1);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
     su2 = new StringUtil(arr2_1);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
     su2 = new StringUtil(arr3_1);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr3_1);
     su2 = new StringUtil(arr1_1);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr3_1);
     su2 = new StringUtil(arr2_1);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr3_1);
     su2 = new StringUtil(arr3_1);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su1));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
   }
 
   /**
@@ -186,37 +186,37 @@ public class StringUtilTest {
     StringUtil su2 = new StringUtil(arr1_1);
     StringUtil su3 = new StringUtil(arr1_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su3)).isEqualTo(su1.equals(su3));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
     su2 = new StringUtil(arr2_1);
     su3 = new StringUtil(arr2_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su3)).isEqualTo(su1.equals(su3));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr3_1);
     su2 = new StringUtil(arr3_1);
     su3 = new StringUtil(arr3_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su3)).isEqualTo(su1.equals(su3));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr1_1);
     su2 = new StringUtil(arr1_2);
     su3 = new StringUtil(arr1_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su3)).isEqualTo(su1.equals(su3));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
     su2 = new StringUtil(arr2_2);
     su3 = new StringUtil(arr2_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su3)).isEqualTo(su1.equals(su3));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr3_1);
     su2 = new StringUtil(arr3_2);
     su3 = new StringUtil(arr3_2);
     assertThat(su1.equals(su2)).isEqualTo(su2.equals(su3)).isEqualTo(su1.equals(su3));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
   }
 
   /**
@@ -227,96 +227,96 @@ public class StringUtilTest {
     StringUtil su1 = new StringUtil(arr1_1);
     StringUtil su2 = new StringUtil(arr1_2);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr1_1);
     su2 = new StringUtil(arr2_2);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr1_1);
     su2 = new StringUtil(arr3_2);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
     su2 = new StringUtil(arr1_2);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
     su2 = new StringUtil(arr2_2);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
     su2 = new StringUtil(arr3_2);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr3_1);
     su2 = new StringUtil(arr1_2);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr3_1);
     su2 = new StringUtil(arr2_2);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr3_1);
     su2 = new StringUtil(arr3_2);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr1_1);
     su2 = new StringUtil(arr1_1);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr1_1);
     su2 = new StringUtil(arr2_1);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr1_1);
     su2 = new StringUtil(arr3_1);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2))
       .isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2))
       .isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
     su2 = new StringUtil(arr1_1);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
     su2 = new StringUtil(arr2_1);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
     su2 = new StringUtil(arr3_1);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr3_1);
     su2 = new StringUtil(arr1_1);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr3_1);
     su2 = new StringUtil(arr2_1);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isFalse();
+    assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr3_1);
     su2 = new StringUtil(arr3_1);
     assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2))
       .isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2))
       .isEqualTo(su1.equals(su2));
-    assertThat(su1.equals(su2)).isTrue();
+    assertThat(su1).isEqualTo(su2);
   }
 
   /**
@@ -325,21 +325,21 @@ public class StringUtilTest {
   @Test
   public void testEquals_NullFalse() {
     StringUtil su = new StringUtil(arr1_1);
-    assertThat(su.equals(null)).isFalse();
+    assertThat(su).isNotEqualTo(null);
 
     su = new StringUtil(arr1_2);
-    assertThat(su.equals(null)).isFalse();
+    assertThat(su).isNotEqualTo(null);
 
     su = new StringUtil(arr2_1);
-    assertThat(su.equals(null)).isFalse();
+    assertThat(su).isNotEqualTo(null);
 
     su = new StringUtil(arr2_2);
-    assertThat(su.equals(null)).isFalse();
+    assertThat(su).isNotEqualTo(null);
 
     su = new StringUtil(arr3_1);
-    assertThat(su.equals(null)).isFalse();
+    assertThat(su).isNotEqualTo(null);
 
     su = new StringUtil(arr3_2);
-    assertThat(su.equals(null)).isFalse();
+    assertThat(su).isNotEqualTo(null);
   }
 }
