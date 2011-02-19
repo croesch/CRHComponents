@@ -155,6 +155,8 @@ public class StringArrayUtilTest {
     sau2 = new StringArrayUtil(arr2_1);
     assertThat(sau1.equals(sau2)).isEqualTo(sau2.equals(sau1));
     assertThat(sau1).isEqualTo(sau2);
+    assertThat(sau1.equals("")).isEqualTo("".equals(sau1));
+    assertThat(sau1).isNotEqualTo("");
 
     sau1 = new StringArrayUtil(arr2_1);
     sau2 = new StringArrayUtil(arr3_1);
@@ -387,5 +389,6 @@ public class StringArrayUtilTest {
     sau3 = sau4.trim();
     assertThat(sau3).isSameAs(sau4);
     assertThat(sau3).isEqualTo(sau4);
+    assertThat(sau4).isSameAs(sau4.trim());
   }
 }

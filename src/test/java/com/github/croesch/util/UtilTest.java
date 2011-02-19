@@ -2,8 +2,9 @@ package com.github.croesch.util;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import org.junit.Test;
+import java.lang.reflect.Constructor;
 
+import org.junit.Test;
 
 /**
  * Provides test methods for {@link Util}
@@ -41,14 +42,23 @@ public class UtilTest {
     assertThat(Util.of(new String[] {""})).isNotEqualTo(new StringArrayUtil(new String[] {"a"}));
     assertThat(Util.of(new String[] {"a"})).isEqualTo(new StringArrayUtil(new String[] {"a"}));
     assertThat(Util.of(new String[] {"a"})).isNotEqualTo(new StringArrayUtil(new String[] {""}));
-    assertThat(Util.of(new String[] {"", "b"}))
-      .isEqualTo(new StringArrayUtil(new String[] {"", "b"}));
-    assertThat(Util.of(new String[] {"a", ""})).isNotEqualTo(new StringArrayUtil(new String[] {"",
-                                                                                                                 "a"}));
+    assertThat(Util.of(new String[] {"", "b"})).isEqualTo(new StringArrayUtil(new String[] {"", "b"}));
+    assertThat(Util.of(new String[] {"a", ""})).isNotEqualTo(new StringArrayUtil(new String[] {"", "a"}));
     assertThat(Util.of(new String[] {"a", "bb", "ccc"}))
       .isEqualTo(new StringArrayUtil(new String[] {"a", "bb", "ccc"}));
-    assertThat(Util.of(new String[] {"a"})).isNotEqualTo(new StringArrayUtil(new String[] {"a"})
-                                                                              .trim());
+    assertThat(Util.of(new String[] {"a"})).isNotEqualTo(new StringArrayUtil(new String[] {"a"}).trim());
   }
 
+  /**
+   * Tests that the constructor {@link Util} throws an exception to avoid being called
+   * 
+   * @author croesch
+   * @since Date: 19.02.2011 19:57:30
+   */
+  @Test
+  public void testConstructorException() {
+    for (Constructor<?> c : Util.class.getDeclaredConstructors()) {
+      assertThat(c.getModifiers()).as(c.toString()).isEqualTo(2);
+    }
+  }
 }

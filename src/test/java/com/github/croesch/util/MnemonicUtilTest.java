@@ -1,18 +1,14 @@
 package com.github.croesch.util;
 
-import static java.lang.Integer.valueOf;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.fest.assertions.Assertions.assertThat;
 
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Constructor;
 
 import javax.swing.JButton;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.github.croesch.util.MnemonicUtil;
 
 /**
  * Provides test cases for {@link MnemonicUtil}
@@ -45,8 +41,8 @@ public class MnemonicUtilTest {
   @Test
   public void testFilterMnemonic_Empty() {
     final String s = MnemonicUtil.filterMnemonic("", this.button);
-    assertThat(s, is(""));
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(0)));
+    assertThat(s).isEqualTo("");
+    assertThat(this.button.getMnemonic()).isZero();
   }
 
   /**
@@ -58,8 +54,8 @@ public class MnemonicUtilTest {
   @Test
   public void testFilterMnemonic_Null() {
     final String s = MnemonicUtil.filterMnemonic(null, this.button);
-    assertThat(s, CoreMatchers.nullValue());
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(0)));
+    assertThat(s).isNull();
+    assertThat(this.button.getMnemonic()).isZero();
   }
 
   /**
@@ -71,8 +67,8 @@ public class MnemonicUtilTest {
   @Test
   public void testFilterMnemonic_SingleBracket1() {
     final String s = MnemonicUtil.filterMnemonic("[", this.button);
-    assertThat(s, is("["));
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(0)));
+    assertThat(s).isEqualTo("[");
+    assertThat(this.button.getMnemonic()).isZero();
   }
 
   /**
@@ -84,8 +80,8 @@ public class MnemonicUtilTest {
   @Test
   public void testFilterMnemonic_SingleBracket2() {
     final String s = MnemonicUtil.filterMnemonic("]", this.button);
-    assertThat(s, is("]"));
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(0)));
+    assertThat(s).isEqualTo("]");
+    assertThat(this.button.getMnemonic()).isZero();
   }
 
   /**
@@ -97,8 +93,8 @@ public class MnemonicUtilTest {
   @Test
   public void testFilterMnemonic_Dollar() {
     final String s = MnemonicUtil.filterMnemonic("$", this.button);
-    assertThat(s, is("$"));
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(0)));
+    assertThat(s).isEqualTo("$");
+    assertThat(this.button.getMnemonic()).isZero();
   }
 
   /**
@@ -110,8 +106,8 @@ public class MnemonicUtilTest {
   @Test
   public void testFilterMnemonic_Space() {
     final String s = MnemonicUtil.filterMnemonic("Pete[ ]", this.button);
-    assertThat(s, is("Pete "));
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(KeyEvent.VK_SPACE)));
+    assertThat(s).isEqualTo("Pete ");
+    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_SPACE);
   }
 
   /**
@@ -123,8 +119,8 @@ public class MnemonicUtilTest {
   @Test
   public void testFilterMnemonic_EmptyBracket() {
     final String s = MnemonicUtil.filterMnemonic("Pete[]", this.button);
-    assertThat(s, is("Pete[]"));
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(0)));
+    assertThat(s).isEqualTo("Pete[]");
+    assertThat(this.button.getMnemonic()).isZero();
   }
 
   /**
@@ -136,8 +132,8 @@ public class MnemonicUtilTest {
   @Test
   public void testFilterMnemonic_TwoBracketPairs() {
     final String s = MnemonicUtil.filterMnemonic("D[o]u[b]le", this.button);
-    assertThat(s, is("Dou[b]le"));
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(KeyEvent.VK_O)));
+    assertThat(s).isEqualTo("Dou[b]le");
+    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_O);
   }
 
   /**
@@ -149,8 +145,8 @@ public class MnemonicUtilTest {
   @Test
   public void testFilterMnemonic_NotClosed() {
     final String s = MnemonicUtil.filterMnemonic("Ha[lf", this.button);
-    assertThat(s, is("Ha[lf"));
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(0)));
+    assertThat(s).isEqualTo("Ha[lf");
+    assertThat(this.button.getMnemonic()).isZero();
   }
 
   /**
@@ -162,8 +158,8 @@ public class MnemonicUtilTest {
   @Test
   public void testFilterMnemonic_NotOpened() {
     final String s = MnemonicUtil.filterMnemonic("Ha]lf", this.button);
-    assertThat(s, is("Ha]lf"));
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(0)));
+    assertThat(s).isEqualTo("Ha]lf");
+    assertThat(this.button.getMnemonic()).isZero();
   }
 
   /**
@@ -175,8 +171,8 @@ public class MnemonicUtilTest {
   @Test
   public void testFilterMnemonic_Brackets1() {
     final String s = MnemonicUtil.filterMnemonic("D]o[u]b[le", this.button);
-    assertThat(s, is("D]oub[le"));
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(KeyEvent.VK_U)));
+    assertThat(s).isEqualTo("D]oub[le");
+    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_U);
   }
 
   /**
@@ -188,8 +184,8 @@ public class MnemonicUtilTest {
   @Test
   public void testFilterMnemonic_Brackets2() {
     final String s = MnemonicUtil.filterMnemonic("Do[u]b[[][][][][][][le", this.button);
-    assertThat(s, is("Doub[[][][][][][][le"));
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(KeyEvent.VK_U)));
+    assertThat(s).isEqualTo("Doub[[][][][][][][le");
+    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_U);
   }
 
   /**
@@ -201,8 +197,8 @@ public class MnemonicUtilTest {
   @Test
   public void testFilterMnemonic_BracketsInBrackets() {
     final String s = MnemonicUtil.filterMnemonic("Do[[u]]ble", this.button);
-    assertThat(s, is("Do[u]ble"));
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(KeyEvent.VK_U)));
+    assertThat(s).isEqualTo("Do[u]ble");
+    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_U);
   }
 
   /**
@@ -214,8 +210,8 @@ public class MnemonicUtilTest {
   @Test
   public void testFilerMnemonic_TooManyCharacters1() {
     final String s = MnemonicUtil.filterMnemonic("ma[nn]y", this.button);
-    assertThat(s, is("ma[nn]y"));
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(0)));
+    assertThat(s).isEqualTo("ma[nn]y");
+    assertThat(this.button.getMnemonic()).isZero();
   }
 
   /**
@@ -227,8 +223,8 @@ public class MnemonicUtilTest {
   @Test
   public void testFilerMnemonic_TooManyCharacters2() {
     final String s = MnemonicUtil.filterMnemonic("[ma]nny", this.button);
-    assertThat(s, is("[ma]nny"));
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(0)));
+    assertThat(s).isEqualTo("[ma]nny");
+    assertThat(this.button.getMnemonic()).isZero();
   }
 
   /**
@@ -240,8 +236,8 @@ public class MnemonicUtilTest {
   @Test
   public void testFilerMnemonic_TooManyCharacters3() {
     final String s = MnemonicUtil.filterMnemonic("man[ny]", this.button);
-    assertThat(s, is("man[ny]"));
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(0)));
+    assertThat(s).isEqualTo("man[ny]");
+    assertThat(this.button.getMnemonic()).isZero();
   }
 
   /**
@@ -253,7 +249,20 @@ public class MnemonicUtilTest {
   @Test
   public void testFilerMnemonic_TooManyCharacters4() {
     final String s = MnemonicUtil.filterMnemonic("[manny]", this.button);
-    assertThat(s, is("[manny]"));
-    assertThat(valueOf(this.button.getMnemonic()), is(valueOf(0)));
+    assertThat(s).isEqualTo("[manny]");
+    assertThat(this.button.getMnemonic()).isZero();
+  }
+
+  /**
+   * Tests that the constructor {@link MnemonicUtil} throws an exception to avoid being called
+   * 
+   * @author croesch
+   * @since Date: 19.02.2011 19:57:30
+   */
+  @Test
+  public void testConstructorException() {
+    for (Constructor<?> c : MnemonicUtil.class.getDeclaredConstructors()) {
+      assertThat(c.getModifiers()).as(c.toString()).isEqualTo(2);
+    }
   }
 }

@@ -2,12 +2,11 @@ package com.github.croesch.util;
 
 import static com.github.croesch.util.FilePropertiesBundle.getMessageFromSingleBundle;
 import static com.github.croesch.util.FilePropertiesBundle.getText;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.fest.assertions.Assertions.assertThat;
 
+import java.lang.reflect.Constructor;
 import java.util.Locale;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -40,21 +39,21 @@ public class FilePropertiesBundleTest {
    */
   @Test
   public void testGetMessageFromSingleBundle() {
-    assertThat(getMessageFromSingleBundle(SINGLE, "test.spaces.all"), is("value "));
-    assertThat(getMessageFromSingleBundle(SINGLE, "test.spaces.onethree"), is("value "));
-    assertThat(getMessageFromSingleBundle(SINGLE, "test.spaces.onetwo"), is("value"));
-    assertThat(getMessageFromSingleBundle(SINGLE, "test.spaces.one"), is("value"));
-    assertThat(getMessageFromSingleBundle(SINGLE, "test.spaces.twothree"), is("value "));
-    assertThat(getMessageFromSingleBundle(SINGLE, "test.spaces.three"), is("value "));
-    assertThat(getMessageFromSingleBundle(SINGLE, "test.spaces.more"), is("value"));
-    assertThat(getMessageFromSingleBundle(SINGLE, "test.tabs"), is("value\t\t"));
-    assertThat(getMessageFromSingleBundle(SINGLE, "test.last.line"), is("doesn't end with \n"));
-    assertThat(getMessageFromSingleBundle("invalid", "test"), CoreMatchers.nullValue());
-    assertThat(getMessageFromSingleBundle(SINGLE, "test"), CoreMatchers.nullValue());
-    assertThat(getMessageFromSingleBundle(null, "test"), CoreMatchers.nullValue());
-    assertThat(getMessageFromSingleBundle(null, null), CoreMatchers.nullValue());
-    assertThat(getMessageFromSingleBundle(SINGLE, null), CoreMatchers.nullValue());
-    assertThat(getMessageFromSingleBundle("invalid", null), CoreMatchers.nullValue());
+    assertThat(getMessageFromSingleBundle(SINGLE, "test.spaces.all")).isEqualTo("value ");
+    assertThat(getMessageFromSingleBundle(SINGLE, "test.spaces.onethree")).isEqualTo("value ");
+    assertThat(getMessageFromSingleBundle(SINGLE, "test.spaces.onetwo")).isEqualTo("value");
+    assertThat(getMessageFromSingleBundle(SINGLE, "test.spaces.one")).isEqualTo("value");
+    assertThat(getMessageFromSingleBundle(SINGLE, "test.spaces.twothree")).isEqualTo("value ");
+    assertThat(getMessageFromSingleBundle(SINGLE, "test.spaces.three")).isEqualTo("value ");
+    assertThat(getMessageFromSingleBundle(SINGLE, "test.spaces.more")).isEqualTo("value");
+    assertThat(getMessageFromSingleBundle(SINGLE, "test.tabs")).isEqualTo("value\t\t");
+    assertThat(getMessageFromSingleBundle(SINGLE, "test.last.line")).isEqualTo("doesn't end with \n");
+    assertThat(getMessageFromSingleBundle("invalid", "test")).isNull();
+    assertThat(getMessageFromSingleBundle(SINGLE, "test")).isNull();
+    assertThat(getMessageFromSingleBundle(null, "test")).isNull();
+    assertThat(getMessageFromSingleBundle(null, null)).isNull();
+    assertThat(getMessageFromSingleBundle(SINGLE, null)).isNull();
+    assertThat(getMessageFromSingleBundle("invalid", null)).isNull();
   }
 
   /**
@@ -62,21 +61,21 @@ public class FilePropertiesBundleTest {
    */
   @Test
   public void testGetText() {
-    assertThat(getText(SINGLE, "test.spaces.all"), is("LEER"));
-    assertThat(getText(SINGLE, "test.spaces.onethree"), is(""));
-    assertThat(getText(SINGLE, "test.spaces.onetwo"), is("EMPTY"));
-    assertThat(getText(SINGLE, "test.spaces.one"), is("EMPTY"));
-    assertThat(getText(SINGLE, "test.spaces.twothree"), is("EMPTY"));
-    assertThat(getText(SINGLE, "test.spaces.three"), is("EMPTY"));
-    assertThat(getText(SINGLE, "test.spaces.more"), is("EMPTY"));
-    assertThat(getText(SINGLE, "test.tabs"), is(""));
-    assertThat(getText(SINGLE, "test.last.line"), is("doesn't end with \n"));
-    assertThat(getText("invalid2", "test"), CoreMatchers.nullValue());
-    assertThat(getText(SINGLE, "test"), CoreMatchers.nullValue());
-    assertThat(getText(null, "test"), CoreMatchers.nullValue());
-    assertThat(getText(null, null), CoreMatchers.nullValue());
-    assertThat(getText(SINGLE, null), CoreMatchers.nullValue());
-    assertThat(getText("invalid", null), CoreMatchers.nullValue());
+    assertThat(getText(SINGLE, "test.spaces.all")).isEqualTo("LEER");
+    assertThat(getText(SINGLE, "test.spaces.onethree")).isEqualTo("");
+    assertThat(getText(SINGLE, "test.spaces.onetwo")).isEqualTo("EMPTY");
+    assertThat(getText(SINGLE, "test.spaces.one")).isEqualTo("EMPTY");
+    assertThat(getText(SINGLE, "test.spaces.twothree")).isEqualTo("EMPTY");
+    assertThat(getText(SINGLE, "test.spaces.three")).isEqualTo("EMPTY");
+    assertThat(getText(SINGLE, "test.spaces.more")).isEqualTo("EMPTY");
+    assertThat(getText(SINGLE, "test.tabs")).isEqualTo("");
+    assertThat(getText(SINGLE, "test.last.line")).isEqualTo("doesn't end with \n");
+    assertThat(getText("invalid2", "test")).isNull();
+    assertThat(getText(SINGLE, "test")).isNull();
+    assertThat(getText(null, "test")).isNull();
+    assertThat(getText(null, null)).isNull();
+    assertThat(getText(SINGLE, null)).isNull();
+    assertThat(getText("invalid", null)).isNull();
   }
 
   /**
@@ -84,18 +83,18 @@ public class FilePropertiesBundleTest {
    */
   @Test
   public void testGetTextWithDifferentLocales() {
-    assertThat(getText(SINGLE, "test.spaces.all", new Locale("de", "DE")), is("LEER"));
-    assertThat(getText(SINGLE, "test.spaces.onethree", new Locale("de", "DE", "")), is(""));
-    assertThat(getText(SINGLE, "test.spaces.onetwo", new Locale("de", "", "DE")), is("EMPTY"));
-    assertThat(getText(SINGLE, "test.spaces.one", new Locale("de", "AT", "DE")), is("EMPTY"));
-    assertThat(getText(SINGLE, "test.spaces.twothree", Locale.GERMAN), is("EMPTY"));
-    assertThat(getText(SINGLE, "test.spaces.three", Locale.getDefault()), is("EMPTY"));
-    assertThat(getText(SINGLE, "test.tabs", Locale.GERMANY), is(""));
-    assertThat(getText(SINGLE, "test.last.line", Locale.CANADA), is("doesn't end with \n"));
-    assertThat(getText(SINGLE, "test.last.line", Locale.ENGLISH), is("doesn't end with \n"));
-    assertThat(getText(SINGLE, "test.last.line", new Locale("")), is("doesn't end with \n"));
-    assertThat(getText(SINGLE, "test.last.line", new Locale("", "")), is("doesn't end with \n"));
-    assertThat(getText(SINGLE, "test.last.line", new Locale("", "", "")), is("doesn't end with \n"));
+    assertThat(getText(SINGLE, "test.spaces.all", new Locale("de", "DE"))).isEqualTo("LEER");
+    assertThat(getText(SINGLE, "test.spaces.onethree", new Locale("de", "DE", ""))).isEqualTo("");
+    assertThat(getText(SINGLE, "test.spaces.onetwo", new Locale("de", "", "DE"))).isEqualTo("EMPTY");
+    assertThat(getText(SINGLE, "test.spaces.one", new Locale("de", "AT", "DE"))).isEqualTo("EMPTY");
+    assertThat(getText(SINGLE, "test.spaces.twothree", Locale.GERMAN)).isEqualTo("EMPTY");
+    assertThat(getText(SINGLE, "test.spaces.three", Locale.getDefault())).isEqualTo("EMPTY");
+    assertThat(getText(SINGLE, "test.tabs", Locale.GERMANY)).isEqualTo("");
+    assertThat(getText(SINGLE, "test.last.line", Locale.CANADA)).isEqualTo("doesn't end with \n");
+    assertThat(getText(SINGLE, "test.last.line", Locale.ENGLISH)).isEqualTo("doesn't end with \n");
+    assertThat(getText(SINGLE, "test.last.line", new Locale(""))).isEqualTo("doesn't end with \n");
+    assertThat(getText(SINGLE, "test.last.line", new Locale("", ""))).isEqualTo("doesn't end with \n");
+    assertThat(getText(SINGLE, "test.last.line", new Locale("", "", ""))).isEqualTo("doesn't end with \n");
   }
 
   /**
@@ -103,7 +102,19 @@ public class FilePropertiesBundleTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testGetTextWithDifferentLocales_IAE() {
-    assertThat(getText(SINGLE, "test.spaces.more", null), is("EMPTY"));
+    getText(SINGLE, "test.spaces.more", null);
   }
 
+  /**
+   * Tests that the constructor {@link FilePropertiesBundle} throws an exception to avoid being called
+   * 
+   * @author croesch
+   * @since Date: 19.02.2011 19:57:30
+   */
+  @Test
+  public void testConstructorException() {
+    for (Constructor<?> c : FilePropertiesBundle.class.getDeclaredConstructors()) {
+      assertThat(c.getModifiers()).as(c.toString()).isEqualTo(2);
+    }
+  }
 }
