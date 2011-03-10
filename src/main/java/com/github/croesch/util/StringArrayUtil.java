@@ -30,7 +30,7 @@ public final class StringArrayUtil {
     if (s == null) {
       throw new IllegalArgumentException();
     }
-    for (String str : s) {
+    for (final String str : s) {
       if (str == null) {
         throw new IllegalArgumentException();
       }
@@ -48,13 +48,15 @@ public final class StringArrayUtil {
    * @throws IllegalArgumentException if the array or one entry is {@code null}
    * @see com.github.croesch.util.Util#of(String[])
    */
-  private StringArrayUtil(final String[] s, final boolean t) throws IllegalArgumentException {
+  private StringArrayUtil(final String[] s, final boolean t)
+          throws IllegalArgumentException {
     this(s);
     this.trimmed = t;
   }
 
   /**
-   * Trims the stored lines of the array and returns the instance of this analyser.
+   * Trims the stored lines of the array and returns the instance of this
+   * analyser.
    * 
    * @author croesch
    * @since Date: 17.02.2011 21:19:25
@@ -67,7 +69,7 @@ public final class StringArrayUtil {
       return this;
     }
 
-    String[] lns = new String[this.lines.length];
+    final String[] lns = new String[this.lines.length];
     for (int i = 0; i < this.lines.length; ++i) {
       lns[i] = this.lines[i].trim();
     }
@@ -91,7 +93,7 @@ public final class StringArrayUtil {
   public int getMaxLineLength() {
 
     int maxLength = -1;
-    for (String ln : this.lines) {
+    for (final String ln : this.lines) {
       if (ln.length() > maxLength) {
         maxLength = ln.length();
       }
@@ -100,8 +102,9 @@ public final class StringArrayUtil {
   }
 
   /**
-   * Returns the array stored in this utility class. But each row will have the same length and they will be filled up
-   * with spaces, so that each entry is left aligned.
+   * Returns the array stored in this utility class. But each row will have the
+   * same length and they will be filled up with spaces, so that each entry is
+   * left aligned.
    * 
    * @author croesch
    * @since Date: 19.02.2011 15:09:00
@@ -110,17 +113,19 @@ public final class StringArrayUtil {
    * @see #toRightAlignedArray()
    */
   public String[] toLeftAlignedArray() {
-    int maxLength = getMaxLineLength();
+    final int maxLength = getMaxLineLength();
 
     for (int i = 0; i < this.lines.length; ++i) {
-      this.lines[i] += new StringUtil(" ").toStringMultipliedWith(maxLength - this.lines[i].length());
+      this.lines[i] += new StringUtil(" ")
+        .toStringMultipliedWith(maxLength - this.lines[i].length());
     }
     return this.lines.clone();
   }
 
   /**
-   * Returns the array stored in this utility class. But each row will have the same length and they will be filled up
-   * with spaces, so that each entry is right aligned.
+   * Returns the array stored in this utility class. But each row will have the
+   * same length and they will be filled up with spaces, so that each entry is
+   * right aligned.
    * 
    * @author croesch
    * @since Date: 19.02.2011 15:09:00
@@ -129,17 +134,20 @@ public final class StringArrayUtil {
    * @see #toLeftAlignedArray()
    */
   public String[] toRightAlignedArray() {
-    int maxLength = getMaxLineLength();
+    final int maxLength = getMaxLineLength();
 
     for (int i = 0; i < this.lines.length; ++i) {
-      this.lines[i] = new StringUtil(" ").toStringMultipliedWith(maxLength - this.lines[i].length()) + this.lines[i];
+      this.lines[i] = new StringUtil(" ")
+        .toStringMultipliedWith(maxLength - this.lines[i].length())
+                      + this.lines[i];
     }
     return this.lines.clone();
   }
 
   /**
-   * Returns the array stored in this utility class. But each row will have the same length and they will be filled up
-   * with spaces, so that each entry is centre aligned.
+   * Returns the array stored in this utility class. But each row will have the
+   * same length and they will be filled up with spaces, so that each entry is
+   * centre aligned.
    * 
    * @author croesch
    * @since Date: 19.02.2011 15:09:00
@@ -148,11 +156,12 @@ public final class StringArrayUtil {
    * @see #toRightAlignedArray()
    */
   public String[] toCentreAlignedArray() {
-    int maxLength = getMaxLineLength();
+    final int maxLength = getMaxLineLength();
 
     for (int i = 0; i < this.lines.length; ++i) {
-      int right = (maxLength - this.lines[i].length()) / 2;
-      final String spaces = new StringUtil(" ").toStringMultipliedWith(maxLength - this.lines[i].length() - right);
+      final int right = (maxLength - this.lines[i].length()) / 2;
+      final String spaces = new StringUtil(" ")
+        .toStringMultipliedWith(maxLength - this.lines[i].length() - right);
       this.lines[i] = spaces + this.lines[i];
       this.lines[i] += new StringUtil(" ").toStringMultipliedWith(right);
     }
@@ -182,7 +191,7 @@ public final class StringArrayUtil {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    StringArrayUtil other = (StringArrayUtil)obj;
+    final StringArrayUtil other = (StringArrayUtil) obj;
     if (!Arrays.equals(this.lines, other.lines)) {
       return false;
     }
