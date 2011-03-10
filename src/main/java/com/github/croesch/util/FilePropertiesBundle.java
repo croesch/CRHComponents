@@ -39,42 +39,6 @@ public final class FilePropertiesBundle {
   }
 
   /**
-   * Generates the variations of the given file name. Returns the array of the different variations. The given Locale is
-   * used to define the language, country and variation code.
-   * 
-   * @author croesch
-   * @since Date: 12.02.2011 21:21:56
-   * @param name the base name of the file
-   * @param loc the Locale to derive the file name from
-   * @return the array of derived names
-   */
-  private static String[] generateNames(final String name, final Locale loc) {
-    final int numOfVariations = 4;
-    final int posOfName = 3;
-    final int posOfNameLng = 2;
-    final int posOfNameLngCountry = 1;
-    final int posOfNameLngCountryVar = 0;
-
-    final String lang = loc.getLanguage();
-    final String coun = loc.getCountry();
-    final String vari = loc.getVariant();
-
-    final String[] names = new String[numOfVariations];
-
-    names[posOfName] = name;
-    if (!"".equals(lang)) {
-      names[posOfNameLng] = name + "_" + lang;
-    }
-    if (!"".equals(lang) && !"".equals(coun)) {
-      names[posOfNameLngCountry] = name + "_" + lang + "_" + coun;
-    }
-    if (!"".equals(lang) && !"".equals(coun) && !"".equals(vari)) {
-      names[posOfNameLngCountryVar] = name + "_" + lang + "_" + coun + "_" + vari;
-    }
-    return names;
-  }
-
-  /**
    * Creates a resource bundle of the given file name. And adds it to the map if the given name is not yet available in
    * the map of resource bundles. If an IOException occurs the bundle will be {@code null}.
    * 
@@ -161,7 +125,7 @@ public final class FilePropertiesBundle {
       throw new IllegalArgumentException();
     }
 
-    final String[] names = generateNames(bundle, loc);
+    final String[] names = Generator.generateFrom(loc).defaultNamesStartingWith(bundle);
     String text = null;
     for (int i = 0; text == null && i < names.length; ++i) {
       text = getMessageFromSingleBundle(names[i], key);
