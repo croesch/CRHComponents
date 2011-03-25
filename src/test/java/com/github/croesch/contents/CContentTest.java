@@ -147,6 +147,16 @@ public class CContentTest {
     this.cont.setMaximumInputLength(10);
     assertFalse(this.cont.isValidInput(null));
   }
+  
+  /**
+   * Tests whether false is always returned by {@link CContent#isValidSpecialInput(String)}
+   */
+  @Test
+  public void testIsValidSpecialInput(){
+	  assertFalse(this.cont.isValidSpecialInput(null));
+	  assertFalse(this.cont.isValidSpecialInput("f"));
+	  assertFalse(this.cont.isValidSpecialInput("d"));
+  }
 
   /**
    * Tests the {@link CContent#isErrorsNotifying()} and {@link CContent#setErrosNotifying(boolean)}

@@ -92,9 +92,19 @@ public class DateContent extends RegexContent {
   }
 
   @Override
+protected boolean isValidSpecialInput(String str) {
+	  return "d".equals(str);
+}
+
+@Override
   public final void insertString(final int offs, final String str, final AttributeSet a) throws BadLocationException {
     if (isValidInput(offs, str)) {
+    	if("d".equals(str)) {
+    		super.remove(0,getLength());
+    		super.insertString(0, today, a);
+    	} else {
       super.insertString(offs, str, a);
+    	}
       this.date = getText();
     }
   }

@@ -159,6 +159,7 @@ public class DateContentTest {
    */
   @Test
   public void testInsertString() throws BadLocationException {
+	final String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
     final String monthDay = new SimpleDateFormat("-MM-dd").format(new Date());
     final String day = new SimpleDateFormat("-dd").format(new Date());
 
@@ -190,6 +191,31 @@ public class DateContentTest {
     Assert.assertThat(Boolean.valueOf(this.dc.isValidInput(4, "abc")), is(Boolean.FALSE));
     assertThatIsValid();
     Assert.assertThat(this.dc.getDate(), is("2005" + monthDay));
+    
+    Assert.assertThat(Boolean.valueOf(this.dc.isValidInput(4, "d")), is(Boolean.TRUE));
+    this.dc.insertString(3, "d", null);
+    assertThatIsValid();
+    Assert.assertThat(this.dc.getDate(), is(today));
+  }
+  
+  /**
+   * Tests whether a special character is contained by {@link DateContent#isValidSpecialInput(String)}
+   */
+  @Test
+  public void testIsValidSpecialInput() {
+	  final String[] wrongInputs = {
+		"a","b","c","z",null,"","dd"
+	  };
+	  final String[] validInputs = {
+		"d"	  
+	  };
+	  
+	 for(String s: wrongInputs){
+		 Assert.assertThat(Boolean.valueOf(this.dc.isValidSpecialInput(s)), is(Boolean.FALSE));
+	 } 
+	 for(String s: validInputs){
+		 Assert.assertThat(Boolean.valueOf(this.dc.isValidSpecialInput(s)), is(Boolean.TRUE));
+	 } 
   }
 
   /**
