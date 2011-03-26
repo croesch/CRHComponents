@@ -10,7 +10,6 @@ import javax.swing.text.BadLocationException;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.croesch.contents.CContent;
 import com.github.croesch.listener.ErrorListener;
 
 /**
@@ -147,15 +146,15 @@ public class CContentTest {
     this.cont.setMaximumInputLength(10);
     assertFalse(this.cont.isValidInput(null));
   }
-  
+
   /**
    * Tests whether false is always returned by {@link CContent#isValidSpecialInput(String)}
    */
   @Test
-  public void testIsValidSpecialInput(){
-	  assertFalse(this.cont.isValidSpecialInput(null));
-	  assertFalse(this.cont.isValidSpecialInput("f"));
-	  assertFalse(this.cont.isValidSpecialInput("d"));
+  public void testIsValidSpecialInput() {
+    assertFalse(this.cont.isValidSpecialInput(null));
+    assertFalse(this.cont.isValidSpecialInput("f"));
+    assertFalse(this.cont.isValidSpecialInput("d"));
   }
 
   /**
@@ -194,7 +193,7 @@ public class CContentTest {
   @Test
   public void testAddErrorListeners() throws BadLocationException {
     this.bool = false;
-    final ErrorListener l1 = new ErrorListener(){
+    final ErrorListener l1 = new ErrorListener() {
       private boolean invoked = false;
 
       @Override
@@ -206,7 +205,7 @@ public class CContentTest {
         this.invoked = true;
       }
     };
-    final ErrorListener l2 = new ErrorListener(){
+    final ErrorListener l2 = new ErrorListener() {
       @SuppressWarnings("synthetic-access")
       @Override
       public void errorStateChanged(final boolean error) {
@@ -259,7 +258,7 @@ public class CContentTest {
    */
   @Test
   public void testRemoveErrorListeners() throws BadLocationException {
-    final ErrorListener el = new ErrorListener(){
+    final ErrorListener el = new ErrorListener() {
       private boolean invoked = false;
 
       @Override
@@ -334,7 +333,7 @@ public class CContentTest {
   @Test
   public void testCheckForErrors() throws BadLocationException {
     this.bool = true;
-    final ErrorListener el = new ErrorListener(){
+    final ErrorListener el = new ErrorListener() {
       private boolean invoked = false;
 
       @SuppressWarnings("synthetic-access")
