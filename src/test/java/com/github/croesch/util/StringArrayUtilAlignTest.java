@@ -1,7 +1,6 @@
 package com.github.croesch.util;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.fest.assertions.Assertions.assertThat;
 
 import org.junit.Test;
 
@@ -24,37 +23,37 @@ public class StringArrayUtilAlignTest {
    */
   @Test
   public void testAlignLeft() {
-    String[] text = {"Alpha"};
-    String[] expected = {"Alpha"};
-    assertThat(Util.of(text).toLeftAlignedArray(), is(expected));
+    String[] text = { "Alpha" };
+    String[] expected = { "Alpha" };
+    assertThat(Util.of(text).toLeftAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph$a", "Alph$a"};
-    expected = new String[] {"Alph$a", "Alph$a"};
-    assertThat(Util.of(text).toLeftAlignedArray(), is(expected));
+    text = new String[] { "Alph$a", "Alph$a" };
+    expected = new String[] { "Alph$a", "Alph$a" };
+    assertThat(Util.of(text).toLeftAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph$a", "Alph$"};
-    expected = new String[] {"Alph$a", "Alph$ "};
-    assertThat(Util.of(text).toLeftAlignedArray(), is(expected));
+    text = new String[] { "Alph$a", "Alph$" };
+    expected = new String[] { "Alph$a", "Alph$ " };
+    assertThat(Util.of(text).toLeftAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph$a", "Alph$ "};
-    expected = new String[] {"Alph$a", "Alph$ "};
-    assertThat(Util.of(text).toLeftAlignedArray(), is(expected));
+    text = new String[] { "Alph$a", "Alph$ " };
+    expected = new String[] { "Alph$a", "Alph$ " };
+    assertThat(Util.of(text).toLeftAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph$a", "Alph "};
-    expected = new String[] {"Alph$a", "Alph  "};
-    assertThat(Util.of(text).toLeftAlignedArray(), is(expected));
+    text = new String[] { "Alph$a", "Alph " };
+    expected = new String[] { "Alph$a", "Alph  " };
+    assertThat(Util.of(text).toLeftAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph", "Alpha"};
-    expected = new String[] {"Alph ", "Alpha"};
-    assertThat(Util.of(text).toLeftAlignedArray(), is(expected));
+    text = new String[] { "Alph", "Alpha" };
+    expected = new String[] { "Alph ", "Alpha" };
+    assertThat(Util.of(text).toLeftAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph ", "Alpha", "   ", ".  "};
-    expected = new String[] {"Alph ", "Alpha", "     ", ".    "};
-    assertThat(Util.of(text).toLeftAlignedArray(), is(expected));
+    text = new String[] { "Alph ", "Alpha", "   ", ".  " };
+    expected = new String[] { "Alph ", "Alpha", "     ", ".    " };
+    assertThat(Util.of(text).toLeftAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"A  ", "b ", "c  ", "delta"};
-    expected = new String[] {"A    ", "b    ", "c    ", "delta"};
-    assertThat(Util.of(text).toLeftAlignedArray(), is(expected));
+    text = new String[] { "A  ", "b ", "c  ", "delta" };
+    expected = new String[] { "A    ", "b    ", "c    ", "delta" };
+    assertThat(Util.of(text).toLeftAlignedArray()).isEqualTo(expected);
   }
 
   /**
@@ -65,37 +64,37 @@ public class StringArrayUtilAlignTest {
    */
   @Test
   public void testAlignRight() {
-    String[] text = {"Alpha"};
-    String[] expected = {"Alpha"};
-    assertThat(Util.of(text).toRightAlignedArray(), is(expected));
+    String[] text = { "Alpha" };
+    String[] expected = { "Alpha" };
+    assertThat(Util.of(text).toRightAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph$a", "Alph$a"};
-    expected = new String[] {"Alph$a", "Alph$a"};
-    assertThat(Util.of(text).toRightAlignedArray(), is(expected));
+    text = new String[] { "Alph$a", "Alph$a" };
+    expected = new String[] { "Alph$a", "Alph$a" };
+    assertThat(Util.of(text).toRightAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph$a", "Alph$"};
-    expected = new String[] {"Alph$a", " Alph$"};
-    assertThat(Util.of(text).toRightAlignedArray(), is(expected));
+    text = new String[] { "Alph$a", "Alph$" };
+    expected = new String[] { "Alph$a", " Alph$" };
+    assertThat(Util.of(text).toRightAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph$a", "\tAlph$"};
-    expected = new String[] {"Alph$a", "\tAlph$"};
-    assertThat(Util.of(text).toRightAlignedArray(), is(expected));
+    text = new String[] { "Alph$a", "\tAlph$" };
+    expected = new String[] { "Alph$a", "\tAlph$" };
+    assertThat(Util.of(text).toRightAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph$a", "\nAlph"};
-    expected = new String[] {"Alph$a", " \nAlph"};
-    assertThat(Util.of(text).toRightAlignedArray(), is(expected));
+    text = new String[] { "Alph$a", "\nAlph" };
+    expected = new String[] { "Alph$a", " \nAlph" };
+    assertThat(Util.of(text).toRightAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph", "Alpha"};
-    expected = new String[] {" Alph", "Alpha"};
-    assertThat(Util.of(text).toRightAlignedArray(), is(expected));
+    text = new String[] { "Alph", "Alpha" };
+    expected = new String[] { " Alph", "Alpha" };
+    assertThat(Util.of(text).toRightAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph", "Alpha", "  ", "\t\n."};
-    expected = new String[] {" Alph", "Alpha", "     ", "  \t\n."};
-    assertThat(Util.of(text).toRightAlignedArray(), is(expected));
+    text = new String[] { "Alph", "Alpha", "  ", "\t\n." };
+    expected = new String[] { " Alph", "Alpha", "     ", "  \t\n." };
+    assertThat(Util.of(text).toRightAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"  A", "    b", "   c", "delta"};
-    expected = new String[] {"    A", "    b", "    c", "delta"};
-    assertThat(Util.of(text).toRightAlignedArray(), is(expected));
+    text = new String[] { "  A", "    b", "   c", "delta" };
+    expected = new String[] { "    A", "    b", "    c", "delta" };
+    assertThat(Util.of(text).toRightAlignedArray()).isEqualTo(expected);
   }
 
   /**
@@ -106,37 +105,37 @@ public class StringArrayUtilAlignTest {
    */
   @Test
   public void testAlignCentre() {
-    String[] text = {"Alpha"};
-    String[] expected = {"Alpha"};
-    assertThat(Util.of(text).toCentreAlignedArray(), is(expected));
+    String[] text = { "Alpha" };
+    String[] expected = { "Alpha" };
+    assertThat(Util.of(text).toCentreAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph$a", "Alph$a"};
-    expected = new String[] {"Alph$a", "Alph$a"};
-    assertThat(Util.of(text).toCentreAlignedArray(), is(expected));
+    text = new String[] { "Alph$a", "Alph$a" };
+    expected = new String[] { "Alph$a", "Alph$a" };
+    assertThat(Util.of(text).toCentreAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph$a", "Alph$"};
-    expected = new String[] {"Alph$a", " Alph$"};
-    assertThat(Util.of(text).toCentreAlignedArray(), is(expected));
+    text = new String[] { "Alph$a", "Alph$" };
+    expected = new String[] { "Alph$a", " Alph$" };
+    assertThat(Util.of(text).toCentreAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph$a", "Alph "};
-    expected = new String[] {"Alph$a", " Alph "};
-    assertThat(Util.of(text).toCentreAlignedArray(), is(expected));
+    text = new String[] { "Alph$a", "Alph " };
+    expected = new String[] { "Alph$a", " Alph " };
+    assertThat(Util.of(text).toCentreAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph", "Alpha"};
-    expected = new String[] {" Alph", "Alpha"};
-    assertThat(Util.of(text).toCentreAlignedArray(), is(expected));
+    text = new String[] { "Alph", "Alpha" };
+    expected = new String[] { " Alph", "Alpha" };
+    assertThat(Util.of(text).toCentreAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph", "Alpha", "", "."};
-    expected = new String[] {" Alph", "Alpha", "     ", "  .  "};
-    assertThat(Util.of(text).toCentreAlignedArray(), is(expected));
+    text = new String[] { "Alph", "Alpha", "", "." };
+    expected = new String[] { " Alph", "Alpha", "     ", "  .  " };
+    assertThat(Util.of(text).toCentreAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"A ", " b ", " c  ", "delta"};
-    expected = new String[] {"  A  ", "  b  ", "  c  ", "delta"};
-    assertThat(Util.of(text).toCentreAlignedArray(), is(expected));
+    text = new String[] { "A ", " b ", " c  ", "delta" };
+    expected = new String[] { "  A  ", "  b  ", "  c  ", "delta" };
+    assertThat(Util.of(text).toCentreAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"    A", "b", "c", "delta", "länger"};
-    expected = new String[] {"     A", "   b  ", "   c  ", " delta", "länger"};
-    assertThat(Util.of(text).toCentreAlignedArray(), is(expected));
+    text = new String[] { "    A", "b", "c", "delta", "länger" };
+    expected = new String[] { "     A", "   b  ", "   c  ", " delta", "länger" };
+    assertThat(Util.of(text).toCentreAlignedArray()).isEqualTo(expected);
   }
 
   /**
@@ -147,33 +146,33 @@ public class StringArrayUtilAlignTest {
    */
   @Test
   public void testAlignLeft_Trim() {
-    String[] text = {" \t\t Alpha"};
-    String[] expected = {"Alpha"};
-    assertThat(Util.of(text).trim().toLeftAlignedArray(), is(expected));
+    String[] text = { " \t\t Alpha" };
+    String[] expected = { "Alpha" };
+    assertThat(Util.of(text).trim().toLeftAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph$a   ", "   Alph$a"};
-    expected = new String[] {"Alph$a", "Alph$a"};
-    assertThat(Util.of(text).trim().toLeftAlignedArray(), is(expected));
+    text = new String[] { "Alph$a   ", "   Alph$a" };
+    expected = new String[] { "Alph$a", "Alph$a" };
+    assertThat(Util.of(text).trim().toLeftAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"   Alph$a", "Alph$   "};
-    expected = new String[] {"Alph$a", "Alph$ "};
-    assertThat(Util.of(text).trim().toLeftAlignedArray(), is(expected));
+    text = new String[] { "   Alph$a", "Alph$   " };
+    expected = new String[] { "Alph$a", "Alph$ " };
+    assertThat(Util.of(text).trim().toLeftAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"              Alph $a  ", "Alph  "};
-    expected = new String[] {"Alph $a", "Alph   "};
-    assertThat(Util.of(text).trim().toLeftAlignedArray(), is(expected));
+    text = new String[] { "              Alph $a  ", "Alph  " };
+    expected = new String[] { "Alph $a", "Alph   " };
+    assertThat(Util.of(text).trim().toLeftAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph", "     Alpha     "};
-    expected = new String[] {"Alph ", "Alpha"};
-    assertThat(Util.of(text).trim().toLeftAlignedArray(), is(expected));
+    text = new String[] { "Alph", "     Alpha     " };
+    expected = new String[] { "Alph ", "Alpha" };
+    assertThat(Util.of(text).trim().toLeftAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph", "Alpha", "                                       ", "."};
-    expected = new String[] {"Alph ", "Alpha", "     ", ".    "};
-    assertThat(Util.of(text).trim().toLeftAlignedArray(), is(expected));
+    text = new String[] { "Alph", "Alpha", "                                       ", "." };
+    expected = new String[] { "Alph ", "Alpha", "     ", ".    " };
+    assertThat(Util.of(text).trim().toLeftAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"A ", " b ", "                               c ", "  delta "};
-    expected = new String[] {"A    ", "b    ", "c    ", "delta"};
-    assertThat(Util.of(text).trim().toLeftAlignedArray(), is(expected));
+    text = new String[] { "A ", " b ", "                               c ", "  delta " };
+    expected = new String[] { "A    ", "b    ", "c    ", "delta" };
+    assertThat(Util.of(text).trim().toLeftAlignedArray()).isEqualTo(expected);
   }
 
   /**
@@ -184,33 +183,33 @@ public class StringArrayUtilAlignTest {
    */
   @Test
   public void testAlignRight_Trim() {
-    String[] text = {"   Alpha   "};
-    String[] expected = {"Alpha"};
-    assertThat(Util.of(text).trim().toRightAlignedArray(), is(expected));
+    String[] text = { "   Alpha   " };
+    String[] expected = { "Alpha" };
+    assertThat(Util.of(text).trim().toRightAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"  Alph$a  ", "  Alph$a  "};
-    expected = new String[] {"Alph$a", "Alph$a"};
-    assertThat(Util.of(text).trim().toRightAlignedArray(), is(expected));
+    text = new String[] { "  Alph$a  ", "  Alph$a  " };
+    expected = new String[] { "Alph$a", "Alph$a" };
+    assertThat(Util.of(text).trim().toRightAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {" Alp h$a", " Alph $ "};
-    expected = new String[] {"Alp h$a", " Alph $"};
-    assertThat(Util.of(text).trim().toRightAlignedArray(), is(expected));
+    text = new String[] { " Alp h$a", " Alph $ " };
+    expected = new String[] { "Alp h$a", " Alph $" };
+    assertThat(Util.of(text).trim().toRightAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph$a                   ", "\t\t\t\t\tAlph   "};
-    expected = new String[] {"Alph$a", "  Alph"};
-    assertThat(Util.of(text).trim().toRightAlignedArray(), is(expected));
+    text = new String[] { "Alph$a                   ", "\t\t\t\t\tAlph   " };
+    expected = new String[] { "Alph$a", "  Alph" };
+    assertThat(Util.of(text).trim().toRightAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"                  Alph", "Alpha "};
-    expected = new String[] {" Alph", "Alpha"};
-    assertThat(Util.of(text).trim().toRightAlignedArray(), is(expected));
+    text = new String[] { "                  Alph", "Alpha " };
+    expected = new String[] { " Alph", "Alpha" };
+    assertThat(Util.of(text).trim().toRightAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"  Alph   ", "    Alpha", "  \t\t\t\t\t\t                 ", "."};
-    expected = new String[] {" Alph", "Alpha", "     ", "    ."};
-    assertThat(Util.of(text).trim().toRightAlignedArray(), is(expected));
+    text = new String[] { "  Alph   ", "    Alpha", "  \t\t\t\t\t\t                 ", "." };
+    expected = new String[] { " Alph", "Alpha", "     ", "    ." };
+    assertThat(Util.of(text).trim().toRightAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {" A ", "b", "c", "delta"};
-    expected = new String[] {"    A", "    b", "    c", "delta"};
-    assertThat(Util.of(text).trim().toRightAlignedArray(), is(expected));
+    text = new String[] { " A ", "b", "c", "delta" };
+    expected = new String[] { "    A", "    b", "    c", "delta" };
+    assertThat(Util.of(text).trim().toRightAlignedArray()).isEqualTo(expected);
   }
 
   /**
@@ -221,36 +220,36 @@ public class StringArrayUtilAlignTest {
    */
   @Test
   public void testAlignCentre_Trim() {
-    String[] text = {"    Alpha"};
-    String[] expected = {"Alpha"};
-    assertThat(Util.of(text).trim().toCentreAlignedArray(), is(expected));
+    String[] text = { "    Alpha" };
+    String[] expected = { "Alpha" };
+    assertThat(Util.of(text).trim().toCentreAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph$a    ", "   Alph$a "};
-    expected = new String[] {"Alph$a", "Alph$a"};
-    assertThat(Util.of(text).trim().toCentreAlignedArray(), is(expected));
+    text = new String[] { "Alph$a    ", "   Alph$a " };
+    expected = new String[] { "Alph$a", "Alph$a" };
+    assertThat(Util.of(text).trim().toCentreAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph$a   ", "Alph$   "};
-    expected = new String[] {"Alph$a", " Alph$"};
-    assertThat(Util.of(text).trim().toCentreAlignedArray(), is(expected));
+    text = new String[] { "Alph$a   ", "Alph$   " };
+    expected = new String[] { "Alph$a", " Alph$" };
+    assertThat(Util.of(text).trim().toCentreAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph$a ", " Alph"};
-    expected = new String[] {"Alph$a", " Alph "};
-    assertThat(Util.of(text).trim().toCentreAlignedArray(), is(expected));
+    text = new String[] { "Alph$a ", " Alph" };
+    expected = new String[] { "Alph$a", " Alph " };
+    assertThat(Util.of(text).trim().toCentreAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph", "Alpha"};
-    expected = new String[] {" Alph", "Alpha"};
-    assertThat(Util.of(text).trim().toCentreAlignedArray(), is(expected));
+    text = new String[] { "Alph", "Alpha" };
+    expected = new String[] { " Alph", "Alpha" };
+    assertThat(Util.of(text).trim().toCentreAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"Alph   ", "Alpha   ", "", ". "};
-    expected = new String[] {" Alph", "Alpha", "     ", "  .  "};
-    assertThat(Util.of(text).trim().toCentreAlignedArray(), is(expected));
+    text = new String[] { "Alph   ", "Alpha   ", "", ". " };
+    expected = new String[] { " Alph", "Alpha", "     ", "  .  " };
+    assertThat(Util.of(text).trim().toCentreAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"A", "b", "c    ", "delta"};
-    expected = new String[] {"  A  ", "  b  ", "  c  ", "delta"};
-    assertThat(Util.of(text).trim().toCentreAlignedArray(), is(expected));
+    text = new String[] { "A", "b", "c    ", "delta" };
+    expected = new String[] { "  A  ", "  b  ", "  c  ", "delta" };
+    assertThat(Util.of(text).trim().toCentreAlignedArray()).isEqualTo(expected);
 
-    text = new String[] {"     A", "             b ", "c", "delta   ", "länger"};
-    expected = new String[] {"   A  ", "   b  ", "   c  ", " delta", "länger"};
-    assertThat(Util.of(text).trim().toCentreAlignedArray(), is(expected));
+    text = new String[] { "     A", "             b ", "c", "delta   ", "länger" };
+    expected = new String[] { "   A  ", "   b  ", "   c  ", " delta", "länger" };
+    assertThat(Util.of(text).trim().toCentreAlignedArray()).isEqualTo(expected);
   }
 }
