@@ -1,8 +1,6 @@
 package com.github.croesch.contents;
 
-import static java.lang.Integer.valueOf;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.fest.assertions.Assertions.assertThat;
 import static org.junit.Assert.fail;
 
 import javax.swing.text.BadLocationException;
@@ -51,7 +49,7 @@ public class CContentTest {
     } catch (final BadLocationException e) {
       fail();
     }
-    assertThat(this.cont.getText(), is("implemented"));
+    assertThat(this.cont.getText()).isEqualTo("implemented");
   }
 
   /**
@@ -63,18 +61,18 @@ public class CContentTest {
    */
   @Test
   public void testIsValidInputIntString() throws BadLocationException {
-    assertTrue(this.cont.isValidInput(0, "alfred"));
-    assertTrue(this.cont.isValidInput(0, null));
+    assertThat(this.cont.isValidInput(0, "alfred")).isTrue();
+    assertThat(this.cont.isValidInput(0, null)).isTrue();
     this.cont.insertString(0, null, null);
     this.cont.setMaximumInputLength(5);
-    assertTrue(this.cont.isValidInput(0, "alf"));
+    assertThat(this.cont.isValidInput(0, "alf")).isTrue();
     this.cont.insertString(0, "alf", null);
-    assertFalse(this.cont.isValidInput(0, "alf"));
+    assertThat(this.cont.isValidInput(0, "alf")).isFalse();
     this.cont.insertString(0, "alf", null);
     this.cont.setMaximumInputLength(6);
-    assertFalse(this.cont.isValidInput(0, "alf"));
+    assertThat(this.cont.isValidInput(0, "alf")).isFalse();
     this.cont.setMaximumInputLength(9);
-    assertTrue(this.cont.isValidInput(0, "alf"));
+    assertThat(this.cont.isValidInput(0, "alf")).isTrue();
   }
 
   /**
@@ -83,14 +81,9 @@ public class CContentTest {
    * @author croesch
    * @since Date: 09.02.2011 21:42:07
    */
-  @Test
-  public void testIsValidInputIntString_BLE1() {
-    try {
-      assertTrue(this.cont.isValidInput(-1, "badlocation"));
-      fail();
-    } catch (final BadLocationException e) {
-      // test passed
-    }
+  @Test(expected = BadLocationException.class)
+  public void testIsValidInputIntString_BLE1() throws BadLocationException {
+    this.cont.isValidInput(-1, "badlocation");
   }
 
   /**
@@ -99,14 +92,9 @@ public class CContentTest {
    * @author croesch
    * @since Date: 09.02.2011 21:42:07
    */
-  @Test
-  public void testIsValidInputIntString_BLE2() {
-    try {
-      assertTrue(this.cont.isValidInput(1, "badlocation"));
-      fail();
-    } catch (final BadLocationException e) {
-      // test passed
-    }
+  @Test(expected = BadLocationException.class)
+  public void testIsValidInputIntString_BLE2() throws BadLocationException {
+    this.cont.isValidInput(1, "badlocation");
   }
 
   /**
@@ -118,13 +106,13 @@ public class CContentTest {
    */
   @Test
   public void testIsValid() throws BadLocationException {
-    assertTrue(this.cont.isValid());
+    assertThat(this.cont.isValid()).isTrue();
     this.cont.insertString(0, "text", null);
-    assertTrue(this.cont.isValid());
+    assertThat(this.cont.isValid()).isTrue();
     this.cont.setMaximumInputLength(3);
-    assertFalse(this.cont.isValid());
+    assertThat(this.cont.isValid()).isFalse();
     this.cont.remove(3, 1);
-    assertTrue(this.cont.isValid());
+    assertThat(this.cont.isValid()).isTrue();
   }
 
   /**
@@ -132,19 +120,19 @@ public class CContentTest {
    */
   @Test
   public void testIsValidInputString() {
-    assertTrue(this.cont.isValidInput("text"));
+    assertThat(this.cont.isValidInput("text")).isTrue();
     this.cont.setMaximumInputLength(10);
-    assertTrue(this.cont.isValidInput("text"));
+    assertThat(this.cont.isValidInput("text")).isTrue();
     this.cont.setMaximumInputLength(4);
-    assertTrue(this.cont.isValidInput("text"));
+    assertThat(this.cont.isValidInput("text")).isTrue();
     this.cont.setMaximumInputLength(2);
-    assertFalse(this.cont.isValidInput("text"));
+    assertThat(this.cont.isValidInput("text")).isFalse();
     this.cont.setMaximumInputLength(-5);
-    assertFalse(this.cont.isValidInput(null));
+    assertThat(this.cont.isValidInput(null)).isFalse();
     this.cont.setMaximumInputLength(0);
-    assertFalse(this.cont.isValidInput(null));
+    assertThat(this.cont.isValidInput(null)).isFalse();
     this.cont.setMaximumInputLength(10);
-    assertFalse(this.cont.isValidInput(null));
+    assertThat(this.cont.isValidInput(null)).isFalse();
   }
 
   /**
@@ -152,9 +140,9 @@ public class CContentTest {
    */
   @Test
   public void testIsValidSpecialInput() {
-    assertFalse(this.cont.isValidSpecialInput(null));
-    assertFalse(this.cont.isValidSpecialInput("f"));
-    assertFalse(this.cont.isValidSpecialInput("d"));
+    assertThat(this.cont.isValidSpecialInput(null)).isFalse();
+    assertThat(this.cont.isValidSpecialInput("f")).isFalse();
+    assertThat(this.cont.isValidSpecialInput("d")).isFalse();
   }
 
   /**
@@ -165,22 +153,22 @@ public class CContentTest {
    */
   @Test
   public void testSetIsDisplayingErrors() {
-    assertTrue(this.cont.isErrorsNotifying());
+    assertThat(this.cont.isErrorsNotifying()).isTrue();
     this.cont.setErrosNotifying(false);
-    assertFalse(this.cont.isErrorsNotifying());
+    assertThat(this.cont.isErrorsNotifying()).isFalse();
     this.cont.setErrosNotifying(true);
-    assertTrue(this.cont.isErrorsNotifying());
+    assertThat(this.cont.isErrorsNotifying()).isTrue();
     this.cont.setErrosNotifying(true);
-    assertTrue(this.cont.isErrorsNotifying());
+    assertThat(this.cont.isErrorsNotifying()).isTrue();
     this.cont.setErrosNotifying(false);
-    assertFalse(this.cont.isErrorsNotifying());
+    assertThat(this.cont.isErrorsNotifying()).isFalse();
     this.cont.setErrosNotifying(true);
     this.cont.setErrosNotifying(true);
-    assertTrue(this.cont.isErrorsNotifying());
+    assertThat(this.cont.isErrorsNotifying()).isTrue();
     this.cont.setErrosNotifying(false);
     this.cont.setErrosNotifying(true);
     this.cont.setErrosNotifying(false);
-    assertFalse(this.cont.isErrorsNotifying());
+    assertThat(this.cont.isErrorsNotifying()).isFalse();
   }
 
   /**
@@ -219,34 +207,34 @@ public class CContentTest {
     this.cont.removeErrorListeners(l1);
 
     this.cont.setMaximumInputLength(5); // will inform listeners
-    assertTrue(this.bool); // value changed by listener
+    assertThat(this.bool).isTrue(); // value changed by listener
 
     this.cont.insertString(0, "bl", null);
-    assertTrue(this.bool); // should still be the same
+    assertThat(this.bool).isTrue(); // should still be the same
 
     this.cont.setMaximumInputLength(0); // will inform listeners
-    assertFalse(this.bool); // value changed by listener
+    assertThat(this.bool).isFalse(); // value changed by listener
     this.cont.setMaximumInputLength(20); // will inform listeners
-    assertFalse(this.bool); // should still be the same
+    assertThat(this.bool).isFalse(); // should still be the same
 
     this.cont.insertString(0, "b", null);
-    assertTrue(this.bool); // value changed by listener
+    assertThat(this.bool).isTrue(); // value changed by listener
 
     this.cont.remove(1, 1); // will inform listeners
-    assertFalse(this.bool); // value changed by listener
+    assertThat(this.bool).isFalse(); // value changed by listener
 
     this.cont.removeErrorListeners(l1);
     this.cont.replace(5, 2, "foo", null); // will inform listeners
-    assertTrue(this.bool); // value changed by listener
+    assertThat(this.bool).isTrue(); // value changed by listener
 
     this.cont.removeErrorListeners(l2);
     this.cont.remove(1, 1); // will inform listeners, but there are non
-    assertTrue(this.bool); // shouldn't be changed
+    assertThat(this.bool).isTrue(); // shouldn't be changed
 
     this.cont.setMaximumInputLength(0);
-    assertTrue(this.cont.isValid());
+    assertThat(this.cont.isValid()).isTrue();
     this.cont.addErrorListeners(l2);
-    assertFalse(this.bool); // should be changed
+    assertThat(this.bool).isFalse(); // should be changed
   }
 
   /**
@@ -288,19 +276,19 @@ public class CContentTest {
    */
   @Test
   public void testGetSetMaximumInputLength() {
-    assertThat(valueOf(this.cont.getMaximumInputLength()), is(valueOf(0)));
+    assertThat(this.cont.getMaximumInputLength()).isZero();
     this.cont.setMaximumInputLength(-12);
-    assertThat(valueOf(this.cont.getMaximumInputLength()), is(valueOf(0)));
+    assertThat(this.cont.getMaximumInputLength()).isZero();
     this.cont.setMaximumInputLength(12);
-    assertThat(valueOf(this.cont.getMaximumInputLength()), is(valueOf(12)));
+    assertThat(this.cont.getMaximumInputLength()).isEqualTo(12);
     this.cont.setMaximumInputLength(12);
-    assertThat(valueOf(this.cont.getMaximumInputLength()), is(valueOf(12)));
+    assertThat(this.cont.getMaximumInputLength()).isEqualTo(12);
     this.cont.setMaximumInputLength(-12);
-    assertThat(valueOf(this.cont.getMaximumInputLength()), is(valueOf(0)));
+    assertThat(this.cont.getMaximumInputLength()).isZero();
     this.cont.setMaximumInputLength(11);
-    assertThat(valueOf(this.cont.getMaximumInputLength()), is(valueOf(11)));
+    assertThat(this.cont.getMaximumInputLength()).isEqualTo(11);
     this.cont.setMaximumInputLength(-5);
-    assertThat(valueOf(this.cont.getMaximumInputLength()), is(valueOf(0)));
+    assertThat(this.cont.getMaximumInputLength()).isZero();
   }
 
   /**
@@ -312,15 +300,15 @@ public class CContentTest {
    */
   @Test
   public void testGetText() throws BadLocationException {
-    assertThat(this.cont.getText(), is(""));
+    assertThat(this.cont.getText()).isEmpty();
     this.cont.insertString(0, "foo", null);
-    assertThat(this.cont.getText(), is("foo"));
+    assertThat(this.cont.getText()).isEqualTo("foo");
     this.cont.insertString(0, "bar", null);
-    assertThat(this.cont.getText(), is("barfoo"));
+    assertThat(this.cont.getText()).isEqualTo("barfoo");
     this.cont.insertString(0, null, null);
-    assertThat(this.cont.getText(), is("barfoo"));
+    assertThat(this.cont.getText()).isEqualTo("barfoo");
     this.cont.remove(0, 6);
-    assertThat(this.cont.getText(), is(""));
+    assertThat(this.cont.getText()).isEmpty();
   }
 
   /**
@@ -348,14 +336,13 @@ public class CContentTest {
       }
     };
     this.cont.addErrorListeners(el);
-    assertFalse(this.bool);
+    assertThat(this.bool).isFalse();
     this.cont.insertString(0, "text", null);
     this.cont.setErrosNotifying(false);
     this.cont.setMaximumInputLength(3);
     this.cont.checkForErrors();
     this.cont.setErrosNotifying(true);
     this.cont.setMaximumInputLength(4);
-
   }
 
   /**
@@ -367,21 +354,21 @@ public class CContentTest {
    */
   @Test
   public void testInsertStringIntStringAttributeSet() throws BadLocationException {
-    assertThat(this.cont.getText(), is(""));
+    assertThat(this.cont.getText()).isEmpty();
     this.cont.insertString(0, "chj", null);
-    assertThat(this.cont.getText(), is("chj"));
+    assertThat(this.cont.getText()).isEqualTo("chj");
     this.cont.insertString(0, "ab", null);
-    assertThat(this.cont.getText(), is("abchj"));
+    assertThat(this.cont.getText()).isEqualTo("abchj");
     this.cont.insertString(3, "deg", null);
-    assertThat(this.cont.getText(), is("abcdeghj"));
+    assertThat(this.cont.getText()).isEqualTo("abcdeghj");
     this.cont.insertString(5, "f", null);
-    assertThat(this.cont.getText(), is("abcdefghj"));
+    assertThat(this.cont.getText()).isEqualTo("abcdefghj");
     this.cont.insertString(5, null, null);
-    assertThat(this.cont.getText(), is("abcdefghj"));
+    assertThat(this.cont.getText()).isEqualTo("abcdefghj");
     this.cont.insertString(8, "i", null);
-    assertThat(this.cont.getText(), is("abcdefghij"));
+    assertThat(this.cont.getText()).isEqualTo("abcdefghij");
     this.cont.insertString(10, "k", null);
-    assertThat(this.cont.getText(), is("abcdefghijk"));
+    assertThat(this.cont.getText()).isEqualTo("abcdefghijk");
     try {
       this.cont.insertString(12, "k", null);
       fail();
@@ -397,14 +384,9 @@ public class CContentTest {
    * @author croesch
    * @since Date: 10.02.2011 19:13:48
    */
-  @Test
-  public void testInsertStringIntStringAttributeSet_BLE1() {
-    try {
-      this.cont.insertString(1, "k", null);
-      fail();
-    } catch (final BadLocationException e) {
-      // expected
-    }
+  @Test(expected = BadLocationException.class)
+  public void testInsertStringIntStringAttributeSet_BLE1() throws BadLocationException {
+    this.cont.insertString(1, "k", null);
   }
 
   /**
@@ -414,14 +396,9 @@ public class CContentTest {
    * @author croesch
    * @since Date: 10.02.2011 19:13:48
    */
-  @Test
-  public void testInsertStringIntStringAttributeSet_BLE2() {
-    try {
-      this.cont.insertString(-1, "k", null);
-      fail();
-    } catch (final BadLocationException e) {
-      // expected
-    }
+  @Test(expected = BadLocationException.class)
+  public void testInsertStringIntStringAttributeSet_BLE2() throws BadLocationException {
+    this.cont.insertString(-1, "k", null);
   }
 
   /**
@@ -435,17 +412,17 @@ public class CContentTest {
   public void testReplaceIntIntStringAttributeSet() throws BadLocationException {
     this.cont.insertString(0, "hotdog", null);
     this.cont.replace(3, 3, "cat", null);
-    assertThat(this.cont.getText(), is("hotcat"));
+    assertThat(this.cont.getText()).isEqualTo("hotcat");
     this.cont.replace(0, 3, "cold", null);
-    assertThat(this.cont.getText(), is("coldcat"));
+    assertThat(this.cont.getText()).isEqualTo("coldcat");
     this.cont.replace(3, 2, null, null);
-    assertThat(this.cont.getText(), is("colat"));
+    assertThat(this.cont.getText()).isEqualTo("colat");
     this.cont.replace(4, 1, "", null);
-    assertThat(this.cont.getText(), is("cola"));
+    assertThat(this.cont.getText()).isEqualTo("cola");
     this.cont.replace(0, 1, "To", null);
-    assertThat(this.cont.getText(), is("Toola"));
+    assertThat(this.cont.getText()).isEqualTo("Toola");
     this.cont.replace(3, 2, "l", null);
-    assertThat(this.cont.getText(), is("Tool"));
+    assertThat(this.cont.getText()).isEqualTo("Tool");
   }
 
   /**
@@ -455,14 +432,9 @@ public class CContentTest {
    * @author croesch
    * @since Date: 10.02.2011 19:13:48
    */
-  @Test
-  public void testReplaceIntIntStringAttributeSet_BLE1() {
-    try {
-      this.cont.replace(-1, 0, "k", null);
-      fail();
-    } catch (final BadLocationException e) {
-      // expected
-    }
+  @Test(expected = BadLocationException.class)
+  public void testReplaceIntIntStringAttributeSet_BLE1() throws BadLocationException {
+    this.cont.replace(-1, 0, "k", null);
   }
 
   /**
@@ -472,14 +444,9 @@ public class CContentTest {
    * @author croesch
    * @since Date: 10.02.2011 19:13:48
    */
-  @Test
-  public void testReplaceIntIntStringAttributeSet_BLE2() {
-    try {
-      this.cont.replace(1, 0, "k", null);
-      fail();
-    } catch (final BadLocationException e) {
-      // expected
-    }
+  @Test(expected = BadLocationException.class)
+  public void testReplaceIntIntStringAttributeSet_BLE2() throws BadLocationException {
+    this.cont.replace(1, 0, "k", null);
   }
 
   /**
@@ -489,21 +456,8 @@ public class CContentTest {
    * @author croesch
    * @since Date: 10.02.2011 19:13:48
    */
-  @Test
-  public void testReplaceIntIntStringAttributeSet_BLE3() {
-    try {
-      this.cont.replace(0, 1, "k", null);
-      fail();
-    } catch (final BadLocationException e) {
-      // expected
-    }
-  }
-
-  private final static void assertTrue(final boolean expect) {
-    assertThat(Boolean.valueOf(expect), is(Boolean.TRUE));
-  }
-
-  private final static void assertFalse(final boolean expect) {
-    assertThat(Boolean.valueOf(expect), is(Boolean.FALSE));
+  @Test(expected = BadLocationException.class)
+  public void testReplaceIntIntStringAttributeSet_BLE3() throws BadLocationException {
+    this.cont.replace(0, 1, "k", null);
   }
 }

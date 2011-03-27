@@ -1,13 +1,12 @@
 package com.github.croesch.contents;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.fest.assertions.Assertions.assertThat;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.text.BadLocationException;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,11 +33,11 @@ public class DateContentTest {
   }
 
   private void assertThatIsValid() {
-    Assert.assertThat(Boolean.valueOf(this.dc.isValid()), is(Boolean.TRUE));
+    assertThat(this.dc.isValid()).isTrue();
   }
 
   private void assertThatIsNotValid() {
-    Assert.assertThat(Boolean.valueOf(this.dc.isValid()), is(Boolean.FALSE));
+    assertThat(this.dc.isValid()).isFalse();
   }
 
   /**
@@ -51,12 +50,12 @@ public class DateContentTest {
   @Test
   public void testDateCreation() throws BadLocationException {
     assertThatIsValid();
-    Assert.assertThat(Boolean.valueOf(this.dc.isValidInput("2011-01-27")), is(Boolean.TRUE));
-    Assert.assertThat(Boolean.valueOf(this.dc.isValidInput(0, "2011-01-27")), is(Boolean.TRUE));
-    Assert.assertThat(Boolean.valueOf(this.dc.isErrorsNotifying()), is(Boolean.FALSE));
+    assertThat(this.dc.isValidInput("2011-01-27")).isTrue();
+    assertThat(this.dc.isValidInput(0, "2011-01-27")).isTrue();
+    assertThat(this.dc.isErrorsNotifying()).isFalse();
 
     this.dc.setErrosNotifying(true);
-    Assert.assertThat(Boolean.valueOf(this.dc.isErrorsNotifying()), is(Boolean.TRUE));
+    assertThat(this.dc.isErrorsNotifying()).isTrue();
   }
 
   /**
@@ -67,10 +66,10 @@ public class DateContentTest {
    */
   @Test
   public void testInputLength() {
-    Assert.assertThat(Boolean.valueOf(this.dc.isValidInput("2011-01-27")), is(Boolean.TRUE));
-    Assert.assertThat(Boolean.valueOf(this.dc.isValidInput("2011-01-271")), is(Boolean.FALSE));
-    Assert.assertThat(Boolean.valueOf(this.dc.isValidInput("2011-01-2712")), is(Boolean.FALSE));
-    Assert.assertThat(Integer.valueOf(this.dc.getMaximumInputLength()), is(Integer.valueOf(10)));
+    assertThat(this.dc.isValidInput("2011-01-27")).isTrue();
+    assertThat(this.dc.isValidInput("2011-01-271")).isFalse();
+    assertThat(this.dc.isValidInput("2011-01-2712")).isFalse();
+    assertThat(this.dc.getMaximumInputLength()).isEqualTo(10);
   }
 
   /**
@@ -82,35 +81,35 @@ public class DateContentTest {
   @Test
   public void testStringConstructor() {
     final String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-    Assert.assertThat(this.dc.getDate(), is(date));
+    assertThat(this.dc.getDate()).isEqualTo(date);
 
     this.dc = new DateContent("2005-02-26");
 
     assertThatIsValid();
-    Assert.assertThat(Integer.valueOf(this.dc.getMaximumInputLength()), is(Integer.valueOf(10)));
-    Assert.assertThat(Boolean.valueOf(this.dc.isErrorsNotifying()), is(Boolean.FALSE));
-    Assert.assertThat(this.dc.getDate(), is("2005-02-26"));
+    assertThat(this.dc.getMaximumInputLength()).isEqualTo(10);
+    assertThat(this.dc.isErrorsNotifying()).isFalse();
+    assertThat(this.dc.getDate()).isEqualTo("2005-02-26");
 
     this.dc = new DateContent("2005-02-26-34");
 
     assertThatIsValid();
-    Assert.assertThat(Integer.valueOf(this.dc.getMaximumInputLength()), is(Integer.valueOf(10)));
-    Assert.assertThat(Boolean.valueOf(this.dc.isErrorsNotifying()), is(Boolean.FALSE));
-    Assert.assertThat(this.dc.getDate(), is(date));
+    assertThat(this.dc.getMaximumInputLength()).isEqualTo(10);
+    assertThat(this.dc.isErrorsNotifying()).isFalse();
+    assertThat(this.dc.getDate()).isEqualTo(date);
 
     this.dc = new DateContent(null);
 
     assertThatIsValid();
-    Assert.assertThat(Integer.valueOf(this.dc.getMaximumInputLength()), is(Integer.valueOf(10)));
-    Assert.assertThat(Boolean.valueOf(this.dc.isErrorsNotifying()), is(Boolean.FALSE));
-    Assert.assertThat(this.dc.getDate(), is(date));
+    assertThat(this.dc.getMaximumInputLength()).isEqualTo(10);
+    assertThat(this.dc.isErrorsNotifying()).isFalse();
+    assertThat(this.dc.getDate()).isEqualTo(date);
 
     this.dc = new DateContent("2005" + date.substring(4));
 
     assertThatIsValid();
-    Assert.assertThat(Integer.valueOf(this.dc.getMaximumInputLength()), is(Integer.valueOf(10)));
-    Assert.assertThat(Boolean.valueOf(this.dc.isErrorsNotifying()), is(Boolean.FALSE));
-    Assert.assertThat(this.dc.getDate(), is("2005" + date.substring(4)));
+    assertThat(this.dc.getMaximumInputLength()).isEqualTo(10);
+    assertThat(this.dc.isErrorsNotifying()).isFalse();
+    assertThat(this.dc.getDate()).isEqualTo("2005" + date.substring(4));
   }
 
   /**
@@ -125,9 +124,9 @@ public class DateContentTest {
 
     this.dc = new DateContent("2005");
     assertThatIsValid();
-    Assert.assertThat(Integer.valueOf(this.dc.getMaximumInputLength()), is(Integer.valueOf(10)));
-    Assert.assertThat(Boolean.valueOf(this.dc.isErrorsNotifying()), is(Boolean.FALSE));
-    Assert.assertThat(this.dc.getDate(), is("2005" + date));
+    assertThat(this.dc.getMaximumInputLength()).isEqualTo(10);
+    assertThat(this.dc.isErrorsNotifying()).isFalse();
+    assertThat(this.dc.getDate()).isEqualTo("2005" + date);
 
   }
 
@@ -143,9 +142,9 @@ public class DateContentTest {
 
     this.dc = new DateContent("2005-08");
     assertThatIsValid();
-    Assert.assertThat(Integer.valueOf(this.dc.getMaximumInputLength()), is(Integer.valueOf(10)));
-    Assert.assertThat(Boolean.valueOf(this.dc.isErrorsNotifying()), is(Boolean.FALSE));
-    Assert.assertThat(this.dc.getDate(), is("2005-08" + date));
+    assertThat(this.dc.getMaximumInputLength()).isEqualTo(10);
+    assertThat(this.dc.isErrorsNotifying()).isFalse();
+    assertThat(this.dc.getDate()).isEqualTo("2005-08" + date);
   }
 
   /**
@@ -161,39 +160,39 @@ public class DateContentTest {
     final String monthDay = new SimpleDateFormat("-MM-dd").format(new Date());
     final String day = new SimpleDateFormat("-dd").format(new Date());
 
-    Assert.assertThat(Boolean.valueOf(this.dc.isValidInput(0, "2003")), is(Boolean.TRUE));
+    assertThat(this.dc.isValidInput(0, "2003")).isTrue();
     this.dc.insertString(0, "2003", null);
     assertThatIsValid();
-    Assert.assertThat(this.dc.getDate(), is("2003" + monthDay));
+    assertThat(this.dc.getDate()).isEqualTo("2003" + monthDay);
 
-    Assert.assertThat(Boolean.valueOf(this.dc.isValidInput(2, "05-")), is(Boolean.TRUE));
+    assertThat(this.dc.isValidInput(2, "05-")).isTrue();
     this.dc.insertString(2, "05-", null);
     assertThatIsValid();
-    Assert.assertThat(this.dc.getDate(), is("2005-03" + day));
+    assertThat(this.dc.getDate()).isEqualTo("2005-03" + day);
 
-    Assert.assertThat(Boolean.valueOf(this.dc.isValidInput(7, "-19")), is(Boolean.TRUE));
+    assertThat(this.dc.isValidInput(7, "-19")).isTrue();
     this.dc.insertString(7, "-19", null);
     assertThatIsValid();
-    Assert.assertThat(this.dc.getDate(), is("2005-03-19"));
+    assertThat(this.dc.getDate()).isEqualTo("2005-03-19");
 
-    Assert.assertThat(Boolean.valueOf(this.dc.isValidInput(4, "-07")), is(Boolean.FALSE));
+    assertThat(this.dc.isValidInput(4, "-07")).isFalse();
     this.dc.insertString(4, "-07", null);
     assertThatIsValid();
-    Assert.assertThat(this.dc.getDate(), is("2005-03-19"));
+    assertThat(this.dc.getDate()).isEqualTo("2005-03-19");
 
     this.dc.remove(4, 6);
     assertThatIsValid();
-    Assert.assertThat(this.dc.getDate(), is("2005" + monthDay));
+    assertThat(this.dc.getDate()).isEqualTo("2005" + monthDay);
 
-    Assert.assertThat(Boolean.valueOf(this.dc.isValidInput(4, "-07")), is(Boolean.TRUE));
-    Assert.assertThat(Boolean.valueOf(this.dc.isValidInput(4, "abc")), is(Boolean.FALSE));
+    assertThat(this.dc.isValidInput(4, "-07")).isTrue();
+    assertThat(this.dc.isValidInput(4, "abc")).isFalse();
     assertThatIsValid();
-    Assert.assertThat(this.dc.getDate(), is("2005" + monthDay));
+    assertThat(this.dc.getDate()).isEqualTo("2005" + monthDay);
 
-    Assert.assertThat(Boolean.valueOf(this.dc.isValidInput(4, "d")), is(Boolean.TRUE));
+    assertThat(this.dc.isValidInput(4, "d")).isTrue();
     this.dc.insertString(3, "d", null);
     assertThatIsValid();
-    Assert.assertThat(this.dc.getDate(), is(today));
+    assertThat(this.dc.getDate()).isEqualTo(today);
   }
 
   /**
@@ -205,10 +204,10 @@ public class DateContentTest {
     final String[] validInputs = { "d" };
 
     for (final String s : wrongInputs) {
-      Assert.assertThat(Boolean.valueOf(this.dc.isValidSpecialInput(s)), is(Boolean.FALSE));
+      assertThat(this.dc.isValidSpecialInput(s)).isFalse();
     }
     for (final String s : validInputs) {
-      Assert.assertThat(Boolean.valueOf(this.dc.isValidSpecialInput(s)), is(Boolean.TRUE));
+      assertThat(this.dc.isValidSpecialInput(s)).isTrue();
     }
   }
 
@@ -224,18 +223,18 @@ public class DateContentTest {
     final String monthDay = new SimpleDateFormat("-MM-dd").format(new Date());
     final String day = new SimpleDateFormat("-dd").format(new Date());
 
-    Assert.assertThat(Boolean.valueOf(this.dc.isValidInput(0, "2003-05-17")), is(Boolean.TRUE));
+    assertThat(this.dc.isValidInput(0, "2003-05-17")).isTrue();
     this.dc.insertString(0, "2003-05-17", null);
     assertThatIsValid();
-    Assert.assertThat(this.dc.getDate(), is("2003-05-17"));
+    assertThat(this.dc.getDate()).isEqualTo("2003-05-17");
 
     this.dc.remove(7, 3);
     assertThatIsValid();
-    Assert.assertThat(this.dc.getDate(), is("2003-05" + day));
+    assertThat(this.dc.getDate()).isEqualTo("2003-05" + day);
 
     this.dc.remove(2, 3);
     assertThatIsValid();
-    Assert.assertThat(this.dc.getDate(), is("2005" + monthDay));
+    assertThat(this.dc.getDate()).isEqualTo("2005" + monthDay);
   }
 
   /**
@@ -250,25 +249,25 @@ public class DateContentTest {
     final String monthDay = new SimpleDateFormat("-MM-dd").format(new Date());
     final String day = new SimpleDateFormat("-dd").format(new Date());
 
-    Assert.assertThat(Boolean.valueOf(this.dc.isValidInput(0, "2003-05-17")), is(Boolean.valueOf(true)));
+    assertThat(this.dc.isValidInput(0, "2003-05-17")).isTrue();
     this.dc.insertString(0, "2003-05-17", null);
     assertThatIsValid();
-    Assert.assertThat(this.dc.getDate(), is("2003-05-17"));
+    assertThat(this.dc.getDate()).isEqualTo("2003-05-17");
 
     this.dc.replace(0, 4, "2011", null);
     assertThatIsValid();
-    Assert.assertThat(this.dc.getDate(), is("2011-05-17"));
+    assertThat(this.dc.getDate()).isEqualTo("2011-05-17");
 
     this.dc.replace(2, 2, "20-11", null);
     assertThatIsValid();
-    Assert.assertThat(this.dc.getDate(), is("2011-05-17"));
+    assertThat(this.dc.getDate()).isEqualTo("2011-05-17");
 
     this.dc.replace(2, 7, "0", null);
     assertThatIsValid();
-    Assert.assertThat(this.dc.getDate(), is("2007" + monthDay));
+    assertThat(this.dc.getDate()).isEqualTo("2007" + monthDay);
 
     this.dc.replace(4, 0, "-18", null);
     assertThatIsNotValid();
-    Assert.assertThat(this.dc.getDate(), is("2007-18" + day));
+    assertThat(this.dc.getDate()).isEqualTo("2007-18" + day);
   }
 }
