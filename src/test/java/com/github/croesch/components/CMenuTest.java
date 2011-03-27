@@ -1,14 +1,14 @@
 package com.github.croesch.components;
 
+import static org.fest.assertions.Assertions.assertThat;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -46,19 +46,19 @@ public class CMenuTest {
   @Test
   public void testCMenuString() {
     this.menu = new CMenu("St[a]rt");
-    Assert.assertThat(this.menu.getMnemonic(), CoreMatchers.is(KeyEvent.VK_A));
-    Assert.assertThat(this.menu.getText(), CoreMatchers.is("Start"));
+    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(this.menu.getText()).isEqualTo("Start");
 
     this.menu = new CMenu("St[ar]t");
-    Assert.assertThat(this.menu.getText(), CoreMatchers.is("St[ar]t"));
+    assertThat(this.menu.getText()).isEqualTo("St[ar]t");
 
     this.menu = new CMenu("Star[t]");
-    Assert.assertThat(this.menu.getMnemonic(), CoreMatchers.is(KeyEvent.VK_T));
-    Assert.assertThat(this.menu.getText(), CoreMatchers.is("Start"));
+    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_T);
+    assertThat(this.menu.getText()).isEqualTo("Start");
 
     this.menu = new CMenu("[S]tart");
-    Assert.assertThat(this.menu.getMnemonic(), CoreMatchers.is(KeyEvent.VK_S));
-    Assert.assertThat(this.menu.getText(), CoreMatchers.is("Start"));
+    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(this.menu.getText()).isEqualTo("Start");
   }
 
   /**
@@ -67,19 +67,19 @@ public class CMenuTest {
   @Test
   public void testCMenuStringBoolean() {
     this.menu = new CMenu("St[a]rt", false);
-    Assert.assertThat(this.menu.getMnemonic(), CoreMatchers.is(KeyEvent.VK_A));
-    Assert.assertThat(this.menu.getText(), CoreMatchers.is("Start"));
+    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(this.menu.getText()).isEqualTo("Start");
 
     this.menu = new CMenu("St[ar]t", false);
-    Assert.assertThat(this.menu.getText(), CoreMatchers.is("St[ar]t"));
+    assertThat(this.menu.getText()).isEqualTo("St[ar]t");
 
     this.menu = new CMenu("Star[t]", false);
-    Assert.assertThat(this.menu.getMnemonic(), CoreMatchers.is(KeyEvent.VK_T));
-    Assert.assertThat(this.menu.getText(), CoreMatchers.is("Start"));
+    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_T);
+    assertThat(this.menu.getText()).isEqualTo("Start");
 
     this.menu = new CMenu("[S]tart", false);
-    Assert.assertThat(this.menu.getMnemonic(), CoreMatchers.is(KeyEvent.VK_S));
-    Assert.assertThat(this.menu.getText(), CoreMatchers.is("Start"));
+    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(this.menu.getText()).isEqualTo("Start");
   }
 
   /**
@@ -87,19 +87,20 @@ public class CMenuTest {
    */
   @Test
   public void testCMenuAction() {
-    final Action act = new AbstractAction(){
+    final Action act = new AbstractAction() {
       /** serial version UID */
       private static final long serialVersionUID = -2312442386490910405L;
 
+      @Override
       public void actionPerformed(final ActionEvent e) {
         // do nothing, stupid stub
       }
     };
     this.menu = new CMenu(act);
-    Assert.assertThat(this.menu.getAction(), CoreMatchers.sameInstance(act));
+    assertThat(this.menu.getAction()).isSameAs(act);
 
-    this.menu = new CMenu((AbstractAction)null);
-    Assert.assertThat(this.menu.getAction(), CoreMatchers.nullValue());
+    this.menu = new CMenu((AbstractAction) null);
+    assertThat(this.menu.getAction()).isNull();
   }
 
   /**
@@ -108,23 +109,23 @@ public class CMenuTest {
   @Test
   public void testSetTextString() {
     this.menu.setText("St[a]rt");
-    Assert.assertThat(this.menu.getMnemonic(), CoreMatchers.is(KeyEvent.VK_A));
-    Assert.assertThat(this.menu.getText(), CoreMatchers.is("Start"));
+    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(this.menu.getText()).isEqualTo("Start");
 
     this.menu.setText("St[ar]t");
-    Assert.assertThat(this.menu.getMnemonic(), CoreMatchers.is(KeyEvent.VK_A));
-    Assert.assertThat(this.menu.getText(), CoreMatchers.is("St[ar]t"));
+    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(this.menu.getText()).isEqualTo("St[ar]t");
 
     this.menu.setText("Star[t]");
-    Assert.assertThat(this.menu.getMnemonic(), CoreMatchers.is(KeyEvent.VK_T));
-    Assert.assertThat(this.menu.getText(), CoreMatchers.is("Start"));
+    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_T);
+    assertThat(this.menu.getText()).isEqualTo("Start");
 
     this.menu.setText("[S]tart");
-    Assert.assertThat(this.menu.getMnemonic(), CoreMatchers.is(KeyEvent.VK_S));
-    Assert.assertThat(this.menu.getText(), CoreMatchers.is("Start"));
+    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(this.menu.getText()).isEqualTo("Start");
 
     this.menu.setText(null);
-    Assert.assertThat(this.menu.getMnemonic(), CoreMatchers.is(KeyEvent.VK_S));
-    Assert.assertThat(this.menu.getText(), CoreMatchers.nullValue());
+    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(this.menu.getText()).isNull();
   }
 }

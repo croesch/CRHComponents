@@ -1,5 +1,7 @@
 package com.github.croesch.components;
 
+import static org.fest.assertions.Assertions.assertThat;
+
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -9,9 +11,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Icon;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -48,7 +48,7 @@ public class CButtonTest {
    */
   @Test
   public void testCButtonIcon() {
-    final Icon icon = new Icon(){
+    final Icon icon = new Icon() {
 
       @Override
       public void paintIcon(final Component c, final Graphics g, final int x, final int y) {
@@ -67,10 +67,10 @@ public class CButtonTest {
     };
 
     this.button = new CButton(icon);
-    Assert.assertThat(this.button.getIcon(), CoreMatchers.sameInstance(icon));
+    assertThat(this.button.getIcon()).isSameAs(icon);
 
-    this.button = new CButton((Icon)null);
-    Assert.assertThat(this.button.getIcon(), CoreMatchers.nullValue());
+    this.button = new CButton((Icon) null);
+    assertThat(this.button.getIcon()).isNull();
   }
 
   /**
@@ -79,19 +79,19 @@ public class CButtonTest {
   @Test
   public void testCButtonString() {
     this.button = new CButton("St[a]rt");
-    Assert.assertThat(this.button.getMnemonic(), CoreMatchers.is(KeyEvent.VK_A));
-    Assert.assertThat(this.button.getText(), CoreMatchers.is("Start"));
+    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(this.button.getText()).isEqualTo("Start");
 
     this.button = new CButton("St[ar]t");
-    Assert.assertThat(this.button.getText(), CoreMatchers.is("St[ar]t"));
+    assertThat(this.button.getText()).isEqualTo("St[ar]t");
 
     this.button = new CButton("Star[t]");
-    Assert.assertThat(this.button.getMnemonic(), CoreMatchers.is(KeyEvent.VK_T));
-    Assert.assertThat(this.button.getText(), CoreMatchers.is("Start"));
+    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_T);
+    assertThat(this.button.getText()).isEqualTo("Start");
 
     this.button = new CButton("[S]tart");
-    Assert.assertThat(this.button.getMnemonic(), CoreMatchers.is(KeyEvent.VK_S));
-    Assert.assertThat(this.button.getText(), CoreMatchers.is("Start"));
+    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(this.button.getText()).isEqualTo("Start");
   }
 
   /**
@@ -99,7 +99,7 @@ public class CButtonTest {
    */
   @Test
   public void testCButtonAction() {
-    final Action act = new AbstractAction(){
+    final Action act = new AbstractAction() {
       /** serial version UID */
       private static final long serialVersionUID = -2312442386490910405L;
 
@@ -109,10 +109,10 @@ public class CButtonTest {
       }
     };
     this.button = new CButton(act);
-    Assert.assertThat(this.button.getAction(), CoreMatchers.sameInstance(act));
+    assertThat(this.button.getAction()).isSameAs(act);
 
-    this.button = new CButton((AbstractAction)null);
-    Assert.assertThat(this.button.getAction(), CoreMatchers.nullValue());
+    this.button = new CButton((AbstractAction) null);
+    assertThat(this.button.getAction()).isNull();
   }
 
   /**
@@ -121,19 +121,19 @@ public class CButtonTest {
   @Test
   public void testCButtonStringIcon() {
     this.button = new CButton("St[a]rt", null);
-    Assert.assertThat(this.button.getMnemonic(), CoreMatchers.is(KeyEvent.VK_A));
-    Assert.assertThat(this.button.getText(), CoreMatchers.is("Start"));
+    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(this.button.getText()).isEqualTo("Start");
 
     this.button = new CButton("St[ar]t", null);
-    Assert.assertThat(this.button.getText(), CoreMatchers.is("St[ar]t"));
+    assertThat(this.button.getText()).isEqualTo("St[ar]t");
 
     this.button = new CButton("Star[t]", null);
-    Assert.assertThat(this.button.getMnemonic(), CoreMatchers.is(KeyEvent.VK_T));
-    Assert.assertThat(this.button.getText(), CoreMatchers.is("Start"));
+    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_T);
+    assertThat(this.button.getText()).isEqualTo("Start");
 
     this.button = new CButton("[S]tart", null);
-    Assert.assertThat(this.button.getMnemonic(), CoreMatchers.is(KeyEvent.VK_S));
-    Assert.assertThat(this.button.getText(), CoreMatchers.is("Start"));
+    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(this.button.getText()).isEqualTo("Start");
   }
 
   /**
@@ -142,23 +142,23 @@ public class CButtonTest {
   @Test
   public void testSetTextString() {
     this.button.setText("St[a]rt");
-    Assert.assertThat(this.button.getMnemonic(), CoreMatchers.is(KeyEvent.VK_A));
-    Assert.assertThat(this.button.getText(), CoreMatchers.is("Start"));
+    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(this.button.getText()).isEqualTo("Start");
 
     this.button.setText("St[ar]t");
-    Assert.assertThat(this.button.getMnemonic(), CoreMatchers.is(KeyEvent.VK_A));
-    Assert.assertThat(this.button.getText(), CoreMatchers.is("St[ar]t"));
+    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(this.button.getText()).isEqualTo("St[ar]t");
 
     this.button.setText("Star[t]");
-    Assert.assertThat(this.button.getMnemonic(), CoreMatchers.is(KeyEvent.VK_T));
-    Assert.assertThat(this.button.getText(), CoreMatchers.is("Start"));
+    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_T);
+    assertThat(this.button.getText()).isEqualTo("Start");
 
     this.button.setText("[S]tart");
-    Assert.assertThat(this.button.getMnemonic(), CoreMatchers.is(KeyEvent.VK_S));
-    Assert.assertThat(this.button.getText(), CoreMatchers.is("Start"));
+    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(this.button.getText()).isEqualTo("Start");
 
     this.button.setText(null);
-    Assert.assertThat(this.button.getMnemonic(), CoreMatchers.is(KeyEvent.VK_S));
-    Assert.assertThat(this.button.getText(), CoreMatchers.nullValue());
+    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(this.button.getText()).isNull();
   }
 }

@@ -1,5 +1,7 @@
 package com.github.croesch.components;
 
+import static org.fest.assertions.Assertions.assertThat;
+
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -9,9 +11,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Icon;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -48,7 +48,7 @@ public class CMenuItemTest {
    */
   @Test
   public void testCMenuIcon() {
-    final Icon icon = new Icon(){
+    final Icon icon = new Icon() {
 
       @Override
       public void paintIcon(final Component c, final Graphics g, final int x, final int y) {
@@ -67,10 +67,10 @@ public class CMenuItemTest {
     };
 
     this.item = new CMenuItem(icon);
-    Assert.assertThat(this.item.getIcon(), CoreMatchers.sameInstance(icon));
+    assertThat(this.item.getIcon()).isSameAs(icon);
 
-    this.item = new CMenuItem((Icon)null);
-    Assert.assertThat(this.item.getIcon(), CoreMatchers.nullValue());
+    this.item = new CMenuItem((Icon) null);
+    assertThat(this.item.getIcon()).isNull();
   }
 
   /**
@@ -79,19 +79,19 @@ public class CMenuItemTest {
   @Test
   public void testCMenuItemString() {
     this.item = new CMenuItem("St[a]rt");
-    Assert.assertThat(this.item.getMnemonic(), CoreMatchers.is(KeyEvent.VK_A));
-    Assert.assertThat(this.item.getText(), CoreMatchers.is("Start"));
+    assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(this.item.getText()).isEqualTo("Start");
 
     this.item = new CMenuItem("St[ar]t");
-    Assert.assertThat(this.item.getText(), CoreMatchers.is("St[ar]t"));
+    assertThat(this.item.getText()).isEqualTo("St[ar]t");
 
     this.item = new CMenuItem("Star[t]");
-    Assert.assertThat(this.item.getMnemonic(), CoreMatchers.is(KeyEvent.VK_T));
-    Assert.assertThat(this.item.getText(), CoreMatchers.is("Start"));
+    assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_T);
+    assertThat(this.item.getText()).isEqualTo("Start");
 
     this.item = new CMenuItem("[S]tart");
-    Assert.assertThat(this.item.getMnemonic(), CoreMatchers.is(KeyEvent.VK_S));
-    Assert.assertThat(this.item.getText(), CoreMatchers.is("Start"));
+    assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(this.item.getText()).isEqualTo("Start");
   }
 
   /**
@@ -99,7 +99,7 @@ public class CMenuItemTest {
    */
   @Test
   public void testCMenuItemAction() {
-    final Action act = new AbstractAction(){
+    final Action act = new AbstractAction() {
       /** serial version UID */
       private static final long serialVersionUID = -2312442386490910405L;
 
@@ -109,10 +109,10 @@ public class CMenuItemTest {
       }
     };
     this.item = new CMenuItem(act);
-    Assert.assertThat(this.item.getAction(), CoreMatchers.sameInstance(act));
+    assertThat(this.item.getAction()).isSameAs(act);
 
-    this.item = new CMenuItem((AbstractAction)null);
-    Assert.assertThat(this.item.getAction(), CoreMatchers.nullValue());
+    this.item = new CMenuItem((AbstractAction) null);
+    assertThat(this.item.getAction()).isNull();
   }
 
   /**
@@ -121,20 +121,20 @@ public class CMenuItemTest {
   @Test
   public void testCMenuItemStringMnemonic() {
     this.item = new CMenuItem("St[a]rt", KeyEvent.VK_R);
-    Assert.assertThat(this.item.getMnemonic(), CoreMatchers.is(KeyEvent.VK_R));
-    Assert.assertThat(this.item.getText(), CoreMatchers.is("Start"));
+    assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_R);
+    assertThat(this.item.getText()).isEqualTo("Start");
 
     this.item = new CMenuItem("St[ar]t", KeyEvent.VK_A);
-    Assert.assertThat(this.item.getMnemonic(), CoreMatchers.is(KeyEvent.VK_A));
-    Assert.assertThat(this.item.getText(), CoreMatchers.is("St[ar]t"));
+    assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(this.item.getText()).isEqualTo("St[ar]t");
 
     this.item = new CMenuItem("Star[t]", KeyEvent.VK_S);
-    Assert.assertThat(this.item.getMnemonic(), CoreMatchers.is(KeyEvent.VK_S));
-    Assert.assertThat(this.item.getText(), CoreMatchers.is("Start"));
+    assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(this.item.getText()).isEqualTo("Start");
 
     this.item = new CMenuItem("[S]tart", -19011989);
-    Assert.assertThat(this.item.getMnemonic(), CoreMatchers.is(-19011989));
-    Assert.assertThat(this.item.getText(), CoreMatchers.is("Start"));
+    assertThat(this.item.getMnemonic()).isEqualTo(-19011989);
+    assertThat(this.item.getText()).isEqualTo("Start");
   }
 
   /**
@@ -143,19 +143,19 @@ public class CMenuItemTest {
   @Test
   public void testCMenuItemStringIcon() {
     this.item = new CMenuItem("St[a]rt", null);
-    Assert.assertThat(this.item.getMnemonic(), CoreMatchers.is(KeyEvent.VK_A));
-    Assert.assertThat(this.item.getText(), CoreMatchers.is("Start"));
+    assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(this.item.getText()).isEqualTo("Start");
 
     this.item = new CMenuItem("St[ar]t", null);
-    Assert.assertThat(this.item.getText(), CoreMatchers.is("St[ar]t"));
+    assertThat(this.item.getText()).isEqualTo("St[ar]t");
 
     this.item = new CMenuItem("Star[t]", null);
-    Assert.assertThat(this.item.getMnemonic(), CoreMatchers.is(KeyEvent.VK_T));
-    Assert.assertThat(this.item.getText(), CoreMatchers.is("Start"));
+    assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_T);
+    assertThat(this.item.getText()).isEqualTo("Start");
 
     this.item = new CMenuItem("[S]tart", null);
-    Assert.assertThat(this.item.getMnemonic(), CoreMatchers.is(KeyEvent.VK_S));
-    Assert.assertThat(this.item.getText(), CoreMatchers.is("Start"));
+    assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(this.item.getText()).isEqualTo("Start");
   }
 
   /**
@@ -164,23 +164,23 @@ public class CMenuItemTest {
   @Test
   public void testSetTextString() {
     this.item.setText("St[a]rt");
-    Assert.assertThat(this.item.getMnemonic(), CoreMatchers.is(KeyEvent.VK_A));
-    Assert.assertThat(this.item.getText(), CoreMatchers.is("Start"));
+    assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(this.item.getText()).isEqualTo("Start");
 
     this.item.setText("St[ar]t");
-    Assert.assertThat(this.item.getMnemonic(), CoreMatchers.is(KeyEvent.VK_A));
-    Assert.assertThat(this.item.getText(), CoreMatchers.is("St[ar]t"));
+    assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(this.item.getText()).isEqualTo("St[ar]t");
 
     this.item.setText("Star[t]");
-    Assert.assertThat(this.item.getMnemonic(), CoreMatchers.is(KeyEvent.VK_T));
-    Assert.assertThat(this.item.getText(), CoreMatchers.is("Start"));
+    assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_T);
+    assertThat(this.item.getText()).isEqualTo("Start");
 
     this.item.setText("[S]tart");
-    Assert.assertThat(this.item.getMnemonic(), CoreMatchers.is(KeyEvent.VK_S));
-    Assert.assertThat(this.item.getText(), CoreMatchers.is("Start"));
+    assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(this.item.getText()).isEqualTo("Start");
 
     this.item.setText(null);
-    Assert.assertThat(this.item.getMnemonic(), CoreMatchers.is(KeyEvent.VK_S));
-    Assert.assertThat(this.item.getText(), CoreMatchers.nullValue());
+    assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(this.item.getText()).isNull();
   }
 }
