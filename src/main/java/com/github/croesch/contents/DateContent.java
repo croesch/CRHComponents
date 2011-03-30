@@ -2,13 +2,15 @@ package com.github.croesch.contents;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 
 /**
- * This document provides the mechanism to accept online date values.
+ * This document provides the mechanism to accept only date values.
  * 
  * @author croesch
  * @since Date: 27.01.2011 18:39:41
@@ -18,8 +20,21 @@ public class DateContent extends RegexContent {
   /** generated serial version UID */
   private static final long serialVersionUID = -5689505532696673515L;
 
+  private final Calendar cal = new GregorianCalendar();
+
+  private String dateFormat = "%04d-%02d-%02d";
+
+  /** the number of the current year */
+  private final int currentYear = this.cal.get(Calendar.YEAR);
+
+  /** the number of the current month */
+  private final int currentMonth = this.cal.get(Calendar.MONTH) + 1;
+
+  /** the number of the current day */
+  private final int currentDay = this.cal.get(Calendar.DAY_OF_MONTH);
+
   /** the string representation of the current date */
-  private final String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); //$NON-NLS-1$
+  private String today = formatDate(this.currentYear, this.currentMonth, this.currentDay);
 
   /** the written content */
   private String date = null;
@@ -51,6 +66,36 @@ public class DateContent extends RegexContent {
       insertString(0, initial, null);
     } catch (final BadLocationException e) {
       throw new AssertionError(); // should never happen
+    }
+  }
+
+  /**
+   * Formats the given values to the format of the date.
+   * 
+   * @author croesch
+   * @since Date: Mar 30, 2011 9:19:13 PM
+   * @param day the number of the day of the generated date
+   * @param month the number of month of the generated date
+   * @param year the number of the year of the generated date
+   * @return a string representation of the formated date
+   * @see #setDateFormat(String)
+   */
+  public final String formatDate(final int year, final int month, final int day) {
+    return String.format(this.dateFormat, year, month, day);
+  }
+
+  /**
+   * Sets the format to format the date.
+   * 
+   * @author croesch
+   * @since Date: Mar 30, 2011 9:23:42 PM
+   * @param format the new format of the date.
+   * @see #formatDate(int, int, int)
+   */
+  protected final void setDateFormat(final String format) {
+    if (format != null) {
+      this.dateFormat = format;
+      this.today = formatDate(this.currentYear, this.currentMonth, this.currentDay);
     }
   }
 

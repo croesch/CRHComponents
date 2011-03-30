@@ -59,6 +59,26 @@ public class DateContentTest {
   }
 
   /**
+   * Test method for {@link DateContent#formatDate(int, int, int)} and {@link DateContent#setDateFormat(String)}
+   */
+  @Test
+  public void testFormatDate() {
+    final String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
+    assertThat(this.dc.getDate()).isEqualTo(date);
+    assertThat(this.dc.formatDate(1903, 02, 1)).isEqualTo("1903-02-01");
+    this.dc.setDateFormat(null);
+    assertThat(this.dc.getDate()).isEqualTo(date);
+    assertThat(this.dc.formatDate(1903, 2, 01)).isEqualTo("1903-02-01");
+    this.dc.setDateFormat("");
+    assertThat(this.dc.getDate()).isEmpty();
+    assertThat(this.dc.formatDate(1903, 2, 1)).isEqualTo("");
+    this.dc.setDateFormat("%3$02d.%2$02d.%1$04d");
+    assertThat(this.dc.getDate()).isEqualTo(new SimpleDateFormat("dd.MM.yyyy").format(new Date()));
+    assertThat(this.dc.formatDate(1904, 3, 2)).isEqualTo("02.03.1904");
+  }
+
+  /**
    * Tests the default input length of the document
    * 
    * @author croesch
@@ -170,15 +190,15 @@ public class DateContentTest {
     assertThatIsValid();
     assertThat(this.dc.getDate()).isEqualTo("2005-03" + day);
 
-    assertThat(this.dc.isValidInput(7, "-19")).isTrue();
-    this.dc.insertString(7, "-19", null);
-    assertThatIsValid();
-    assertThat(this.dc.getDate()).isEqualTo("2005-03-19");
+    assertThat(this.dc.isValidInput(7, "--9")).isTrue();
+    this.dc.insertString(7, "--9", null);
+    assertThatIsNotValid();
+    assertThat(this.dc.getDate()).isEqualTo("2005-03--9");
 
     assertThat(this.dc.isValidInput(4, "-07")).isFalse();
     this.dc.insertString(4, "-07", null);
-    assertThatIsValid();
-    assertThat(this.dc.getDate()).isEqualTo("2005-03-19");
+    assertThatIsNotValid();
+    assertThat(this.dc.getDate()).isEqualTo("2005-03--9");
 
     this.dc.remove(4, 6);
     assertThatIsValid();
