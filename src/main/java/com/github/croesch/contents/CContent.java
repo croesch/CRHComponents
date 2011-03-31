@@ -78,7 +78,7 @@ public class CContent extends CDocument {
    * @since 13.01.2011 22:08:17
    * @param notify whether {@link ErrorListener}s should be informed when error changes
    */
-  public final void setErrosNotifying(final boolean notify) {
+  public final void setErrorsNotifying(final boolean notify) {
     this.notifyErrors = notify;
   }
 

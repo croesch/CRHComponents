@@ -54,7 +54,7 @@ public class DateContentTest {
     assertThat(this.dc.isValidInput(0, "2011-01-27")).isTrue();
     assertThat(this.dc.isErrorsNotifying()).isFalse();
 
-    this.dc.setErrosNotifying(true);
+    this.dc.setErrorsNotifying(true);
     assertThat(this.dc.isErrorsNotifying()).isTrue();
   }
 
@@ -67,15 +67,77 @@ public class DateContentTest {
 
     assertThat(this.dc.getDate()).isEqualTo(date);
     assertThat(this.dc.formatDate(1903, 02, 1)).isEqualTo("1903-02-01");
-    this.dc.setDateFormat(null);
+    this.dc.setDateFormat(null, ".");
     assertThat(this.dc.getDate()).isEqualTo(date);
     assertThat(this.dc.formatDate(1903, 2, 01)).isEqualTo("1903-02-01");
-    this.dc.setDateFormat("");
-    assertThat(this.dc.getDate()).isEmpty();
-    assertThat(this.dc.formatDate(1903, 2, 1)).isEqualTo("");
-    this.dc.setDateFormat("%3$02d.%2$02d.%1$04d");
+    this.dc.setDateFormat(DateContent.format.DYM, "");
+    assertThat(this.dc.getDate()).isEqualTo(date);
+    assertThat(this.dc.formatDate(1903, 2, 1)).isEqualTo("1903-02-01");
+    this.dc.setDateFormat(DateContent.format.DMY, ".");
     assertThat(this.dc.getDate()).isEqualTo(new SimpleDateFormat("dd.MM.yyyy").format(new Date()));
     assertThat(this.dc.formatDate(1904, 3, 2)).isEqualTo("02.03.1904");
+
+  }
+
+  /**
+   * Test method for {@link DateContent#formatDate(int, int, int)} and {@link DateContent#setDateFormat(String)}
+   */
+  @Test
+  public void testSetDateFormat() {
+    this.dc.setDateFormat(DateContent.format.YMD, "-");
+    assertThat(this.dc.isValidInput("01.01.2011")).isFalse();
+    assertThat(this.dc.isValidInput("2011-01-01")).isTrue();
+    assertThat(this.dc.formatDate(2011, 3, 32)).isEqualTo("2011-04-01");
+    assertThat(this.dc.formatDate(2011, 3, 35)).isEqualTo("2011-04-04");
+    assertThat(this.dc.formatDate(2011, 4, 32)).isEqualTo("2011-05-02");
+    assertThat(this.dc.formatDate(2011, 12, 32)).isEqualTo("2012-01-01");
+    assertThat(this.dc.formatDate(2011, 3, 31)).isEqualTo("2011-03-31");
+    assertThat(this.dc.formatDate(2011, 2, 29)).isEqualTo("2011-03-01");
+    assertThat(this.dc.formatDate(2011, 2, 0)).isEqualTo("2011-01-31");
+    assertThat(this.dc.formatDate(2011, 0, 31)).isEqualTo("2010-12-31");
+    assertThat(this.dc.formatDate(2011, -1, 31)).isEqualTo("2010-12-01");
+    assertThat(this.dc.formatDate(2011, 2, -1)).isEqualTo("2011-01-30");
+    assertThat(this.dc.formatDate(2100, 1, 1)).isEqualTo("2100-01-01");
+    assertThat(this.dc.formatDate(4100, 1, 1)).isEqualTo("4100-01-01");
+    assertThat(this.dc.formatDate(0, 1, 1)).isEqualTo("0001-01-01");
+    assertThat(this.dc.formatDate(1, 1, 1)).isEqualTo("0001-01-01");
+
+    this.dc.setDateFormat(DateContent.format.DMY, ".");
+    assertThat(this.dc.isValidInput("01.01.2011")).isTrue();
+    assertThat(this.dc.isValidInput("2011-01-01")).isFalse();
+    assertThat(this.dc.formatDate(2011, 3, 32)).isEqualTo("01.04.2011");
+    assertThat(this.dc.formatDate(2011, 3, 35)).isEqualTo("04.04.2011");
+    assertThat(this.dc.formatDate(2011, 4, 32)).isEqualTo("02.05.2011");
+    assertThat(this.dc.formatDate(2011, 12, 32)).isEqualTo("01.01.2012");
+    assertThat(this.dc.formatDate(2011, 3, 31)).isEqualTo("31.03.2011");
+    assertThat(this.dc.formatDate(2011, 2, 29)).isEqualTo("01.03.2011");
+    assertThat(this.dc.formatDate(2011, 2, 0)).isEqualTo("31.01.2011");
+    assertThat(this.dc.formatDate(2011, 0, 31)).isEqualTo("31.12.2010");
+    assertThat(this.dc.formatDate(2011, -1, 31)).isEqualTo("01.12.2010");
+    assertThat(this.dc.formatDate(2011, 2, -1)).isEqualTo("30.01.2011");
+    assertThat(this.dc.formatDate(2100, 1, 1)).isEqualTo("01.01.2100");
+    assertThat(this.dc.formatDate(4100, 1, 1)).isEqualTo("01.01.4100");
+    assertThat(this.dc.formatDate(0, 1, 1)).isEqualTo("01.01.0001");
+    assertThat(this.dc.formatDate(1, 1, 1)).isEqualTo("01.01.0001");
+
+    this.dc.setDateFormat(DateContent.format.DMY, "#");
+    assertThat(this.dc.isValidInput("01#01#2011")).isTrue();
+    assertThat(this.dc.isValidInput("01.01.2011")).isFalse();
+    assertThat(this.dc.isValidInput("2011-01-01")).isFalse();
+    assertThat(this.dc.formatDate(2011, 3, 32)).isEqualTo("01#04#2011");
+    assertThat(this.dc.formatDate(2011, 3, 35)).isEqualTo("04#04#2011");
+    assertThat(this.dc.formatDate(2011, 4, 32)).isEqualTo("02#05#2011");
+    assertThat(this.dc.formatDate(2011, 12, 32)).isEqualTo("01#01#2012");
+    assertThat(this.dc.formatDate(2011, 3, 31)).isEqualTo("31#03#2011");
+    assertThat(this.dc.formatDate(2011, 2, 29)).isEqualTo("01#03#2011");
+    assertThat(this.dc.formatDate(2011, 2, 0)).isEqualTo("31#01#2011");
+    assertThat(this.dc.formatDate(2011, 0, 31)).isEqualTo("31#12#2010");
+    assertThat(this.dc.formatDate(2011, -1, 31)).isEqualTo("01#12#2010");
+    assertThat(this.dc.formatDate(2011, 2, -1)).isEqualTo("30#01#2011");
+    assertThat(this.dc.formatDate(2100, 1, 1)).isEqualTo("01#01#2100");
+    assertThat(this.dc.formatDate(4100, 1, 1)).isEqualTo("01#01#4100");
+    assertThat(this.dc.formatDate(0, 1, 1)).isEqualTo("01#01#0001");
+    assertThat(this.dc.formatDate(1, 1, 1)).isEqualTo("01#01#0001");
   }
 
   /**
@@ -266,6 +328,7 @@ public class DateContentTest {
    */
   @Test
   public void testReplace() throws BadLocationException {
+    final String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
     final String monthDay = new SimpleDateFormat("-MM-dd").format(new Date());
     final String day = new SimpleDateFormat("-dd").format(new Date());
 
@@ -289,5 +352,9 @@ public class DateContentTest {
     this.dc.replace(4, 0, "-18", null);
     assertThatIsNotValid();
     assertThat(this.dc.getDate()).isEqualTo("2007-18" + day);
+
+    this.dc.replace(3, 1, "d", null);
+    assertThatIsValid();
+    assertThat(this.dc.getDate()).isEqualTo(today);
   }
 }

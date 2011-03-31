@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.regex.Pattern;
 
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -20,9 +21,13 @@ public class DateContent extends RegexContent {
   /** generated serial version UID */
   private static final long serialVersionUID = -5689505532696673515L;
 
+  /** instance of a calendar to define current date */
   private final Calendar cal = new GregorianCalendar();
 
+  /** the string that is used to format the date shown in the field */
   private String dateFormat = "%04d-%02d-%02d";
+
+  private String dateFormatString = "yyyy-MM-dd";
 
   /** the number of the current year */
   private final int currentYear = this.cal.get(Calendar.YEAR);
@@ -39,6 +44,8 @@ public class DateContent extends RegexContent {
   /** the written content */
   private String date = null;
 
+  private static final String datePattern = "[0-9_S_]{0,10}";
+
   /**
    * Constructs a document with maximum input length >10< and that is not displaying errors
    * 
@@ -46,10 +53,10 @@ public class DateContent extends RegexContent {
    * @since Date: 28.01.2011 20:48:31
    */
   public DateContent() {
-    super("[0-9\\-]{0,10}"); //$NON-NLS-1$
+    super(datePattern.replace("_S_", Pattern.quote("-"))); //$NON-NLS-1$
     final int maxInput = 10;
 
-    setErrosNotifying(false);
+    setErrorsNotifying(false);
     setMaximumInputLength(maxInput);
   }
 
@@ -81,21 +88,84 @@ public class DateContent extends RegexContent {
    * @see #setDateFormat(String)
    */
   public final String formatDate(final int year, final int month, final int day) {
-    return String.format(this.dateFormat, year, month, day);
+    final String date = String.format(this.dateFormat, year, month, day);
+
+    final SimpleDateFormat sdf = new SimpleDateFormat(this.dateFormatString);
+
+    try {
+      return sdf.format(sdf.parse(date));
+    } catch (final ParseException e) {
+      return null;
+    }
+  }
+
+  /** Provides constants to describe different date formats, '_S_' will be replaced by the separator of the date */
+  protected enum format {
+    /** constant for format dd_S_MM_S_yyyy */
+    DMY ("%3$02d_S_%2$02d_S_%1$04d"),
+
+    /** constant for format dd_S_yyyy_S_dd */
+    DYM ("%3$02d_S_%1$04d_S_%2$02d"),
+
+    /** constant for format yyyy_S_MM_S_dd */
+    YMD ("%1$04d_S_%2$02d_S_%3$02d"),
+
+    /** constant for format yyyy_S_dd_S_MM */
+    YDM ("%1$04d_S_%3$02d_S_%2$02d"),
+
+    /** constant for format MM_S_dd_S_yyyy */
+    MDY ("%2$02d_S_%3$02d_S_%1$04d"),
+
+    /** constant for format MM_S_yyyy_S_dd */
+    MYD ("%2$02d_S_%1$04d_S_%3$02d");
+
+    /** the formating string of this date format */
+    private String formatString;
+
+    /**
+     * Constructs a new date format with the given formating {@link String}. This string contains "_S_"-sequences,
+     * that'll be replaced by the real separator of the date.
+     * 
+     * @author croesch
+     * @since Date: Mar 31, 2011 1:24:15 PM
+     * @param fs the formating string for this date format
+     */
+    private format(final String fs) {
+      this.formatString = fs;
+    }
+
+    /**
+     * Returns the formating {@link String} of this date format.
+     * 
+     * @author croesch
+     * @since Date: Mar 31, 2011 1:25:10 PM
+     * @return the formating string to format dates of this date format
+     */
+    protected String getFormatString() {
+      return this.formatString;
+    }
   }
 
   /**
-   * Sets the format to format the date.
+   * Sets the format to format the date. Will intern format the {@link #today}-variable, to be up to date.
    * 
    * @author croesch
    * @since Date: Mar 30, 2011 9:23:42 PM
    * @param format the new format of the date.
+   * @param separator the separator for the new date format
    * @see #formatDate(int, int, int)
    */
-  protected final void setDateFormat(final String format) {
-    if (format != null) {
-      this.dateFormat = format;
+  protected final void setDateFormat(final format dateFormat, final String separator) {
+    if (dateFormat != null && separator != null && separator.length() > 0) {
+      setRegularExpression(datePattern.replace("_S_", Pattern.quote(separator)));
+      // set separator
+      this.dateFormat = dateFormat.getFormatString().replaceAll("_S_", separator);
+      // create parsing string
+      this.dateFormatString = String.format(this.dateFormat, 1234, 56, 78).replace("1234", "yyyy").replace("56", "MM")
+        .replace("78", "dd");
+      // update intern values
       this.today = formatDate(this.currentYear, this.currentMonth, this.currentDay);
+      this.date = null;
     }
   }
 
@@ -164,7 +234,7 @@ public class DateContent extends RegexContent {
   public final void replace(final int offset, final int length, final String text, final AttributeSet attrs)
                                                                                                             throws BadLocationException {
     final String newText = getText(0, offset) + text + getText(offset + length, getLength() - offset - length);
-    if (isValidInput(newText)) {
+    if (isValidInput(newText) || isValidSpecialInput(text)) {
       super.replace(offset, length, text, attrs);
     }
   }

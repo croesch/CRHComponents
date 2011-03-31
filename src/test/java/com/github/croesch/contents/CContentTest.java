@@ -146,7 +146,7 @@ public class CContentTest {
   }
 
   /**
-   * Tests the {@link CContent#isErrorsNotifying()} and {@link CContent#setErrosNotifying(boolean)}
+   * Tests the {@link CContent#isErrorsNotifying()} and {@link CContent#setErrorsNotifying(boolean)}
    * 
    * @author croesch
    * @since Date: 09.02.2011 21:44:28
@@ -154,20 +154,20 @@ public class CContentTest {
   @Test
   public void testSetIsDisplayingErrors() {
     assertThat(this.cont.isErrorsNotifying()).isTrue();
-    this.cont.setErrosNotifying(false);
+    this.cont.setErrorsNotifying(false);
     assertThat(this.cont.isErrorsNotifying()).isFalse();
-    this.cont.setErrosNotifying(true);
+    this.cont.setErrorsNotifying(true);
     assertThat(this.cont.isErrorsNotifying()).isTrue();
-    this.cont.setErrosNotifying(true);
+    this.cont.setErrorsNotifying(true);
     assertThat(this.cont.isErrorsNotifying()).isTrue();
-    this.cont.setErrosNotifying(false);
+    this.cont.setErrorsNotifying(false);
     assertThat(this.cont.isErrorsNotifying()).isFalse();
-    this.cont.setErrosNotifying(true);
-    this.cont.setErrosNotifying(true);
+    this.cont.setErrorsNotifying(true);
+    this.cont.setErrorsNotifying(true);
     assertThat(this.cont.isErrorsNotifying()).isTrue();
-    this.cont.setErrosNotifying(false);
-    this.cont.setErrosNotifying(true);
-    this.cont.setErrosNotifying(false);
+    this.cont.setErrorsNotifying(false);
+    this.cont.setErrorsNotifying(true);
+    this.cont.setErrorsNotifying(false);
     assertThat(this.cont.isErrorsNotifying()).isFalse();
   }
 
@@ -338,10 +338,10 @@ public class CContentTest {
     this.cont.addErrorListeners(el);
     assertThat(this.bool).isFalse();
     this.cont.insertString(0, "text", null);
-    this.cont.setErrosNotifying(false);
+    this.cont.setErrorsNotifying(false);
     this.cont.setMaximumInputLength(3);
     this.cont.checkForErrors();
-    this.cont.setErrosNotifying(true);
+    this.cont.setErrorsNotifying(true);
     this.cont.setMaximumInputLength(4);
   }
 
