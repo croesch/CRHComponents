@@ -41,9 +41,6 @@ public class DateContent extends RegexContent {
   /** the string representation of the current date */
   private String today = formatDate(this.currentYear, this.currentMonth, this.currentDay);
 
-  /** the written content */
-  private String date = null;
-
   private static final String datePattern = "[0-9_S_]{0,10}";
 
   /**
@@ -165,7 +162,6 @@ public class DateContent extends RegexContent {
         .replace("78", "dd");
       // update intern values
       this.today = formatDate(this.currentYear, this.currentMonth, this.currentDay);
-      this.date = null;
     }
   }
 
@@ -179,11 +175,11 @@ public class DateContent extends RegexContent {
    * @return a String with length: 10
    */
   public final String getDate() {
-    if (this.date != null) {
-      if (this.date.length() < getMaximumInputLength()) {
-        return this.date + this.today.substring(this.today.length() + this.date.length() - getMaximumInputLength());
+    if (getText() != null) {
+      if (getLength() < getMaximumInputLength()) {
+        return getText() + this.today.substring(this.today.length() + getLength() - getMaximumInputLength());
       }
-      return this.date;
+      return getText();
     }
     return this.today;
   }
@@ -220,14 +216,12 @@ public class DateContent extends RegexContent {
       } else {
         super.insertString(offs, str, a);
       }
-      this.date = getText();
     }
   }
 
   @Override
   public final void remove(final int offs, final int len) throws BadLocationException {
     super.remove(offs, len);
-    this.date = getText();
   }
 
   @Override
