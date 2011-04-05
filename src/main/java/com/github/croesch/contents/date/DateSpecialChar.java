@@ -11,7 +11,7 @@ package com.github.croesch.contents.date;
 public class DateSpecialChar {
 
   /** the type of the value, if it should be interpreted as a constant, offset or incremental value. */
-  public static enum valueType {
+  public static enum ValueType {
     /** constant to interpret the value as a constant. */
     CONSTANT {
       @Override
@@ -39,19 +39,19 @@ public class DateSpecialChar {
   private final char specialChar;
 
   /** the type of the year value */
-  private final valueType yearValueType;
+  private final ValueType yearValueType;
 
   /** the value for the year */
   private final int yearValue;
 
   /** the type of the month value */
-  private final valueType monthValueType;
+  private final ValueType monthValueType;
 
   /** the value for the month */
   private final int monthValue;
 
   /** the type of the day value */
-  private final valueType dayValueType;
+  private final ValueType dayValueType;
 
   /** the value for the day */
   private final int dayValue;
@@ -70,11 +70,11 @@ public class DateSpecialChar {
    * @param dayVal the day value
    */
   public DateSpecialChar(final char c,
-                         final valueType yearType,
+                         final ValueType yearType,
                          final int yearVal,
-                         final valueType monthType,
+                         final ValueType monthType,
                          final int monthVal,
-                         final valueType dayType,
+                         final ValueType dayType,
                          final int dayVal) {
     if (yearType == null || monthType == null || dayType == null) {
       throw new IllegalArgumentException(this.toString());
@@ -106,7 +106,7 @@ public class DateSpecialChar {
    * @since Date: Apr 5, 2011 9:04:28 PM
    * @return the enum that represents the type of the year value
    */
-  public valueType getYearValueType() {
+  public ValueType getYearValueType() {
     return this.yearValueType;
   }
 
@@ -128,7 +128,7 @@ public class DateSpecialChar {
    * @since Date: Apr 5, 2011 9:05:14 PM
    * @return the enum that represents the type of the month value.
    */
-  public valueType getMonthValueType() {
+  public ValueType getMonthValueType() {
     return this.monthValueType;
   }
 
@@ -150,7 +150,7 @@ public class DateSpecialChar {
    * @since Date: Apr 5, 2011 9:05:57 PM
    * @return the enum that represents the type of the day value.
    */
-  public valueType getDayValueType() {
+  public ValueType getDayValueType() {
     return this.dayValueType;
   }
 
@@ -170,11 +170,11 @@ public class DateSpecialChar {
     final int prime = 31;
     int result = 1;
     result = prime * result + this.dayValue;
-    result = prime * result + ((this.dayValueType == null) ? 0 : this.dayValueType.hashCode());
+    result = prime * result + this.dayValueType.hashCode();
     result = prime * result + this.monthValue;
-    result = prime * result + ((this.monthValueType == null) ? 0 : this.monthValueType.hashCode());
+    result = prime * result + this.monthValueType.hashCode();
     result = prime * result + this.yearValue;
-    result = prime * result + ((this.yearValueType == null) ? 0 : this.yearValueType.hashCode());
+    result = prime * result + this.yearValueType.hashCode();
     result = prime * result + this.specialChar;
     return result;
   }

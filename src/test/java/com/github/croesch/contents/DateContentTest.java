@@ -70,10 +70,10 @@ public class DateContentTest {
     this.dc.setDateFormat(null, ".");
     assertThat(this.dc.getDate()).isEqualTo(date);
     assertThat(this.dc.formatDate(1903, 2, 01)).isEqualTo("1903-02-01");
-    this.dc.setDateFormat(DateContent.format.DYM, "");
+    this.dc.setDateFormat(DateContent.Format.DYM, "");
     assertThat(this.dc.getDate()).isEqualTo(date);
     assertThat(this.dc.formatDate(1903, 2, 1)).isEqualTo("1903-02-01");
-    this.dc.setDateFormat(DateContent.format.DMY, ".");
+    this.dc.setDateFormat(DateContent.Format.DMY, ".");
     assertThat(this.dc.getDate()).isEqualTo(new SimpleDateFormat("dd.MM.yyyy").format(new Date()));
     assertThat(this.dc.formatDate(1904, 3, 2)).isEqualTo("02.03.1904");
 
@@ -84,7 +84,7 @@ public class DateContentTest {
    */
   @Test
   public void testSetDateFormat() {
-    this.dc.setDateFormat(DateContent.format.YMD, "-");
+    this.dc.setDateFormat(DateContent.Format.YMD, "-");
     assertThat(this.dc.isValidInput("01.01.2011")).isFalse();
     assertThat(this.dc.isValidInput("2011-01-01")).isTrue();
     assertThat(this.dc.formatDate(2011, 3, 32)).isEqualTo("2011-04-01");
@@ -102,7 +102,7 @@ public class DateContentTest {
     assertThat(this.dc.formatDate(0, 1, 1)).isEqualTo("0001-01-01");
     assertThat(this.dc.formatDate(1, 1, 1)).isEqualTo("0001-01-01");
 
-    this.dc.setDateFormat(DateContent.format.DMY, ".");
+    this.dc.setDateFormat(DateContent.Format.DMY, ".");
     assertThat(this.dc.isValidInput("01.01.2011")).isTrue();
     assertThat(this.dc.isValidInput("2011-01-01")).isFalse();
     assertThat(this.dc.formatDate(2011, 3, 32)).isEqualTo("01.04.2011");
@@ -120,7 +120,7 @@ public class DateContentTest {
     assertThat(this.dc.formatDate(0, 1, 1)).isEqualTo("01.01.0001");
     assertThat(this.dc.formatDate(1, 1, 1)).isEqualTo("01.01.0001");
 
-    this.dc.setDateFormat(DateContent.format.DMY, "#");
+    this.dc.setDateFormat(DateContent.Format.DMY, "#");
     assertThat(this.dc.isValidInput("01#01#2011")).isTrue();
     assertThat(this.dc.isValidInput("01.01.2011")).isFalse();
     assertThat(this.dc.isValidInput("2011-01-01")).isFalse();

@@ -21,12 +21,22 @@ public class DateContent extends RegexContent {
   /** generated serial version UID */
   private static final long serialVersionUID = -5689505532696673515L;
 
+  /** dummy variable to identify the year part */
+  private static final int DUMMY_YEAR = 1234;
+
+  /** dummy variable to identify the month part */
+  private static final int DUMMY_MONTH = 56;
+
+  /** dummy variable to identify the day part */
+  private static final int DUMMY_DAY = 78;
+
   /** instance of a calendar to define current date */
   private final Calendar cal = new GregorianCalendar();
 
   /** the string that is used to format the date shown in the field */
   private String dateFormat = "%04d-%02d-%02d";
 
+  /** string to parse a formatted date */
   private String dateFormatString = "yyyy-MM-dd";
 
   /** the number of the current year */
@@ -41,7 +51,8 @@ public class DateContent extends RegexContent {
   /** the string representation of the current date */
   private String today = formatDate(this.currentYear, this.currentMonth, this.currentDay);
 
-  private static final String datePattern = "[0-9_S_]{0,10}";
+  /** regular expression to define allowed input for this document */
+  private static final String DATE_PATTERN = "[0-9_S_]{0,10}";
 
   /**
    * Constructs a document with maximum input length >10< and that is not displaying errors
@@ -50,7 +61,7 @@ public class DateContent extends RegexContent {
    * @since Date: 28.01.2011 20:48:31
    */
   public DateContent() {
-    super(datePattern.replace("_S_", Pattern.quote("-"))); //$NON-NLS-1$
+    super(DATE_PATTERN.replace("_S_", Pattern.quote("-"))); //$NON-NLS-1$
     final int maxInput = 10;
 
     setErrorsNotifying(false);
@@ -97,7 +108,7 @@ public class DateContent extends RegexContent {
   }
 
   /** Provides constants to describe different date formats, '_S_' will be replaced by the separator of the date */
-  protected enum format {
+  protected enum Format {
     /** constant for format dd_S_MM_S_yyyy */
     DMY ("%3$02d_S_%2$02d_S_%1$04d"),
 
@@ -127,7 +138,7 @@ public class DateContent extends RegexContent {
      * @since Date: Mar 31, 2011 1:24:15 PM
      * @param fs the formating string for this date format
      */
-    private format(final String fs) {
+    private Format(final String fs) {
       this.formatString = fs;
     }
 
@@ -148,18 +159,19 @@ public class DateContent extends RegexContent {
    * 
    * @author croesch
    * @since Date: Mar 30, 2011 9:23:42 PM
-   * @param format the new format of the date.
+   * @param dFormat the new format of the date.
    * @param separator the separator for the new date format
    * @see #formatDate(int, int, int)
    */
-  protected final void setDateFormat(final format dateFormat, final String separator) {
-    if (dateFormat != null && separator != null && separator.length() > 0) {
-      setRegularExpression(datePattern.replace("_S_", Pattern.quote(separator)));
+  protected final void setDateFormat(final Format dFormat, final String separator) {
+    if (dFormat != null && separator != null && separator.length() > 0) {
+      setRegularExpression(DATE_PATTERN.replace("_S_", Pattern.quote(separator)));
       // set separator
-      this.dateFormat = dateFormat.getFormatString().replaceAll("_S_", separator);
+      this.dateFormat = dFormat.getFormatString().replaceAll("_S_", separator);
       // create parsing string
-      this.dateFormatString = String.format(this.dateFormat, 1234, 56, 78).replace("1234", "yyyy").replace("56", "MM")
-        .replace("78", "dd");
+      this.dateFormatString = String.format(this.dateFormat, DUMMY_YEAR, DUMMY_MONTH, DUMMY_DAY)
+        .replace(String.valueOf(DUMMY_YEAR), "yyyy").replace(String.valueOf(DUMMY_MONTH), "MM")
+        .replace(String.valueOf(DUMMY_DAY), "dd");
       // update intern values
       this.today = formatDate(this.currentYear, this.currentMonth, this.currentDay);
     }

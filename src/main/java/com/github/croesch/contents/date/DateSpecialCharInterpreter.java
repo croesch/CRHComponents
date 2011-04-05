@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.croesch.contents.date.DateSpecialChar.valueType;
+import com.github.croesch.contents.date.DateSpecialChar.ValueType;
 
 /**
  * This interpreter is able to read an input stream and fetch all special chars and their definition out of the stream.
@@ -63,16 +63,16 @@ public class DateSpecialCharInterpreter {
    * @since Date: Apr 5, 2011 8:47:52 PM
    * @param s the string that contains < type > < value >
    * @return the enum that represents the < type >
-   * @throws AssertionError, if the < type > is unknown
+   * @throws AssertionError if the < type > is unknown
    */
-  private valueType getValueType(final String s) throws AssertionError {
+  private ValueType getValueType(final String s) throws AssertionError {
     switch (s.charAt(0)) {
       case 'c':
-        return valueType.CONSTANT;
+        return ValueType.CONSTANT;
       case 'i':
-        return valueType.INCREMENT;
+        return ValueType.INCREMENT;
       case 'o':
-        return valueType.OFFSET;
+        return ValueType.OFFSET;
       default:
         throw new AssertionError();
     }

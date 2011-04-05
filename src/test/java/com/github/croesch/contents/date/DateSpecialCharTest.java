@@ -1,8 +1,8 @@
 package com.github.croesch.contents.date;
 
-import static com.github.croesch.contents.date.DateSpecialChar.valueType.CONSTANT;
-import static com.github.croesch.contents.date.DateSpecialChar.valueType.INCREMENT;
-import static com.github.croesch.contents.date.DateSpecialChar.valueType.OFFSET;
+import static com.github.croesch.contents.date.DateSpecialChar.ValueType.CONSTANT;
+import static com.github.croesch.contents.date.DateSpecialChar.ValueType.INCREMENT;
+import static com.github.croesch.contents.date.DateSpecialChar.ValueType.OFFSET;
 import static org.fest.assertions.Assertions.assertThat;
 
 import org.junit.Test;
@@ -17,7 +17,7 @@ public class DateSpecialCharTest {
 
   /**
    * Test method for
-   * {@link DateSpecialChar#DateSpecialChar(char, com.github.croesch.contents.date.DateSpecialChar.valueType, int, com.github.croesch.contents.date.DateSpecialChar.valueType, int, com.github.croesch.contents.date.DateSpecialChar.valueType, int)}
+   * {@link DateSpecialChar#DateSpecialChar(char, com.github.croesch.contents.date.DateSpecialChar.ValueType, int, com.github.croesch.contents.date.DateSpecialChar.ValueType, int, com.github.croesch.contents.date.DateSpecialChar.ValueType, int)}
    */
   @Test
   public void testConstructor() {
@@ -37,7 +37,7 @@ public class DateSpecialCharTest {
 
   /**
    * Test method for
-   * {@link DateSpecialChar#DateSpecialChar(char, com.github.croesch.contents.date.DateSpecialChar.valueType, int, com.github.croesch.contents.date.DateSpecialChar.valueType, int, com.github.croesch.contents.date.DateSpecialChar.valueType, int)}
+   * {@link DateSpecialChar#DateSpecialChar(char, com.github.croesch.contents.date.DateSpecialChar.ValueType, int, com.github.croesch.contents.date.DateSpecialChar.ValueType, int, com.github.croesch.contents.date.DateSpecialChar.ValueType, int)}
    */
   @Test(expected = IllegalArgumentException.class)
   public void testConstructorIAE1() {
@@ -46,7 +46,7 @@ public class DateSpecialCharTest {
 
   /**
    * Test method for
-   * {@link DateSpecialChar#DateSpecialChar(char, com.github.croesch.contents.date.DateSpecialChar.valueType, int, com.github.croesch.contents.date.DateSpecialChar.valueType, int, com.github.croesch.contents.date.DateSpecialChar.valueType, int)}
+   * {@link DateSpecialChar#DateSpecialChar(char, com.github.croesch.contents.date.DateSpecialChar.ValueType, int, com.github.croesch.contents.date.DateSpecialChar.ValueType, int, com.github.croesch.contents.date.DateSpecialChar.ValueType, int)}
    */
   @Test(expected = IllegalArgumentException.class)
   public void testConstructorIAE2() {
@@ -55,7 +55,7 @@ public class DateSpecialCharTest {
 
   /**
    * Test method for
-   * {@link DateSpecialChar#DateSpecialChar(char, com.github.croesch.contents.date.DateSpecialChar.valueType, int, com.github.croesch.contents.date.DateSpecialChar.valueType, int, com.github.croesch.contents.date.DateSpecialChar.valueType, int)}
+   * {@link DateSpecialChar#DateSpecialChar(char, com.github.croesch.contents.date.DateSpecialChar.ValueType, int, com.github.croesch.contents.date.DateSpecialChar.ValueType, int, com.github.croesch.contents.date.DateSpecialChar.ValueType, int)}
    */
   @Test(expected = IllegalArgumentException.class)
   public void testConstructorIAE3() {
