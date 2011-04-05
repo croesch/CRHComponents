@@ -233,6 +233,8 @@ public class DateSpecialCharTest {
 
     assertThat(dsc1).isNotEqualTo(null);
     assertThat(dsc2).isNotEqualTo(null);
+    assertThat(dsc1).isNotEqualTo((DateSpecialChar) null);
+    assertThat(dsc2).isNotEqualTo((DateSpecialChar) null);
 
     assertThat(dsc1).isEqualTo(dsc1);
     assertThat(dsc1.hashCode()).isEqualTo(dsc1.hashCode());

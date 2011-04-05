@@ -8,7 +8,7 @@ package com.github.croesch.contents.date;
  * @since Date: Apr 5, 2011 10:14:24 AM
  * @see DateSpecialCharInterpreter
  */
-public class DateSpecialChar {
+public final class DateSpecialChar {
 
   /** the type of the value, if it should be interpreted as a constant, offset or incremental value. */
   public static enum ValueType {
@@ -184,11 +184,11 @@ public class DateSpecialChar {
     if (this == obj) {
       return true;
     }
-    if (obj == null || !(obj instanceof DateSpecialChar)) {
+    if (!(obj instanceof DateSpecialChar)) {
       return false;
     }
     final DateSpecialChar other = (DateSpecialChar) obj;
-    return equals(other);
+    return areFieldsEqual(other);
   }
 
   /**
@@ -199,7 +199,7 @@ public class DateSpecialChar {
    * @param other the other {@link DateSpecialChar} to compare with this
    * @return <code>true</code>, if all the fields are the same
    */
-  private boolean equals(final DateSpecialChar other) {
+  private boolean areFieldsEqual(final DateSpecialChar other) {
     if (this.specialChar == other.specialChar && this.dayValue == other.dayValue
         && this.dayValueType == other.dayValueType && this.monthValue == other.monthValue
         && this.monthValueType == other.monthValueType && this.yearValue == other.yearValue
