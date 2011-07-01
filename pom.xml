@@ -6,6 +6,8 @@
   <artifactId>crhcomponents</artifactId>
   <version>1.2</version>
   <packaging>jar</packaging>
+  <description>Provides some useful components for small Java projects.</description>
+  <url>https://github.com/croesch/CRHComponents</url>
 
   <name>CRHComponents</name>
 
@@ -17,7 +19,7 @@
       <license>
           <name>GPL</name>
           <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
-          <distribution>manual</distribution>
+          <distribution>repo</distribution>
       </license>
   </licenses>
   
@@ -25,7 +27,7 @@
     <developer>
         <id>croesch</id>
         <name>Christian Rösch</name>
-        <email>croesch@users.sourceforge.net</email>
+        <email>christianroesch@gmx.net</email>
         <roles>
             <role>Project Lead</role>
             <role>Developer</role>
@@ -34,6 +36,11 @@
     </developer>
   </developers>
 
+  <scm>
+  	<connection>https://github.com/croesch/CRHComponents.git</connection>
+  	<url>https://github.com/croesch/CRHComponents</url>
+  </scm>
+  
   <build>
 	<finalName>${project.artifactId}-${project.version}-b${buildNumber}</finalName>
   	<plugins>
