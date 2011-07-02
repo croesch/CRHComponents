@@ -1,4 +1,4 @@
-package com.github.croesch.contents;
+package com.github.croesch.contents.date;
 
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -6,6 +6,8 @@ import java.util.Calendar;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.github.croesch.contents.date.DateLazyDayEditor;
 
 /**
  * Test methods for {@link DateLazyDayEditor}

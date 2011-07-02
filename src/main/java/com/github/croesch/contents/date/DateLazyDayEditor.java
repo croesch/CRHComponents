@@ -1,4 +1,4 @@
-package com.github.croesch.contents;
+package com.github.croesch.contents.date;
 
 import java.util.Calendar;
 

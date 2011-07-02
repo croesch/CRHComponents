@@ -1,4 +1,4 @@
-package com.github.croesch.contents;
+package com.github.croesch.contents.date;
 
 /**
  * An <i>lazy</i> editor for any part of a date. It will allow all entries except invalid characters or characters that
