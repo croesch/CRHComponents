@@ -8,7 +8,7 @@ package com.github.croesch.contents.date;
  * @since Date: Apr 5, 2011 10:14:24 AM
  * @see DateSpecialCharInterpreter
  */
-public final class DateSpecialChar {
+final class DateSpecialChar {
 
   /** the type of the value, if it should be interpreted as a constant, offset or incremental value. */
   public static enum ValueType {

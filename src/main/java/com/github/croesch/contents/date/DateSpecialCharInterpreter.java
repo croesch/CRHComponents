@@ -28,7 +28,7 @@ import com.github.croesch.contents.date.DateSpecialChar.ValueType;
  * @author croesch
  * @since Date: Apr 5, 2011 9:40:29 AM
  */
-public class DateSpecialCharInterpreter {
+final class DateSpecialCharInterpreter {
 
   /** the map that contains the definitions found in the input stream */
   private final Map<String, DateSpecialChar> specialCharsMap = new HashMap<String, DateSpecialChar>();
