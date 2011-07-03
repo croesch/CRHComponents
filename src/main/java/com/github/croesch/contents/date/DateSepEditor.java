@@ -31,12 +31,9 @@ class DateSepEditor implements IDatePartEditor {
 
   @Override
   public int enterValue(final String s, final int position) {
-    if (s != null && s.length() == 1) {
-      if (position >= 0 && position < this.value.length()) {
-        if (s.charAt(0) == this.value.charAt(position)) {
-          return 1;
-        }
-      }
+    if (s != null && s.length() == 1 && position >= 0 && position < this.value.length()
+        && s.charAt(0) == this.value.charAt(position)) {
+      return 1;
     }
     return -1;
   }
@@ -54,8 +51,7 @@ class DateSepEditor implements IDatePartEditor {
   @Override
   public int hashCode() {
     final int prime = 31;
-    final int result = prime + this.value.hashCode();
-    return result;
+    return prime + this.value.hashCode();
   }
 
   @Override

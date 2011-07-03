@@ -66,8 +66,7 @@ class DateLazyYearEditor implements IDateLazyPartEditor {
     if (s == null || s.length() != 1 || position < 0 || position > 3) {
       return -1;
     }
-    if (!(s.equals("0") || s.equals("1") || s.equals("2") || s.equals("3") || s.equals("4") || s.equals("5")
-          || s.equals("6") || s.equals("7") || s.equals("8") || s.equals("9"))) {
+    if ("0123456789".indexOf(s) < 0) {
       return -1;
     }
     switch (position) {
@@ -75,7 +74,7 @@ class DateLazyYearEditor implements IDateLazyPartEditor {
         this.value[3] = s.charAt(0);
         return 1;
       case 1:
-        if (this.value[3] == '0' || this.value[3] == '1' || this.value[3] == '2' || this.value[3] == '3') {
+        if ("0123".indexOf(this.value[3]) >= 0) {
           this.value[0] = '2';
           this.value[1] = '0';
         } else {

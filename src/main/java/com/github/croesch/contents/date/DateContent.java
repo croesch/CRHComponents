@@ -73,7 +73,9 @@ public class DateContent extends CContent {
               remove(0, getLength());
               super.insertString(0, sb.toString(), a);
 
-              this.textComponent.setCaretPosition(tmpOfss + startPos + z);
+              if (this.textComponent != null) {
+                this.textComponent.setCaretPosition(tmpOfss + startPos + z);
+              }
               inserted = true;
             }
           }

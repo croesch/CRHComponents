@@ -61,7 +61,7 @@ class DateLazyDayEditor implements IDateLazyPartEditor {
   public int enterValue(final String s, final int position) {
     if (s != null && s.length() == 1) {
 
-      if ("4".equals(s) || "5".equals(s) || "6".equals(s) || "7".equals(s) || "8".equals(s) || "9".equals(s)) {
+      if ("456789".indexOf(s) >= 0) {
         if (position == 0) {
           this.value[1] = s.charAt(0);
           return 2;
@@ -71,11 +71,9 @@ class DateLazyDayEditor implements IDateLazyPartEditor {
           return 1;
         }
       }
-      if ("0".equals(s) || "1".equals(s) || "2".equals(s) || "3".equals(s)) {
-        if (position == 0 || position == 1) {
-          this.value[position] = s.charAt(0);
-          return 1;
-        }
+      if ("0123".indexOf(s) >= 0 && (position == 0 || position == 1)) {
+        this.value[position] = s.charAt(0);
+        return 1;
       }
     }
     return -1;
