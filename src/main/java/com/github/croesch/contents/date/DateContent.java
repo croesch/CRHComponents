@@ -48,14 +48,17 @@ public class DateContent extends CContent {
           insertString(offs + i, str.substring(i, i + 1), a);
         }
       } else {
+        int startPos = 0;
         int tmpOfss = offs;
         boolean inserted = false;
+
         for (int i = 0; i < this.editors.size() && !inserted; ++i) {
           final IDateLazyPartEditor editor = this.editors.get(i);
-          tmpOfss -= editor.getSize();
-          if (tmpOfss < 0) {
-            if (editor.enterValue(str, tmpOfss + editor.getSize()) == -1) {
-              tmpOfss = 0; // pass to next editor
+
+          if (tmpOfss - editor.getSize() < 0) {
+            final int z = editor.enterValue(str, tmpOfss);
+            if (z == -1) {
+              tmpOfss = editor.getSize(); // pass to next editor
             } else {
               final StringBuilder sb = new StringBuilder();
               for (final IDateLazyPartEditor e : this.editors) {
@@ -64,9 +67,13 @@ public class DateContent extends CContent {
               remove(0, getLength());
               super.insertString(0, sb.toString(), a);
 
+              this.textComponent.setCaretPosition(tmpOfss + startPos + z);
               inserted = true;
             }
           }
+
+          tmpOfss -= editor.getSize();
+          startPos += editor.getSize();
         }
       }
     }
