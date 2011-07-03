@@ -528,4 +528,22 @@ public class DateLazyYearEditorTest {
     assertThat(this.editor.enterValue("\n", 0)).isEqualTo(-1);
     assertThat(this.editor.enterValue("\n", 3)).isEqualTo(-1);
   }
+
+  /**
+   * Test method for {@link DateLazyYearEditor#equals(Object)}.
+   */
+  @Test
+  public final void testEquals() {
+    assertThat(new DateLazyYearEditor(2)).isEqualTo(new DateLazyYearEditor(2));
+    assertThat(new DateLazyYearEditor(2012)).isEqualTo(new DateLazyYearEditor(2012));
+    assertThat(new DateLazyYearEditor(1901)).isEqualTo(new DateLazyYearEditor(1901));
+    assertThat(new DateLazyYearEditor(1877)).isEqualTo(new DateLazyYearEditor(1877));
+    assertThat(new DateLazyYearEditor(10032)).isEqualTo(new DateLazyYearEditor(10031));
+
+    assertThat(new DateLazyYearEditor(2000)).isNotEqualTo(new DateLazyYearEditor(1999));
+    assertThat(new DateLazyYearEditor(2010)).isNotEqualTo(new DateLazyYearEditor(2011));
+    assertThat(new DateLazyYearEditor(1909)).isNotEqualTo(new DateLazyYearEditor(1910));
+    assertThat(new DateLazyYearEditor(1907)).isNotEqualTo(new DateLazyYearEditor(1908));
+    assertThat(new DateLazyYearEditor(2014)).isNotEqualTo(new DateLazyYearEditor(2013));
+  }
 }

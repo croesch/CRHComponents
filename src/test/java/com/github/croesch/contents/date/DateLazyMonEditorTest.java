@@ -245,4 +245,22 @@ public class DateLazyMonEditorTest {
     assertThat(this.editor.enterValue("\n", 0)).isEqualTo(-1);
     assertThat(this.editor.enterValue("\n", 3)).isEqualTo(-1);
   }
+
+  /**
+   * Test method for {@link DateLazyMonEditor#equals(Object)}.
+   */
+  @Test
+  public final void testEquals() {
+    assertThat(new DateLazyMonEditor(2)).isEqualTo(new DateLazyMonEditor(2));
+    assertThat(new DateLazyMonEditor(12)).isEqualTo(new DateLazyMonEditor(12));
+    assertThat(new DateLazyMonEditor(1)).isEqualTo(new DateLazyMonEditor(1));
+    assertThat(new DateLazyMonEditor(7)).isEqualTo(new DateLazyMonEditor(7));
+    assertThat(new DateLazyMonEditor(32)).isEqualTo(new DateLazyMonEditor(31));
+
+    assertThat(new DateLazyMonEditor(2)).isNotEqualTo(new DateLazyMonEditor(1));
+    assertThat(new DateLazyMonEditor(10)).isNotEqualTo(new DateLazyMonEditor(11));
+    assertThat(new DateLazyMonEditor(9)).isNotEqualTo(new DateLazyMonEditor(10));
+    assertThat(new DateLazyMonEditor(7)).isNotEqualTo(new DateLazyMonEditor(8));
+    assertThat(new DateLazyMonEditor(4)).isNotEqualTo(new DateLazyMonEditor(3));
+  }
 }

@@ -1,5 +1,6 @@
 package com.github.croesch.contents.date;
 
+import java.util.Arrays;
 import java.util.Calendar;
 
 /**
@@ -89,5 +90,31 @@ class DateLazyMonEditor implements IDateLazyPartEditor {
   @Override
   public String toString() {
     return getValue();
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + Arrays.hashCode(this.value);
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof DateLazyMonEditor)) {
+      return false;
+    }
+    final DateLazyMonEditor other = (DateLazyMonEditor) obj;
+    if (!Arrays.equals(this.value, other.value)) {
+      return false;
+    }
+    return true;
   }
 }

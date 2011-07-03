@@ -7,8 +7,6 @@ import java.util.Calendar;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.croesch.contents.date.DateLazyDayEditor;
-
 /**
  * Test methods for {@link DateLazyDayEditor}
  * 
@@ -246,5 +244,23 @@ public class DateLazyDayEditorTest {
     assertThat(this.editor.enterValue(null, 2)).isEqualTo(-1);
     assertThat(this.editor.enterValue("\n", 0)).isEqualTo(-1);
     assertThat(this.editor.enterValue("\n", 3)).isEqualTo(-1);
+  }
+
+  /**
+   * Test method for {@link DateLazyDayEditor#equals(Object)}.
+   */
+  @Test
+  public final void testEquals() {
+    assertThat(new DateLazyDayEditor(2)).isEqualTo(new DateLazyDayEditor(2));
+    assertThat(new DateLazyDayEditor(12)).isEqualTo(new DateLazyDayEditor(12));
+    assertThat(new DateLazyDayEditor(22)).isEqualTo(new DateLazyDayEditor(22));
+    assertThat(new DateLazyDayEditor(30)).isEqualTo(new DateLazyDayEditor(30));
+    assertThat(new DateLazyDayEditor(32)).isEqualTo(new DateLazyDayEditor(32));
+
+    assertThat(new DateLazyDayEditor(2)).isNotEqualTo(new DateLazyDayEditor(1));
+    assertThat(new DateLazyDayEditor(22)).isNotEqualTo(new DateLazyDayEditor(11));
+    assertThat(new DateLazyDayEditor(22)).isNotEqualTo(new DateLazyDayEditor(21));
+    assertThat(new DateLazyDayEditor(30)).isNotEqualTo(new DateLazyDayEditor(31));
+    assertThat(new DateLazyDayEditor(32)).isNotEqualTo(new DateLazyDayEditor(31));
   }
 }
