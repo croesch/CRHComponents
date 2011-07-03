@@ -27,8 +27,7 @@ public final class StringUtil {
   }
 
   /**
-   * Multiplies the {@link String} of this multiplier the given number of times
-   * and returns the result.
+   * Multiplies the {@link String} of this multiplier the given number of times and returns the result.
    * 
    * @author croesch
    * @since Date: 15.02.2011 19:18:04
@@ -36,8 +35,7 @@ public final class StringUtil {
    * @return the {@link String} repeated n times
    * @throws IllegalArgumentException if n is lower than zero
    */
-  public String toStringMultipliedWith(final int n)
-                                                   throws IllegalArgumentException {
+  public String toStringMultipliedWith(final int n) throws IllegalArgumentException {
     if (n < 0) {
       throw new IllegalArgumentException();
     }
@@ -59,12 +57,7 @@ public final class StringUtil {
   @Override
   public int hashCode() {
     final int prime = 31;
-    int result = 1;
-    result = prime * result;
-    if (this.string != null) {
-      result += this.string.hashCode();
-    }
-    return result;
+    return prime + this.string.hashCode();
   }
 
   @Override

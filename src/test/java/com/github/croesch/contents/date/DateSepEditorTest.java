@@ -198,4 +198,40 @@ public class DateSepEditorTest {
     assertThat(this.editor.getValue()).isEqualTo("-");
   }
 
+  /**
+   * Test method for {@link DateSepEditor#toString()}
+   */
+  @Test
+  public final void testToString() {
+    assertThat(this.editor.getValue()).isEqualTo(".");
+    assertThat(this.editor.toString()).isEqualTo(".");
+    this.editor = new DateSepEditor(".");
+    assertThat(this.editor.getValue()).isEqualTo(".");
+    assertThat(this.editor.toString()).isEqualTo(".");
+    this.editor = new DateSepEditor(" .");
+    assertThat(this.editor.getValue()).isEqualTo(" .");
+    assertThat(this.editor.toString()).isEqualTo(" .");
+    this.editor = new DateSepEditor("-");
+    assertThat(this.editor.getValue()).isEqualTo("-");
+    assertThat(this.editor.toString()).isEqualTo("-");
+  }
+
+  /**
+   * Test method for {@link DateSepEditor#equals(Object)}.
+   */
+  @Test
+  public final void testEquals() {
+    assertThat(new DateSepEditor("xyz")).isEqualTo(new DateSepEditor("xyz"));
+    assertThat(new DateSepEditor("xyz").hashCode()).isEqualTo(new DateSepEditor("xyz").hashCode());
+
+    assertThat(this.editor).isEqualTo(this.editor);
+    assertThat(this.editor.hashCode()).isEqualTo(this.editor.hashCode());
+
+    assertThat(this.editor).isNotEqualTo(null);
+
+    assertThat(new DateSepEditor("xyz")).isNotEqualTo("xyz");
+
+    assertThat(new DateSepEditor("")).isEqualTo(new DateSepEditor(""));
+    assertThat(new DateSepEditor("").hashCode()).isEqualTo(new DateSepEditor("").hashCode());
+  }
 }

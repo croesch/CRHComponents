@@ -342,4 +342,28 @@ public class StringUtilTest {
     su = new StringUtil(arr3_2);
     assertThat(su).isNotEqualTo(null);
   }
+
+  /**
+   * Test method for {@link StringUtil#equals(Object)}.
+   */
+  @Test
+  public void testEquals_OtherFalse() {
+    StringUtil su = new StringUtil(arr1_1);
+    assertThat(su).isNotEqualTo(arr1_1);
+
+    su = new StringUtil(arr1_2);
+    assertThat(su).isNotEqualTo(arr1_2);
+
+    su = new StringUtil(arr2_1);
+    assertThat(su).isNotEqualTo(arr2_1);
+
+    su = new StringUtil(arr2_2);
+    assertThat(su).isNotEqualTo(arr2_2);
+
+    su = new StringUtil(arr3_1);
+    assertThat(su).isNotEqualTo(arr3_1);
+
+    su = new StringUtil(arr3_2);
+    assertThat(su).isNotEqualTo(arr3_2);
+  }
 }

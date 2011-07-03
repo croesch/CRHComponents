@@ -54,7 +54,7 @@ public class CContent extends CDocument {
   }
 
   /** the list of listeners that listens on changes of the error state */
-  private List<ErrorListener> listeners = new ArrayList<ErrorListener>();
+  private final List<ErrorListener> listeners = new ArrayList<ErrorListener>();
 
   /** whether listeners should be informed on changes of the error state */
   private boolean notifyErrors = true;
@@ -89,9 +89,6 @@ public class CContent extends CDocument {
    * @param listener the {@link ErrorListener}s to add
    */
   public final void addErrorListeners(final ErrorListener ... listener) {
-    if (this.listeners == null) {
-      this.listeners = new ArrayList<ErrorListener>();
-    }
     for (final ErrorListener e : listener) {
       if (this.listeners.contains(e)) {
         continue;
@@ -110,10 +107,8 @@ public class CContent extends CDocument {
    * @param listener the {@link ErrorListener}s to remove
    */
   public final void removeErrorListeners(final ErrorListener ... listener) {
-    if (this.listeners != null) {
-      for (final ErrorListener e : listener) {
-        this.listeners.remove(e);
-      }
+    for (final ErrorListener e : listener) {
+      this.listeners.remove(e);
     }
   }
 

@@ -26,10 +26,15 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
 
   private JTextComponentFixture field;
 
+  private Locale l;
+
   @Override
   public void onSetUp() {
-    robot().settings().eventPostingDelay(20);
-    robot().settings().delayBetweenEvents(20);
+    this.l = Locale.getDefault();
+    Locale.setDefault(Locale.GERMAN);
+
+    robot().settings().eventPostingDelay(10);
+    robot().settings().delayBetweenEvents(10);
 
     final FrameFixture f = new FrameFixture(robot(), GuiActionRunner.execute(new GuiQuery<JFrame>() {
 
@@ -43,6 +48,12 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     }));
     f.show();
     this.field = f.textBox();
+  }
+
+  @Override
+  protected void onTearDown() {
+    Locale.setDefault(this.l);
+    super.onTearDown();
   }
 
   @Test
@@ -119,6 +130,41 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
 
   @Test
   public final void testPasteText1() {
+    this.field.enterText("010100");
+    this.field.requireText("01.01.2000");
+
+    this.field.deleteText();
+
+    GuiActionRunner.execute(new GuiTask() {
+
+      @Override
+      protected void executeInEDT() throws Throwable {
+        final JTextField tf;
+        tf = new JTextField("444");
+        tf.selectAll();
+        tf.copy();
+        CDateFieldTest.this.field.target.paste();
+      }
+
+    });
+    this.field.requireText("04.04.2004");
+  }
+
+  @Test
+  public final void testPasteText2() {
+    final FrameFixture f = new FrameFixture(robot(), GuiActionRunner.execute(new GuiQuery<JFrame>() {
+
+      @Override
+      protected JFrame executeInEDT() throws Throwable {
+        final JFrame f = new JFrame();
+        f.add(new CDateField());
+        f.setPreferredSize(new Dimension(100, 50));
+        return f;
+      }
+    }));
+    f.show();
+    this.field = f.textBox();
+
     this.field.enterText("010100");
     this.field.requireText("01.01.2000");
 

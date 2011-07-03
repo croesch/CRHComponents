@@ -39,6 +39,15 @@ public class DateContentTest {
     this.content.insertString(5, "4", null);
     this.content.insertString(7, "4", null);
     assertThat(this.content.getText()).isEqualTo("22.11.1944");
+
+    this.content.insertString(7, null, null);
+    assertThat(this.content.getText()).isEqualTo("22.11.1944");
+
+    this.content.insertString(7, "", null);
+    assertThat(this.content.getText()).isEqualTo("22.11.1944");
+
+    this.content.insertString(0, "12.10.2010", null);
+    assertThat(this.content.getText()).isEqualTo("12.10.2010");
   }
 
 }

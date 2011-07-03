@@ -251,16 +251,39 @@ public class DateLazyDayEditorTest {
    */
   @Test
   public final void testEquals() {
+    assertThat(this.editor).isEqualTo(this.editor);
+
     assertThat(new DateLazyDayEditor(2)).isEqualTo(new DateLazyDayEditor(2));
     assertThat(new DateLazyDayEditor(12)).isEqualTo(new DateLazyDayEditor(12));
     assertThat(new DateLazyDayEditor(22)).isEqualTo(new DateLazyDayEditor(22));
     assertThat(new DateLazyDayEditor(30)).isEqualTo(new DateLazyDayEditor(30));
     assertThat(new DateLazyDayEditor(32)).isEqualTo(new DateLazyDayEditor(32));
 
+    assertThat(new DateLazyDayEditor(2)).isNotEqualTo(null);
+    assertThat(new DateLazyDayEditor(2)).isNotEqualTo("02");
     assertThat(new DateLazyDayEditor(2)).isNotEqualTo(new DateLazyDayEditor(1));
     assertThat(new DateLazyDayEditor(22)).isNotEqualTo(new DateLazyDayEditor(11));
     assertThat(new DateLazyDayEditor(22)).isNotEqualTo(new DateLazyDayEditor(21));
     assertThat(new DateLazyDayEditor(30)).isNotEqualTo(new DateLazyDayEditor(31));
     assertThat(new DateLazyDayEditor(32)).isNotEqualTo(new DateLazyDayEditor(31));
+  }
+
+  /**
+   * Test method for {@link DateLazyDayEditor#toString()}
+   */
+  @Test
+  public final void testToString() {
+    final int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+    assertThat(this.editor.getValue()).isEqualTo(String.format("%02d", day));
+    assertThat(this.editor.toString()).isEqualTo(String.format("%02d", day));
+    this.editor = new DateLazyDayEditor(12);
+    assertThat(this.editor.getValue()).isEqualTo("12");
+    assertThat(this.editor.toString()).isEqualTo("12");
+    this.editor = new DateLazyDayEditor(29);
+    assertThat(this.editor.getValue()).isEqualTo("29");
+    assertThat(this.editor.toString()).isEqualTo("29");
+    this.editor = new DateLazyDayEditor(3);
+    assertThat(this.editor.getValue()).isEqualTo("03");
+    assertThat(this.editor.toString()).isEqualTo("03");
   }
 }

@@ -16,13 +16,13 @@ public class StringArrayUtilTest {
 
   private static String[] arr1_2 = new String[] {};
 
-  private static String[] arr2_1 = new String[] {""};
+  private static String[] arr2_1 = new String[] { "" };
 
-  private static String[] arr2_2 = new String[] {""};
+  private static String[] arr2_2 = new String[] { "" };
 
-  private static String[] arr3_1 = new String[] {"a", "b", "c", "d"};
+  private static String[] arr3_1 = new String[] { "a", "b", "c", "d" };
 
-  private static String[] arr3_2 = new String[] {"a", "b", "c", "d"};
+  private static String[] arr3_2 = new String[] { "a", "b", "c", "d" };
 
   /**
    * Test method for {@link StringArrayUtil#hashCode()}.
@@ -41,6 +41,11 @@ public class StringArrayUtilTest {
 
     sau1 = new StringArrayUtil(arr3_1);
     sau2 = new StringArrayUtil(arr3_2);
+    assertThat(sau1.equals(sau2)).isEqualTo(sau2.hashCode() == sau1.hashCode());
+    assertThat(sau1).isEqualTo(sau2);
+
+    sau1.trim();
+    sau2.trim();
     assertThat(sau1.equals(sau2)).isEqualTo(sau2.hashCode() == sau1.hashCode());
     assertThat(sau1).isEqualTo(sau2);
   }
@@ -354,14 +359,14 @@ public class StringArrayUtilTest {
    */
   @Test
   public void testReferences() {
-    String[] arr1 = {" a", " b", "c "};
-    String[] arr2 = {" a", " b", "c "};
-    String[] arr3 = {" A", " b", "c "};
-    String[] arr4 = {"A", "b", "c", "d", "e", "f"};
-    StringArrayUtil sau1 = new StringArrayUtil(arr1);
-    StringArrayUtil sau2 = new StringArrayUtil(arr2);
+    String[] arr1 = { " a", " b", "c " };
+    final String[] arr2 = { " a", " b", "c " };
+    final String[] arr3 = { " A", " b", "c " };
+    final String[] arr4 = { "A", "b", "c", "d", "e", "f" };
+    final StringArrayUtil sau1 = new StringArrayUtil(arr1);
+    final StringArrayUtil sau2 = new StringArrayUtil(arr2);
     StringArrayUtil sau3 = new StringArrayUtil(arr3);
-    StringArrayUtil sau4 = new StringArrayUtil(arr4);
+    final StringArrayUtil sau4 = new StringArrayUtil(arr4);
 
     assertThat(sau1).isEqualTo(sau2);
     assertThat(sau1).isNotEqualTo(sau3);

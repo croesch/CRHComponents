@@ -534,16 +534,39 @@ public class DateLazyYearEditorTest {
    */
   @Test
   public final void testEquals() {
+    assertThat(this.editor).isEqualTo(this.editor);
+
     assertThat(new DateLazyYearEditor(2)).isEqualTo(new DateLazyYearEditor(2));
     assertThat(new DateLazyYearEditor(2012)).isEqualTo(new DateLazyYearEditor(2012));
     assertThat(new DateLazyYearEditor(1901)).isEqualTo(new DateLazyYearEditor(1901));
     assertThat(new DateLazyYearEditor(1877)).isEqualTo(new DateLazyYearEditor(1877));
     assertThat(new DateLazyYearEditor(10032)).isEqualTo(new DateLazyYearEditor(10031));
 
+    assertThat(new DateLazyDayEditor(2000)).isNotEqualTo(null);
+    assertThat(new DateLazyDayEditor(2000)).isNotEqualTo("2000");
     assertThat(new DateLazyYearEditor(2000)).isNotEqualTo(new DateLazyYearEditor(1999));
     assertThat(new DateLazyYearEditor(2010)).isNotEqualTo(new DateLazyYearEditor(2011));
     assertThat(new DateLazyYearEditor(1909)).isNotEqualTo(new DateLazyYearEditor(1910));
     assertThat(new DateLazyYearEditor(1907)).isNotEqualTo(new DateLazyYearEditor(1908));
     assertThat(new DateLazyYearEditor(2014)).isNotEqualTo(new DateLazyYearEditor(2013));
+  }
+
+  /**
+   * Test method for {@link DateLazyYearEditor#toString()}
+   */
+  @Test
+  public final void testToString() {
+    final int year = Calendar.getInstance().get(Calendar.YEAR);
+    assertThat(this.editor.getValue()).isEqualTo(String.format("%04d", year));
+    assertThat(this.editor.toString()).isEqualTo(String.format("%04d", year));
+    this.editor = new DateLazyYearEditor(12);
+    assertThat(this.editor.getValue()).isEqualTo("0012");
+    assertThat(this.editor.toString()).isEqualTo("0012");
+    this.editor = new DateLazyYearEditor(2002);
+    assertThat(this.editor.getValue()).isEqualTo("2002");
+    assertThat(this.editor.toString()).isEqualTo("2002");
+    this.editor = new DateLazyYearEditor(1437);
+    assertThat(this.editor.getValue()).isEqualTo("1437");
+    assertThat(this.editor.toString()).isEqualTo("1437");
   }
 }

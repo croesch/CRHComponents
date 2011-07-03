@@ -251,16 +251,39 @@ public class DateLazyMonEditorTest {
    */
   @Test
   public final void testEquals() {
+    assertThat(this.editor).isEqualTo(this.editor);
+
     assertThat(new DateLazyMonEditor(2)).isEqualTo(new DateLazyMonEditor(2));
     assertThat(new DateLazyMonEditor(12)).isEqualTo(new DateLazyMonEditor(12));
     assertThat(new DateLazyMonEditor(1)).isEqualTo(new DateLazyMonEditor(1));
     assertThat(new DateLazyMonEditor(7)).isEqualTo(new DateLazyMonEditor(7));
     assertThat(new DateLazyMonEditor(32)).isEqualTo(new DateLazyMonEditor(31));
 
+    assertThat(new DateLazyDayEditor(2)).isNotEqualTo(null);
+    assertThat(new DateLazyDayEditor(2)).isNotEqualTo("02");
     assertThat(new DateLazyMonEditor(2)).isNotEqualTo(new DateLazyMonEditor(1));
     assertThat(new DateLazyMonEditor(10)).isNotEqualTo(new DateLazyMonEditor(11));
     assertThat(new DateLazyMonEditor(9)).isNotEqualTo(new DateLazyMonEditor(10));
     assertThat(new DateLazyMonEditor(7)).isNotEqualTo(new DateLazyMonEditor(8));
     assertThat(new DateLazyMonEditor(4)).isNotEqualTo(new DateLazyMonEditor(3));
+  }
+
+  /**
+   * Test method for {@link DateLazyMonEditor#toString()}
+   */
+  @Test
+  public final void testToString() {
+    final int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+    assertThat(this.editor.getValue()).isEqualTo(String.format("%02d", month));
+    assertThat(this.editor.toString()).isEqualTo(String.format("%02d", month));
+    this.editor = new DateLazyMonEditor(12);
+    assertThat(this.editor.getValue()).isEqualTo("12");
+    assertThat(this.editor.toString()).isEqualTo("12");
+    this.editor = new DateLazyMonEditor(2);
+    assertThat(this.editor.getValue()).isEqualTo("02");
+    assertThat(this.editor.toString()).isEqualTo("02");
+    this.editor = new DateLazyMonEditor(10);
+    assertThat(this.editor.getValue()).isEqualTo("10");
+    assertThat(this.editor.toString()).isEqualTo("10");
   }
 }
