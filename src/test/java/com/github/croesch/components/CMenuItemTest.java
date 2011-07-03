@@ -6,10 +6,12 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Icon;
+import javax.swing.SwingUtilities;
 
 import org.junit.After;
 import org.junit.Before;
@@ -29,10 +31,19 @@ public class CMenuItemTest {
 
   /**
    * initializes this item
+   * 
+   * @throws InvocationTargetException
+   * @throws InterruptedException
    */
   @Before
-  public void setUp() {
-    this.item = new CMenuItem();
+  public void setUp() throws InterruptedException, InvocationTargetException {
+    SwingUtilities.invokeAndWait(new Runnable() {
+
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem();
+      }
+    });
   }
 
   /**
@@ -45,9 +56,12 @@ public class CMenuItemTest {
 
   /**
    * Test method for {@link CMenuItem#CMenuItem(javax.swing.Icon)}.
+   * 
+   * @throws InvocationTargetException
+   * @throws InterruptedException
    */
   @Test
-  public void testCMenuIcon() {
+  public void testCMenuIcon() throws InterruptedException, InvocationTargetException {
     final Icon icon = new Icon() {
 
       @Override
@@ -66,39 +80,75 @@ public class CMenuItemTest {
       }
     };
 
-    this.item = new CMenuItem(icon);
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem(icon);
+      }
+    });
     assertThat(this.item.getIcon()).isSameAs(icon);
 
-    this.item = new CMenuItem((Icon) null);
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem((Icon) null);
+      }
+    });
     assertThat(this.item.getIcon()).isNull();
   }
 
   /**
    * Test method for {@link CMenuItem#CMenuItem(java.lang.String)}.
+   * 
+   * @throws InvocationTargetException
+   * @throws InterruptedException
    */
   @Test
-  public void testCMenuItemString() {
-    this.item = new CMenuItem("St[a]rt");
+  public void testCMenuItemString() throws InterruptedException, InvocationTargetException {
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem("St[a]rt");
+      }
+    });
     assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_A);
     assertThat(this.item.getText()).isEqualTo("Start");
 
-    this.item = new CMenuItem("St[ar]t");
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem("St[ar]t");
+      }
+    });
     assertThat(this.item.getText()).isEqualTo("St[ar]t");
 
-    this.item = new CMenuItem("Star[t]");
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem("Star[t]");
+      }
+    });
     assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_T);
     assertThat(this.item.getText()).isEqualTo("Start");
 
-    this.item = new CMenuItem("[S]tart");
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem("[S]tart");
+      }
+    });
     assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_S);
     assertThat(this.item.getText()).isEqualTo("Start");
   }
 
   /**
    * Test method for {@link CMenuItem#CMenuItem(javax.swing.Action)}.
+   * 
+   * @throws InvocationTargetException
+   * @throws InterruptedException
    */
   @Test
-  public void testCMenuItemAction() {
+  public void testCMenuItemAction() throws InterruptedException, InvocationTargetException {
     final Action act = new AbstractAction() {
       /** serial version UID */
       private static final long serialVersionUID = -2312442386490910405L;
@@ -108,78 +158,162 @@ public class CMenuItemTest {
         // do nothing, stupid stub
       }
     };
-    this.item = new CMenuItem(act);
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem(act);
+      }
+    });
     assertThat(this.item.getAction()).isSameAs(act);
 
-    this.item = new CMenuItem((AbstractAction) null);
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem((AbstractAction) null);
+      }
+    });
     assertThat(this.item.getAction()).isNull();
   }
 
   /**
    * Test method for {@link CMenuItem#CMenuItem(String, int)}.
+   * 
+   * @throws InvocationTargetException
+   * @throws InterruptedException
    */
   @Test
-  public void testCMenuItemStringMnemonic() {
-    this.item = new CMenuItem("St[a]rt", KeyEvent.VK_R);
+  public void testCMenuItemStringMnemonic() throws InterruptedException, InvocationTargetException {
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem("St[a]rt", KeyEvent.VK_R);
+      }
+    });
     assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_R);
     assertThat(this.item.getText()).isEqualTo("Start");
 
-    this.item = new CMenuItem("St[ar]t", KeyEvent.VK_A);
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem("St[ar]t", KeyEvent.VK_A);
+      }
+    });
     assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_A);
     assertThat(this.item.getText()).isEqualTo("St[ar]t");
 
-    this.item = new CMenuItem("Star[t]", KeyEvent.VK_S);
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem("Star[t]", KeyEvent.VK_S);
+      }
+    });
     assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_S);
     assertThat(this.item.getText()).isEqualTo("Start");
 
-    this.item = new CMenuItem("[S]tart", -19011989);
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem("[S]tart", -19011989);
+      }
+    });
     assertThat(this.item.getMnemonic()).isEqualTo(-19011989);
     assertThat(this.item.getText()).isEqualTo("Start");
   }
 
   /**
    * Test method for {@link CMenuItem#CMenuItem(java.lang.String, javax.swing.Icon)}.
+   * 
+   * @throws InvocationTargetException
+   * @throws InterruptedException
    */
   @Test
-  public void testCMenuItemStringIcon() {
-    this.item = new CMenuItem("St[a]rt", null);
+  public void testCMenuItemStringIcon() throws InterruptedException, InvocationTargetException {
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem("St[a]rt", null);
+      }
+    });
     assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_A);
     assertThat(this.item.getText()).isEqualTo("Start");
 
-    this.item = new CMenuItem("St[ar]t", null);
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem("St[ar]t", null);
+      }
+    });
     assertThat(this.item.getText()).isEqualTo("St[ar]t");
 
-    this.item = new CMenuItem("Star[t]", null);
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem("Star[t]", null);
+      }
+    });
     assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_T);
     assertThat(this.item.getText()).isEqualTo("Start");
 
-    this.item = new CMenuItem("[S]tart", null);
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item = new CMenuItem("[S]tart", null);
+      }
+    });
     assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_S);
     assertThat(this.item.getText()).isEqualTo("Start");
   }
 
   /**
    * Test method for {@link CMenuItem#setText(java.lang.String)}.
+   * 
+   * @throws InvocationTargetException
+   * @throws InterruptedException
    */
   @Test
-  public void testSetTextString() {
-    this.item.setText("St[a]rt");
+  public void testSetTextString() throws InterruptedException, InvocationTargetException {
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item.setText("St[a]rt");
+      }
+    });
     assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_A);
     assertThat(this.item.getText()).isEqualTo("Start");
 
-    this.item.setText("St[ar]t");
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item.setText("St[ar]t");
+      }
+    });
     assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_A);
     assertThat(this.item.getText()).isEqualTo("St[ar]t");
 
-    this.item.setText("Star[t]");
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item.setText("Star[t]");
+      }
+    });
     assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_T);
     assertThat(this.item.getText()).isEqualTo("Start");
 
-    this.item.setText("[S]tart");
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item.setText("[S]tart");
+      }
+    });
     assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_S);
     assertThat(this.item.getText()).isEqualTo("Start");
 
-    this.item.setText(null);
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        CMenuItemTest.this.item.setText(null);
+      }
+    });
     assertThat(this.item.getMnemonic()).isEqualTo(KeyEvent.VK_S);
     assertThat(this.item.getText()).isNull();
   }
