@@ -17,7 +17,7 @@ import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
- * TODO Comment here ...
+ * Provides test methods for {@link CDateField}.
  * 
  * @author croesch
  * @since Date: Jul 3, 2011
@@ -28,6 +28,9 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
 
   @Override
   public void onSetUp() {
+    robot().settings().eventPostingDelay(20);
+    robot().settings().delayBetweenEvents(20);
+
     final FrameFixture f = new FrameFixture(robot(), GuiActionRunner.execute(new GuiQuery<JFrame>() {
 
       @Override
