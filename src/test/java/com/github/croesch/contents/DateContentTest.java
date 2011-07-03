@@ -238,7 +238,6 @@ public class DateContentTest {
    */
   @Test
   public void testInsertString() throws BadLocationException {
-    final String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
     final String monthDay = new SimpleDateFormat("-MM-dd").format(new Date());
     final String day = new SimpleDateFormat("-dd").format(new Date());
 
@@ -270,27 +269,6 @@ public class DateContentTest {
     assertThat(this.dc.isValidInput(4, "abc")).isFalse();
     assertThatIsValid();
     assertThat(this.dc.getDate()).isEqualTo("2005" + monthDay);
-
-    assertThat(this.dc.isValidInput(4, "d")).isTrue();
-    this.dc.insertString(3, "d", null);
-    assertThatIsValid();
-    assertThat(this.dc.getDate()).isEqualTo(today);
-  }
-
-  /**
-   * Tests whether a special character is contained by {@link DateContent#isValidSpecialInput(String)}
-   */
-  @Test
-  public void testIsValidSpecialInput() {
-    final String[] wrongInputs = { "a", "b", "c", "z", null, "", "dd" };
-    final String[] validInputs = { "d" };
-
-    for (final String s : wrongInputs) {
-      assertThat(this.dc.isValidSpecialInput(s)).isFalse();
-    }
-    for (final String s : validInputs) {
-      assertThat(this.dc.isValidSpecialInput(s)).isTrue();
-    }
   }
 
   /**
@@ -328,7 +306,6 @@ public class DateContentTest {
    */
   @Test
   public void testReplace() throws BadLocationException {
-    final String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
     final String monthDay = new SimpleDateFormat("-MM-dd").format(new Date());
     final String day = new SimpleDateFormat("-dd").format(new Date());
 
@@ -352,9 +329,5 @@ public class DateContentTest {
     this.dc.replace(4, 0, "-18", null);
     assertThatIsNotValid();
     assertThat(this.dc.getDate()).isEqualTo("2007-18" + day);
-
-    this.dc.replace(3, 1, "d", null);
-    assertThatIsValid();
-    assertThat(this.dc.getDate()).isEqualTo(today);
   }
 }

@@ -36,19 +36,7 @@ public class CContent extends CDocument {
    * @throws BadLocationException if the given {@code offs} is invalid
    */
   public final boolean isValidInput(final int offs, final String str) throws BadLocationException {
-    return isValidInput(getText(0, offs) + str + getText(offs, getLength() - offs)) || isValidSpecialInput(str);
-  }
-
-  /**
-   * Returns whether the given {@link String} is a valid special input.
-   * 
-   * @author pehret
-   * @since Date: 25.03.2011 12:06:11
-   * @param str the {@link String} to test, if it's a special input string
-   * @return <code>true</code>, if it is a valid input string
-   */
-  protected boolean isValidSpecialInput(final String str) {
-    return false;
+    return isValidInput(getText(0, offs) + str + getText(offs, getLength() - offs));
   }
 
   @Override

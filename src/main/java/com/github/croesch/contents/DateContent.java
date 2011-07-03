@@ -15,7 +15,10 @@ import javax.swing.text.BadLocationException;
  * 
  * @author croesch
  * @since Date: 27.01.2011 18:39:41
+ * @deprecated use {@link com.github.croesch.contents.date.DateContent} instead.<br>
+ *             <b>Caution</b>: This class will be removed in one of the next releases.
  */
+@Deprecated
 public class DateContent extends RegexContent {
 
   /** generated serial version UID */
@@ -59,7 +62,9 @@ public class DateContent extends RegexContent {
    * 
    * @author croesch
    * @since Date: 28.01.2011 20:48:31
+   * @deprecated use {@link com.github.croesch.contents.date.DateContent} instead.
    */
+  @Deprecated
   public DateContent() {
     super(DATE_PATTERN.replace("_S_", Pattern.quote("-"))); //$NON-NLS-1$
     final int maxInput = 10;
@@ -74,7 +79,9 @@ public class DateContent extends RegexContent {
    * @author croesch
    * @since Date: 28.01.2011 20:48:57
    * @param initial the value to insert
+   * @deprecated use {@link com.github.croesch.contents.date.DateContent} instead.
    */
+  @Deprecated
   public DateContent(final String initial) {
     this();
     try {
@@ -215,11 +222,6 @@ public class DateContent extends RegexContent {
   }
 
   @Override
-  protected final boolean isValidSpecialInput(final String str) {
-    return "d".equals(str);
-  }
-
-  @Override
   public final void insertString(final int offs, final String str, final AttributeSet a) throws BadLocationException {
     if (isValidInput(offs, str)) {
       if ("d".equals(str)) {
@@ -240,7 +242,7 @@ public class DateContent extends RegexContent {
   public final void replace(final int offset, final int length, final String text, final AttributeSet attrs)
                                                                                                             throws BadLocationException {
     final String newText = getText(0, offset) + text + getText(offset + length, getLength() - offset - length);
-    if (isValidInput(newText) || isValidSpecialInput(text)) {
+    if (isValidInput(newText)) {
       super.replace(offset, length, text, attrs);
     }
   }

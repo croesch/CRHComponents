@@ -136,16 +136,6 @@ public class CContentTest {
   }
 
   /**
-   * Tests whether false is always returned by {@link CContent#isValidSpecialInput(String)}
-   */
-  @Test
-  public void testIsValidSpecialInput() {
-    assertThat(this.cont.isValidSpecialInput(null)).isFalse();
-    assertThat(this.cont.isValidSpecialInput("f")).isFalse();
-    assertThat(this.cont.isValidSpecialInput("d")).isFalse();
-  }
-
-  /**
    * Tests the {@link CContent#isErrorsNotifying()} and {@link CContent#setErrorsNotifying(boolean)}
    * 
    * @author croesch
