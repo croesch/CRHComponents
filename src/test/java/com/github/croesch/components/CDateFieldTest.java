@@ -6,14 +6,14 @@ import java.awt.Dimension;
 import java.util.Locale;
 
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
+import org.fest.swing.edt.GuiTask;
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JTextComponentFixture;
-import org.fest.swing.testing.FestSwingTestCaseTemplate;
-import org.junit.After;
-import org.junit.Before;
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
@@ -22,13 +22,12 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Jul 3, 2011
  */
-public class CDateFieldTest extends FestSwingTestCaseTemplate {
+public class CDateFieldTest extends FestSwingJUnitTestCase {
 
   private JTextComponentFixture field;
 
-  @Before
-  public void setUp() {
-    setUpRobot();
+  @Override
+  public void onSetUp() {
     final FrameFixture f = new FrameFixture(robot(), GuiActionRunner.execute(new GuiQuery<JFrame>() {
 
       @Override
@@ -41,11 +40,6 @@ public class CDateFieldTest extends FestSwingTestCaseTemplate {
     }));
     f.show();
     this.field = f.textBox();
-  }
-
-  @After
-  public void tearDown() {
-    cleanUp();
   }
 
   @Test
@@ -117,6 +111,28 @@ public class CDateFieldTest extends FestSwingTestCaseTemplate {
     this.field.enterText("4");
     assertThat(this.field.target.getCaretPosition()).isEqualTo(5);
     this.field.enterText("4");
+    this.field.requireText("04.04.2004");
+  }
+
+  @Test
+  public final void testPasteText1() {
+    this.field.enterText("010100");
+    this.field.requireText("01.01.2000");
+
+    this.field.deleteText();
+
+    GuiActionRunner.execute(new GuiTask() {
+
+      @Override
+      protected void executeInEDT() throws Throwable {
+        final JTextField tf;
+        tf = new JTextField("444");
+        tf.selectAll();
+        tf.copy();
+        CDateFieldTest.this.field.target.paste();
+      }
+
+    });
     this.field.requireText("04.04.2004");
   }
 }

@@ -44,8 +44,14 @@ public class DateContent extends CContent {
   public final void insertString(final int offs, final String str, final AttributeSet a) throws BadLocationException {
     if (str != null && str.length() > 0) {
       if (str.length() > 1) {
+        int o = offs;
         for (int i = 0; i < str.length(); ++i) {
-          insertString(offs + i, str.substring(i, i + 1), a);
+          if (this.textComponent != null) {
+            insertString(o, str.substring(i, i + 1), a);
+            o = this.textComponent.getCaretPosition();
+          } else {
+            insertString(o + i, str.substring(i, i + 1), a);
+          }
         }
       } else {
         int startPos = 0;
