@@ -8,6 +8,8 @@ import java.util.Locale;
 
 import org.junit.Test;
 
+import com.github.croesch.contents.date.DateContent.MODE;
+
 /**
  * Provides test methods for {@link DateComposition}.
  * 
@@ -17,7 +19,7 @@ import org.junit.Test;
 public class DateCompositionTest {
 
   /**
-   * Test method for {@link DateComposition#getComposition(Locale)}.
+   * Test method for {@link DateComposition#getComposition(Locale, MODE)}.
    */
   @Test
   public final void testGetComposition_D_Point_M_POINT_Y() {
@@ -64,7 +66,7 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc);
+      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyDayEditor(), new DateSepEditor("."), new DateLazyMonEditor(),
                                        new DateSepEditor("."), new DateLazyYearEditor());
@@ -72,7 +74,7 @@ public class DateCompositionTest {
   }
 
   /**
-   * Test method for {@link DateComposition#getComposition(Locale)}.
+   * Test method for {@link DateComposition#getComposition(Locale, MODE)}.
    */
   @Test
   public final void testGetComposition_Y_Slash_M_Slash_D() {
@@ -91,7 +93,7 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc);
+      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyYearEditor(), new DateSepEditor("/"), new DateLazyMonEditor(),
                                        new DateSepEditor("/"), new DateLazyDayEditor());
@@ -99,7 +101,7 @@ public class DateCompositionTest {
   }
 
   /**
-   * Test method for {@link DateComposition#getComposition(Locale)}.
+   * Test method for {@link DateComposition#getComposition(Locale, MODE)}.
    */
   @Test
   public final void testGetComposition_D_Slash_M_Slash_Y() {
@@ -171,7 +173,7 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc);
+      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyDayEditor(), new DateSepEditor("/"), new DateLazyMonEditor(),
                                        new DateSepEditor("/"), new DateLazyYearEditor());
@@ -179,7 +181,7 @@ public class DateCompositionTest {
   }
 
   /**
-   * Test method for {@link DateComposition#getComposition(Locale)}.
+   * Test method for {@link DateComposition#getComposition(Locale, MODE)}.
    */
   @Test
   public final void testGetComposition_M_Slash_D_Slash_Y() {
@@ -199,7 +201,7 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc);
+      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyMonEditor(), new DateSepEditor("/"), new DateLazyDayEditor(),
                                        new DateSepEditor("/"), new DateLazyYearEditor());
@@ -207,7 +209,7 @@ public class DateCompositionTest {
   }
 
   /**
-   * Test method for {@link DateComposition#getComposition(Locale)}.
+   * Test method for {@link DateComposition#getComposition(Locale, MODE)}.
    */
   @Test
   public final void testGetComposition_Y_Minus_M_Minus_D() {
@@ -234,7 +236,7 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc);
+      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyYearEditor(), new DateSepEditor("-"), new DateLazyMonEditor(),
                                        new DateSepEditor("-"), new DateLazyDayEditor());
@@ -242,7 +244,7 @@ public class DateCompositionTest {
   }
 
   /**
-   * Test method for {@link DateComposition#getComposition(Locale)}.
+   * Test method for {@link DateComposition#getComposition(Locale, MODE)}.
    */
   @Test
   public final void testGetComposition_Y_Point_M_Point_D_Point() {
@@ -256,7 +258,7 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc);
+      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(6);
       assertThat(list).containsExactly(new DateLazyYearEditor(), new DateSepEditor("."), new DateLazyMonEditor(),
                                        new DateSepEditor("."), new DateLazyDayEditor(), new DateSepEditor("."));
@@ -264,7 +266,7 @@ public class DateCompositionTest {
   }
 
   /**
-   * Test method for {@link DateComposition#getComposition(Locale)}.
+   * Test method for {@link DateComposition#getComposition(Locale, MODE)}.
    */
   @Test
   public final void testGetComposition_D_Minus_M_Minus_Y() {
@@ -284,7 +286,7 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc);
+      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyDayEditor(), new DateSepEditor("-"), new DateLazyMonEditor(),
                                        new DateSepEditor("-"), new DateLazyYearEditor());
@@ -292,7 +294,7 @@ public class DateCompositionTest {
   }
 
   /**
-   * Test method for {@link DateComposition#getComposition(Locale)}.
+   * Test method for {@link DateComposition#getComposition(Locale, MODE)}.
    */
   @Test
   public final void testGetComposition_D_Point_M_Point_Y_Point() {
@@ -308,7 +310,7 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc);
+      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(6);
       assertThat(list).containsExactly(new DateLazyDayEditor(), new DateSepEditor("."), new DateLazyMonEditor(),
                                        new DateSepEditor("."), new DateLazyYearEditor(), new DateSepEditor("."));
@@ -316,7 +318,7 @@ public class DateCompositionTest {
   }
 
   /**
-   * Test method for {@link DateComposition#getComposition(Locale)}.
+   * Test method for {@link DateComposition#getComposition(Locale, MODE)}.
    */
   @Test
   public final void testGetComposition_Y_Point_M_Point_D() {
@@ -332,7 +334,7 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc);
+      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyYearEditor(), new DateSepEditor("."), new DateLazyMonEditor(),
                                        new DateSepEditor("."), new DateLazyDayEditor());
@@ -340,7 +342,7 @@ public class DateCompositionTest {
   }
 
   /**
-   * Test method for {@link DateComposition#getComposition(Locale)}.
+   * Test method for {@link DateComposition#getComposition(Locale, MODE)}.
    */
   @Test
   public final void testGetComposition_Y_Point_D_Point_M() {
@@ -354,7 +356,7 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc);
+      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyYearEditor(), new DateSepEditor("."), new DateLazyDayEditor(),
                                        new DateSepEditor("."), new DateLazyMonEditor());
@@ -362,7 +364,7 @@ public class DateCompositionTest {
   }
 
   /**
-   * Test method for {@link DateComposition#getComposition(Locale)}.
+   * Test method for {@link DateComposition#getComposition(Locale, MODE)}.
    */
   @Test
   public final void testGetComposition_M_Minus_D_Minus_Y() {
@@ -378,7 +380,7 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc);
+      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyMonEditor(), new DateSepEditor("-"), new DateLazyDayEditor(),
                                        new DateSepEditor("-"), new DateLazyYearEditor());
@@ -386,7 +388,7 @@ public class DateCompositionTest {
   }
 
   /**
-   * Test method for {@link DateComposition#getComposition(Locale)}.
+   * Test method for {@link DateComposition#getComposition(Locale, MODE)}.
    */
   @Test
   public final void testGetComposition_Y_Point_Space_M_Point_Space_D() {
@@ -400,7 +402,7 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc);
+      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(7);
       assertThat(list).containsExactly(new DateLazyYearEditor(), new DateSepEditor("."), new DateSepEditor(" "),
                                        new DateLazyMonEditor(), new DateSepEditor("."), new DateSepEditor(" "),
@@ -409,7 +411,7 @@ public class DateCompositionTest {
   }
 
   /**
-   * Test method for {@link DateComposition#getComposition(Locale)}.
+   * Test method for {@link DateComposition#getComposition(Locale, MODE)}.
    */
   @Test
   public final void testGetComposition_Y_X_M_X_D_X() {
@@ -422,7 +424,7 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc);
+      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(6);
       assertThat(list).contains(new DateLazyYearEditor(), new DateLazyMonEditor(), new DateLazyDayEditor());
     }

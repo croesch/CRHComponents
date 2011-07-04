@@ -30,11 +30,12 @@ final class DateComposition {
    * @author croesch
    * @since Date: Jul 3, 2011
    * @param l the locale to fetch the {@link IDateLazyPartEditor}s from
+   * @param mode the {@link DateContent.MODE} for the editors
    * @return a {@link List} of {@link IDateLazyPartEditor} that are able to edit a date of the given locale, if the date
    *         of the locale cannot be parsed correctly then it returns a list of editors that are able to edit YYYY-MM-DD
    *         date.
    */
-  static List<IDateLazyPartEditor> getComposition(final Locale l) {
+  static List<IDateLazyPartEditor> getComposition(final Locale l, final DateContent.MODE mode) {
 
     final int testYear = 3333;
     final int testMonth = 10;

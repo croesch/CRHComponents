@@ -2,6 +2,8 @@ package com.github.croesch.contents.date;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import java.util.Random;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,6 +26,8 @@ public class DateSepEditorTest {
   @Before
   public void setUp() {
     this.editor = new DateSepEditor(".");
+    final Random r = new Random();
+    this.editor.setCurrentValue(r.nextInt(), r.nextInt(), r.nextInt());
   }
 
   /**

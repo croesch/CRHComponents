@@ -63,7 +63,7 @@ class DateLazyYearEditor implements IDateLazyPartEditor {
 
   @Override
   public int enterValue(final String s, final int position) {
-    if (s == null || s.length() != 1 || position < 0 || position > 3) {
+    if (s == null || s.length() != 1) {
       return -1;
     }
     if ("0123456789".indexOf(s) < 0) {

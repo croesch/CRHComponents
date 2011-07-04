@@ -7,15 +7,13 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
 
-import com.github.croesch.contents.CContent;
-
 /**
- * TODO Comment here ...
+ * {@link DateContent.MODE#LAZY} implementation of {@link DateContent}.
  * 
  * @author croesch
  * @since Date: Jul 3, 2011
  */
-public class DateLazyContent extends CContent {
+public class DateLazyContent extends DateContent {
 
   /** generated */
   private static final long serialVersionUID = 530985421120602593L;
@@ -27,8 +25,8 @@ public class DateLazyContent extends CContent {
   private final JTextComponent textComponent;
 
   /**
-   * Creates a new {@link DateLazyContent} that gives special support for date values. The given text component is used to
-   * set the cursor to the correct position. The locale is used to fetch the format for the date.
+   * Creates a new {@link DateLazyContent} that gives special support for date values. The given text component is used
+   * to set the cursor to the correct position. The locale is used to fetch the format for the date.
    * 
    * @author croesch
    * @since Date: Jul 3, 2011
@@ -37,7 +35,7 @@ public class DateLazyContent extends CContent {
    */
   public DateLazyContent(final JTextComponent tc, final Locale loc) {
     this.textComponent = tc;
-    this.editors = DateComposition.getComposition(loc);
+    this.editors = DateComposition.getComposition(loc, MODE.LAZY);
   }
 
   @Override
@@ -54,37 +52,56 @@ public class DateLazyContent extends CContent {
           }
         }
       } else {
-        int startPos = 0;
-        int tmpOfss = offs;
-        boolean inserted = false;
-
-        for (int i = 0; i < this.editors.size() && !inserted; ++i) {
-          final IDateLazyPartEditor editor = this.editors.get(i);
-
-          if (tmpOfss - editor.getSize() < 0) {
-            final int z = editor.enterValue(str, tmpOfss);
-            if (z == -1) {
-              tmpOfss = editor.getSize(); // pass to next editor
-            } else {
-              final StringBuilder sb = new StringBuilder();
-              for (final IDateLazyPartEditor e : this.editors) {
-                sb.append(e.getValue());
-              }
-              remove(0, getLength());
-              super.insertString(0, sb.toString(), a);
-
-              if (this.textComponent != null) {
-                this.textComponent.setCaretPosition(tmpOfss + startPos + z);
-              }
-              inserted = true;
-            }
-          }
-
-          tmpOfss -= editor.getSize();
-          startPos += editor.getSize();
-        }
+        performInsert(offs, str, a);
       }
     }
+  }
+
+  /**
+   * Performs the insertion of a string not <code>null</code> and being one char long.
+   * 
+   * @author croesch
+   * @since Date: Jul 4, 2011
+   * @param offs the offset where to insert basically
+   * @param str the string to insert
+   * @param a the {@link AttributeSet}.
+   * @throws BadLocationException if inserted on an invalid position
+   */
+  private void performInsert(final int offs, final String str, final AttributeSet a) throws BadLocationException {
+    int startPos = 0;
+    int tmpOfss = offs;
+    boolean inserted = false;
+
+    for (int i = 0; i < this.editors.size() && !inserted; ++i) {
+      final IDateLazyPartEditor editor = this.editors.get(i);
+
+      if (tmpOfss - editor.getSize() < 0) {
+        final int z = editor.enterValue(str, tmpOfss);
+        if (z == -1) {
+          tmpOfss = editor.getSize(); // pass to next editor
+        } else {
+          remove(0, getLength());
+          super.insertString(0, getDateContent(), a);
+
+          if (this.textComponent != null) {
+            this.textComponent.setCaretPosition(tmpOfss + startPos + z);
+          }
+          inserted = true;
+        }
+      }
+
+      tmpOfss -= editor.getSize();
+      startPos += editor.getSize();
+    }
+  }
+
+  @Override
+  public final String getDateContent() {
+    final StringBuilder sb = new StringBuilder();
+    for (final IDateLazyPartEditor e : this.editors) {
+      sb.append(e.getValue());
+    }
+    return sb.toString();
   }
 
 }

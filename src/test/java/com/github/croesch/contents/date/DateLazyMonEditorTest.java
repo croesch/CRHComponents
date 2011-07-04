@@ -259,8 +259,8 @@ public class DateLazyMonEditorTest {
     assertThat(new DateLazyMonEditor(7)).isEqualTo(new DateLazyMonEditor(7));
     assertThat(new DateLazyMonEditor(32)).isEqualTo(new DateLazyMonEditor(31));
 
-    assertThat(new DateLazyDayEditor(2)).isNotEqualTo(null);
-    assertThat(new DateLazyDayEditor(2)).isNotEqualTo("02");
+    assertThat(new DateLazyMonEditor(2)).isNotEqualTo(null);
+    assertThat(new DateLazyMonEditor(2)).isNotEqualTo("02");
     assertThat(new DateLazyMonEditor(2)).isNotEqualTo(new DateLazyMonEditor(1));
     assertThat(new DateLazyMonEditor(10)).isNotEqualTo(new DateLazyMonEditor(11));
     assertThat(new DateLazyMonEditor(9)).isNotEqualTo(new DateLazyMonEditor(10));

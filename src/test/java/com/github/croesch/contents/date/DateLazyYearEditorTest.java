@@ -542,8 +542,8 @@ public class DateLazyYearEditorTest {
     assertThat(new DateLazyYearEditor(1877)).isEqualTo(new DateLazyYearEditor(1877));
     assertThat(new DateLazyYearEditor(10032)).isEqualTo(new DateLazyYearEditor(10031));
 
-    assertThat(new DateLazyDayEditor(2000)).isNotEqualTo(null);
-    assertThat(new DateLazyDayEditor(2000)).isNotEqualTo("2000");
+    assertThat(new DateLazyYearEditor(2000)).isNotEqualTo(null);
+    assertThat(new DateLazyYearEditor(2000)).isNotEqualTo("2000");
     assertThat(new DateLazyYearEditor(2000)).isNotEqualTo(new DateLazyYearEditor(1999));
     assertThat(new DateLazyYearEditor(2010)).isNotEqualTo(new DateLazyYearEditor(2011));
     assertThat(new DateLazyYearEditor(1909)).isNotEqualTo(new DateLazyYearEditor(1910));

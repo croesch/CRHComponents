@@ -36,18 +36,22 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     robot().settings().eventPostingDelay(50);
     robot().settings().delayBetweenEvents(50);
 
+    this.field = getDateField(Locale.GERMAN);
+  }
+
+  private final JTextComponentFixture getDateField(final Locale l) {
     final FrameFixture f = new FrameFixture(robot(), GuiActionRunner.execute(new GuiQuery<JFrame>() {
 
       @Override
       protected JFrame executeInEDT() throws Throwable {
         final JFrame f = new JFrame();
-        f.add(new CDateField(Locale.GERMAN));
+        f.add(new CDateField(l));
         f.setPreferredSize(new Dimension(100, 50));
         return f;
       }
     }));
     f.show();
-    this.field = f.textBox();
+    return f.textBox();
   }
 
   @Override
