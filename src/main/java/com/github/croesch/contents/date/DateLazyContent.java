@@ -15,7 +15,7 @@ import com.github.croesch.contents.CContent;
  * @author croesch
  * @since Date: Jul 3, 2011
  */
-public class DateContent extends CContent {
+public class DateLazyContent extends CContent {
 
   /** generated */
   private static final long serialVersionUID = 530985421120602593L;
@@ -27,7 +27,7 @@ public class DateContent extends CContent {
   private final JTextComponent textComponent;
 
   /**
-   * Creates a new {@link DateContent} that gives special support for date values. The given text component is used to
+   * Creates a new {@link DateLazyContent} that gives special support for date values. The given text component is used to
    * set the cursor to the correct position. The locale is used to fetch the format for the date.
    * 
    * @author croesch
@@ -35,7 +35,7 @@ public class DateContent extends CContent {
    * @param tc the text component for this document
    * @param loc the locale to fetch the date format from
    */
-  public DateContent(final JTextComponent tc, final Locale loc) {
+  public DateLazyContent(final JTextComponent tc, final Locale loc) {
     this.textComponent = tc;
     this.editors = DateComposition.getComposition(loc);
   }

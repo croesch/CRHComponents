@@ -33,8 +33,8 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.l = Locale.getDefault();
     Locale.setDefault(Locale.GERMAN);
 
-    robot().settings().eventPostingDelay(10);
-    robot().settings().delayBetweenEvents(10);
+    robot().settings().eventPostingDelay(50);
+    robot().settings().delayBetweenEvents(50);
 
     final FrameFixture f = new FrameFixture(robot(), GuiActionRunner.execute(new GuiQuery<JFrame>() {
 

@@ -4,7 +4,7 @@ import java.util.Locale;
 
 import javax.swing.JTextField;
 
-import com.github.croesch.contents.date.DateContent;
+import com.github.croesch.contents.date.DateLazyContent;
 
 /**
  * A text field that is specially made for date values.
@@ -37,6 +37,6 @@ public class CDateField extends JTextField {
    * @param locale the {@link Locale} to fetch the format of the date from
    */
   public CDateField(final Locale locale) {
-    setDocument(new DateContent(this, locale));
+    setDocument(new DateLazyContent(this, locale));
   }
 }

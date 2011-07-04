@@ -10,24 +10,24 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Provides test methods for {@link DateContent}.
+ * Provides test methods for {@link DateLazyContent}.
  * 
  * @author croesch
  * @since Date: Jul 3, 2011
  */
-public class DateContentTest {
+public class DateLazyContentTest {
 
-  private DateContent content;
+  private DateLazyContent content;
 
   /**
-   * Sets up the {@link DateContent}.
+   * Sets up the {@link DateLazyContent}.
    * 
    * @author croesch
    * @since Date: Jul 3, 2011
    */
   @Before
   public void setUp() {
-    this.content = new DateContent(null, Locale.GERMAN);
+    this.content = new DateLazyContent(null, Locale.GERMAN);
   }
 
   @Test
