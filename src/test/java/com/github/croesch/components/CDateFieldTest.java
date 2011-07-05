@@ -1,8 +1,11 @@
 package com.github.croesch.components;
 
+import static com.github.croesch.TestUtil.assertDateHasValues;
 import static org.fest.assertions.Assertions.assertThat;
 
 import java.awt.Dimension;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import javax.swing.JFrame;
@@ -83,14 +86,16 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("6");
     assertThat(this.field.target.getCaretPosition()).isEqualTo(10);
     this.field.requireText("12.01.1976");
+    assertDateHasValues(((CDateField) this.field.target).getDate(), 12, 1, 1976);
   }
 
   @Test
   public final void testEnterDate2() {
-    this.field.enterText("1");
-    assertThat(this.field.target.getCaretPosition()).isEqualTo(1);
-    this.field.enterText("2");
-    assertThat(this.field.target.getCaretPosition()).isEqualTo(2);
+    final Calendar cal = new GregorianCalendar();
+    cal.set(1976, 0, 12);
+    ((CDateField) this.field.target).setDate(cal.getTime());
+    this.field.enterText(".");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(3);
     this.field.enterText("0");
     assertThat(this.field.target.getCaretPosition()).isEqualTo(4);
     this.field.enterText("1");
@@ -104,6 +109,7 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("6");
     assertThat(this.field.target.getCaretPosition()).isEqualTo(10);
     this.field.requireText("12.01.1976");
+    assertDateHasValues(((CDateField) this.field.target).getDate(), 12, 1, 1976);
   }
 
   @Test
@@ -121,6 +127,7 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("0");
     assertThat(this.field.target.getCaretPosition()).isEqualTo(8);
     this.field.requireText("01.01.2000");
+    assertDateHasValues(((CDateField) this.field.target).getDate(), 1, 1, 2000);
 
     this.field.deleteText();
 
@@ -130,12 +137,16 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     assertThat(this.field.target.getCaretPosition()).isEqualTo(5);
     this.field.enterText("4");
     this.field.requireText("04.04.2004");
+    assertDateHasValues(((CDateField) this.field.target).getDate(), 4, 4, 2004);
   }
 
   @Test
   public final void testPasteText1() {
-    this.field.enterText("010100");
+    final Calendar cal = new GregorianCalendar();
+    cal.set(2000, 0, 1);
+    ((CDateField) this.field.target).setDateAndDisplay(cal.getTime());
     this.field.requireText("01.01.2000");
+    assertDateHasValues(((CDateField) this.field.target).getDate(), 1, 1, 2000);
 
     this.field.deleteText();
 
@@ -152,6 +163,7 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
 
     });
     this.field.requireText("04.04.2004");
+    assertDateHasValues(((CDateField) this.field.target).getDate(), 4, 4, 2004);
   }
 
   @Test
@@ -171,6 +183,7 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
 
     this.field.enterText("010100");
     this.field.requireText("01.01.2000");
+    assertDateHasValues(((CDateField) this.field.target).getDate(), 1, 1, 2000);
 
     this.field.deleteText();
 
@@ -187,5 +200,6 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
 
     });
     this.field.requireText("04.04.2004");
+    assertDateHasValues(((CDateField) this.field.target).getDate(), 4, 4, 2004);
   }
 }

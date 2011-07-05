@@ -1,5 +1,6 @@
 package com.github.croesch.contents.date;
 
+import static com.github.croesch.TestUtil.assertDateHasValues;
 import static org.fest.assertions.Assertions.assertThat;
 
 import java.text.DateFormat;
@@ -47,15 +48,6 @@ public class DateLazyContentTest {
     this.todaysYear = cal.get(Calendar.YEAR);
   }
 
-  private void assertDateHasValues(final Date date, final int day, final int month, final int year) {
-    final Calendar cal = new GregorianCalendar();
-    cal.setTime(date);
-
-    assertThat(cal.get(Calendar.DAY_OF_MONTH)).isEqualTo(day);
-    assertThat(cal.get(Calendar.MONTH) + 1).isEqualTo(month);
-    assertThat(cal.get(Calendar.YEAR)).isEqualTo(year);
-  }
-
   @Test
   public void testInsertString() throws BadLocationException {
     this.content.insertString(0, "2", null);
@@ -86,7 +78,7 @@ public class DateLazyContentTest {
     final Calendar cal = new GregorianCalendar();
     cal.set(2002, 11, 6);
     this.content.setDate(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("");
+    assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("06.12.2002");
 
@@ -132,7 +124,7 @@ public class DateLazyContentTest {
     final Calendar cal = new GregorianCalendar();
     cal.set(2002, 11, 6);
     this.content.setDate(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("");
+    assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("06/12/2002");
 
@@ -178,7 +170,7 @@ public class DateLazyContentTest {
     final Calendar cal = new GregorianCalendar();
     cal.set(2002, 11, 6);
     this.content.setDate(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("");
+    assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("06.12.2002");
 
@@ -224,7 +216,7 @@ public class DateLazyContentTest {
     final Calendar cal = new GregorianCalendar();
     cal.set(2002, 11, 6);
     this.content.setDate(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("");
+    assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("2002/12/06");
 
@@ -270,7 +262,7 @@ public class DateLazyContentTest {
     final Calendar cal = new GregorianCalendar();
     cal.set(2002, 11, 6);
     this.content.setDate(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("");
+    assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("06/12/2002");
 
@@ -316,7 +308,7 @@ public class DateLazyContentTest {
     final Calendar cal = new GregorianCalendar();
     cal.set(2002, 11, 6);
     this.content.setDate(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("");
+    assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("12/06/2002");
 
@@ -362,7 +354,7 @@ public class DateLazyContentTest {
     final Calendar cal = new GregorianCalendar();
     cal.set(2002, 11, 6);
     this.content.setDate(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("");
+    assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("2002-12-06");
 
@@ -408,7 +400,7 @@ public class DateLazyContentTest {
     final Calendar cal = new GregorianCalendar();
     cal.set(2002, 11, 6);
     this.content.setDate(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("");
+    assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("2002.12.06.");
 
@@ -454,7 +446,7 @@ public class DateLazyContentTest {
     final Calendar cal = new GregorianCalendar();
     cal.set(2002, 11, 6);
     this.content.setDate(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("");
+    assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("06-12-2002");
 
@@ -500,7 +492,7 @@ public class DateLazyContentTest {
     final Calendar cal = new GregorianCalendar();
     cal.set(2002, 11, 6);
     this.content.setDate(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("");
+    assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("06.12.2002.");
 
@@ -546,7 +538,7 @@ public class DateLazyContentTest {
     final Calendar cal = new GregorianCalendar();
     cal.set(2002, 11, 6);
     this.content.setDate(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("");
+    assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("2002.12.06");
 
@@ -592,7 +584,7 @@ public class DateLazyContentTest {
     final Calendar cal = new GregorianCalendar();
     cal.set(2002, 11, 6);
     this.content.setDate(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("");
+    assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("2002.06.12");
 
@@ -638,7 +630,7 @@ public class DateLazyContentTest {
     final Calendar cal = new GregorianCalendar();
     cal.set(2002, 11, 6);
     this.content.setDate(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("");
+    assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("12-06-2002");
 
@@ -684,7 +676,7 @@ public class DateLazyContentTest {
     final Calendar cal = new GregorianCalendar();
     cal.set(2002, 11, 6);
     this.content.setDate(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("");
+    assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("2002. 12. 06");
 
