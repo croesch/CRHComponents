@@ -29,6 +29,10 @@ public class LogTest {
 
     Log.error(new AssertionError());
     assertThat(this.t).isNotNull();
-  }
 
+    Log.setLogger(null);
+
+    Log.error(new AssertionError());
+    assertThat(this.t).isNotNull();
+  }
 }
