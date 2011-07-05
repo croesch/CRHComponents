@@ -1,6 +1,5 @@
 package com.github.croesch.contents.date;
 
-import java.util.Arrays;
 import java.util.Calendar;
 
 /**
@@ -10,16 +9,10 @@ import java.util.Calendar;
  * @author croesch
  * @since Date: Jul 2, 2011
  */
-class DateLazyMonEditor implements IDateLazyPartEditor {
-
-  /** constant for number ten */
-  private static final int TEN = 10;
+class DateLazyMonEditor extends DateLazyMonAndDayEditor {
 
   /** constant of the highest value */
   private static final int HIGHEST = 12;
-
-  /** the current value */
-  private final char[] value = { '0', '0' };
 
   /**
    * Constructs a new lazy date editor with the value of the current month.
@@ -42,58 +35,29 @@ class DateLazyMonEditor implements IDateLazyPartEditor {
    * @see #DateLazyDayEditor()
    */
   DateLazyMonEditor(final int initial) {
-    int month = initial;
-    if (month <= 0 || month > HIGHEST) {
-      month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-    }
-    final int first = month / TEN;
-    final int second = month % TEN;
-    this.value[0] = (char) ('0' + first);
-    this.value[1] = (char) ('0' + second);
+    super(initial, HIGHEST);
   }
 
   @Override
-  public int getSize() {
-    return 2;
+  protected int getDefaultValue() {
+    return Calendar.getInstance().get(Calendar.MONTH) + 1;
   }
 
   @Override
-  public int enterValue(final String s, final int position) {
-    if (s != null && s.length() == 1) {
-
-      if ("23456789".indexOf(s) >= 0) {
-        if (position == 0) {
-          this.value[1] = s.charAt(0);
-          return 2;
-        }
-        if (position == 1) {
-          this.value[1] = s.charAt(0);
-          return 1;
-        }
-      }
-      if ("01".indexOf(s) >= 0 && (position == 0 || position == 1)) {
-        this.value[position] = s.charAt(0);
-        return 1;
-      }
-    }
-    return -1;
+  protected String getValidForBoth() {
+    return "01";
   }
 
   @Override
-  public String getValue() {
-    return String.valueOf(this.value, 0, 2);
-  }
-
-  @Override
-  public String toString() {
-    return getValue();
+  protected String getValidOnlyForSecond() {
+    return "23456789";
   }
 
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + Arrays.hashCode(this.value);
+    result = prime * result + getValue().hashCode();
     return result;
   }
 
@@ -109,9 +73,6 @@ class DateLazyMonEditor implements IDateLazyPartEditor {
       return false;
     }
     final DateLazyMonEditor other = (DateLazyMonEditor) obj;
-    if (!Arrays.equals(this.value, other.value)) {
-      return false;
-    }
-    return true;
+    return getValue().equals(other.getValue());
   }
 }
