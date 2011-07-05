@@ -4,7 +4,9 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import javax.swing.text.BadLocationException;
@@ -22,6 +24,12 @@ public class DateLazyContentTest {
 
   private DateLazyContent content;
 
+  private int todaysDay;
+
+  private int todaysMonth;
+
+  private int todaysYear;
+
   /**
    * Sets up the {@link DateLazyContent}.
    * 
@@ -31,6 +39,21 @@ public class DateLazyContentTest {
   @Before
   public void setUp() {
     this.content = new DateLazyContent(null, Locale.GERMAN);
+
+    final Calendar cal = new GregorianCalendar();
+    cal.setTime(new Date());
+    this.todaysDay = cal.get(Calendar.DAY_OF_MONTH);
+    this.todaysMonth = cal.get(Calendar.MONTH) + 1;
+    this.todaysYear = cal.get(Calendar.YEAR);
+  }
+
+  private void assertDateHasValues(final Date date, final int day, final int month, final int year) {
+    final Calendar cal = new GregorianCalendar();
+    cal.setTime(date);
+
+    assertThat(cal.get(Calendar.DAY_OF_MONTH)).isEqualTo(day);
+    assertThat(cal.get(Calendar.MONTH) + 1).isEqualTo(month);
+    assertThat(cal.get(Calendar.YEAR)).isEqualTo(year);
   }
 
   @Test
@@ -43,18 +66,22 @@ public class DateLazyContentTest {
     this.content.insertString(7, "4", null);
     assertThat(this.content.getText()).isEqualTo("22.11.1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, null, null);
     assertThat(this.content.getText()).isEqualTo("22.11.1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, "", null);
     assertThat(this.content.getText()).isEqualTo("22.11.1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(0, "12.10.2010", null);
     assertThat(this.content.getText()).isEqualTo("12.10.2010");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 12, 10, 2010);
   }
 
   @Test
@@ -62,6 +89,7 @@ public class DateLazyContentTest {
     final DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     this.content = new DateLazyContent(null, Locale.CANADA);
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
+    assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
     this.content.insertString(0, "2", null);
     this.content.insertString(1, "2", null);
@@ -71,18 +99,22 @@ public class DateLazyContentTest {
     this.content.insertString(7, "4", null);
     assertThat(this.content.getText()).isEqualTo("22/11/1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, null, null);
     assertThat(this.content.getText()).isEqualTo("22/11/1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, "", null);
     assertThat(this.content.getText()).isEqualTo("22/11/1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(0, "12/10/2010", null);
     assertThat(this.content.getText()).isEqualTo("12/10/2010");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 12, 10, 2010);
   }
 
   @Test
@@ -90,6 +122,7 @@ public class DateLazyContentTest {
     final DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
     this.content = new DateLazyContent(null, new Locale("mk"));
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
+    assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
     this.content.insertString(0, "2", null);
     this.content.insertString(1, "2", null);
@@ -99,18 +132,22 @@ public class DateLazyContentTest {
     this.content.insertString(7, "4", null);
     assertThat(this.content.getText()).isEqualTo("22.11.1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, null, null);
     assertThat(this.content.getText()).isEqualTo("22.11.1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, "", null);
     assertThat(this.content.getText()).isEqualTo("22.11.1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(0, "12.10.2010", null);
     assertThat(this.content.getText()).isEqualTo("12.10.2010");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 12, 10, 2010);
   }
 
   @Test
@@ -118,6 +155,7 @@ public class DateLazyContentTest {
     final DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
     this.content = new DateLazyContent(null, new Locale("ga"));
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
+    assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
     this.content.insertString(0, "4", null);
     this.content.insertString(1, "4", null);
@@ -127,18 +165,22 @@ public class DateLazyContentTest {
     this.content.insertString(9, "2", null);
     assertThat(this.content.getText()).isEqualTo("1944/11/22");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, null, null);
     assertThat(this.content.getText()).isEqualTo("1944/11/22");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, "", null);
     assertThat(this.content.getText()).isEqualTo("1944/11/22");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(0, "2010/10/12", null);
     assertThat(this.content.getText()).isEqualTo("2010/10/12");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 12, 10, 2010);
   }
 
   @Test
@@ -146,6 +188,7 @@ public class DateLazyContentTest {
     final DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     this.content = new DateLazyContent(null, new Locale("it"));
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
+    assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
     this.content.insertString(0, "2", null);
     this.content.insertString(1, "2", null);
@@ -155,18 +198,22 @@ public class DateLazyContentTest {
     this.content.insertString(7, "4", null);
     assertThat(this.content.getText()).isEqualTo("22/11/1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, null, null);
     assertThat(this.content.getText()).isEqualTo("22/11/1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, "", null);
     assertThat(this.content.getText()).isEqualTo("22/11/1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(0, "12/10/2010", null);
     assertThat(this.content.getText()).isEqualTo("12/10/2010");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 12, 10, 2010);
   }
 
   @Test
@@ -174,6 +221,7 @@ public class DateLazyContentTest {
     final DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
     this.content = new DateLazyContent(null, new Locale("en"));
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
+    assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
     this.content.insertString(0, "1", null);
     this.content.insertString(1, "1", null);
@@ -183,18 +231,22 @@ public class DateLazyContentTest {
     this.content.insertString(7, "4", null);
     assertThat(this.content.getText()).isEqualTo("11/22/1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, null, null);
     assertThat(this.content.getText()).isEqualTo("11/22/1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, "", null);
     assertThat(this.content.getText()).isEqualTo("11/22/1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(0, "10/12/2010", null);
     assertThat(this.content.getText()).isEqualTo("10/12/2010");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 12, 10, 2010);
   }
 
   @Test
@@ -202,6 +254,7 @@ public class DateLazyContentTest {
     final DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     this.content = new DateLazyContent(null, new Locale("sv"));
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
+    assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
     this.content.insertString(0, "4", null);
     this.content.insertString(1, "4", null);
@@ -211,18 +264,22 @@ public class DateLazyContentTest {
     this.content.insertString(9, "2", null);
     assertThat(this.content.getText()).isEqualTo("1944-11-22");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, null, null);
     assertThat(this.content.getText()).isEqualTo("1944-11-22");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, "", null);
     assertThat(this.content.getText()).isEqualTo("1944-11-22");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(0, "2010-10-12", null);
     assertThat(this.content.getText()).isEqualTo("2010-10-12");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 12, 10, 2010);
   }
 
   @Test
@@ -230,6 +287,7 @@ public class DateLazyContentTest {
     final DateFormat df = new SimpleDateFormat("yyyy.MM.dd.");
     this.content = new DateLazyContent(null, new Locale("hu"));
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
+    assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
     this.content.insertString(0, "4", null);
     this.content.insertString(1, "4", null);
@@ -239,18 +297,22 @@ public class DateLazyContentTest {
     this.content.insertString(9, "2", null);
     assertThat(this.content.getText()).isEqualTo("1944.11.22.");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, null, null);
     assertThat(this.content.getText()).isEqualTo("1944.11.22.");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, "", null);
     assertThat(this.content.getText()).isEqualTo("1944.11.22.");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(0, "2010.10.12.", null);
     assertThat(this.content.getText()).isEqualTo("2010.10.12.");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 12, 10, 2010);
   }
 
   @Test
@@ -258,6 +320,7 @@ public class DateLazyContentTest {
     final DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
     this.content = new DateLazyContent(null, new Locale("nl"));
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
+    assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
     this.content.insertString(0, "2", null);
     this.content.insertString(1, "2", null);
@@ -267,18 +330,22 @@ public class DateLazyContentTest {
     this.content.insertString(7, "4", null);
     assertThat(this.content.getText()).isEqualTo("22-11-1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, null, null);
     assertThat(this.content.getText()).isEqualTo("22-11-1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, "", null);
     assertThat(this.content.getText()).isEqualTo("22-11-1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(0, "12-10-2010", null);
     assertThat(this.content.getText()).isEqualTo("12-10-2010");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 12, 10, 2010);
   }
 
   @Test
@@ -286,6 +353,7 @@ public class DateLazyContentTest {
     final DateFormat df = new SimpleDateFormat("dd.MM.yyyy.");
     this.content = new DateLazyContent(null, new Locale("sr"));
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
+    assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
     this.content.insertString(0, "2", null);
     this.content.insertString(1, "2", null);
@@ -295,18 +363,22 @@ public class DateLazyContentTest {
     this.content.insertString(7, "4", null);
     assertThat(this.content.getText()).isEqualTo("22.11.1944.");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, null, null);
     assertThat(this.content.getText()).isEqualTo("22.11.1944.");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, "", null);
     assertThat(this.content.getText()).isEqualTo("22.11.1944.");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(0, "12.10.2010.", null);
     assertThat(this.content.getText()).isEqualTo("12.10.2010.");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 12, 10, 2010);
   }
 
   @Test
@@ -314,6 +386,7 @@ public class DateLazyContentTest {
     final DateFormat df = new SimpleDateFormat("yyyy.MM.dd");
     this.content = new DateLazyContent(null, new Locale("lt"));
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
+    assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
     this.content.insertString(0, "4", null);
     this.content.insertString(1, "4", null);
@@ -323,18 +396,22 @@ public class DateLazyContentTest {
     this.content.insertString(9, "2", null);
     assertThat(this.content.getText()).isEqualTo("1944.11.22");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, null, null);
     assertThat(this.content.getText()).isEqualTo("1944.11.22");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, "", null);
     assertThat(this.content.getText()).isEqualTo("1944.11.22");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(0, "2010.10.12", null);
     assertThat(this.content.getText()).isEqualTo("2010.10.12");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 12, 10, 2010);
   }
 
   @Test
@@ -342,6 +419,7 @@ public class DateLazyContentTest {
     final DateFormat df = new SimpleDateFormat("yyyy.dd.MM");
     this.content = new DateLazyContent(null, new Locale("lv"));
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
+    assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
     this.content.insertString(0, "4", null);
     this.content.insertString(1, "4", null);
@@ -351,18 +429,22 @@ public class DateLazyContentTest {
     this.content.insertString(9, "1", null);
     assertThat(this.content.getText()).isEqualTo("1944.22.11");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, null, null);
     assertThat(this.content.getText()).isEqualTo("1944.22.11");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, "", null);
     assertThat(this.content.getText()).isEqualTo("1944.22.11");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(0, "2010.12.10", null);
     assertThat(this.content.getText()).isEqualTo("2010.12.10");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 12, 10, 2010);
   }
 
   @Test
@@ -370,6 +452,7 @@ public class DateLazyContentTest {
     final DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
     this.content = new DateLazyContent(null, new Locale("es", "NI"));
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
+    assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
     this.content.insertString(0, "1", null);
     this.content.insertString(1, "1", null);
@@ -379,18 +462,22 @@ public class DateLazyContentTest {
     this.content.insertString(7, "4", null);
     assertThat(this.content.getText()).isEqualTo("11-22-1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, null, null);
     assertThat(this.content.getText()).isEqualTo("11-22-1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, "", null);
     assertThat(this.content.getText()).isEqualTo("11-22-1944");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(0, "10-12-2010", null);
     assertThat(this.content.getText()).isEqualTo("10-12-2010");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 12, 10, 2010);
   }
 
   @Test
@@ -398,6 +485,7 @@ public class DateLazyContentTest {
     final DateFormat df = new SimpleDateFormat("yyyy. MM. dd");
     this.content = new DateLazyContent(null, new Locale("ko"));
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
+    assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
     this.content.insertString(0, "4", null);
     this.content.insertString(1, "4", null);
@@ -407,17 +495,21 @@ public class DateLazyContentTest {
     this.content.insertString(11, "2", null);
     assertThat(this.content.getText()).isEqualTo("1944. 11. 22");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, null, null);
     assertThat(this.content.getText()).isEqualTo("1944. 11. 22");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(7, "", null);
     assertThat(this.content.getText()).isEqualTo("1944. 11. 22");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
 
     this.content.insertString(0, "2010. 10. 12", null);
     assertThat(this.content.getText()).isEqualTo("2010. 10. 12");
     assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
+    assertDateHasValues(this.content.getDate(), 12, 10, 2010);
   }
 }

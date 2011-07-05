@@ -1,5 +1,8 @@
 package com.github.croesch.contents.date;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -102,6 +105,26 @@ public class DateLazyContent extends DateContent {
       sb.append(e.getValue());
     }
     return sb.toString();
+  }
+
+  @Override
+  public final Date getDate() {
+    final Calendar cal = new GregorianCalendar();
+    int day = 1;
+    int month = 1;
+    int year = 1;
+    for (final IDateLazyPartEditor e : this.editors) {
+      if (e instanceof DateLazyYearEditor) {
+        year = Integer.parseInt(e.getValue());
+      } else if (e instanceof DateLazyMonEditor) {
+        month = Integer.parseInt(e.getValue()) - 1;
+      } else if (e instanceof DateLazyDayEditor) {
+        day = Integer.parseInt(e.getValue());
+      }
+    }
+
+    cal.set(year, month, day);
+    return cal.getTime();
   }
 
 }

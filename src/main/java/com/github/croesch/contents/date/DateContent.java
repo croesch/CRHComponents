@@ -1,5 +1,7 @@
 package com.github.croesch.contents.date;
 
+import java.util.Date;
+
 import com.github.croesch.contents.CContent;
 
 /**
@@ -59,5 +61,14 @@ abstract class DateContent extends CContent {
    * @return {@link String} representation of the date currently stored in the content
    */
   public abstract String getDateContent();
+
+  /**
+   * Returns the {@link Date} that is represented by the current value of the date field.
+   * 
+   * @author croesch
+   * @since Date: Jul 5, 2011
+   * @return {@link Date} that is equal to the values currently present in the date field.
+   */
+  public abstract Date getDate();
 
 }
