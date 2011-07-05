@@ -10,6 +10,8 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
 
+import com.github.croesch.logging.Log;
+
 /**
  * {@link DateContent.MODE#LAZY} implementation of {@link DateContent}.
  * 
@@ -136,7 +138,7 @@ public class DateLazyContent extends DateContent {
     try {
       remove(0, getLength());
     } catch (final BadLocationException e) {
-      e.printStackTrace();
+      Log.error(e);
     }
 
     final Calendar cal = new GregorianCalendar();

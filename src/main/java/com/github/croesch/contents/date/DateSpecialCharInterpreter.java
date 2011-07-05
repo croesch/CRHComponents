@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.github.croesch.contents.date.DateSpecialChar.ValueType;
+import com.github.croesch.logging.Log;
 
 /**
  * This interpreter is able to read an input stream and fetch all special chars and their definition out of the stream.
@@ -51,7 +52,7 @@ final class DateSpecialCharInterpreter {
         line = in.readLine();
       }
     } catch (final IOException e) {
-      e.printStackTrace();
+      Log.error(e);
     }
   }
 

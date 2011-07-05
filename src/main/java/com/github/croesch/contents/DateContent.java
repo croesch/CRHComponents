@@ -10,6 +10,8 @@ import java.util.regex.Pattern;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 
+import com.github.croesch.logging.Log;
+
 /**
  * This document provides the mechanism to accept only date values.
  * 
@@ -87,7 +89,7 @@ public class DateContent extends RegexContent {
     try {
       insertString(0, initial, null);
     } catch (final BadLocationException e) {
-      throw new AssertionError(); // should never happen
+      Log.error(e);
     }
   }
 
@@ -110,6 +112,7 @@ public class DateContent extends RegexContent {
     try {
       return sdf.format(sdf.parse(date));
     } catch (final ParseException e) {
+      Log.error(e);
       return null;
     }
   }
@@ -217,6 +220,7 @@ public class DateContent extends RegexContent {
       final Date parsed = sdf.parse(txt);
       return txt.equals(sdf.format(parsed));
     } catch (final ParseException e) {
+      Log.error(e);
       return false;
     }
   }

@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.swing.text.BadLocationException;
 
 import com.github.croesch.contents.CContent;
+import com.github.croesch.logging.Log;
 
 /**
  * Superclass for all date documents in this library.
@@ -88,7 +89,7 @@ abstract class DateContent extends CContent {
     try {
       insertString(0, getDateContent(), null);
     } catch (final BadLocationException e) {
-      e.printStackTrace();
+      Log.error(e);
     }
   }
 
