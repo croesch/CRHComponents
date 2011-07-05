@@ -22,10 +22,13 @@ public class DateLazyContent extends DateContent {
   private static final long serialVersionUID = 530985421120602593L;
 
   /** list of editors that will edit the different parts of the date */
-  private final List<IDateLazyPartEditor> editors;
+  private List<IDateLazyPartEditor> editors;
 
   /** text component to set the cursor */
   private final JTextComponent textComponent;
+
+  /** the locale of the date content */
+  private final Locale locale;
 
   /**
    * Creates a new {@link DateLazyContent} that gives special support for date values. The given text component is used
@@ -38,7 +41,8 @@ public class DateLazyContent extends DateContent {
    */
   public DateLazyContent(final JTextComponent tc, final Locale loc) {
     this.textComponent = tc;
-    this.editors = DateComposition.getComposition(loc, MODE.LAZY);
+    this.locale = loc;
+    this.editors = DateComposition.getComposition(this.locale, MODE.LAZY);
   }
 
   @Override
@@ -127,4 +131,17 @@ public class DateLazyContent extends DateContent {
     return cal.getTime();
   }
 
+  @Override
+  public final void setDate(final Date d) {
+    try {
+      remove(0, getLength());
+    } catch (final BadLocationException e) {
+      e.printStackTrace();
+    }
+
+    final Calendar cal = new GregorianCalendar();
+    cal.setTime(d);
+    this.editors = DateComposition.getComposition(this.locale, MODE.LAZY, cal.get(Calendar.DAY_OF_MONTH),
+                                                  cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR));
+  }
 }

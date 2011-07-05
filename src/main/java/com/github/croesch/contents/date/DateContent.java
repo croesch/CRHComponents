@@ -2,6 +2,8 @@ package com.github.croesch.contents.date;
 
 import java.util.Date;
 
+import javax.swing.text.BadLocationException;
+
 import com.github.croesch.contents.CContent;
 
 /**
@@ -61,6 +63,34 @@ abstract class DateContent extends CContent {
    * @return {@link String} representation of the date currently stored in the content
    */
   public abstract String getDateContent();
+
+  /**
+   * Set the current value of the date field to the given {@link Date}. Will remove the text in the field.
+   * 
+   * @author croesch
+   * @since Date: Jul 5, 2011
+   * @param d the {@link Date} to fetch the new values from.
+   * @see DateContent#setDateAndDisplay(Date)
+   */
+  public abstract void setDate(Date d);
+
+  /**
+   * Set the current value of the date field to the given {@link Date}. Will set the text in the field to the current
+   * values.
+   * 
+   * @author croesch
+   * @since Date: Jul 5, 2011
+   * @param d the {@link Date} to fetch the new values from.
+   * @see DateContent#setDate(Date)
+   */
+  public void setDateAndDisplay(final Date d) {
+    setDate(d);
+    try {
+      insertString(0, getDateContent(), null);
+    } catch (final BadLocationException e) {
+      e.printStackTrace();
+    }
+  }
 
   /**
    * Returns the {@link Date} that is represented by the current value of the date field.

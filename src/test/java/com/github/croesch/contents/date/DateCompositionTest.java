@@ -66,10 +66,15 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
+      List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyDayEditor(), new DateSepEditor("."), new DateLazyMonEditor(),
                                        new DateSepEditor("."), new DateLazyYearEditor());
+
+      list = DateComposition.getComposition(loc, MODE.LAZY, 24, 12, 1976);
+      assertThat(list).hasSize(5);
+      assertThat(list).containsExactly(new DateLazyDayEditor(24), new DateSepEditor("."), new DateLazyMonEditor(12),
+                                       new DateSepEditor("."), new DateLazyYearEditor(1976));
     }
   }
 
@@ -93,10 +98,15 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
+      List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyYearEditor(), new DateSepEditor("/"), new DateLazyMonEditor(),
                                        new DateSepEditor("/"), new DateLazyDayEditor());
+
+      list = DateComposition.getComposition(loc, MODE.LAZY, 3, 4, 1705);
+      assertThat(list).hasSize(5);
+      assertThat(list).containsExactly(new DateLazyYearEditor(1705), new DateSepEditor("/"), new DateLazyMonEditor(4),
+                                       new DateSepEditor("/"), new DateLazyDayEditor(3));
     }
   }
 
@@ -173,10 +183,15 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
+      List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyDayEditor(), new DateSepEditor("/"), new DateLazyMonEditor(),
                                        new DateSepEditor("/"), new DateLazyYearEditor());
+
+      list = DateComposition.getComposition(loc, MODE.LAZY, 31, 3, 2090);
+      assertThat(list).hasSize(5);
+      assertThat(list).containsExactly(new DateLazyDayEditor(31), new DateSepEditor("/"), new DateLazyMonEditor(3),
+                                       new DateSepEditor("/"), new DateLazyYearEditor(2090));
     }
   }
 
@@ -201,10 +216,15 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
+      List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyMonEditor(), new DateSepEditor("/"), new DateLazyDayEditor(),
                                        new DateSepEditor("/"), new DateLazyYearEditor());
+
+      list = DateComposition.getComposition(loc, MODE.LAZY, 3, 2, 1);
+      assertThat(list).hasSize(5);
+      assertThat(list).containsExactly(new DateLazyMonEditor(2), new DateSepEditor("/"), new DateLazyDayEditor(03),
+                                       new DateSepEditor("/"), new DateLazyYearEditor(00001));
     }
   }
 
@@ -236,10 +256,15 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
+      List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyYearEditor(), new DateSepEditor("-"), new DateLazyMonEditor(),
                                        new DateSepEditor("-"), new DateLazyDayEditor());
+
+      list = DateComposition.getComposition(loc, MODE.LAZY, 18, 11, 1975);
+      assertThat(list).hasSize(5);
+      assertThat(list).containsExactly(new DateLazyYearEditor(1975), new DateSepEditor("-"), new DateLazyMonEditor(11),
+                                       new DateSepEditor("-"), new DateLazyDayEditor(18));
     }
   }
 
@@ -258,10 +283,15 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
+      List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(6);
       assertThat(list).containsExactly(new DateLazyYearEditor(), new DateSepEditor("."), new DateLazyMonEditor(),
                                        new DateSepEditor("."), new DateLazyDayEditor(), new DateSepEditor("."));
+
+      list = DateComposition.getComposition(loc, MODE.LAZY, 29, 1, 2014);
+      assertThat(list).hasSize(6);
+      assertThat(list).containsExactly(new DateLazyYearEditor(2014), new DateSepEditor("."), new DateLazyMonEditor(1),
+                                       new DateSepEditor("."), new DateLazyDayEditor(29), new DateSepEditor("."));
     }
   }
 
@@ -286,9 +316,14 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
+      List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyDayEditor(), new DateSepEditor("-"), new DateLazyMonEditor(),
+                                       new DateSepEditor("-"), new DateLazyYearEditor());
+
+      list = DateComposition.getComposition(loc, MODE.LAZY, 27, 5, -1);
+      assertThat(list).hasSize(5);
+      assertThat(list).containsExactly(new DateLazyDayEditor(27), new DateSepEditor("-"), new DateLazyMonEditor(5),
                                        new DateSepEditor("-"), new DateLazyYearEditor());
     }
   }
@@ -310,10 +345,15 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
+      List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(6);
       assertThat(list).containsExactly(new DateLazyDayEditor(), new DateSepEditor("."), new DateLazyMonEditor(),
                                        new DateSepEditor("."), new DateLazyYearEditor(), new DateSepEditor("."));
+
+      list = DateComposition.getComposition(loc, MODE.LAZY, 19, 7, 1804);
+      assertThat(list).hasSize(6);
+      assertThat(list).containsExactly(new DateLazyDayEditor(19), new DateSepEditor("."), new DateLazyMonEditor(7),
+                                       new DateSepEditor("."), new DateLazyYearEditor(1804), new DateSepEditor("."));
     }
   }
 
@@ -334,10 +374,15 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
+      List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyYearEditor(), new DateSepEditor("."), new DateLazyMonEditor(),
                                        new DateSepEditor("."), new DateLazyDayEditor());
+
+      list = DateComposition.getComposition(loc, MODE.LAZY, 22, 8, 1795);
+      assertThat(list).hasSize(5);
+      assertThat(list).containsExactly(new DateLazyYearEditor(1795), new DateSepEditor("."), new DateLazyMonEditor(8),
+                                       new DateSepEditor("."), new DateLazyDayEditor(22));
     }
   }
 
@@ -356,10 +401,15 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
+      List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyYearEditor(), new DateSepEditor("."), new DateLazyDayEditor(),
                                        new DateSepEditor("."), new DateLazyMonEditor());
+
+      list = DateComposition.getComposition(loc, MODE.LAZY, 30, 11, 1997);
+      assertThat(list).hasSize(5);
+      assertThat(list).containsExactly(new DateLazyYearEditor(1997), new DateSepEditor("."), new DateLazyDayEditor(30),
+                                       new DateSepEditor("."), new DateLazyMonEditor(11));
     }
   }
 
@@ -380,10 +430,15 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
+      List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(5);
       assertThat(list).containsExactly(new DateLazyMonEditor(), new DateSepEditor("-"), new DateLazyDayEditor(),
                                        new DateSepEditor("-"), new DateLazyYearEditor());
+
+      list = DateComposition.getComposition(loc, MODE.LAZY, 31, 10, 2009);
+      assertThat(list).hasSize(5);
+      assertThat(list).containsExactly(new DateLazyMonEditor(10), new DateSepEditor("-"), new DateLazyDayEditor(31),
+                                       new DateSepEditor("-"), new DateLazyYearEditor(2009));
     }
   }
 
@@ -402,11 +457,17 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
+      List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(7);
       assertThat(list).containsExactly(new DateLazyYearEditor(), new DateSepEditor("."), new DateSepEditor(" "),
                                        new DateLazyMonEditor(), new DateSepEditor("."), new DateSepEditor(" "),
                                        new DateLazyDayEditor());
+
+      list = DateComposition.getComposition(loc, MODE.LAZY, 21, 1, 2023);
+      assertThat(list).hasSize(7);
+      assertThat(list).containsExactly(new DateLazyYearEditor(2023), new DateSepEditor("."), new DateSepEditor(" "),
+                                       new DateLazyMonEditor(1), new DateSepEditor("."), new DateSepEditor(" "),
+                                       new DateLazyDayEditor(21));
     }
   }
 
@@ -424,9 +485,13 @@ public class DateCompositionTest {
       System.out
         .println(" (\"" + loc.getLanguage() + "\", \"" + loc.getCountry() + "\", \"" + loc.getVariant() + "\")");
 
-      final List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
+      List<IDateLazyPartEditor> list = DateComposition.getComposition(loc, MODE.LAZY);
       assertThat(list).hasSize(6);
       assertThat(list).contains(new DateLazyYearEditor(), new DateLazyMonEditor(), new DateLazyDayEditor());
+
+      list = DateComposition.getComposition(loc, MODE.LAZY, 5, 7, 2011);
+      assertThat(list).hasSize(6);
+      assertThat(list).contains(new DateLazyYearEditor(2011), new DateLazyMonEditor(7), new DateLazyDayEditor(5));
     }
   }
 
