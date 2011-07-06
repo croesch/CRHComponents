@@ -1,11 +1,11 @@
 package com.github.croesch.contents.date;
 
 import java.util.Date;
+import java.util.Locale;
 
-import javax.swing.text.BadLocationException;
+import javax.swing.text.JTextComponent;
 
 import com.github.croesch.contents.CContent;
-import com.github.croesch.logging.Log;
 
 /**
  * Superclass for all date documents in this library.
@@ -13,7 +13,7 @@ import com.github.croesch.logging.Log;
  * @author croesch
  * @since Date: Jul 4, 2011
  */
-abstract class DateContent extends CContent {
+public abstract class DateContent extends CContent {
 
   /** generated */
   private static final long serialVersionUID = 6501226934436567798L;
@@ -41,7 +41,7 @@ abstract class DateContent extends CContent {
      * </ul>
      * Least comfortability, normal understandability, but best validity.
      */
-    STRICT,
+    //    STRICT,
     /**
      * Auto mode:<br>
      * <ul>
@@ -52,7 +52,21 @@ abstract class DateContent extends CContent {
      * </ul>
      * Aim is good comfortability and validity, but least and understandability.
      */
-    AUTO;
+    /* AUTO */;
+  }
+
+  /**
+   * Creates a new instance of this {@link DateContent}. Will instantiate the specific subclass and return it.
+   * 
+   * @author croesch
+   * @since Date: Jul 6, 2011
+   * @param mode the edit mode for the {@link DateContent} to create
+   * @param tf the text field that is the owner of the {@link DateContent}
+   * @param loc the {@link Locale} to fetch the date format from.
+   * @return an instance of {@link DateContent} that is able to edit a date of the given locale in the given mode.
+   */
+  public static final DateContent createDateContent(final MODE mode, final JTextComponent tf, final Locale loc) {
+    return new DateLazyContent(tf, loc);
   }
 
   /**
@@ -74,24 +88,6 @@ abstract class DateContent extends CContent {
    * @see DateContent#setDateAndDisplay(Date)
    */
   public abstract void setDate(Date d);
-
-  /**
-   * Set the current value of the date field to the given {@link Date}. Will set the text in the field to the current
-   * values.
-   * 
-   * @author croesch
-   * @since Date: Jul 5, 2011
-   * @param d the {@link Date} to fetch the new values from.
-   * @see DateContent#setDate(Date)
-   */
-  public void setDateAndDisplay(final Date d) {
-    setDate(d);
-    try {
-      insertString(0, getDateContent(), null);
-    } catch (final BadLocationException e) {
-      Log.error(e);
-    }
-  }
 
   /**
    * Returns the {@link Date} that is represented by the current value of the date field.

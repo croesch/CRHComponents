@@ -18,7 +18,7 @@ import com.github.croesch.logging.Log;
  * @author croesch
  * @since Date: Jul 3, 2011
  */
-public class DateLazyContent extends DateContent {
+class DateLazyContent extends DateContent {
 
   /** generated */
   private static final long serialVersionUID = 530985421120602593L;

@@ -81,12 +81,6 @@ public class DateLazyContentTest {
     assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("06.12.2002");
-
-    cal.set(1988, 0, 10);
-    this.content.setDateAndDisplay(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("10.01.1988");
-    assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
-    assertDateHasValues(this.content.getDate(), 10, 1, 1988);
   }
 
   @Test
@@ -127,12 +121,6 @@ public class DateLazyContentTest {
     assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("06/12/2002");
-
-    cal.set(1988, 0, 10);
-    this.content.setDateAndDisplay(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("10/01/1988");
-    assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
-    assertDateHasValues(this.content.getDate(), 10, 1, 1988);
   }
 
   @Test
@@ -173,12 +161,6 @@ public class DateLazyContentTest {
     assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("06.12.2002");
-
-    cal.set(1988, 0, 10);
-    this.content.setDateAndDisplay(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("10.01.1988");
-    assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
-    assertDateHasValues(this.content.getDate(), 10, 1, 1988);
   }
 
   @Test
@@ -219,12 +201,6 @@ public class DateLazyContentTest {
     assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("2002/12/06");
-
-    cal.set(1988, 0, 10);
-    this.content.setDateAndDisplay(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("1988/01/10");
-    assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
-    assertDateHasValues(this.content.getDate(), 10, 1, 1988);
   }
 
   @Test
@@ -265,12 +241,6 @@ public class DateLazyContentTest {
     assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("06/12/2002");
-
-    cal.set(1988, 0, 10);
-    this.content.setDateAndDisplay(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("10/01/1988");
-    assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
-    assertDateHasValues(this.content.getDate(), 10, 1, 1988);
   }
 
   @Test
@@ -311,12 +281,6 @@ public class DateLazyContentTest {
     assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("12/06/2002");
-
-    cal.set(1988, 0, 10);
-    this.content.setDateAndDisplay(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("01/10/1988");
-    assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
-    assertDateHasValues(this.content.getDate(), 10, 1, 1988);
   }
 
   @Test
@@ -357,12 +321,6 @@ public class DateLazyContentTest {
     assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("2002-12-06");
-
-    cal.set(1988, 0, 10);
-    this.content.setDateAndDisplay(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("1988-01-10");
-    assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
-    assertDateHasValues(this.content.getDate(), 10, 1, 1988);
   }
 
   @Test
@@ -403,12 +361,6 @@ public class DateLazyContentTest {
     assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("2002.12.06.");
-
-    cal.set(1988, 0, 10);
-    this.content.setDateAndDisplay(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("1988.01.10.");
-    assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
-    assertDateHasValues(this.content.getDate(), 10, 1, 1988);
   }
 
   @Test
@@ -449,12 +401,6 @@ public class DateLazyContentTest {
     assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("06-12-2002");
-
-    cal.set(1988, 0, 10);
-    this.content.setDateAndDisplay(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("10-01-1988");
-    assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
-    assertDateHasValues(this.content.getDate(), 10, 1, 1988);
   }
 
   @Test
@@ -495,12 +441,6 @@ public class DateLazyContentTest {
     assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("06.12.2002.");
-
-    cal.set(1988, 0, 10);
-    this.content.setDateAndDisplay(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("10.01.1988.");
-    assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
-    assertDateHasValues(this.content.getDate(), 10, 1, 1988);
   }
 
   @Test
@@ -541,12 +481,6 @@ public class DateLazyContentTest {
     assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("2002.12.06");
-
-    cal.set(1988, 0, 10);
-    this.content.setDateAndDisplay(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("1988.01.10");
-    assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
-    assertDateHasValues(this.content.getDate(), 10, 1, 1988);
   }
 
   @Test
@@ -587,12 +521,6 @@ public class DateLazyContentTest {
     assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("2002.06.12");
-
-    cal.set(1988, 0, 10);
-    this.content.setDateAndDisplay(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("1988.10.01");
-    assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
-    assertDateHasValues(this.content.getDate(), 10, 1, 1988);
   }
 
   @Test
@@ -633,12 +561,6 @@ public class DateLazyContentTest {
     assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("12-06-2002");
-
-    cal.set(1988, 0, 10);
-    this.content.setDateAndDisplay(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("01-10-1988");
-    assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
-    assertDateHasValues(this.content.getDate(), 10, 1, 1988);
   }
 
   @Test
@@ -679,11 +601,5 @@ public class DateLazyContentTest {
     assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("2002. 12. 06");
-
-    cal.set(1988, 0, 10);
-    this.content.setDateAndDisplay(cal.getTime());
-    assertThat(this.content.getText()).isEqualTo("1988. 01. 10");
-    assertThat(this.content.getDateContent()).isEqualTo(this.content.getText());
-    assertDateHasValues(this.content.getDate(), 10, 1, 1988);
   }
 }

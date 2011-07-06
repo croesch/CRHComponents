@@ -4,12 +4,14 @@ import static com.github.croesch.TestUtil.assertDateHasValues;
 import static org.fest.assertions.Assertions.assertThat;
 
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.text.BadLocationException;
 
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
@@ -29,6 +31,8 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
 
   private JTextComponentFixture field;
 
+  private CDateField target;
+
   private Locale l;
 
   @Override
@@ -39,10 +43,10 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     robot().settings().eventPostingDelay(50);
     robot().settings().delayBetweenEvents(50);
 
-    this.field = getDateField(Locale.GERMAN);
+    createDateField(Locale.GERMAN);
   }
 
-  private final JTextComponentFixture getDateField(final Locale l) {
+  private final void createDateField(final Locale l) {
     final FrameFixture f = new FrameFixture(robot(), GuiActionRunner.execute(new GuiQuery<JFrame>() {
 
       @Override
@@ -54,7 +58,8 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
       }
     }));
     f.show();
-    return f.textBox();
+    this.field = f.textBox();
+    this.target = (CDateField) this.field.target;
   }
 
   @Override
@@ -145,10 +150,9 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     final Calendar cal = new GregorianCalendar();
     cal.set(2000, 0, 1);
     ((CDateField) this.field.target).setDateAndDisplay(cal.getTime());
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(0);
     this.field.requireText("01.01.2000");
     assertDateHasValues(((CDateField) this.field.target).getDate(), 1, 1, 2000);
-
-    this.field.deleteText();
 
     GuiActionRunner.execute(new GuiTask() {
 
@@ -202,4 +206,297 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.requireText("04.04.2004");
     assertDateHasValues(((CDateField) this.field.target).getDate(), 4, 4, 2004);
   }
+
+  @Test
+  public void testInsertString() throws BadLocationException {
+    final Calendar cal = new GregorianCalendar();
+    cal.set(2002, 11, 6);
+    this.target.setDate(cal.getTime());
+    this.field.requireEmpty();
+    assertDateHasValues(this.target.getDate(), 6, 12, 2002);
+
+    cal.set(1988, 0, 10);
+    this.target.setDateAndDisplay(cal.getTime());
+    this.field.requireText("10.01.1988");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(0);
+    assertDateHasValues(this.target.getDate(), 10, 1, 1988);
+
+    this.field.enterText("02355");
+    this.field.requireText("02.03.1955");
+    assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+  }
+
+  @Test
+  public void testInsertString_DMY_Slash() throws BadLocationException {
+    createDateField(Locale.CANADA);
+
+    final Calendar cal = new GregorianCalendar();
+    cal.set(2002, 11, 6);
+    this.target.setDate(cal.getTime());
+    this.field.requireEmpty();
+    assertDateHasValues(this.target.getDate(), 6, 12, 2002);
+
+    cal.set(1988, 0, 10);
+    this.target.setDateAndDisplay(cal.getTime());
+    this.field.requireText("10/01/1988");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(0);
+    assertDateHasValues(this.target.getDate(), 10, 1, 1988);
+
+    this.field.enterText("02355");
+    this.field.requireText("02/03/1955");
+    assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+  }
+
+  @Test
+  public void testInsertString_DMY_Point() throws BadLocationException {
+    final Calendar cal = new GregorianCalendar();
+    cal.set(2002, 11, 6);
+    this.target.setDate(cal.getTime());
+    this.field.requireEmpty();
+    assertDateHasValues(this.target.getDate(), 6, 12, 2002);
+
+    cal.set(1988, 0, 10);
+    this.target.setDateAndDisplay(cal.getTime());
+    this.field.requireText("10.01.1988");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(0);
+    assertDateHasValues(this.target.getDate(), 10, 1, 1988);
+
+    this.field.enterText("02355");
+    this.field.requireText("02.03.1955");
+    assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+  }
+
+  @Test
+  public void testInsertString_YMD_Slash() throws BadLocationException {
+    createDateField(new Locale("ga"));
+
+    final Calendar cal = new GregorianCalendar();
+    cal.set(2002, 11, 6);
+    this.target.setDate(cal.getTime());
+    this.field.requireEmpty();
+    assertDateHasValues(this.target.getDate(), 6, 12, 2002);
+
+    cal.set(1988, 0, 10);
+    this.target.setDateAndDisplay(cal.getTime());
+    this.field.requireText("1988/01/10");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(0);
+    assertDateHasValues(this.target.getDate(), 10, 1, 1988);
+
+    this.field.enterText("55");
+    this.field.pressAndReleaseKeys(KeyEvent.VK_SLASH);
+    this.field.enterText("302");
+    this.field.requireText("1955/03/02");
+    assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+  }
+
+  @Test
+  public void testInsertString_DMY_Slash2() throws BadLocationException {
+    createDateField(new Locale("it"));
+
+    final Calendar cal = new GregorianCalendar();
+    cal.set(2002, 11, 6);
+    this.target.setDate(cal.getTime());
+    this.field.requireEmpty();
+    assertDateHasValues(this.target.getDate(), 6, 12, 2002);
+
+    cal.set(1988, 0, 10);
+    this.target.setDateAndDisplay(cal.getTime());
+    this.field.requireText("10/01/1988");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(0);
+    assertDateHasValues(this.target.getDate(), 10, 1, 1988);
+
+    this.field.enterText("02355");
+    this.field.requireText("02/03/1955");
+    assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+  }
+
+  @Test
+  public void testInsertString_MDY() throws BadLocationException {
+    createDateField(new Locale("en"));
+
+    final Calendar cal = new GregorianCalendar();
+    cal.set(2002, 11, 6);
+    this.target.setDate(cal.getTime());
+    this.field.requireEmpty();
+    assertDateHasValues(this.target.getDate(), 6, 12, 2002);
+
+    cal.set(1988, 0, 10);
+    this.target.setDateAndDisplay(cal.getTime());
+    this.field.requireText("01/10/1988");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(0);
+    assertDateHasValues(this.target.getDate(), 10, 1, 1988);
+
+    this.field.enterText("30255");
+    this.field.requireText("03/02/1955");
+    assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+  }
+
+  @Test
+  public void testInsertString_YMD_Minus() throws BadLocationException {
+    createDateField(new Locale("sv"));
+
+    final Calendar cal = new GregorianCalendar();
+    cal.set(2002, 11, 6);
+    this.target.setDate(cal.getTime());
+    this.field.requireEmpty();
+    assertDateHasValues(this.target.getDate(), 6, 12, 2002);
+
+    cal.set(1988, 0, 10);
+    this.target.setDateAndDisplay(cal.getTime());
+    this.field.requireText("1988-01-10");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(0);
+    assertDateHasValues(this.target.getDate(), 10, 1, 1988);
+
+    this.field.enterText("55-302");
+    this.field.requireText("1955-03-02");
+    assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+  }
+
+  @Test
+  public void testInsertString_YMD_Point() throws BadLocationException {
+    createDateField(new Locale("hu"));
+
+    final Calendar cal = new GregorianCalendar();
+    cal.set(2002, 11, 6);
+    this.target.setDate(cal.getTime());
+    this.field.requireEmpty();
+    assertDateHasValues(this.target.getDate(), 6, 12, 2002);
+
+    cal.set(1988, 0, 10);
+    this.target.setDateAndDisplay(cal.getTime());
+    this.field.requireText("1988.01.10.");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(0);
+    assertDateHasValues(this.target.getDate(), 10, 1, 1988);
+
+    this.field.enterText("55.302");
+    this.field.requireText("1955.03.02.");
+    assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+  }
+
+  @Test
+  public void testInsertString_DMY_Minus() throws BadLocationException {
+    createDateField(new Locale("nl"));
+
+    final Calendar cal = new GregorianCalendar();
+    cal.set(2002, 11, 6);
+    this.target.setDate(cal.getTime());
+    this.field.requireEmpty();
+    assertDateHasValues(this.target.getDate(), 6, 12, 2002);
+
+    cal.set(1988, 0, 10);
+    this.target.setDateAndDisplay(cal.getTime());
+    this.field.requireText("10-01-1988");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(0);
+    assertDateHasValues(this.target.getDate(), 10, 1, 1988);
+
+    this.field.enterText("02355");
+    this.field.requireText("02-03-1955");
+    assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+  }
+
+  @Test
+  public void testInsertString_DMY_Point2() throws BadLocationException {
+    createDateField(new Locale("sr"));
+
+    final Calendar cal = new GregorianCalendar();
+    cal.set(2002, 11, 6);
+    this.target.setDate(cal.getTime());
+    this.field.requireEmpty();
+    assertDateHasValues(this.target.getDate(), 6, 12, 2002);
+
+    cal.set(1988, 0, 10);
+    this.target.setDateAndDisplay(cal.getTime());
+    this.field.requireText("10.01.1988.");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(0);
+    assertDateHasValues(this.target.getDate(), 10, 1, 1988);
+
+    this.field.enterText("02355");
+    this.field.requireText("02.03.1955.");
+    assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+  }
+
+  @Test
+  public void testInsertString_YMD_Point2() throws BadLocationException {
+    createDateField(new Locale("lt"));
+
+    final Calendar cal = new GregorianCalendar();
+    cal.set(2002, 11, 6);
+    this.target.setDate(cal.getTime());
+    this.field.requireEmpty();
+    assertDateHasValues(this.target.getDate(), 6, 12, 2002);
+
+    cal.set(1988, 0, 10);
+    this.target.setDateAndDisplay(cal.getTime());
+    this.field.requireText("1988.01.10");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(0);
+    assertDateHasValues(this.target.getDate(), 10, 1, 1988);
+
+    this.field.enterText("55.302");
+    this.field.requireText("1955.03.02");
+    assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+  }
+
+  @Test
+  public void testInsertString_YDM_Point() throws BadLocationException {
+    createDateField(new Locale("lv"));
+
+    final Calendar cal = new GregorianCalendar();
+    cal.set(2002, 11, 6);
+    this.target.setDate(cal.getTime());
+    this.field.requireEmpty();
+    assertDateHasValues(this.target.getDate(), 6, 12, 2002);
+
+    cal.set(1988, 0, 10);
+    this.target.setDateAndDisplay(cal.getTime());
+    this.field.requireText("1988.10.01");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(0);
+    assertDateHasValues(this.target.getDate(), 10, 1, 1988);
+
+    this.field.enterText("55.023");
+    this.field.requireText("1955.02.03");
+    assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+  }
+
+  @Test
+  public void testInsertString_MDY_Minus() throws BadLocationException {
+    createDateField(new Locale("es", "NI"));
+
+    final Calendar cal = new GregorianCalendar();
+    cal.set(2002, 11, 6);
+    this.target.setDate(cal.getTime());
+    this.field.requireEmpty();
+    assertDateHasValues(this.target.getDate(), 6, 12, 2002);
+
+    cal.set(1988, 0, 10);
+    this.target.setDateAndDisplay(cal.getTime());
+    this.field.requireText("01-10-1988");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(0);
+    assertDateHasValues(this.target.getDate(), 10, 1, 1988);
+
+    this.field.enterText("30255");
+    this.field.requireText("03-02-1955");
+    assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+  }
+
+  @Test
+  public void testInsertString_YMD_Point3() throws BadLocationException {
+    createDateField(new Locale("ko"));
+
+    final Calendar cal = new GregorianCalendar();
+    cal.set(2002, 11, 6);
+    this.target.setDate(cal.getTime());
+    this.field.requireEmpty();
+    assertDateHasValues(this.target.getDate(), 6, 12, 2002);
+
+    cal.set(1988, 0, 10);
+    this.target.setDateAndDisplay(cal.getTime());
+    this.field.requireText("1988. 01. 10");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(0);
+    assertDateHasValues(this.target.getDate(), 10, 1, 1988);
+
+    this.field.enterText("55. 302");
+    this.field.requireText("1955. 03. 02");
+    assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+  }
+
 }

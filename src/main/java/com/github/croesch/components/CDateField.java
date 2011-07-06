@@ -6,7 +6,8 @@ import java.util.Locale;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import com.github.croesch.contents.date.DateLazyContent;
+import com.github.croesch.contents.date.DateContent;
+import com.github.croesch.contents.date.DateContent.MODE;
 import com.github.croesch.logging.Log;
 
 /**
@@ -21,7 +22,7 @@ public class CDateField extends JTextField {
   private static final long serialVersionUID = -8281302986312084742L;
 
   /** the date document of the class */
-  private final DateLazyContent document;
+  private final DateContent document;
 
   /**
    * Generates a text field that is specially made for date values. The format of the date will be fetched from the
@@ -43,7 +44,7 @@ public class CDateField extends JTextField {
    * @param locale the {@link Locale} to fetch the format of the date from
    */
   public CDateField(final Locale locale) {
-    this.document = new DateLazyContent(this, locale);
+    this.document = DateContent.createDateContent(MODE.LAZY, this, locale);
     setDocument(this.document);
   }
 
@@ -71,7 +72,9 @@ public class CDateField extends JTextField {
 
         @Override
         public void run() {
-          CDateField.this.document.setDateAndDisplay(date);
+          CDateField.this.document.setDate(date);
+          CDateField.this.setText(CDateField.this.document.getDateContent());
+          CDateField.this.setCaretPosition(0);
         }
       });
     } catch (final Exception e) {
