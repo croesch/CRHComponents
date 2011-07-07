@@ -81,21 +81,6 @@
 		<finalName>${project.artifactId}-${project.version}-b${buildNumber}</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.geronimo.genesis.plugins</groupId>
-				<artifactId>tools-maven-plugin</artifactId>
-				<version>1.4</version>
-				<executions>
-					<execution>
-						<id>install-legal-files</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>copy-legal-files</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>buildnumber-maven-plugin</artifactId>
 				<version>1.0-beta-3</version>
