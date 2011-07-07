@@ -9,7 +9,7 @@
 
 	<groupId>com.github.croesch</groupId>
 	<artifactId>crhcomponents</artifactId>
-	<version>1.2</version>
+	<version>1.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<description>Provides some useful components for small Java projects.</description>
 	<url>https://github.com/croesch/CRHComponents</url>
