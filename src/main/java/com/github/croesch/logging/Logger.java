@@ -11,7 +11,6 @@ public interface Logger {
   /**
    * Performs logging of an internal error with the given {@link Throwable}.
    * 
-   * @author croesch
    * @since Date: Jul 6, 2011
    * @param t the {@link Throwable} that has been thrown
    */

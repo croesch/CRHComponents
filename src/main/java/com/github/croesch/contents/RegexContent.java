@@ -17,7 +17,6 @@ public class RegexContent extends CContent {
   /**
    * Constructs a document with the given regular expression
    * 
-   * @author croesch
    * @since (Date: 13.01.2011 22:08:17)
    * @param regex initial regular expression
    */
@@ -28,7 +27,6 @@ public class RegexContent extends CContent {
   /**
    * The current regular expression
    * 
-   * @author croesch
    * @since (Date: 13.01.2011 22:08:17)
    * @return a String that contains the regular expression
    */
@@ -39,7 +37,6 @@ public class RegexContent extends CContent {
   /**
    * Sets the regular expression for this document
    * 
-   * @author croesch
    * @since (Date: 13.01.2011 22:08:17)
    * @param regex the regular expression to set
    */

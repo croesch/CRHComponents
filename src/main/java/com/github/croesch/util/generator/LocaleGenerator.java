@@ -18,7 +18,6 @@ public final class LocaleGenerator {
   /**
    * Constructs a {@link LocaleGenerator} with the given {@link Locale}
    * 
-   * @author croesch
    * @since Date: 10.03.2011
    * @param locale the {@link Locale} that is used to generate things.
    */

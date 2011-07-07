@@ -58,7 +58,6 @@ public abstract class DateContent extends CContent {
   /**
    * Creates a new instance of this {@link DateContent}. Will instantiate the specific subclass and return it.
    * 
-   * @author croesch
    * @since Date: Jul 6, 2011
    * @param mode the edit mode for the {@link DateContent} to create
    * @param tf the text field that is the owner of the {@link DateContent}
@@ -73,7 +72,6 @@ public abstract class DateContent extends CContent {
    * Returns the {@link String} representation of the current value of the date field. Is ensured to be not
    * <code>null</code> and almost every time a fully date.
    * 
-   * @author croesch
    * @since Date: Jul 4, 2011
    * @return {@link String} representation of the date currently stored in the content
    */
@@ -82,17 +80,14 @@ public abstract class DateContent extends CContent {
   /**
    * Set the current value of the date field to the given {@link Date}. Will remove the text in the field.
    * 
-   * @author croesch
    * @since Date: Jul 5, 2011
    * @param d the {@link Date} to fetch the new values from.
-   * @see DateContent#setDateAndDisplay(Date)
    */
   public abstract void setDate(Date d);
 
   /**
    * Returns the {@link Date} that is represented by the current value of the date field.
    * 
-   * @author croesch
    * @since Date: Jul 5, 2011
    * @return {@link Date} that is equal to the values currently present in the date field.
    */

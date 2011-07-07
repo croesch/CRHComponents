@@ -62,7 +62,6 @@ public class DateContent extends RegexContent {
   /**
    * Constructs a document with maximum input length >10< and that is not displaying errors
    * 
-   * @author croesch
    * @since Date: 28.01.2011 20:48:31
    * @deprecated use
    *             {@link com.github.croesch.contents.date.DateContent#createDateContent(com.github.croesch.contents.date.DateContent.MODE, javax.swing.text.JTextComponent, java.util.Locale)}
@@ -80,7 +79,6 @@ public class DateContent extends RegexContent {
   /**
    * Constructs a date document and inserts the given value. If it's not a valid value nothing will be inserted
    * 
-   * @author croesch
    * @since Date: 28.01.2011 20:48:57
    * @param initial the value to insert
    * @deprecated use
@@ -100,13 +98,12 @@ public class DateContent extends RegexContent {
   /**
    * Formats the given values to the format of the date.
    * 
-   * @author croesch
    * @since Date: Mar 30, 2011 9:19:13 PM
    * @param day the number of the day of the generated date
    * @param month the number of month of the generated date
    * @param year the number of the year of the generated date
    * @return a string representation of the formated date
-   * @see #setDateFormat(String)
+   * @see #setDateFormat(Format, String)
    */
   public final String formatDate(final int year, final int month, final int day) {
     final String date = String.format(this.dateFormat, year, month, day);
@@ -148,7 +145,6 @@ public class DateContent extends RegexContent {
      * Constructs a new date format with the given formating {@link String}. This string contains "_S_"-sequences,
      * that'll be replaced by the real separator of the date.
      * 
-     * @author croesch
      * @since Date: Mar 31, 2011 1:24:15 PM
      * @param fs the formating string for this date format
      */
@@ -159,7 +155,6 @@ public class DateContent extends RegexContent {
     /**
      * Returns the formating {@link String} of this date format.
      * 
-     * @author croesch
      * @since Date: Mar 31, 2011 1:25:10 PM
      * @return the formating string to format dates of this date format
      */
@@ -171,7 +166,6 @@ public class DateContent extends RegexContent {
   /**
    * Sets the format to format the date. Will intern format the {@link #today}-variable, to be up to date.
    * 
-   * @author croesch
    * @since Date: Mar 30, 2011 9:23:42 PM
    * @param dFormat the new format of the date.
    * @param separator the separator for the new date format
@@ -196,7 +190,6 @@ public class DateContent extends RegexContent {
    * >10< if the current input is not long enough the string will be filled up with the characters from the current
    * date.
    * 
-   * @author croesch
    * @since Date: 28.01.2011 20:50:13
    * @return a String with length: 10
    */

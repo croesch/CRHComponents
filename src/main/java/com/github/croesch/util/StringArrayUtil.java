@@ -20,8 +20,7 @@ public final class StringArrayUtil {
   /**
    * Constructs the utility class with the given array
    * 
-   * @author croesch
-   * @since Date: 17.02.2011 21:04:20
+   * @since Date: 17.02.2011
    * @param s the array of {@link String}s
    * @throws IllegalArgumentException if the array or one entry is {@code null}
    * @see com.github.croesch.util.Util#of(String[])
@@ -41,25 +40,21 @@ public final class StringArrayUtil {
   /**
    * Constructs the utility class with the given array
    * 
-   * @author croesch
-   * @since Date: 17.02.2011 21:04:20
+   * @since Date: 17.02.2011
    * @param s the array of {@link String}s
    * @param t if the given array is already trimmed
    * @throws IllegalArgumentException if the array or one entry is {@code null}
    * @see com.github.croesch.util.Util#of(String[])
    */
-  private StringArrayUtil(final String[] s, final boolean t)
-          throws IllegalArgumentException {
+  private StringArrayUtil(final String[] s, final boolean t) throws IllegalArgumentException {
     this(s);
     this.trimmed = t;
   }
 
   /**
-   * Trims the stored lines of the array and returns the instance of this
-   * analyser.
+   * Trims the stored lines of the array and returns the instance of this analyser.
    * 
-   * @author croesch
-   * @since Date: 17.02.2011 21:19:25
+   * @since Date: 17.02.2011
    * @return this instance of the analyser
    * @see String#trim()
    */
@@ -86,8 +81,7 @@ public final class StringArrayUtil {
   /**
    * Returns the length of the longest line in the array of lines.
    * 
-   * @author croesch
-   * @since Date: 17.02.2011 19:11:37
+   * @since Date: 17.02.2011
    * @return the length of the longest line
    */
   public int getMaxLineLength() {
@@ -102,12 +96,10 @@ public final class StringArrayUtil {
   }
 
   /**
-   * Returns the array stored in this utility class. But each row will have the
-   * same length and they will be filled up with spaces, so that each entry is
-   * left aligned.
+   * Returns the array stored in this utility class. But each row will have the same length and they will be filled up
+   * with spaces, so that each entry is left aligned.
    * 
-   * @author croesch
-   * @since Date: 19.02.2011 15:09:00
+   * @since Date: 19.02.2011
    * @return the array left aligned, each row has the same number of chars
    * @see #toCentreAlignedArray()
    * @see #toRightAlignedArray()
@@ -116,19 +108,16 @@ public final class StringArrayUtil {
     final int maxLength = getMaxLineLength();
 
     for (int i = 0; i < this.lines.length; ++i) {
-      this.lines[i] += new StringUtil(" ")
-        .toStringMultipliedWith(maxLength - this.lines[i].length());
+      this.lines[i] += new StringUtil(" ").toStringMultipliedWith(maxLength - this.lines[i].length());
     }
     return this.lines.clone();
   }
 
   /**
-   * Returns the array stored in this utility class. But each row will have the
-   * same length and they will be filled up with spaces, so that each entry is
-   * right aligned.
+   * Returns the array stored in this utility class. But each row will have the same length and they will be filled up
+   * with spaces, so that each entry is right aligned.
    * 
-   * @author croesch
-   * @since Date: 19.02.2011 15:09:00
+   * @since Date: 19.02.2011
    * @return the array right aligned, each row has the same number of chars
    * @see #toCentreAlignedArray()
    * @see #toLeftAlignedArray()
@@ -137,20 +126,16 @@ public final class StringArrayUtil {
     final int maxLength = getMaxLineLength();
 
     for (int i = 0; i < this.lines.length; ++i) {
-      this.lines[i] = new StringUtil(" ")
-        .toStringMultipliedWith(maxLength - this.lines[i].length())
-                      + this.lines[i];
+      this.lines[i] = new StringUtil(" ").toStringMultipliedWith(maxLength - this.lines[i].length()) + this.lines[i];
     }
     return this.lines.clone();
   }
 
   /**
-   * Returns the array stored in this utility class. But each row will have the
-   * same length and they will be filled up with spaces, so that each entry is
-   * centre aligned.
+   * Returns the array stored in this utility class. But each row will have the same length and they will be filled up
+   * with spaces, so that each entry is centre aligned.
    * 
-   * @author croesch
-   * @since Date: 19.02.2011 15:09:00
+   * @since Date: 19.02.2011
    * @return the array centre aligned, each row has the same number of chars
    * @see #toLeftAlignedArray()
    * @see #toRightAlignedArray()
@@ -160,8 +145,7 @@ public final class StringArrayUtil {
 
     for (int i = 0; i < this.lines.length; ++i) {
       final int right = (maxLength - this.lines[i].length()) / 2;
-      final String spaces = new StringUtil(" ")
-        .toStringMultipliedWith(maxLength - this.lines[i].length() - right);
+      final String spaces = new StringUtil(" ").toStringMultipliedWith(maxLength - this.lines[i].length() - right);
       this.lines[i] = spaces + this.lines[i];
       this.lines[i] += new StringUtil(" ").toStringMultipliedWith(right);
     }

@@ -20,7 +20,6 @@ public class RepairableContent extends CContent {
   /**
    * Repairs the content
    * 
-   * @author croesch
    * @since (Date: 13.01.2011 22:08:17)
    * @throws BadLocationException if {@link #getLength()} returns an invalid value
    */
@@ -43,7 +42,6 @@ public class RepairableContent extends CContent {
   }
 
   /**
-   * @author croesch
    * @since (Date: 13.01.2011 22:08:17)
    * @return {@code true}, if it repairs its content automatically
    */
@@ -54,7 +52,6 @@ public class RepairableContent extends CContent {
   /**
    * Sets whether the content should be repaired automatically
    * 
-   * @author croesch
    * @since (Date: 2011/01/13 21:12:39)
    * @param auto {@code true}, if it should be repaired automatically
    */

@@ -28,7 +28,6 @@ public class CContent extends CDocument {
   /**
    * Whether the content would be valid with this input.
    * 
-   * @author croesch
    * @since (Date: 13.01.2011 22:08:17)
    * @param offs the offset of the input
    * @param str the String to put in
@@ -62,7 +61,6 @@ public class CContent extends CDocument {
   /**
    * Sets whether {@link ErrorListener}s are informed about error changes
    * 
-   * @author croesch
    * @since 13.01.2011 22:08:17
    * @param notify whether {@link ErrorListener}s should be informed when error changes
    */
@@ -73,7 +71,6 @@ public class CContent extends CDocument {
   /**
    * Whether {@link ErrorListener}s are informed about changes
    * 
-   * @author croesch
    * @since 13.01.2011 22:08:17
    * @return {@code true} if {@link ErrorListener}s are informed when error changes
    */
@@ -84,7 +81,6 @@ public class CContent extends CDocument {
   /**
    * Add listeners to this document
    * 
-   * @author croesch
    * @since (Date: 13.01.2011 22:08:17)
    * @param listener the {@link ErrorListener}s to add
    */
@@ -102,7 +98,6 @@ public class CContent extends CDocument {
   /**
    * Remove these error listeners from this document
    * 
-   * @author croesch
    * @since (Date: 13.01.2011 22:08:17)
    * @param listener the {@link ErrorListener}s to remove
    */
@@ -115,7 +110,6 @@ public class CContent extends CDocument {
   /**
    * The maximum number of chars in this document
    * 
-   * @author croesch
    * @since (Date: 13.01.2011 22:08:17)
    * @return the number of maximum chars, or {@code 0} if there is no maximum
    */
@@ -129,7 +123,6 @@ public class CContent extends CDocument {
   /**
    * Set the maximum number of chars in this document, <= 0 equals no maximum
    * 
-   * @author croesch
    * @since (Date: 13.01.2011 22:08:17)
    * @param max the maximum number of chars, or {@code 0} for no maximum
    */
@@ -150,7 +143,6 @@ public class CContent extends CDocument {
   /**
    * Checks for errors and if the state has changed it informs the error listeners
    * 
-   * @author croesch
    * @since (Date: 13.01.2011 22:08:17)
    */
   public final void checkForErrors() {

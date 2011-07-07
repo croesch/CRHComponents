@@ -28,7 +28,6 @@ public class CDateField extends JTextField {
    * Generates a text field that is specially made for date values. The format of the date will be fetched from the
    * default locale of the system.
    * 
-   * @author croesch
    * @since Date: Jul 3, 2011
    */
   public CDateField() {
@@ -39,7 +38,6 @@ public class CDateField extends JTextField {
    * Generates a text field that is specially made for date values. The format of the date will be fetched from the
    * given {@link Locale}.
    * 
-   * @author croesch
    * @since Date: Jul 3, 2011
    * @param locale the {@link Locale} to fetch the format of the date from
    */
@@ -51,7 +49,6 @@ public class CDateField extends JTextField {
   /**
    * Returns the date object containing the value currently stored in the date field.
    * 
-   * @author croesch
    * @since Date: Jul 6, 2011
    * @return {@link Date} representing current value of the date field.
    */
@@ -62,7 +59,6 @@ public class CDateField extends JTextField {
   /**
    * Sets the current value of the date field to the given date and displays it directly in the field.
    * 
-   * @author croesch
    * @since Date: Jul 6, 2011
    * @param date the {@link Date} to set and display in the field.
    */
@@ -85,7 +81,6 @@ public class CDateField extends JTextField {
   /**
    * Sets the current internal value of the date field to the given date and deletes the content of the field.
    * 
-   * @author croesch
    * @since Date: Jul 6, 2011
    * @param date the {@link Date} to set.
    */

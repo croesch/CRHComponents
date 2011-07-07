@@ -14,8 +14,7 @@ public final class StringUtil {
   /**
    * Constructs a multiplier with the given {@link String}
    * 
-   * @author croesch
-   * @since Date: 17.02.2011 20:32:39
+   * @since Date: 17.02.2011
    * @param s the {@link String} to prepare for being multiplied
    */
   StringUtil(final String s) {
@@ -29,8 +28,7 @@ public final class StringUtil {
   /**
    * Multiplies the {@link String} of this multiplier the given number of times and returns the result.
    * 
-   * @author croesch
-   * @since Date: 15.02.2011 19:18:04
+   * @since Date: 15.02.2011
    * @param n how often the {@link String} should be repeated
    * @return the {@link String} repeated n times
    * @throws IllegalArgumentException if n is lower than zero

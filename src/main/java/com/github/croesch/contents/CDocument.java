@@ -16,7 +16,6 @@ public abstract class CDocument extends PlainDocument {
   /**
    * Calculates whether the content is currently valid
    * 
-   * @author croesch
    * @since 13.01.2011 22:08:17
    * @return {@code true}, if the content is valid
    */
@@ -25,7 +24,6 @@ public abstract class CDocument extends PlainDocument {
   /**
    * Calculates whether the given {@link String} would be a valid content.
    * 
-   * @author croesch
    * @since 13.01.2011 22:08:17
    * @param text the string to check, {@code null} will return {@code false}
    * @return {@code true}, if {@code text} is a valid content
@@ -35,7 +33,6 @@ public abstract class CDocument extends PlainDocument {
   /**
    * Returns the complete text of this document or null if an exception occurred
    * 
-   * @author croesch
    * @since 28.01.2011 22:30:37
    * @return the complete text of this document or {@code null} if an exception occurred
    */

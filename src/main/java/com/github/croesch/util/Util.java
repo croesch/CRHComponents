@@ -11,8 +11,7 @@ public final class Util {
   /**
    * Don't call it! Hide constructor of utility class.
    * 
-   * @author croesch
-   * @since Date: 15.02.2011 19:10:54
+   * @since Date: 15.02.2011
    */
   private Util() {
     throw new AssertionError();
@@ -21,8 +20,7 @@ public final class Util {
   /**
    * Returns a {@link StringUtil} to access utilities for {@link String}
    * 
-   * @author croesch
-   * @since Date: 15.02.2011 19:18:04
+   * @since Date: 15.02.2011
    * @param str the {@link String} that should be used for the utilities
    * @return the instance of {@link StringUtil}
    * @throws IllegalArgumentException if the given string is {@code null}
@@ -35,8 +33,7 @@ public final class Util {
   /**
    * Returns a {@link StringArrayUtil} to access utilities for an array of {@link String}s
    * 
-   * @author croesch
-   * @since Date: 15.02.2011 19:18:04
+   * @since Date: 15.02.2011
    * @param arr the {@link String} array that should be used for the utilities
    * @return the instance of {@link StringArrayUtil}
    * @throws IllegalArgumentException if the array or one entry is {@code null}

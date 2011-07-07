@@ -15,7 +15,6 @@ public final class Log {
   /**
    * Hidden constructor.
    * 
-   * @author croesch
    * @since Date: Jul 6, 2011
    */
   private Log() {
@@ -25,7 +24,6 @@ public final class Log {
   /**
    * Replaces the current {@link Logger} with the given one if it's not <code>null</code>.
    * 
-   * @author croesch
    * @since Date: Jul 6, 2011
    * @param log the new {@link Logger}.
    */
@@ -38,7 +36,6 @@ public final class Log {
   /**
    * Passes the given message to the current logger to handle it.
    * 
-   * @author croesch
    * @since Date: Jul 6, 2011
    * @param t the {@link Throwable} that occured.
    */
