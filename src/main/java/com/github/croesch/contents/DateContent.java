@@ -17,7 +17,7 @@ import com.github.croesch.logging.Log;
  * 
  * @author croesch
  * @since Date: 27.01.2011 18:39:41
- * @deprecated use {@link com.github.croesch.contents.date.DateLazyContent} instead.<br>
+ * @deprecated use {@link com.github.croesch.contents.date.DateContent} instead.<br>
  *             <b>Caution</b>: This class will be removed in one of the next releases.
  */
 @Deprecated
@@ -64,7 +64,9 @@ public class DateContent extends RegexContent {
    * 
    * @author croesch
    * @since Date: 28.01.2011 20:48:31
-   * @deprecated use {@link com.github.croesch.contents.date.DateLazyContent} instead.
+   * @deprecated use
+   *             {@link com.github.croesch.contents.date.DateContent#createDateContent(com.github.croesch.contents.date.DateContent.MODE, javax.swing.text.JTextComponent, java.util.Locale)}
+   *             instead.
    */
   @Deprecated
   public DateContent() {
@@ -81,7 +83,9 @@ public class DateContent extends RegexContent {
    * @author croesch
    * @since Date: 28.01.2011 20:48:57
    * @param initial the value to insert
-   * @deprecated use {@link com.github.croesch.contents.date.DateLazyContent} instead.
+   * @deprecated use
+   *             {@link com.github.croesch.contents.date.DateContent#createDateContent(com.github.croesch.contents.date.DateContent.MODE, javax.swing.text.JTextComponent, java.util.Locale)}
+   *             instead.
    */
   @Deprecated
   public DateContent(final String initial) {
