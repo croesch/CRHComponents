@@ -34,7 +34,7 @@ public class CContent extends CDocument {
    * @return {@code true}, if it would be valid
    * @throws BadLocationException if the given {@code offs} is invalid
    */
-  public final boolean isValidInput(final int offs, final String str) throws BadLocationException {
+  protected final boolean isValidInput(final int offs, final String str) throws BadLocationException {
     return isValidInput(getText(0, offs) + str + getText(offs, getLength() - offs));
   }
 
