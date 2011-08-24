@@ -200,13 +200,51 @@ final class DateSpecialChar {
    * @return <code>true</code>, if all the fields are the same
    */
   private boolean areFieldsEqual(final DateSpecialChar other) {
-    if (this.specialChar == other.specialChar && this.dayValue == other.dayValue
-        && this.dayValueType == other.dayValueType && this.monthValue == other.monthValue
-        && this.monthValueType == other.monthValueType && this.yearValue == other.yearValue
-        && this.yearValueType == other.yearValueType) {
-      return true;
-    }
-    return false;
+    return this.specialChar == other.specialChar && areValuesAndTypesEqual(other);
+  }
+
+  /**
+   * Returns whether all values and types of this special char are equal to the ones fetched from 'other'.
+   * 
+   * @since Date: Aug 24, 2011
+   * @param other the {@link DateSpecialChar} to compare the values and types with.
+   * @return <code>true</code>, if other has same values and types for month, day and year.
+   */
+  private boolean areValuesAndTypesEqual(final DateSpecialChar other) {
+    return isDayEqual(other) && isMonthEqual(other) && isYearEqual(other);
+  }
+
+  /**
+   * Returns whether value and type of day to the ones of 'other'.
+   * 
+   * @since Date: Aug 24, 2011
+   * @param other the {@link DateSpecialChar} to compare the value and type of day with.
+   * @return <code>true</code>, if other has same value and type for day.
+   */
+  private boolean isDayEqual(final DateSpecialChar other) {
+    return this.dayValue == other.dayValue && this.dayValueType == other.dayValueType;
+  }
+
+  /**
+   * Returns whether value and type of month to the ones of 'other'.
+   * 
+   * @since Date: Aug 24, 2011
+   * @param other the {@link DateSpecialChar} to compare the value and type of month with.
+   * @return <code>true</code>, if other has same value and type for month.
+   */
+  private boolean isMonthEqual(final DateSpecialChar other) {
+    return this.monthValue == other.monthValue && this.monthValueType == other.monthValueType;
+  }
+
+  /**
+   * Returns whether value and type of year to the ones of 'other'.
+   * 
+   * @since Date: Aug 24, 2011
+   * @param other the {@link DateSpecialChar} to compare the value and type of year with.
+   * @return <code>true</code>, if other has same value and type for year.
+   */
+  private boolean isYearEqual(final DateSpecialChar other) {
+    return this.yearValue == other.yearValue && this.yearValueType == other.yearValueType;
   }
 
   @Override

@@ -31,11 +31,37 @@ class DateSepEditor implements IDatePartEditor {
 
   @Override
   public int enterValue(final String s, final int position) {
-    if (s != null && s.length() == 1 && position >= 0 && position < this.value.length()
-        && s.charAt(0) == this.value.charAt(position)) {
+    // you can only enter a single character
+    // and if the position is valid
+    // and if the character is correct for the given position
+    if (isASingleCharacter(s) && isPositionValid(position) && s.charAt(0) == this.value.charAt(position)) {
       return 1;
     }
     return -1;
+  }
+
+  /**
+   * Returns whether you can find a character in this separator at the given position.
+   * 
+   * @since Date: Aug 24, 2011
+   * @param position the position to check the validity of
+   * @return <code>true</code>, if you could call {@link String#charAt(int)} without any problems. Or in other words:
+   *         <code>true</code>, if the position is at least zero and less than the number of characters of this
+   *         separator.
+   */
+  private boolean isPositionValid(final int position) {
+    return position >= 0 && position < getSize();
+  }
+
+  /**
+   * Returns whether the given {@link String} contains only a single character.
+   * 
+   * @since Date: Aug 24, 2011
+   * @param s the string to test.
+   * @return <code>true</code>, if the given {@link String} is not <code>null</code> and consists only of one character.
+   */
+  private static boolean isASingleCharacter(final String s) {
+    return s != null && s.length() == 1;
   }
 
   @Override
