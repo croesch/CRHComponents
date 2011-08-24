@@ -39,7 +39,7 @@ public class CContent extends CDocument {
   }
 
   @Override
-  public boolean isValid() {
+  public final boolean isValid() {
     try {
       return isValidInput(getText(0, getLength()));
     } catch (final BadLocationException e) {

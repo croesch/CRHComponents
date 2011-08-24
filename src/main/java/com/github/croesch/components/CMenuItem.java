@@ -79,7 +79,7 @@ public class CMenuItem extends JMenuItem {
   }
 
   @Override
-  public void setText(final String text) {
+  public final void setText(final String text) {
     super.setText(MnemonicUtil.filterMnemonic(text, this));
   }
 }

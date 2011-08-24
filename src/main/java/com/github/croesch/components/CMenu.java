@@ -52,7 +52,7 @@ public class CMenu extends JMenu {
   }
 
   @Override
-  public void setText(final String text) {
+  public final void setText(final String text) {
     super.setText(MnemonicUtil.filterMnemonic(text, this));
   }
 }
