@@ -50,7 +50,7 @@ public abstract class DateContent extends CContent {
      * <li>Most of automation, might be confusing.</li>
      * <li>automatic input of text field</li>
      * </ul>
-     * Aim is good comfortability and validity, but least and understandability.
+     * Aim is good comfortability and validity, but least understandability.
      */
     /* AUTO */;
   }
