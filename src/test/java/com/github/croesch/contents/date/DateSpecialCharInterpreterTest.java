@@ -45,7 +45,7 @@ public class DateSpecialCharInterpreterTest {
     interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("asd\n")));
     assertThat(interpreter.getSpecialCharsMap()).isEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("ü|c11|i12|o13")));
+    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("#|c11|i12|o13")));
     assertThat(interpreter.getSpecialCharsMap()).isEmpty();
 
     interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("a|c1|i1|p3")));

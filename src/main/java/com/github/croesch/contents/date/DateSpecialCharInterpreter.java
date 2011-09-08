@@ -46,7 +46,7 @@ final class DateSpecialCharInterpreter {
       String line = in.readLine();
       while (line != null) {
         line = line.trim().replaceFirst("[ \t]*#.*", "");
-        if (line.matches("[a-zA-Z](\\|([oic]-?[0-9]+)?){3,3}")) {
+        if (line.matches(".(\\|([oic]-?[0-9]+)?){3,3}")) {
           addLine(line);
         }
         line = in.readLine();

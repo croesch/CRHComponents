@@ -21,6 +21,8 @@ import org.fest.swing.fixture.JTextComponentFixture;
 import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
+import com.github.croesch.util.Util;
+
 /**
  * Provides test methods for {@link CDateField}.
  * 
@@ -143,6 +145,23 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("4");
     this.field.requireText("04.04.2004");
     assertDateHasValues(((CDateField) this.field.target).getDate(), 4, 4, 2004);
+
+    this.field.deleteText();
+
+    this.field.enterText("2");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(1);
+    this.field.enterText("9");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(2);
+    this.field.enterText("2");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(5);
+    this.field.enterText("9");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(7);
+    this.field.enterText("0");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(8);
+    this.field.enterText("5");
+    assertThat(this.field.target.getCaretPosition()).isEqualTo(9);
+    this.field.requireText("29.02.1905");
+    assertDateHasValues(((CDateField) this.field.target).getDate(), 1, 3, 1905);
   }
 
   @Test
@@ -224,6 +243,14 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("02355");
     this.field.requireText("02.03.1955");
     assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+
+    this.field.enterText("--");
+    this.field.requireText("28.02.1955");
+    assertDateHasValues(this.target.getDate(), 28, 2, 1955);
+
+    this.field.enterText(Util.of("-").toStringMultipliedWith(35));
+    this.field.requireText("24.01.1955");
+    assertDateHasValues(this.target.getDate(), 24, 1, 1955);
   }
 
   @Test
@@ -245,6 +272,10 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("02355");
     this.field.requireText("02/03/1955");
     assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+
+    this.field.enterText("--");
+    this.field.requireText("28/02/1955");
+    assertDateHasValues(this.target.getDate(), 28, 2, 1955);
   }
 
   @Test
@@ -264,6 +295,10 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("02355");
     this.field.requireText("02.03.1955");
     assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+
+    this.field.enterText("--");
+    this.field.requireText("28.02.1955");
+    assertDateHasValues(this.target.getDate(), 28, 2, 1955);
   }
 
   @Test
@@ -287,6 +322,10 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("302");
     this.field.requireText("1955/03/02");
     assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+
+    this.field.enterText("--");
+    this.field.requireText("1955/02/28");
+    assertDateHasValues(this.target.getDate(), 28, 2, 1955);
   }
 
   @Test
@@ -308,6 +347,10 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("02355");
     this.field.requireText("02/03/1955");
     assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+
+    this.field.enterText("--");
+    this.field.requireText("28/02/1955");
+    assertDateHasValues(this.target.getDate(), 28, 2, 1955);
   }
 
   @Test
@@ -329,6 +372,10 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("30255");
     this.field.requireText("03/02/1955");
     assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+
+    this.field.enterText("--");
+    this.field.requireText("02/28/1955");
+    assertDateHasValues(this.target.getDate(), 28, 2, 1955);
   }
 
   @Test
@@ -350,6 +397,10 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("55-302");
     this.field.requireText("1955-03-02");
     assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+
+    this.field.enterText("--");
+    this.field.requireText("1955-02-28");
+    assertDateHasValues(this.target.getDate(), 28, 2, 1955);
   }
 
   @Test
@@ -371,6 +422,10 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("55.302");
     this.field.requireText("1955.03.02.");
     assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+
+    this.field.enterText("--");
+    this.field.requireText("1955.02.28.");
+    assertDateHasValues(this.target.getDate(), 28, 2, 1955);
   }
 
   @Test
@@ -392,6 +447,10 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("02355");
     this.field.requireText("02-03-1955");
     assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+
+    this.field.enterText("--");
+    this.field.requireText("28-02-1955");
+    assertDateHasValues(this.target.getDate(), 28, 2, 1955);
   }
 
   @Test
@@ -413,6 +472,10 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("02355");
     this.field.requireText("02.03.1955.");
     assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+
+    this.field.enterText("--");
+    this.field.requireText("28.02.1955.");
+    assertDateHasValues(this.target.getDate(), 28, 2, 1955);
   }
 
   @Test
@@ -434,6 +497,10 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("55.302");
     this.field.requireText("1955.03.02");
     assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+
+    this.field.enterText("--");
+    this.field.requireText("1955.02.28");
+    assertDateHasValues(this.target.getDate(), 28, 2, 1955);
   }
 
   @Test
@@ -455,6 +522,10 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("55.023");
     this.field.requireText("1955.02.03");
     assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+
+    this.field.enterText("--");
+    this.field.requireText("1955.28.02");
+    assertDateHasValues(this.target.getDate(), 28, 2, 1955);
   }
 
   @Test
@@ -476,6 +547,10 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("30255");
     this.field.requireText("03-02-1955");
     assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+
+    this.field.enterText("--");
+    this.field.requireText("02-28-1955");
+    assertDateHasValues(this.target.getDate(), 28, 2, 1955);
   }
 
   @Test
@@ -497,6 +572,10 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     this.field.enterText("55. 302");
     this.field.requireText("1955. 03. 02");
     assertDateHasValues(this.target.getDate(), 2, 3, 1955);
+
+    this.field.enterText("--");
+    this.field.requireText("1955. 02. 28");
+    assertDateHasValues(this.target.getDate(), 28, 2, 1955);
   }
 
 }

@@ -3,12 +3,15 @@ package com.github.croesch.contents.date;
 import static com.github.croesch.TestUtil.assertDateHasValues;
 import static org.fest.assertions.Assertions.assertThat;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.swing.text.BadLocationException;
 
@@ -31,6 +34,9 @@ public class DateLazyContentTest {
 
   private int todaysYear;
 
+  private final Map<String, DateSpecialChar> specCharMapEmpty = new DateSpecialCharInterpreter(new BufferedReader(new InputStreamReader(DateContent.class
+    .getClassLoader().getResourceAsStream("datechars_empty.cfg")))).getSpecialCharsMap();
+
   /**
    * Sets up the {@link DateLazyContent}.
    * 
@@ -39,7 +45,7 @@ public class DateLazyContentTest {
    */
   @Before
   public void setUp() {
-    this.content = new DateLazyContent(null, Locale.GERMAN);
+    this.content = new DateLazyContent(null, Locale.GERMAN, this.specCharMapEmpty);
 
     final Calendar cal = new GregorianCalendar();
     cal.setTime(new Date());
@@ -86,7 +92,7 @@ public class DateLazyContentTest {
   @Test
   public void testInsertString_DMY_Slash() throws BadLocationException {
     final DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-    this.content = new DateLazyContent(null, Locale.CANADA);
+    this.content = new DateLazyContent(null, Locale.CANADA, this.specCharMapEmpty);
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
     assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
@@ -126,7 +132,7 @@ public class DateLazyContentTest {
   @Test
   public void testInsertString_DMY_Point() throws BadLocationException {
     final DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
-    this.content = new DateLazyContent(null, new Locale("mk"));
+    this.content = new DateLazyContent(null, new Locale("mk"), this.specCharMapEmpty);
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
     assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
@@ -166,7 +172,7 @@ public class DateLazyContentTest {
   @Test
   public void testInsertString_YMD_Slash() throws BadLocationException {
     final DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-    this.content = new DateLazyContent(null, new Locale("ga"));
+    this.content = new DateLazyContent(null, new Locale("ga"), this.specCharMapEmpty);
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
     assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
@@ -206,7 +212,7 @@ public class DateLazyContentTest {
   @Test
   public void testInsertString_DMY_Slash2() throws BadLocationException {
     final DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-    this.content = new DateLazyContent(null, new Locale("it"));
+    this.content = new DateLazyContent(null, new Locale("it"), this.specCharMapEmpty);
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
     assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
@@ -246,7 +252,7 @@ public class DateLazyContentTest {
   @Test
   public void testInsertString_MDY() throws BadLocationException {
     final DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-    this.content = new DateLazyContent(null, new Locale("en"));
+    this.content = new DateLazyContent(null, new Locale("en"), this.specCharMapEmpty);
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
     assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
@@ -286,7 +292,7 @@ public class DateLazyContentTest {
   @Test
   public void testInsertString_YMD_Minus() throws BadLocationException {
     final DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-    this.content = new DateLazyContent(null, new Locale("sv"));
+    this.content = new DateLazyContent(null, new Locale("sv"), this.specCharMapEmpty);
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
     assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
@@ -326,7 +332,7 @@ public class DateLazyContentTest {
   @Test
   public void testInsertString_YMD_Point() throws BadLocationException {
     final DateFormat df = new SimpleDateFormat("yyyy.MM.dd.");
-    this.content = new DateLazyContent(null, new Locale("hu"));
+    this.content = new DateLazyContent(null, new Locale("hu"), this.specCharMapEmpty);
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
     assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
@@ -366,7 +372,7 @@ public class DateLazyContentTest {
   @Test
   public void testInsertString_DMY_Minus() throws BadLocationException {
     final DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-    this.content = new DateLazyContent(null, new Locale("nl"));
+    this.content = new DateLazyContent(null, new Locale("nl"), this.specCharMapEmpty);
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
     assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
@@ -406,7 +412,7 @@ public class DateLazyContentTest {
   @Test
   public void testInsertString_DMY_Point2() throws BadLocationException {
     final DateFormat df = new SimpleDateFormat("dd.MM.yyyy.");
-    this.content = new DateLazyContent(null, new Locale("sr"));
+    this.content = new DateLazyContent(null, new Locale("sr"), this.specCharMapEmpty);
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
     assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
@@ -446,7 +452,7 @@ public class DateLazyContentTest {
   @Test
   public void testInsertString_YMD_Point2() throws BadLocationException {
     final DateFormat df = new SimpleDateFormat("yyyy.MM.dd");
-    this.content = new DateLazyContent(null, new Locale("lt"));
+    this.content = new DateLazyContent(null, new Locale("lt"), this.specCharMapEmpty);
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
     assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
@@ -486,7 +492,7 @@ public class DateLazyContentTest {
   @Test
   public void testInsertString_YDM_Point() throws BadLocationException {
     final DateFormat df = new SimpleDateFormat("yyyy.dd.MM");
-    this.content = new DateLazyContent(null, new Locale("lv"));
+    this.content = new DateLazyContent(null, new Locale("lv"), this.specCharMapEmpty);
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
     assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
@@ -526,7 +532,7 @@ public class DateLazyContentTest {
   @Test
   public void testInsertString_MDY_Minus() throws BadLocationException {
     final DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-    this.content = new DateLazyContent(null, new Locale("es", "NI"));
+    this.content = new DateLazyContent(null, new Locale("es", "NI"), this.specCharMapEmpty);
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
     assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 
@@ -566,7 +572,7 @@ public class DateLazyContentTest {
   @Test
   public void testInsertString_YMD_Point3() throws BadLocationException {
     final DateFormat df = new SimpleDateFormat("yyyy. MM. dd");
-    this.content = new DateLazyContent(null, new Locale("ko"));
+    this.content = new DateLazyContent(null, new Locale("ko"), this.specCharMapEmpty);
     assertThat(this.content.getDateContent()).isEqualTo(df.format(new Date()));
     assertDateHasValues(this.content.getDate(), this.todaysDay, this.todaysMonth, this.todaysYear);
 

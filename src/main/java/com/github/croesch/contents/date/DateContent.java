@@ -1,7 +1,11 @@
 package com.github.croesch.contents.date;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.swing.text.JTextComponent;
 
@@ -14,6 +18,9 @@ import com.github.croesch.contents.CContent;
  * @since Date: Jul 4, 2011
  */
 public abstract class DateContent extends CContent {
+
+  /** the name of the config file for the special characters */
+  private static final String DATECHARS_CFG_FILE = "datechars.cfg";
 
   /** generated */
   private static final long serialVersionUID = 6501226934436567798L;
@@ -55,6 +62,9 @@ public abstract class DateContent extends CContent {
     /* AUTO */;
   }
 
+  /** the map of special characters fetched from the config file */
+  private static Map<String, DateSpecialChar> specialCharsMap;
+
   /**
    * Creates a new instance of this {@link DateContent}. Will instantiate the specific subclass and return it.
    * 
@@ -65,7 +75,22 @@ public abstract class DateContent extends CContent {
    * @return an instance of {@link DateContent} that is able to edit a date of the given locale in the given mode.
    */
   public static final DateContent createDateContent(final MODE mode, final JTextComponent tf, final Locale loc) {
-    return new DateLazyContent(tf, loc);
+    return new DateLazyContent(tf, loc, getSpecialCharsMap());
+  }
+
+  /**
+   * Returns the map of special characters.
+   * 
+   * @since Date: Sep 8, 2011
+   * @return a map of {@link String}s as keys and {@link DateSpecialChar}s to enter with the key.
+   */
+  private static synchronized Map<String, DateSpecialChar> getSpecialCharsMap() {
+    if (specialCharsMap == null) {
+      specialCharsMap = new DateSpecialCharInterpreter(new BufferedReader(new InputStreamReader(DateContent.class
+        .getClassLoader().getResourceAsStream(DATECHARS_CFG_FILE)))).getSpecialCharsMap();
+    }
+    return new HashMap<String, DateSpecialChar>(specialCharsMap);
+
   }
 
   /**
