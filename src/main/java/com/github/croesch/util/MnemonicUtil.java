@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import javax.swing.AbstractButton;
 import javax.swing.SwingUtilities;
 
+import com.github.croesch.annotate.DoesntMatterIfCalledFromEDTOrNot;
 import com.github.croesch.logging.Log;
 
 /**
@@ -34,6 +35,7 @@ public final class MnemonicUtil {
    * @param b the AbstractButton that should get the mnemonic
    * @return the String without the [] of the definition
    */
+  @DoesntMatterIfCalledFromEDTOrNot
   public static String filterMnemonic(final String s, final AbstractButton b) {
     if (s != null) {
       String tmpS = s;

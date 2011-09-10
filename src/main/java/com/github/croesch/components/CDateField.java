@@ -6,6 +6,7 @@ import java.util.Locale;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import com.github.croesch.annotate.DoesntMatterIfCalledFromEDTOrNot;
 import com.github.croesch.contents.date.DateContent;
 import com.github.croesch.contents.date.DateContent.MODE;
 import com.github.croesch.logging.Log;
@@ -62,19 +63,25 @@ public class CDateField extends JTextField {
    * @since Date: Jul 6, 2011
    * @param date the {@link Date} to set and display in the field.
    */
+  @DoesntMatterIfCalledFromEDTOrNot
   public final void setDateAndDisplay(final Date date) {
-    try {
-      SwingUtilities.invokeAndWait(new Runnable() {
+    final Runnable r = new Runnable() {
+      @Override
+      public void run() {
+        CDateField.this.document.setDate(date);
+        CDateField.this.setText(CDateField.this.document.getDateContent());
+        CDateField.this.setCaretPosition(0);
+      }
+    };
 
-        @Override
-        public void run() {
-          CDateField.this.document.setDate(date);
-          CDateField.this.setText(CDateField.this.document.getDateContent());
-          CDateField.this.setCaretPosition(0);
-        }
-      });
-    } catch (final Exception e) {
-      Log.error(e);
+    if (SwingUtilities.isEventDispatchThread()) {
+      r.run();
+    } else {
+      try {
+        SwingUtilities.invokeAndWait(r);
+      } catch (final Exception e) {
+        Log.error(e);
+      }
     }
   }
 
