@@ -4,8 +4,10 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.awt.event.KeyEvent;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,11 +27,19 @@ public class MnemonicUtilTest {
    * Creates a JButton to use for testing
    * 
    * @author croesch
+   * @throws InvocationTargetException
+   * @throws InterruptedException
    * @since Date: 09.02.2011 20:57:19
    */
   @Before
-  public void setUp() {
-    this.button = new JButton();
+  public void setUp() throws InterruptedException, InvocationTargetException {
+    SwingUtilities.invokeAndWait(new Runnable() {
+
+      @Override
+      public void run() {
+        MnemonicUtilTest.this.button = new JButton();
+      }
+    });
   }
 
   /**
@@ -261,7 +271,7 @@ public class MnemonicUtilTest {
    */
   @Test
   public void testConstructorException() {
-    for (Constructor<?> c : MnemonicUtil.class.getDeclaredConstructors()) {
+    for (final Constructor<?> c : MnemonicUtil.class.getDeclaredConstructors()) {
       assertThat(c.getModifiers()).as(c.toString()).isEqualTo(2);
     }
   }

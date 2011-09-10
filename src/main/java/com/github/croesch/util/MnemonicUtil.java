@@ -4,6 +4,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.AbstractButton;
+import javax.swing.SwingUtilities;
+
+import com.github.croesch.logging.Log;
 
 /**
  * Utility class for Mnemonic operations
@@ -36,7 +39,23 @@ public final class MnemonicUtil {
       String tmpS = s;
       final Matcher m = Pattern.compile("\\[(.)\\]").matcher(tmpS); //$NON-NLS-1$
       if (m.find()) {
-        b.setMnemonic(m.group(1).charAt(0));
+        // define runnable to set the mnemonic
+        final Runnable r = new Runnable() {
+          @Override
+          public void run() {
+            b.setMnemonic(m.group(1).charAt(0));
+          }
+        };
+        // run the runnable, either on EDT or on the current thread, depending on what thread we are running in
+        if (SwingUtilities.isEventDispatchThread()) {
+          r.run();
+        } else {
+          try {
+            SwingUtilities.invokeAndWait(r);
+          } catch (final Exception e) {
+            Log.error(e);
+          }
+        }
         tmpS = m.replaceFirst(m.group(1));
       }
       return tmpS;
