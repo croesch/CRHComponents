@@ -2,6 +2,7 @@ package com.github.croesch.util;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
@@ -10,8 +11,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: 17.02.2011 20:59:00
  */
-@SuppressWarnings("nls")
-public class StringArrayUtilLengthTest {
+public class StringArrayUtilLengthTest extends FestSwingJUnitTestCase {
 
   /**
    * Test method for {@link StringArrayUtil#StringArrayUtil(String[])}.
@@ -19,8 +19,8 @@ public class StringArrayUtilLengthTest {
   @Test
   public void testLengthAnalyser() {
     new StringArrayUtil(new String[] {});
-    new StringArrayUtil(new String[] {"a"});
-    new StringArrayUtil(new String[] {"", "a"});
+    new StringArrayUtil(new String[] { "a" });
+    new StringArrayUtil(new String[] { "", "a" });
   }
 
   /**
@@ -36,7 +36,7 @@ public class StringArrayUtilLengthTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testLengthAnalyser_IAE2() {
-    new StringArrayUtil(new String[] {null});
+    new StringArrayUtil(new String[] { null });
   }
 
   /**
@@ -44,7 +44,7 @@ public class StringArrayUtilLengthTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testLengthAnalyser_IAE3() {
-    new StringArrayUtil(new String[] {"", null});
+    new StringArrayUtil(new String[] { "", null });
   }
 
   /**
@@ -52,7 +52,7 @@ public class StringArrayUtilLengthTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testLengthAnalyser_IAE4() {
-    new StringArrayUtil(new String[] {null, ""});
+    new StringArrayUtil(new String[] { null, "" });
   }
 
   /**
@@ -60,7 +60,7 @@ public class StringArrayUtilLengthTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testLengthAnalyser_IAE5() {
-    new StringArrayUtil(new String[] {"", null, ""});
+    new StringArrayUtil(new String[] { "", null, "" });
   }
 
   /**
@@ -72,13 +72,13 @@ public class StringArrayUtilLengthTest {
   @Test
   public void testGetMaxLineLength1() {
     assertThat(new StringArrayUtil(new String[] {}).getMaxLineLength()).isEqualTo(-1);
-    assertThat(new StringArrayUtil(new String[] {""}).getMaxLineLength()).isZero();
-    assertThat(new StringArrayUtil(new String[] {"a"}).getMaxLineLength()).isEqualTo(1);
-    assertThat(new StringArrayUtil(new String[] {"ab"}).getMaxLineLength()).isEqualTo(2);
-    assertThat(new StringArrayUtil(new String[] {"abc"}).getMaxLineLength()).isEqualTo(3);
-    assertThat(new StringArrayUtil(new String[] {"abcd"}).getMaxLineLength()).isEqualTo(4);
-    assertThat(new StringArrayUtil(new String[] {"abcde"}).getMaxLineLength()).isEqualTo(5);
-    assertThat(new StringArrayUtil(new String[] {"abcdef"}).getMaxLineLength()).isEqualTo(6);
+    assertThat(new StringArrayUtil(new String[] { "" }).getMaxLineLength()).isZero();
+    assertThat(new StringArrayUtil(new String[] { "a" }).getMaxLineLength()).isEqualTo(1);
+    assertThat(new StringArrayUtil(new String[] { "ab" }).getMaxLineLength()).isEqualTo(2);
+    assertThat(new StringArrayUtil(new String[] { "abc" }).getMaxLineLength()).isEqualTo(3);
+    assertThat(new StringArrayUtil(new String[] { "abcd" }).getMaxLineLength()).isEqualTo(4);
+    assertThat(new StringArrayUtil(new String[] { "abcde" }).getMaxLineLength()).isEqualTo(5);
+    assertThat(new StringArrayUtil(new String[] { "abcdef" }).getMaxLineLength()).isEqualTo(6);
   }
 
   /**
@@ -89,17 +89,17 @@ public class StringArrayUtilLengthTest {
    */
   @Test
   public void testGetMaxLineLength2() {
-    assertThat(new StringArrayUtil(new String[] {"", ""}).getMaxLineLength()).isZero();
-    assertThat(new StringArrayUtil(new String[] {"", "", "", "", ""}).getMaxLineLength()).isZero();
-    assertThat(new StringArrayUtil(new String[] {"a", "", "", "", ""}).getMaxLineLength()).isEqualTo(1);
-    assertThat(new StringArrayUtil(new String[] {",", "ab", "bb", "."}).getMaxLineLength()).isEqualTo(2);
-    assertThat(new StringArrayUtil(new String[] {"a", "ab", "abc", " "}).getMaxLineLength()).isEqualTo(3);
-    assertThat(new StringArrayUtil(new String[] {"null", "0", "$", "%", "€€€€", "abcd"}).getMaxLineLength())
+    assertThat(new StringArrayUtil(new String[] { "", "" }).getMaxLineLength()).isZero();
+    assertThat(new StringArrayUtil(new String[] { "", "", "", "", "" }).getMaxLineLength()).isZero();
+    assertThat(new StringArrayUtil(new String[] { "a", "", "", "", "" }).getMaxLineLength()).isEqualTo(1);
+    assertThat(new StringArrayUtil(new String[] { ",", "ab", "bb", "." }).getMaxLineLength()).isEqualTo(2);
+    assertThat(new StringArrayUtil(new String[] { "a", "ab", "abc", " " }).getMaxLineLength()).isEqualTo(3);
+    assertThat(new StringArrayUtil(new String[] { "null", "0", "$", "%", "€€€€", "abcd" }).getMaxLineLength())
       .isEqualTo(4);
-    assertThat(new StringArrayUtil(new String[] {"!!!!!", "????", "...", "''", "-", ""}).getMaxLineLength())
+    assertThat(new StringArrayUtil(new String[] { "!!!!!", "????", "...", "''", "-", "" }).getMaxLineLength())
       .isEqualTo(5);
-    assertThat(new StringArrayUtil(new String[] {"", "", "", "", "", "abcdef"}).getMaxLineLength()).isEqualTo(6);
-    assertThat(new StringArrayUtil(new String[] {"", "", "", "", "", "abcdef", "", "", ""}).getMaxLineLength())
+    assertThat(new StringArrayUtil(new String[] { "", "", "", "", "", "abcdef" }).getMaxLineLength()).isEqualTo(6);
+    assertThat(new StringArrayUtil(new String[] { "", "", "", "", "", "abcdef", "", "", "" }).getMaxLineLength())
       .isEqualTo(6);
   }
 
@@ -112,13 +112,13 @@ public class StringArrayUtilLengthTest {
   @Test
   public void testGetMaxLineLength_Trimmed1() {
     assertThat(new StringArrayUtil(new String[] {}).trim().getMaxLineLength()).isEqualTo(-1);
-    assertThat(new StringArrayUtil(new String[] {"      \t\n\t      "}).trim().getMaxLineLength()).isZero();
-    assertThat(new StringArrayUtil(new String[] {"   a"}).trim().getMaxLineLength()).isEqualTo(1);
-    assertThat(new StringArrayUtil(new String[] {"ab       "}).trim().getMaxLineLength()).isEqualTo(2);
-    assertThat(new StringArrayUtil(new String[] {"\t\t\tabc"}).trim().getMaxLineLength()).isEqualTo(3);
-    assertThat(new StringArrayUtil(new String[] {"abcd\t\t\t"}).trim().getMaxLineLength()).isEqualTo(4);
-    assertThat(new StringArrayUtil(new String[] {"\n\n\nabcde"}).trim().getMaxLineLength()).isEqualTo(5);
-    assertThat(new StringArrayUtil(new String[] {"abcdef\n\n\n"}).trim().getMaxLineLength()).isEqualTo(6);
+    assertThat(new StringArrayUtil(new String[] { "      \t\n\t      " }).trim().getMaxLineLength()).isZero();
+    assertThat(new StringArrayUtil(new String[] { "   a" }).trim().getMaxLineLength()).isEqualTo(1);
+    assertThat(new StringArrayUtil(new String[] { "ab       " }).trim().getMaxLineLength()).isEqualTo(2);
+    assertThat(new StringArrayUtil(new String[] { "\t\t\tabc" }).trim().getMaxLineLength()).isEqualTo(3);
+    assertThat(new StringArrayUtil(new String[] { "abcd\t\t\t" }).trim().getMaxLineLength()).isEqualTo(4);
+    assertThat(new StringArrayUtil(new String[] { "\n\n\nabcde" }).trim().getMaxLineLength()).isEqualTo(5);
+    assertThat(new StringArrayUtil(new String[] { "abcdef\n\n\n" }).trim().getMaxLineLength()).isEqualTo(6);
   }
 
   /**
@@ -129,23 +129,24 @@ public class StringArrayUtilLengthTest {
    */
   @Test
   public void testGetMaxLineLength_Trimmed2() {
-    assertThat(new StringArrayUtil(new String[] {"\t\t\t\t\t\t\t\t", "  "}).trim().getMaxLineLength()).isZero();
-    assertThat(new StringArrayUtil(new String[] {" ", "\t", "\n", "\r", ""}).trim().getMaxLineLength()).isZero();
-    assertThat(new StringArrayUtil(new String[] {"a", "", "  ", "\n", "\r\n"}).trim().getMaxLineLength()).isEqualTo(1);
-    assertThat(new StringArrayUtil(new String[] {" , ", "\tab\n", "\rbb ", "  .  "}).trim().getMaxLineLength())
+    assertThat(new StringArrayUtil(new String[] { "\t\t\t\t\t\t\t\t", "  " }).trim().getMaxLineLength()).isZero();
+    assertThat(new StringArrayUtil(new String[] { " ", "\t", "\n", "\r", "" }).trim().getMaxLineLength()).isZero();
+    assertThat(new StringArrayUtil(new String[] { "a", "", "  ", "\n", "\r\n" }).trim().getMaxLineLength())
+      .isEqualTo(1);
+    assertThat(new StringArrayUtil(new String[] { " , ", "\tab\n", "\rbb ", "  .  " }).trim().getMaxLineLength())
       .isEqualTo(2);
-    assertThat(new StringArrayUtil(new String[] {"a", "ab   ", "abc ", "  "}).trim().getMaxLineLength()).isEqualTo(3);
+    assertThat(new StringArrayUtil(new String[] { "a", "ab   ", "abc ", "  " }).trim().getMaxLineLength()).isEqualTo(3);
     assertThat(
-               new StringArrayUtil(new String[] {"null\n\n", "\n0 ", "\t\r$\n", "%   ", "  €€€€  ", " abcd "}).trim()
+               new StringArrayUtil(new String[] { "null\n\n", "\n0 ", "\t\r$\n", "%   ", "  €€€€  ", " abcd " }).trim()
                  .getMaxLineLength()).isEqualTo(4);
     assertThat(
-               new StringArrayUtil(new String[] {"  !!!!!", "  ????", "   ...", "''  ", "- ", "   "}).trim()
+               new StringArrayUtil(new String[] { "  !!!!!", "  ????", "   ...", "''  ", "- ", "   " }).trim()
                  .getMaxLineLength()).isEqualTo(5);
     assertThat(
-               new StringArrayUtil(new String[] {"          ", "", "       ", "", " ", "abcdef"}).trim()
+               new StringArrayUtil(new String[] { "          ", "", "       ", "", " ", "abcdef" }).trim()
                  .getMaxLineLength()).isEqualTo(6);
     assertThat(
-               new StringArrayUtil(new String[] {"",
+               new StringArrayUtil(new String[] { "",
                                                  "  \r  ",
                                                  "  \t  ",
                                                  "  \n  ",
@@ -153,6 +154,11 @@ public class StringArrayUtilLengthTest {
                                                  "abcdef",
                                                  "",
                                                  "   ",
-                                                 "   "}).trim().getMaxLineLength()).isEqualTo(6);
+                                                 "   " }).trim().getMaxLineLength()).isEqualTo(6);
+  }
+
+  @Override
+  protected void onSetUp() {
+    // nothing to be set up
   }
 }

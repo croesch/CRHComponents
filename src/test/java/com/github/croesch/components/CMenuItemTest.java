@@ -13,8 +13,7 @@ import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.SwingUtilities;
 
-import org.junit.After;
-import org.junit.Before;
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
@@ -25,7 +24,7 @@ import org.junit.Test;
  * @since Date: 2010/12/24 09:56:39
  */
 @SuppressWarnings("nls")
-public class CMenuItemTest {
+public class CMenuItemTest extends FestSwingJUnitTestCase {
 
   private CMenuItem item;
 
@@ -35,22 +34,26 @@ public class CMenuItemTest {
    * @throws InvocationTargetException
    * @throws InterruptedException
    */
-  @Before
-  public void setUp() throws InterruptedException, InvocationTargetException {
-    SwingUtilities.invokeAndWait(new Runnable() {
+  @Override
+  public void onSetUp() {
+    try {
+      SwingUtilities.invokeAndWait(new Runnable() {
 
-      @Override
-      public void run() {
-        CMenuItemTest.this.item = new CMenuItem();
-      }
-    });
+        @Override
+        public void run() {
+          CMenuItemTest.this.item = new CMenuItem();
+        }
+      });
+    } catch (final Exception e) {
+      e.printStackTrace();
+    }
   }
 
   /**
    * sets this item to null
    */
-  @After
-  public void tearDown() {
+  @Override
+  public void onTearDown() {
     this.item = null;
   }
 

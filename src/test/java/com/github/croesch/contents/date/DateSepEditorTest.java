@@ -4,7 +4,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.util.Random;
 
-import org.junit.Before;
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
@@ -13,7 +13,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Jul 2, 2011
  */
-public class DateSepEditorTest {
+public class DateSepEditorTest extends FestSwingJUnitTestCase {
 
   private DateSepEditor editor;
 
@@ -23,8 +23,8 @@ public class DateSepEditorTest {
    * @author croesch
    * @since Date: Jul 2, 2011
    */
-  @Before
-  public void setUp() {
+  @Override
+  public void onSetUp() {
     this.editor = new DateSepEditor(".");
     final Random r = new Random();
     this.editor.setCurrentValue(r.nextInt(), r.nextInt(), r.nextInt());

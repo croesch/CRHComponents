@@ -4,6 +4,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.lang.reflect.Constructor;
 
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
@@ -12,7 +13,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: 17.02.2011 20:43:57
  */
-public class UtilTest {
+public class UtilTest extends FestSwingJUnitTestCase {
 
   /**
    * Tests that {@link Util#of(String)} returns an object that is equal to the self created object
@@ -38,15 +39,16 @@ public class UtilTest {
   @Test
   @SuppressWarnings("nls")
   public void testAnalyseLengthOf() {
-    assertThat(Util.of(new String[] {""})).isEqualTo(new StringArrayUtil(new String[] {""}));
-    assertThat(Util.of(new String[] {""})).isNotEqualTo(new StringArrayUtil(new String[] {"a"}));
-    assertThat(Util.of(new String[] {"a"})).isEqualTo(new StringArrayUtil(new String[] {"a"}));
-    assertThat(Util.of(new String[] {"a"})).isNotEqualTo(new StringArrayUtil(new String[] {""}));
-    assertThat(Util.of(new String[] {"", "b"})).isEqualTo(new StringArrayUtil(new String[] {"", "b"}));
-    assertThat(Util.of(new String[] {"a", ""})).isNotEqualTo(new StringArrayUtil(new String[] {"", "a"}));
-    assertThat(Util.of(new String[] {"a", "bb", "ccc"}))
-      .isEqualTo(new StringArrayUtil(new String[] {"a", "bb", "ccc"}));
-    assertThat(Util.of(new String[] {"a"})).isNotEqualTo(new StringArrayUtil(new String[] {"a"}).trim());
+    assertThat(Util.of(new String[] { "" })).isEqualTo(new StringArrayUtil(new String[] { "" }));
+    assertThat(Util.of(new String[] { "" })).isNotEqualTo(new StringArrayUtil(new String[] { "a" }));
+    assertThat(Util.of(new String[] { "a" })).isEqualTo(new StringArrayUtil(new String[] { "a" }));
+    assertThat(Util.of(new String[] { "a" })).isNotEqualTo(new StringArrayUtil(new String[] { "" }));
+    assertThat(Util.of(new String[] { "", "b" })).isEqualTo(new StringArrayUtil(new String[] { "", "b" }));
+    assertThat(Util.of(new String[] { "a", "" })).isNotEqualTo(new StringArrayUtil(new String[] { "", "a" }));
+    assertThat(Util.of(new String[] { "a", "bb", "ccc" })).isEqualTo(new StringArrayUtil(new String[] { "a",
+                                                                                                       "bb",
+                                                                                                       "ccc" }));
+    assertThat(Util.of(new String[] { "a" })).isNotEqualTo(new StringArrayUtil(new String[] { "a" }).trim());
   }
 
   /**
@@ -57,8 +59,13 @@ public class UtilTest {
    */
   @Test
   public void testConstructorException() {
-    for (Constructor<?> c : Util.class.getDeclaredConstructors()) {
+    for (final Constructor<?> c : Util.class.getDeclaredConstructors()) {
       assertThat(c.getModifiers()).as(c.toString()).isEqualTo(2);
     }
+  }
+
+  @Override
+  protected void onSetUp() {
+    // nothing to be set up
   }
 }

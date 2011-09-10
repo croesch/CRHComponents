@@ -5,6 +5,7 @@ import static org.fest.assertions.Assertions.assertThat;
 import java.io.BufferedReader;
 import java.io.StringReader;
 
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 import com.github.croesch.contents.date.DateSpecialChar.ValueType;
@@ -15,7 +16,7 @@ import com.github.croesch.contents.date.DateSpecialChar.ValueType;
  * @author croesch
  * @since Date: Apr 5, 2011 9:41:21 AM
  */
-public class DateSpecialCharInterpreterTest {
+public class DateSpecialCharInterpreterTest extends FestSwingJUnitTestCase {
 
   /**
    * Test method for {@link DateSpecialCharInterpreter#DateSpecialCharInterpreter()}
@@ -162,4 +163,8 @@ public class DateSpecialCharInterpreterTest {
     assertThat(interpreter.getSpecialCharsMap().values()).containsOnly(sc1, sc2, sc3);
   }
 
+  @Override
+  protected void onSetUp() {
+    // nothing to be set up
+  }
 }

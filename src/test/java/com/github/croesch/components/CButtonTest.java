@@ -13,8 +13,7 @@ import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.SwingUtilities;
 
-import org.junit.After;
-import org.junit.Before;
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
@@ -25,32 +24,33 @@ import org.junit.Test;
  * @since Date: 2010/12/24 09:56:39
  */
 @SuppressWarnings("nls")
-public class CButtonTest {
+public class CButtonTest extends FestSwingJUnitTestCase {
 
   private CButton button;
 
   /**
    * initializes this button
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
    */
-  @Before
-  public void setUp() throws InterruptedException, InvocationTargetException {
-    SwingUtilities.invokeAndWait(new Runnable() {
+  @Override
+  public void onSetUp() {
+    try {
+      SwingUtilities.invokeAndWait(new Runnable() {
 
-      @Override
-      public void run() {
-        CButtonTest.this.button = new CButton();
-      }
-    });
+        @Override
+        public void run() {
+          CButtonTest.this.button = new CButton();
+        }
+      });
+    } catch (final Exception e) {
+      e.printStackTrace();
+    }
   }
 
   /**
    * sets this button to null
    */
-  @After
-  public void tearDown() {
+  @Override
+  public void onTearDown() {
     this.button = null;
   }
 

@@ -4,6 +4,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.util.Locale;
 
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 import com.github.croesch.util.Generator;
@@ -14,7 +15,7 @@ import com.github.croesch.util.Generator;
  * @author croesch
  * @since Date: 10.03.2011 19:19:56
  */
-public class LocaleGeneratorTest {
+public class LocaleGeneratorTest extends FestSwingJUnitTestCase {
 
   private static Locale loc1_1 = new Locale("");
 
@@ -455,5 +456,10 @@ public class LocaleGeneratorTest {
 
     su = new LocaleGenerator(loc3_2);
     assertThat(su).isNotEqualTo(loc3_2);
+  }
+
+  @Override
+  protected void onSetUp() {
+    // nothing to be set up
   }
 }

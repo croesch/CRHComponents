@@ -5,7 +5,7 @@ import static org.junit.Assert.fail;
 
 import javax.swing.text.BadLocationException;
 
-import org.junit.Before;
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 import com.github.croesch.listener.ErrorListener;
@@ -17,7 +17,7 @@ import com.github.croesch.listener.ErrorListener;
  * @since Date: 09.02.2011 21:26:46
  */
 @SuppressWarnings("nls")
-public class CContentTest {
+public class CContentTest extends FestSwingJUnitTestCase {
 
   private CContent cont;
 
@@ -29,8 +29,8 @@ public class CContentTest {
    * @author croesch
    * @since Date: 10.02.2011 18:48:12
    */
-  @Before
-  public void setUp() {
+  @Override
+  public void onSetUp() {
     this.cont = new CContent();
     this.bool = false;
   }

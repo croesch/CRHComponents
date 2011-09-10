@@ -2,6 +2,7 @@ package com.github.croesch.util;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
@@ -10,8 +11,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: 19.02.2011 15:22:35
  */
-@SuppressWarnings("nls")
-public class StringUtilTest {
+public class StringUtilTest extends FestSwingJUnitTestCase {
   private static String arr1_1 = "";
 
   private static String arr1_2 = "";
@@ -365,5 +365,10 @@ public class StringUtilTest {
 
     su = new StringUtil(arr3_2);
     assertThat(su).isNotEqualTo(arr3_2);
+  }
+
+  @Override
+  protected void onSetUp() {
+    // nothing to be set up
   }
 }

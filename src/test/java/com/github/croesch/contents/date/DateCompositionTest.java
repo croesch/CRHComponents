@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 import com.github.croesch.contents.date.DateContent.MODE;
@@ -16,7 +17,7 @@ import com.github.croesch.contents.date.DateContent.MODE;
  * @author croesch
  * @since Date: Jul 3, 2011
  */
-public class DateCompositionTest {
+public class DateCompositionTest extends FestSwingJUnitTestCase {
 
   /**
    * Test method for {@link DateComposition#getComposition(Locale, MODE)}.
@@ -495,4 +496,8 @@ public class DateCompositionTest {
     }
   }
 
+  @Override
+  protected void onSetUp() {
+    // nothing to be set up
+  }
 }

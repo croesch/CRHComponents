@@ -9,7 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
-import org.junit.Before;
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
@@ -18,8 +18,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: 09.02.2011 20:27:00
  */
-@SuppressWarnings("nls")
-public class MnemonicUtilTest {
+public class MnemonicUtilTest extends FestSwingJUnitTestCase {
 
   private JButton button;
 
@@ -31,15 +30,19 @@ public class MnemonicUtilTest {
    * @throws InterruptedException
    * @since Date: 09.02.2011 20:57:19
    */
-  @Before
-  public void setUp() throws InterruptedException, InvocationTargetException {
-    SwingUtilities.invokeAndWait(new Runnable() {
+  @Override
+  public void onSetUp() {
+    try {
+      SwingUtilities.invokeAndWait(new Runnable() {
 
-      @Override
-      public void run() {
-        MnemonicUtilTest.this.button = new JButton();
-      }
-    });
+        @Override
+        public void run() {
+          MnemonicUtilTest.this.button = new JButton();
+        }
+      });
+    } catch (final Exception e) {
+      e.printStackTrace();
+    }
   }
 
   /**

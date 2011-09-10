@@ -15,7 +15,7 @@ import java.util.Map;
 
 import javax.swing.text.BadLocationException;
 
-import org.junit.Before;
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
@@ -24,7 +24,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Jul 3, 2011
  */
-public class DateLazyContentTest {
+public class DateLazyContentTest extends FestSwingJUnitTestCase {
 
   private DateLazyContent content;
 
@@ -43,8 +43,8 @@ public class DateLazyContentTest {
    * @author croesch
    * @since Date: Jul 3, 2011
    */
-  @Before
-  public void setUp() {
+  @Override
+  public void onSetUp() {
     this.content = new DateLazyContent(null, Locale.GERMAN, this.specCharMapEmpty);
 
     final Calendar cal = new GregorianCalendar();

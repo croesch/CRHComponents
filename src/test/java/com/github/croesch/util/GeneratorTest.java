@@ -4,6 +4,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.util.Locale;
 
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 import com.github.croesch.util.generator.LocaleGenerator;
@@ -14,7 +15,7 @@ import com.github.croesch.util.generator.LocaleGenerator;
  * @author croesch
  * @since Date: 10.03.2011 19:05:15
  */
-public class GeneratorTest {
+public class GeneratorTest extends FestSwingJUnitTestCase {
 
   @Test(expected = IllegalArgumentException.class)
   public void testGenerateFileNames_IAE() {
@@ -39,6 +40,11 @@ public class GeneratorTest {
     assertThat(Generator.generateFrom(loc)).isEqualTo(new LocaleGenerator(loc));
     loc = new Locale("", "", "");
     assertThat(Generator.generateFrom(loc)).isEqualTo(new LocaleGenerator(loc));
+  }
+
+  @Override
+  protected void onSetUp() {
+    // nothing to be set up
   }
 
 }

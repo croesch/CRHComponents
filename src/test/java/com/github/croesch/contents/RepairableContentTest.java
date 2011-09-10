@@ -4,7 +4,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import javax.swing.text.BadLocationException;
 
-import org.junit.Before;
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
@@ -14,7 +14,7 @@ import org.junit.Test;
  * @since Date: 10.02.2011 20:54:44
  */
 @SuppressWarnings("nls")
-public class RepairableContentTest {
+public class RepairableContentTest extends FestSwingJUnitTestCase {
 
   private RepairableContent cont;
 
@@ -24,8 +24,8 @@ public class RepairableContentTest {
    * @author croesch
    * @since Date: 10.02.2011 20:54:44
    */
-  @Before
-  public void setUp() {
+  @Override
+  public void onSetUp() {
     this.cont = new RepairableContent();
   }
 

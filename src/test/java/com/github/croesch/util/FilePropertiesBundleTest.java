@@ -7,6 +7,7 @@ import static org.fest.assertions.Assertions.assertThat;
 import java.lang.reflect.Constructor;
 import java.util.Locale;
 
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -16,8 +17,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: 12.02.2011 20:19:16
  */
-@SuppressWarnings("nls")
-public class FilePropertiesBundleTest {
+public class FilePropertiesBundleTest extends FestSwingJUnitTestCase {
 
   private static final String SINGLE = "testfiles/single";
 
@@ -113,8 +113,13 @@ public class FilePropertiesBundleTest {
    */
   @Test
   public void testConstructorException() {
-    for (Constructor<?> c : FilePropertiesBundle.class.getDeclaredConstructors()) {
+    for (final Constructor<?> c : FilePropertiesBundle.class.getDeclaredConstructors()) {
       assertThat(c.getModifiers()).as(c.toString()).isEqualTo(2);
     }
+  }
+
+  @Override
+  protected void onSetUp() {
+    // nothing to be set up
   }
 }

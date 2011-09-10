@@ -12,6 +12,7 @@ import java.util.Map;
 
 import javax.swing.text.BadLocationException;
 
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
@@ -20,7 +21,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Sep 8, 2011
  */
-public class DateLazyContentTest_SpecialChars {
+public class DateLazyContentTest_SpecialChars extends FestSwingJUnitTestCase {
 
   private final Map<String, DateSpecialChar> specCharMap = new DateSpecialCharInterpreter(new BufferedReader(new InputStreamReader(DateContent.class
     .getClassLoader().getResourceAsStream("datechars.cfg")))).getSpecialCharsMap();
@@ -367,5 +368,10 @@ public class DateLazyContentTest_SpecialChars {
 
     content.insertString(0, "NNNNNNNNNNNNNNNNNNNNNNNNNN", null);
     assertThat(content.getText()).isEqualTo("01.01." + year);
+  }
+
+  @Override
+  protected void onSetUp() {
+    // nothing to be setup
   }
 }

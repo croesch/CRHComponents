@@ -2,6 +2,7 @@ package com.github.croesch.util;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
@@ -10,8 +11,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: 17.02.2011 19:50:44
  */
-@SuppressWarnings("nls")
-public class StringUtilMultiplyTest {
+public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
 
   /**
    * Tests the constructor {@link StringUtil#StringUtil(String)}
@@ -64,14 +64,15 @@ public class StringUtilMultiplyTest {
   }
 
   /**
-   * Ensures that {@link StringUtil#toStringMultipliedWith(int)} returns an empty string if an empty string has been passed
+   * Ensures that {@link StringUtil#toStringMultipliedWith(int)} returns an empty string if an empty string has been
+   * passed
    * 
    * @author croesch
    * @since Date: 17.02.2011 20:35:27
    */
   @Test
   public void testMultiplyingString_Empty() {
-    StringUtil sm = new StringUtil("");
+    final StringUtil sm = new StringUtil("");
     assertThat(sm.toStringMultipliedWith(0)).isEqualTo("");
     assertThat(sm.toStringMultipliedWith(1)).isEqualTo("");
     assertThat(sm.toStringMultipliedWith(3)).isEqualTo("");
@@ -132,8 +133,8 @@ public class StringUtilMultiplyTest {
     assertThat(sm.toStringMultipliedWith(1)).isEqualTo("two words");
     assertThat(sm.toStringMultipliedWith(3)).isEqualTo("two wordstwo wordstwo words");
     assertThat(sm.toStringMultipliedWith(3)).isEqualTo("two wordstwo wordstwo words");
-    assertThat(sm.toStringMultipliedWith(9)).isEqualTo("two wordstwo wordstwo words"
-                                              + "two wordstwo wordstwo wordstwo wordstwo wordstwo words");
+    assertThat(sm.toStringMultipliedWith(9))
+      .isEqualTo("two wordstwo wordstwo words" + "two wordstwo wordstwo wordstwo wordstwo wordstwo words");
   }
 
   /**
@@ -148,7 +149,8 @@ public class StringUtilMultiplyTest {
     assertThat(sm.toStringMultipliedWith(0)).isEqualTo("");
     sm = new StringUtil("  Not trimmed\t  \n\t  ");
     assertThat(sm.toStringMultipliedWith(1)).isEqualTo("  Not trimmed\t  \n\t  ");
-    assertThat(sm.toStringMultipliedWith(3)).isEqualTo("  Not trimmed\t  \n\t  " + "  Not trimmed\t  \n\t    Not trimmed\t  \n\t  ");
+    assertThat(sm.toStringMultipliedWith(3)).isEqualTo("  Not trimmed\t  \n\t  "
+                                                               + "  Not trimmed\t  \n\t    Not trimmed\t  \n\t  ");
     assertThat(sm.toStringMultipliedWith(9))
       .isEqualTo("  Not trimmed\t  \n\t    Not trimmed\t  \n\t    Not trimmed\t  \n\t  "
                          + "  Not trimmed\t  \n\t    Not trimmed\t  \n\t    Not trimmed\t  \n\t  "
@@ -163,7 +165,7 @@ public class StringUtilMultiplyTest {
    */
   @Test
   public void testMulitplyingString_Often() {
-    StringUtil sm = new StringUtil(" ");
+    final StringUtil sm = new StringUtil(" ");
     assertThat(sm.toStringMultipliedWith(100000)).hasSize(100000);
   }
 
@@ -176,9 +178,9 @@ public class StringUtilMultiplyTest {
    */
   @Test
   public void testMultiplyingStringTwoThreads_Equals() throws InterruptedException {
-    StringUtil sm = new StringUtil("b");
-    MyRunnable r1 = new MyRunnable(sm);
-    MyRunnable r2 = new MyRunnable(sm);
+    final StringUtil sm = new StringUtil("b");
+    final MyRunnable r1 = new MyRunnable(sm);
+    final MyRunnable r2 = new MyRunnable(sm);
     r1.run();
     r2.run();
     while (!r1.isFinished() || !r2.isFinished()) {
@@ -212,5 +214,10 @@ public class StringUtilMultiplyTest {
     public String getResult() {
       return this.result;
     }
+  }
+
+  @Override
+  protected void onSetUp() {
+    // nothing to be set up
   }
 }

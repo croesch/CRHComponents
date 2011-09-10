@@ -5,6 +5,7 @@ import static com.github.croesch.contents.date.DateSpecialChar.ValueType.INCREME
 import static com.github.croesch.contents.date.DateSpecialChar.ValueType.OFFSET;
 import static org.fest.assertions.Assertions.assertThat;
 
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
@@ -13,7 +14,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Apr 5, 2011 10:14:42 AM
  */
-public class DateSpecialCharTest {
+public class DateSpecialCharTest extends FestSwingJUnitTestCase {
 
   /**
    * Test method for
@@ -238,5 +239,10 @@ public class DateSpecialCharTest {
 
     assertThat(dsc1).isEqualTo(dsc1);
     assertThat(dsc1.hashCode()).isEqualTo(dsc1.hashCode());
+  }
+
+  @Override
+  protected void onSetUp() {
+    // nothing to be set up
   }
 }

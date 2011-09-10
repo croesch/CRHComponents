@@ -4,7 +4,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.util.Calendar;
 
-import org.junit.Before;
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
@@ -13,7 +13,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Jul 2, 2011
  */
-public class DateLazyMonEditorTest {
+public class DateLazyMonEditorTest extends FestSwingJUnitTestCase {
 
   private DateLazyMonEditor editor;
 
@@ -23,8 +23,8 @@ public class DateLazyMonEditorTest {
    * @author croesch
    * @since Date: Jul 2, 2011
    */
-  @Before
-  public void setUp() {
+  @Override
+  public void onSetUp() {
     this.editor = new DateLazyMonEditor();
   }
 

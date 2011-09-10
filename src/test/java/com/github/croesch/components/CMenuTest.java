@@ -10,8 +10,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.SwingUtilities;
 
-import org.junit.After;
-import org.junit.Before;
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
@@ -22,7 +21,7 @@ import org.junit.Test;
  * @since Date: 2010/12/24 09:56:39
  */
 @SuppressWarnings("nls")
-public class CMenuTest {
+public class CMenuTest extends FestSwingJUnitTestCase {
 
   private CMenu menu;
 
@@ -32,22 +31,26 @@ public class CMenuTest {
    * @throws InvocationTargetException
    * @throws InterruptedException
    */
-  @Before
-  public void setUp() throws InterruptedException, InvocationTargetException {
-    SwingUtilities.invokeAndWait(new Runnable() {
+  @Override
+  public void onSetUp() {
+    try {
+      SwingUtilities.invokeAndWait(new Runnable() {
 
-      @Override
-      public void run() {
-        CMenuTest.this.menu = new CMenu();
-      }
-    });
+        @Override
+        public void run() {
+          CMenuTest.this.menu = new CMenu();
+        }
+      });
+    } catch (final Exception e) {
+      e.printStackTrace();
+    }
   }
 
   /**
    * sets this menu to null
    */
-  @After
-  public void tearDown() {
+  @Override
+  public void onTearDown() {
     this.menu = null;
   }
 
