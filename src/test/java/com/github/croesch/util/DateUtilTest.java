@@ -28,7 +28,7 @@ import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
 /**
- * TODO Comment here ...
+ * Test methods for {@link DateUtil}
  * 
  * @author croesch
  * @since Date: Sep 11, 2011
