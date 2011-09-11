@@ -133,7 +133,48 @@ public abstract class DateContent extends CContent {
    * 
    * @since Date: Jul 5, 2011
    * @return {@link Date} that is equal to the values currently present in the date field.
+   * @see #getDateOrNull()
+   * @see #getDateWithoutTime()
+   * @see #getDateWithoutTimeOrNull()
    */
   public abstract Date getDate();
 
+  /**
+   * Returns the {@link Date} that is represented by the current value of the date field, or <code>null</code> if there
+   * is no text in the field.
+   * 
+   * @since Date: Sep 11, 2011
+   * @return {@link Date} that is equal to the values currently present in the date field, or <code>null</code> if the
+   *         text of the field is empty.
+   * @see #getDate()
+   * @see #getDateWithoutTime()
+   * @see #getDateWithoutTimeOrNull()
+   */
+  public abstract Date getDateOrNull();
+
+  /**
+   * Returns the {@link Date} that is represented by the current value of the date field. The values for hour, minute,
+   * second and millisecond will be zero.
+   * 
+   * @since Date: Sep 11, 2011
+   * @return {@link Date} that is equal to the values currently present in the date field. The values for hour, minute,
+   *         second and millisecond will be zero.
+   * @see #getDate()
+   * @see #getDateOrNull()
+   * @see #getDateWithoutTimeOrNull()
+   */
+  public abstract Date getDateWithoutTime();
+
+  /**
+   * Returns the {@link Date} that is represented by the current value of the date field, or <code>null</code> if there
+   * is no text in the field. The values for hour, minute, second and millisecond will be zero.
+   * 
+   * @since Date: Sep 11, 2011
+   * @return {@link Date} that is equal to the values currently present in the date field, or <code>null</code> if the
+   *         text of the field is empty. The values for hour, minute, second and millisecond will be zero.
+   * @see #getDate()
+   * @see #getDateOrNull()
+   * @see #getDateWithoutTime()
+   */
+  public abstract Date getDateWithoutTimeOrNull();
 }

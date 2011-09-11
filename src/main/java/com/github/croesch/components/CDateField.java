@@ -70,9 +70,61 @@ public class CDateField extends JTextField {
    * 
    * @since Date: Jul 6, 2011
    * @return {@link Date} representing current value of the date field.
+   * @see DateContent#getDate()
+   * @see #getDateOrNull()
+   * @see #getDateWithoutTime()
+   * @see #getDateWithoutTimeOrNull()
    */
   public final Date getDate() {
     return this.document.getDate();
+  }
+
+  /**
+   * Returns the date object containing the value currently stored in the date field, or <code>null</code> if there is
+   * currently no text in the field.
+   * 
+   * @since Date: Sep 11, 2011
+   * @return {@link Date} representing current value of the date field, or <code>null</code> if there is currently no
+   *         text in the field.
+   * @see #getDate()
+   * @see DateContent#getDateOrNull()
+   * @see #getDateWithoutTime()
+   * @see #getDateWithoutTimeOrNull()
+   */
+  public final Date getDateOrNull() {
+    return this.document.getDateOrNull();
+  }
+
+  /**
+   * Returns the date object containing the value currently stored in the date field. The fields hour, minute, second
+   * and millisecond are zero.
+   * 
+   * @since Date: Sep 11, 2011
+   * @return {@link Date} representing current value of the date field. The fields hour, minute, second and millisecond
+   *         are zero.
+   * @see #getDate()
+   * @see #getDateOrNull()
+   * @see DateContent#getDateWithoutTime()
+   * @see #getDateWithoutTimeOrNull()
+   */
+  public final Date getDateWithoutTime() {
+    return this.document.getDateWithoutTime();
+  }
+
+  /**
+   * Returns the date object containing the value currently stored in the date field, or <code>null</code> if there is
+   * currently no text in the field. The fields hour, minute, second and millisecond are zero.
+   * 
+   * @since Date: Sep 11, 2011
+   * @return {@link Date} representing current value of the date field, or <code>null</code> if there is currently no
+   *         text in the field. The fields hour, minute, second and millisecond are zero.
+   * @see #getDate()
+   * @see #getDateOrNull()
+   * @see #getDateWithoutTime()
+   * @see DateContent#getDateWithoutTimeOrNull()
+   */
+  public final Date getDateWithoutTimeOrNull() {
+    return this.document.getDateWithoutTimeOrNull();
   }
 
   /**

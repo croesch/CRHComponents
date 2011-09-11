@@ -36,6 +36,8 @@ import javax.swing.text.BadLocationException;
 import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
+import com.github.croesch.util.Util;
+
 /**
  * Provides test methods for {@link DateLazyContent}.
  * 
@@ -625,5 +627,70 @@ public class DateLazyContentTest extends FestSwingJUnitTestCase {
     assertThat(this.content.getText()).isEmpty();
     assertDateHasValues(this.content.getDate(), 6, 12, 2002);
     assertThat(this.content.getDateContent()).isEqualTo("2002. 12. 06");
+  }
+
+  @Test
+  public void testGetDate() throws BadLocationException {
+    this.content.insertString(0, "2", null);
+    this.content.insertString(1, "2", null);
+    this.content.insertString(2, "1", null);
+    this.content.insertString(4, "1", null);
+    this.content.insertString(5, "4", null);
+    this.content.insertString(7, "4", null);
+    assertThat(this.content.getText()).isEqualTo("22.11.1944");
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
+
+    this.content.remove(0, this.content.getLength());
+    assertDateHasValues(this.content.getDate(), 22, 11, 1944);
+  }
+
+  @Test
+  public void testGetDateOrNull() throws BadLocationException {
+    this.content.insertString(0, "2", null);
+    this.content.insertString(1, "2", null);
+    this.content.insertString(2, "1", null);
+    this.content.insertString(4, "1", null);
+    this.content.insertString(5, "4", null);
+    this.content.insertString(7, "4", null);
+    assertThat(this.content.getText()).isEqualTo("22.11.1944");
+    assertDateHasValues(this.content.getDateOrNull(), 22, 11, 1944);
+
+    this.content.remove(0, this.content.getLength());
+    assertThat(this.content.getText()).isNullOrEmpty();
+    assertThat(this.content.getDateOrNull()).isNull();
+
+    this.content.insertString(0, "2", null);
+    assertThat(this.content.getText()).isEqualTo("22.11.1944");
+    assertDateHasValues(this.content.getDateOrNull(), 22, 11, 1944);
+  }
+
+  @Test
+  public void testGetDateWithoutTime() throws BadLocationException {
+    this.content.insertString(0, "2", null);
+    this.content.insertString(1, "2", null);
+    this.content.insertString(2, "1", null);
+    this.content.insertString(4, "1", null);
+    this.content.insertString(5, "4", null);
+    this.content.insertString(7, "4", null);
+    assertThat(this.content.getText()).isEqualTo("22.11.1944");
+    assertThat(this.content.getDateWithoutTime()).isEqualTo(Util.of(this.content.getDate()).getDateWithoutTime());
+
+    this.content.remove(0, this.content.getLength());
+    assertThat(this.content.getDateWithoutTime()).isEqualTo(Util.of(this.content.getDate()).getDateWithoutTime());
+  }
+
+  @Test
+  public void testGetDateWithoutTimeOrNull() throws BadLocationException {
+    this.content.insertString(0, "2", null);
+    this.content.insertString(1, "2", null);
+    this.content.insertString(2, "1", null);
+    this.content.insertString(4, "1", null);
+    this.content.insertString(5, "4", null);
+    this.content.insertString(7, "4", null);
+    assertThat(this.content.getText()).isEqualTo("22.11.1944");
+    assertThat(this.content.getDateWithoutTimeOrNull()).isEqualTo(Util.of(this.content.getDate()).getDateWithoutTime());
+
+    this.content.remove(0, this.content.getLength());
+    assertThat(this.content.getDateWithoutTimeOrNull()).isNull();
   }
 }
