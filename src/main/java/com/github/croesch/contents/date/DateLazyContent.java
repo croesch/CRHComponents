@@ -203,8 +203,13 @@ class DateLazyContent extends DateContent {
     return sb.toString();
   }
 
-  @Override
-  public final Date getDate() {
+  /**
+   * Returns a {@link Calendar} object that contains the year, month and day values fetched from the editors.
+   * 
+   * @since Date: Sep 11, 2011
+   * @return a {@link Calendar} object, containing year, month and day fetched from editors.
+   */
+  private Calendar getCalendarWithCurrentValues() {
     final Calendar cal = new GregorianCalendar();
     int day = 1;
     int month = 1;
@@ -220,7 +225,30 @@ class DateLazyContent extends DateContent {
     }
 
     cal.set(year, month, day);
+    return cal;
+  }
+
+  @Override
+  public final Date getDateWithoutTime() {
+    final Calendar cal = getCalendarWithCurrentValues();
+    cal.set(Calendar.HOUR_OF_DAY, 0);
+    cal.set(Calendar.MINUTE, 0);
+    cal.set(Calendar.SECOND, 0);
+    cal.set(Calendar.MILLISECOND, 0);
     return cal.getTime();
+  }
+
+  @Override
+  public Date getDateWithoutTimeOrNull() {
+    if (getText() == null || getText().equals("")) {
+      return null;
+    }
+    return getDateWithoutTime();
+  }
+
+  @Override
+  public final Date getDate() {
+    return getCalendarWithCurrentValues().getTime();
   }
 
   @Override
