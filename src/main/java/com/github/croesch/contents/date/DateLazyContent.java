@@ -224,6 +224,14 @@ class DateLazyContent extends DateContent {
   }
 
   @Override
+  public final Date getDateOrNull() {
+    if (getText() == null || getText().equals("")) {
+      return null;
+    }
+    return getDate();
+  }
+
+  @Override
   public final void setDate(final Date d) {
     try {
       remove(0, getLength());

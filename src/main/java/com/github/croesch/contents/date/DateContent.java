@@ -133,7 +133,19 @@ public abstract class DateContent extends CContent {
    * 
    * @since Date: Jul 5, 2011
    * @return {@link Date} that is equal to the values currently present in the date field.
+   * @see #getDateOrNull()
    */
   public abstract Date getDate();
+
+  /**
+   * Returns the {@link Date} that is represented by the current value of the date field, or <code>null</code> if there
+   * is no text in the field.
+   * 
+   * @since Date: Sep 11, 2011
+   * @return {@link Date} that is equal to the values currently present in the date field, or <code>null</code> if the
+   *         text of the field is empty.
+   * @see #getDate()
+   */
+  public abstract Date getDateOrNull();
 
 }
