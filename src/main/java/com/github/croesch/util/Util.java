@@ -18,6 +18,8 @@
  */
 package com.github.croesch.util;
 
+import java.util.Date;
+
 /**
  * Provides some utility methods that constructs utility classes for the given object.
  * 
@@ -59,5 +61,18 @@ public final class Util {
    */
   public static StringArrayUtil of(final String[] arr) throws IllegalArgumentException {
     return new StringArrayUtil(arr);
+  }
+
+  /**
+   * Returns a {@link DateUtil} to access utilities for a {@link Date}s
+   * 
+   * @since Date: Sep 11, 2011
+   * @param d the {@link Date} should be used for the utilities
+   * @return the instance of {@link DateUtil}
+   * @throws IllegalArgumentException if the given date is {@code null}
+   * @see DateUtil#DateUtil(Date)
+   */
+  public static DateUtil of(final Date d) throws IllegalArgumentException {
+    return new DateUtil(d);
   }
 }

@@ -21,6 +21,9 @@ package com.github.croesch.util;
 import static org.fest.assertions.Assertions.assertThat;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
@@ -29,15 +32,12 @@ import org.junit.Test;
  * Provides test methods for {@link Util}
  * 
  * @author croesch
- * @since Date: 17.02.2011 20:43:57
+ * @since Date: 17.02.2011
  */
 public class UtilTest extends FestSwingJUnitTestCase {
 
   /**
    * Tests that {@link Util#of(String)} returns an object that is equal to the self created object
-   * 
-   * @author croesch
-   * @since Date: 17.02.2011 20:50:42
    */
   @Test
   public void testMultiply() {
@@ -49,12 +49,8 @@ public class UtilTest extends FestSwingJUnitTestCase {
 
   /**
    * Tests that {@link Util#of(String[])} returns an object that is equal to the self created object
-   * 
-   * @author croesch
-   * @since Date: 17.02.2011 20:50:42
    */
   @Test
-  @SuppressWarnings("nls")
   public void testAnalyseLengthOf() {
     assertThat(Util.of(new String[] { "" })).isEqualTo(new StringArrayUtil(new String[] { "" }));
     assertThat(Util.of(new String[] { "" })).isNotEqualTo(new StringArrayUtil(new String[] { "a" }));
@@ -69,15 +65,29 @@ public class UtilTest extends FestSwingJUnitTestCase {
   }
 
   /**
-   * Tests that the constructor {@link Util} throws an exception to avoid being called
-   * 
-   * @author croesch
-   * @since Date: 19.02.2011 19:57:30
+   * Test method for {@link Util#of(java.util.Date)}
    */
   @Test
-  public void testConstructorException() {
+  public void testDateUtil_DateWithoutTime() {
+    final Calendar cal = new GregorianCalendar();
+    cal.set(2004, 10, 03, 12, 4);
+
+    final DateUtil util = Util.of(cal.getTime());
+    assertThat(util.isEqualTo(cal.getTime())).isTrue();
+    assertThat(util.isEqualIgnoreTimeTo(cal.getTime())).isTrue();
+
+    cal.set(Calendar.YEAR, 1940);
+    assertThat(util.isEqualTo(cal.getTime())).isFalse();
+    assertThat(util.isEqualIgnoreTimeTo(cal.getTime())).isFalse();
+  }
+
+  /**
+   * Tests that the constructors of {@link Util} are private
+   */
+  @Test
+  public void testConstructorsArePrivate() {
     for (final Constructor<?> c : Util.class.getDeclaredConstructors()) {
-      assertThat(c.getModifiers()).as(c.toString()).isEqualTo(2);
+      assertThat(c.getModifiers()).as(c.toString()).isEqualTo(Modifier.PRIVATE);
     }
   }
 
