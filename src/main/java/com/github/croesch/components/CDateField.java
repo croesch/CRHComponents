@@ -70,9 +70,26 @@ public class CDateField extends JTextField {
    * 
    * @since Date: Jul 6, 2011
    * @return {@link Date} representing current value of the date field.
+   * @see #getDateOrNull()
    */
   public final Date getDate() {
     return this.document.getDate();
+  }
+
+  /**
+   * Returns the date object containing the value currently stored in the date field, or <code>null</code> if there is
+   * currently no text in the field.
+   * 
+   * @since Date: Sep 11, 2011
+   * @return {@link Date} representing current value of the date field, or <code>null</code> if there is currently no
+   *         text in the field.
+   * @see #getDate()
+   */
+  public final Date getDateOrNull() {
+    if (getText() == null || getText().equals("")) {
+      return null;
+    }
+    return getDate();
   }
 
   /**

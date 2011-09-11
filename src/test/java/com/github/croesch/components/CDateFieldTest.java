@@ -596,4 +596,22 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     assertDateHasValues(this.target.getDate(), 28, 2, 1955);
   }
 
+  @Test
+  public final void testGetDate() {
+    this.field.enterText("010100");
+    assertDateHasValues(((CDateField) this.field.target).getDate(), 1, 1, 2000);
+
+    this.field.deleteText();
+    assertDateHasValues(((CDateField) this.field.target).getDate(), 1, 1, 2000);
+  }
+
+  @Test
+  public final void testGetDateOrNull() {
+    this.field.enterText("010100");
+    assertDateHasValues(((CDateField) this.field.target).getDateOrNull(), 1, 1, 2000);
+    assertThat(((CDateField) this.field.target).getDateOrNull()).isNotNull();
+
+    this.field.deleteText();
+    assertThat(((CDateField) this.field.target).getDateOrNull()).isNull();
+  }
 }
