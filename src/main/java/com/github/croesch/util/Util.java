@@ -24,14 +24,14 @@ import java.util.Date;
  * Provides some utility methods that constructs utility classes for the given object.
  * 
  * @author croesch
- * @since Date: 15.02.2011 18:54:22
+ * @since Date: Feb 15, 2011
  */
 public final class Util {
 
   /**
    * Don't call it! Hide constructor of utility class.
    * 
-   * @since Date: 15.02.2011
+   * @since Date: Feb 15, 2011
    */
   private Util() {
     throw new AssertionError();
@@ -40,7 +40,7 @@ public final class Util {
   /**
    * Returns a {@link StringUtil} to access utilities for {@link String}
    * 
-   * @since Date: 15.02.2011
+   * @since Date: Feb 15, 2011
    * @param str the {@link String} that should be used for the utilities
    * @return the instance of {@link StringUtil}
    * @throws IllegalArgumentException if the given string is {@code null}
@@ -53,7 +53,7 @@ public final class Util {
   /**
    * Returns a {@link StringArrayUtil} to access utilities for an array of {@link String}s
    * 
-   * @since Date: 15.02.2011
+   * @since Date: Feb 15, 2011
    * @param arr the {@link String} array that should be used for the utilities
    * @return the instance of {@link StringArrayUtil}
    * @throws IllegalArgumentException if the array or one entry is {@code null}

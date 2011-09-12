@@ -27,7 +27,7 @@ import org.junit.Test;
  * Provides some basic test methods for {@link StringArrayUtil}
  * 
  * @author croesch
- * @since Date: 19.02.2011 15:22:35
+ * @since Date: Feb 19, 2011
  */
 public class StringArrayUtilTest extends FestSwingJUnitTestCase {
   private static String[] arr1_1 = new String[] {};
@@ -373,7 +373,7 @@ public class StringArrayUtilTest extends FestSwingJUnitTestCase {
    * Tests the constructor {@link StringArrayUtil#StringArrayUtil(String[])} and if the arguments are internally copied.
    * 
    * @author croesch
-   * @since Date: 19.02.2011 16:23:57
+   * @since Date: Feb 19, 2011
    */
   @Test
   public void testReferences() {

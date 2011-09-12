@@ -31,7 +31,7 @@ import com.github.croesch.util.Generator;
  * Provides test methods for {@link LocaleGenerator}
  * 
  * @author croesch
- * @since Date: 10.03.2011 19:19:56
+ * @since Date: Mar 10, 2011
  */
 public class LocaleGeneratorTest extends FestSwingJUnitTestCase {
 

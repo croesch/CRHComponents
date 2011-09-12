@@ -33,7 +33,7 @@ import com.github.croesch.logging.Log;
  * A text field that is specially made for date values.
  * 
  * @author croesch
- * @since Date: Mar 31, 2011 2:28:14 PM
+ * @since Date: Mar 31, 2011
  */
 public class CDateField extends JTextField {
 

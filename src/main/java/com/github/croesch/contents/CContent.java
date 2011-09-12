@@ -30,7 +30,7 @@ import com.github.croesch.listener.ErrorListener;
  * Standard content that allows every input.
  * 
  * @author croesch
- * @since (Date: 2011/01/13 21:12:39)
+ * @since Date: Jan 13, 2011
  */
 public class CContent extends CDocument {
 
@@ -46,7 +46,7 @@ public class CContent extends CDocument {
   /**
    * Whether the content would be valid with this input.
    * 
-   * @since (Date: 13.01.2011 22:08:17)
+   * @since Date: Jan 13, 2011
    * @param offs the offset of the input
    * @param str the String to put in
    * @return {@code true}, if it would be valid
@@ -79,7 +79,7 @@ public class CContent extends CDocument {
   /**
    * Sets whether {@link ErrorListener}s are informed about error changes
    * 
-   * @since 13.01.2011 22:08:17
+   * @since Date: Jan 13, 2011
    * @param notify whether {@link ErrorListener}s should be informed when error changes
    */
   public final void setErrorsNotifying(final boolean notify) {
@@ -89,7 +89,7 @@ public class CContent extends CDocument {
   /**
    * Whether {@link ErrorListener}s are informed about changes
    * 
-   * @since 13.01.2011 22:08:17
+   * @since Date: Jan 13, 2011
    * @return {@code true} if {@link ErrorListener}s are informed when error changes
    */
   public final boolean isErrorsNotifying() {
@@ -99,7 +99,7 @@ public class CContent extends CDocument {
   /**
    * Add listeners to this document
    * 
-   * @since (Date: 13.01.2011 22:08:17)
+   * @since Date: Jan 13, 2011
    * @param listener the {@link ErrorListener}s to add
    */
   public final void addErrorListeners(final ErrorListener ... listener) {
@@ -116,7 +116,7 @@ public class CContent extends CDocument {
   /**
    * Remove these error listeners from this document
    * 
-   * @since (Date: 13.01.2011 22:08:17)
+   * @since Date: Jan 13, 2011
    * @param listener the {@link ErrorListener}s to remove
    */
   public final void removeErrorListeners(final ErrorListener ... listener) {
@@ -128,7 +128,7 @@ public class CContent extends CDocument {
   /**
    * The maximum number of chars in this document
    * 
-   * @since (Date: 13.01.2011 22:08:17)
+   * @since Date: Jan 13, 2011
    * @return the number of maximum chars, or {@code 0} if there is no maximum
    */
   public final int getMaximumInputLength() {
@@ -141,7 +141,7 @@ public class CContent extends CDocument {
   /**
    * Set the maximum number of chars in this document, <= 0 equals no maximum
    * 
-   * @since (Date: 13.01.2011 22:08:17)
+   * @since Date: Jan 13, 2011
    * @param max the maximum number of chars, or {@code 0} for no maximum
    */
   public final void setMaximumInputLength(final int max) {
@@ -161,7 +161,7 @@ public class CContent extends CDocument {
   /**
    * Checks for errors and if the state has changed it informs the error listeners
    * 
-   * @since (Date: 13.01.2011 22:08:17)
+   * @since Date: Jan 13, 2011
    */
   public final void checkForErrors() {
     if (this.error == isValid() && isErrorsNotifying()) {

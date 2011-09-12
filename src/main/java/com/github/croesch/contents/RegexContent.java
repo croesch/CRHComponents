@@ -22,7 +22,7 @@ package com.github.croesch.contents;
  * This is a document to define a regular expression for its content
  * 
  * @author croesch
- * @since (Date: 2011/01/13 21:12:39)
+ * @since Date: Jan 13, 2011
  */
 public class RegexContent extends CContent {
 
@@ -35,7 +35,7 @@ public class RegexContent extends CContent {
   /**
    * Constructs a document with the given regular expression
    * 
-   * @since (Date: 13.01.2011 22:08:17)
+   * @since Date: Jan 13, 2011
    * @param regex initial regular expression
    */
   public RegexContent(final String regex) {
@@ -45,7 +45,7 @@ public class RegexContent extends CContent {
   /**
    * The current regular expression
    * 
-   * @since (Date: 13.01.2011 22:08:17)
+   * @since Date: Jan 13, 2011
    * @return a String that contains the regular expression
    */
   public final String getRegularExpression() {
@@ -55,7 +55,7 @@ public class RegexContent extends CContent {
   /**
    * Sets the regular expression for this document
    * 
-   * @since (Date: 13.01.2011 22:08:17)
+   * @since Date: Jan 13, 2011
    * @param regex the regular expression to set
    */
   public final void setRegularExpression(final String regex) {

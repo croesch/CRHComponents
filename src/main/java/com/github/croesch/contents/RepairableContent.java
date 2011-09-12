@@ -25,7 +25,7 @@ import javax.swing.text.BadLocationException;
  * Provides methods to repair its content and to repair it automatically
  * 
  * @author croesch
- * @since (Date: 2011/01/13 21:12:39 )
+ * @since Date: Jan 13, 2011
  */
 public class RepairableContent extends CContent {
 
@@ -38,7 +38,7 @@ public class RepairableContent extends CContent {
   /**
    * Repairs the content
    * 
-   * @since (Date: 13.01.2011 22:08:17)
+   * @since Date: Jan 13, 2011
    * @throws BadLocationException if {@link #getLength()} returns an invalid value
    */
   public final void repair() throws BadLocationException {
@@ -60,7 +60,7 @@ public class RepairableContent extends CContent {
   }
 
   /**
-   * @since (Date: 13.01.2011 22:08:17)
+   * @since Date: Jan 13, 2011
    * @return {@code true}, if it repairs its content automatically
    */
   public final boolean isAutoRepairContent() {
@@ -70,7 +70,7 @@ public class RepairableContent extends CContent {
   /**
    * Sets whether the content should be repaired automatically
    * 
-   * @since (Date: 2011/01/13 21:12:39)
+   * @since Date: Jan 13, 2011
    * @param auto {@code true}, if it should be repaired automatically
    */
   public final void setAutoRepairContent(final boolean auto) {

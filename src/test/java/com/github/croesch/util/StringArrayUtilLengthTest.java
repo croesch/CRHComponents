@@ -27,7 +27,7 @@ import org.junit.Test;
  * Provides methods to test {@link StringArrayUtil#getMaxLineLength()}
  * 
  * @author croesch
- * @since Date: 17.02.2011 20:59:00
+ * @since Date: Feb 17, 2011
  */
 public class StringArrayUtilLengthTest extends FestSwingJUnitTestCase {
 
@@ -85,7 +85,7 @@ public class StringArrayUtilLengthTest extends FestSwingJUnitTestCase {
    * Tests the method {@link StringArrayUtil#getMaxLineLength()} with some valid input
    * 
    * @author croesch
-   * @since Date: 17.02.2011 18:44:08
+   * @since Date: Feb 17, 2011
    */
   @Test
   public void testGetMaxLineLength1() {
@@ -103,7 +103,7 @@ public class StringArrayUtilLengthTest extends FestSwingJUnitTestCase {
    * Tests the method {@link StringArrayUtil#getMaxLineLength()} with some valid input
    * 
    * @author croesch
-   * @since Date: 17.02.2011 18:44:08
+   * @since Date: Feb 17, 2011
    */
   @Test
   public void testGetMaxLineLength2() {
@@ -125,7 +125,7 @@ public class StringArrayUtilLengthTest extends FestSwingJUnitTestCase {
    * Tests the method {@link StringArrayUtil#getMaxLineLength()} with some valid input
    * 
    * @author croesch
-   * @since Date: 17.02.2011 18:44:08
+   * @since Date: Feb 17, 2011
    */
   @Test
   public void testGetMaxLineLength_Trimmed1() {
@@ -143,7 +143,7 @@ public class StringArrayUtilLengthTest extends FestSwingJUnitTestCase {
    * Tests the method {@link StringArrayUtil#getMaxLineLength()} with some valid input
    * 
    * @author croesch
-   * @since Date: 17.02.2011 18:44:08
+   * @since Date: Feb 17, 2011
    */
   @Test
   public void testGetMaxLineLength_Trimmed2() {

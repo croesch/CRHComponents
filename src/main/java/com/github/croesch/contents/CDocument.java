@@ -24,7 +24,7 @@ import javax.swing.text.PlainDocument;
  * Extends the {@link PlainDocument} and provides new functionality
  * 
  * @author croesch
- * @since Date: 09.02.2011 22:11:36
+ * @since Date: Feb 09, 2011
  */
 public abstract class CDocument extends PlainDocument {
 
@@ -34,7 +34,7 @@ public abstract class CDocument extends PlainDocument {
   /**
    * Calculates whether the content is currently valid
    * 
-   * @since 13.01.2011 22:08:17
+   * @since Date: Jan 13, 2011
    * @return {@code true}, if the content is valid
    */
   public abstract boolean isValid();
@@ -42,7 +42,7 @@ public abstract class CDocument extends PlainDocument {
   /**
    * Calculates whether the given {@link String} would be a valid content.
    * 
-   * @since 13.01.2011 22:08:17
+   * @since Date: Jan 13, 2011
    * @param text the string to check, {@code null} will return {@code false}
    * @return {@code true}, if {@code text} is a valid content
    */
@@ -51,7 +51,7 @@ public abstract class CDocument extends PlainDocument {
   /**
    * Returns the complete text of this document or null if an exception occurred
    * 
-   * @since 28.01.2011 22:30:37
+   * @since Date: Jan 28, 2011
    * @return the complete text of this document or {@code null} if an exception occurred
    */
   public abstract String getText();

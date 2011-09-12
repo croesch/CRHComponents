@@ -33,7 +33,7 @@ import org.junit.Test;
  * Provides test methods for {@link FilePropertiesBundle}
  * 
  * @author croesch
- * @since Date: 12.02.2011 20:19:16
+ * @since Date: Feb 12, 2011
  */
 public class FilePropertiesBundleTest extends FestSwingJUnitTestCase {
 
@@ -43,7 +43,7 @@ public class FilePropertiesBundleTest extends FestSwingJUnitTestCase {
    * Sets the Locale to German
    * 
    * @author croesch
-   * @since Date: 12.02.2011 20:44:47
+   * @since Date: Feb 12, 2011
    */
   @BeforeClass
   public static void init() {
@@ -127,7 +127,7 @@ public class FilePropertiesBundleTest extends FestSwingJUnitTestCase {
    * Tests that the constructor {@link FilePropertiesBundle} throws an exception to avoid being called
    * 
    * @author croesch
-   * @since Date: 19.02.2011 19:57:30
+   * @since Date: Feb 19, 2011
    */
   @Test
   public void testConstructorException() {

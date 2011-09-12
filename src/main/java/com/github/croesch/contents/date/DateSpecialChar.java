@@ -23,7 +23,7 @@ package com.github.croesch.contents.date;
  * defined in {@link DateSpecialCharInterpreter}.
  * 
  * @author croesch
- * @since Date: Apr 5, 2011 10:14:24 AM
+ * @since Date: Apr 5, 2011
  * @see DateSpecialCharInterpreter
  */
 final class DateSpecialChar {
@@ -78,7 +78,7 @@ final class DateSpecialChar {
    * Constructs a {@link DateSpecialChar} with the given values.
    * 
    * @author croesch
-   * @since Date: Apr 5, 2011 9:02:36 PM
+   * @since Date: Apr 5, 2011
    * @param c the character to access this definition
    * @param yearType the type of the year value, not <code>null</code>
    * @param yearVal the year value
@@ -110,7 +110,7 @@ final class DateSpecialChar {
    * Returns the character to access this definition of a special date.
    * 
    * @author croesch
-   * @since Date: Apr 5, 2011 9:03:55 PM
+   * @since Date: Apr 5, 2011
    * @return the special character that need to be entered to access this definition.
    */
   public char getChar() {
@@ -121,7 +121,7 @@ final class DateSpecialChar {
    * Returns the type of the year value.
    * 
    * @author croesch
-   * @since Date: Apr 5, 2011 9:04:28 PM
+   * @since Date: Apr 5, 2011
    * @return the enum that represents the type of the year value
    */
   public ValueType getYearValueType() {
@@ -132,7 +132,7 @@ final class DateSpecialChar {
    * Returns the year value
    * 
    * @author croesch
-   * @since Date: Apr 5, 2011 9:04:55 PM
+   * @since Date: Apr 5, 2011
    * @return the year value
    */
   public int getYearValue() {
@@ -143,7 +143,7 @@ final class DateSpecialChar {
    * Returns the type of the month value.
    * 
    * @author croesch
-   * @since Date: Apr 5, 2011 9:05:14 PM
+   * @since Date: Apr 5, 2011
    * @return the enum that represents the type of the month value.
    */
   public ValueType getMonthValueType() {
@@ -154,7 +154,7 @@ final class DateSpecialChar {
    * Returns the month value.
    * 
    * @author croesch
-   * @since Date: Apr 5, 2011 9:05:41 PM
+   * @since Date: Apr 5, 2011
    * @return the month value.
    */
   public int getMonthValue() {
@@ -165,7 +165,7 @@ final class DateSpecialChar {
    * Returns the type of the day value.
    * 
    * @author croesch
-   * @since Date: Apr 5, 2011 9:05:57 PM
+   * @since Date: Apr 5, 2011
    * @return the enum that represents the type of the day value.
    */
   public ValueType getDayValueType() {
@@ -176,7 +176,7 @@ final class DateSpecialChar {
    * Returns the day value.
    * 
    * @author croesch
-   * @since Date: Apr 5, 2011 9:06:22 PM
+   * @since Date: Apr 5, 2011
    * @return the day value.
    */
   public int getDayValue() {
@@ -213,7 +213,7 @@ final class DateSpecialChar {
    * Returns whether all of the internal fields are the same as the fields of the given {@link DateSpecialChar}
    * 
    * @author croesch
-   * @since Date: Apr 5, 2011 9:06:47 PM
+   * @since Date: Apr 5, 2011
    * @param other the other {@link DateSpecialChar} to compare with this
    * @return <code>true</code>, if all the fields are the same
    */

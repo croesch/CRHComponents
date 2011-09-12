@@ -27,7 +27,7 @@ import org.junit.Test;
  * Provides test methods for {@link StringUtil}
  * 
  * @author croesch
- * @since Date: 17.02.2011 19:50:44
+ * @since Date: Feb 17, 2011
  */
 public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
 
@@ -35,7 +35,7 @@ public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
    * Tests the constructor {@link StringUtil#StringUtil(String)}
    * 
    * @author croesch
-   * @since Date: 17.02.2011 20:34:16
+   * @since Date: Feb 17, 2011
    * @see com.github.croesch.util.Util#of(String)
    */
   @Test
@@ -52,7 +52,7 @@ public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
    * Ensures that {@link StringUtil#StringUtil(String)} throws an exception if {@code null} is passed
    * 
    * @author croesch
-   * @since Date: 17.02.2011 20:34:51
+   * @since Date: Feb 17, 2011
    */
   @Test(expected = IllegalArgumentException.class)
   public void testConstructorThrowsIAE() {
@@ -63,7 +63,7 @@ public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
    * Ensures that {@link StringUtil#toStringMultipliedWith(int)} throws an exception if a value less than zero is passed
    * 
    * @author croesch
-   * @since Date: 17.02.2011 20:35:27
+   * @since Date: Feb 17, 2011
    */
   @Test(expected = IllegalArgumentException.class)
   public void testMultiplyThrowsIAE1() {
@@ -74,7 +74,7 @@ public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
    * Ensures that {@link StringUtil#toStringMultipliedWith(int)} throws an exception if a value less than zero is passed
    * 
    * @author croesch
-   * @since Date: 17.02.2011 20:35:27
+   * @since Date: Feb 17, 2011
    */
   @Test(expected = IllegalArgumentException.class)
   public void testMultiplyThrowsIAE2() {
@@ -86,7 +86,7 @@ public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
    * passed
    * 
    * @author croesch
-   * @since Date: 17.02.2011 20:35:27
+   * @since Date: Feb 17, 2011
    */
   @Test
   public void testMultiplyingString_Empty() {
@@ -102,7 +102,7 @@ public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
    * Ensures that a given char is correctly multiplied
    * 
    * @author croesch
-   * @since Date: 17.02.2011 20:36:31
+   * @since Date: Feb 17, 2011
    */
   @Test
   public void testMultiplyingString_A() {
@@ -124,7 +124,7 @@ public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
    * Ensures that two given chars are correctly multiplied
    * 
    * @author croesch
-   * @since Date: 17.02.2011 20:36:31
+   * @since Date: Feb 17, 2011
    */
   @Test
   public void testMultiplyingString_BC() {
@@ -141,7 +141,7 @@ public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
    * Ensures that two given words are correctly multiplied
    * 
    * @author croesch
-   * @since Date: 17.02.2011 20:36:31
+   * @since Date: Feb 17, 2011
    */
   @Test
   public void testMultiplyingString_TwoWords() {
@@ -159,7 +159,7 @@ public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
    * Ensures that a given string is correctly multiplied without being trimmed
    * 
    * @author croesch
-   * @since Date: 17.02.2011 20:36:31
+   * @since Date: Feb 17, 2011
    */
   @Test
   public void testMultiplyingString_NotTrimmed() {
@@ -179,7 +179,7 @@ public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
    * Tests that high multiplications return the correct length of the string
    * 
    * @author croesch
-   * @since Date: 17.02.2011 20:37:28
+   * @since Date: Feb 17, 2011
    */
   @Test
   public void testMulitplyingString_Often() {
@@ -191,7 +191,7 @@ public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
    * Tests that two parallel executing threads return the same result
    * 
    * @author croesch
-   * @since Date: 17.02.2011 20:37:52
+   * @since Date: Feb 17, 2011
    * @throws InterruptedException if something went wrong
    */
   @Test

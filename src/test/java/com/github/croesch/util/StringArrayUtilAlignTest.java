@@ -29,7 +29,7 @@ import org.junit.Test;
  * {@link StringArrayUtil#toRightAlignedArray()}</li>
  * 
  * @author croesch
- * @since Date: 15.02.2011 20:31:01
+ * @since Date: Feb 15, 2011
  */
 public class StringArrayUtilAlignTest extends FestSwingJUnitTestCase {
 
@@ -37,7 +37,7 @@ public class StringArrayUtilAlignTest extends FestSwingJUnitTestCase {
    * Tests the behaviour of left alignment without trimming the lines.
    * 
    * @author croesch
-   * @since Date: 16.02.2011 21:57:26
+   * @since Date: Feb 16, 2011
    */
   @Test
   public void testAlignLeft() {
@@ -78,7 +78,7 @@ public class StringArrayUtilAlignTest extends FestSwingJUnitTestCase {
    * Tests the behaviour of right alignment without trimming the lines.
    * 
    * @author croesch
-   * @since Date: 16.02.2011 21:57:26
+   * @since Date: Feb 16, 2011
    */
   @Test
   public void testAlignRight() {
@@ -119,7 +119,7 @@ public class StringArrayUtilAlignTest extends FestSwingJUnitTestCase {
    * Tests the behaviour of centre alignment without trimming the lines.
    * 
    * @author croesch
-   * @since Date: 16.02.2011 21:57:26
+   * @since Date: Feb 16, 2011
    */
   @Test
   public void testAlignCentre() {
@@ -160,7 +160,7 @@ public class StringArrayUtilAlignTest extends FestSwingJUnitTestCase {
    * Tests the behaviour of left alignment with trimming the lines.
    * 
    * @author croesch
-   * @since Date: 16.02.2011 21:57:26
+   * @since Date: Feb 16, 2011
    */
   @Test
   public void testAlignLeft_Trim() {
@@ -197,7 +197,7 @@ public class StringArrayUtilAlignTest extends FestSwingJUnitTestCase {
    * Tests the behaviour of right alignment with trimming the lines.
    * 
    * @author croesch
-   * @since Date: 16.02.2011 21:57:26
+   * @since Date: Feb 16, 2011
    */
   @Test
   public void testAlignRight_Trim() {
@@ -234,7 +234,7 @@ public class StringArrayUtilAlignTest extends FestSwingJUnitTestCase {
    * Tests the behaviour of centre alignment with trimming the lines.
    * 
    * @author croesch
-   * @since Date: 16.02.2011 21:57:26
+   * @since Date: Feb 16, 2011
    */
   @Test
   public void testAlignCentre_Trim() {

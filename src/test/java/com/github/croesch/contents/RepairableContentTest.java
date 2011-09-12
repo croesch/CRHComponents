@@ -29,7 +29,7 @@ import org.junit.Test;
  * Provides test methods for {@link RepairableContent}
  * 
  * @author croesch
- * @since Date: 10.02.2011 20:54:44
+ * @since Date: Feb 10, 2011
  */
 @SuppressWarnings("nls")
 public class RepairableContentTest extends FestSwingJUnitTestCase {
@@ -40,7 +40,7 @@ public class RepairableContentTest extends FestSwingJUnitTestCase {
    * Creates an instance of the {@link RepairableContent}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 20:54:44
+   * @since Date: Feb 10, 2011
    */
   @Override
   public void onSetUp() {
@@ -158,7 +158,7 @@ public class RepairableContentTest extends FestSwingJUnitTestCase {
    * {@link BadLocationException}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 19:13:48
+   * @since Date: Feb 10, 2011
    */
   @Test(expected = BadLocationException.class)
   public void testInsertStringIntStringAttributeSet_BLE1() throws BadLocationException {
@@ -170,7 +170,7 @@ public class RepairableContentTest extends FestSwingJUnitTestCase {
    * {@link BadLocationException}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 19:13:48
+   * @since Date: Feb 10, 2011
    */
   @Test(expected = BadLocationException.class)
   public void testInsertStringIntStringAttributeSet_BLE2() throws BadLocationException {
@@ -229,7 +229,7 @@ public class RepairableContentTest extends FestSwingJUnitTestCase {
    * {@link BadLocationException}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 19:13:48
+   * @since Date: Feb 10, 2011
    */
   @Test(expected = BadLocationException.class)
   public void testReplaceIntIntStringAttributeSet_BLE1() throws BadLocationException {
@@ -241,7 +241,7 @@ public class RepairableContentTest extends FestSwingJUnitTestCase {
    * {@link BadLocationException}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 19:13:48
+   * @since Date: Feb 10, 2011
    */
   @Test(expected = BadLocationException.class)
   public void testReplaceIntIntStringAttributeSet_BLE2() throws BadLocationException {
@@ -253,7 +253,7 @@ public class RepairableContentTest extends FestSwingJUnitTestCase {
    * {@link BadLocationException}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 19:13:48
+   * @since Date: Feb 10, 2011
    */
   @Test(expected = BadLocationException.class)
   public void testReplaceIntIntStringAttributeSet_BLE3() throws BadLocationException {

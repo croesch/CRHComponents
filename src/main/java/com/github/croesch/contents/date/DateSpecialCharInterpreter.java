@@ -45,7 +45,7 @@ import com.github.croesch.logging.Log;
  * < number > ::= [0-9]
  * 
  * @author croesch
- * @since Date: Apr 5, 2011 9:40:29 AM
+ * @since Date: Apr 5, 2011
  */
 final class DateSpecialCharInterpreter {
 
@@ -56,7 +56,7 @@ final class DateSpecialCharInterpreter {
    * Constructs a new {@link DateSpecialCharInterpreter} with the definition given by the given {@link BufferedReader}.
    * 
    * @author croesch
-   * @since Date: Apr 5, 2011 8:46:33 PM
+   * @since Date: Apr 5, 2011
    * @param in the {@link BufferedReader} to read the definitions from
    */
   public DateSpecialCharInterpreter(final BufferedReader in) {
@@ -79,7 +79,7 @@ final class DateSpecialCharInterpreter {
    * <b>Note:</b> The string mustn't contain any invalid value, ensure that it contains < type > < value >!
    * 
    * @author croesch
-   * @since Date: Apr 5, 2011 8:47:52 PM
+   * @since Date: Apr 5, 2011
    * @param s the string that contains < type > < value >
    * @return the enum that represents the < type >
    * @throws AssertionError if the < type > is unknown
@@ -102,7 +102,7 @@ final class DateSpecialCharInterpreter {
    * <b>Note:</b> The string mustn't contain any invalid value, ensure that it contains < type > < value >!
    * 
    * @author croesch
-   * @since Date: Apr 5, 2011 8:47:52 PM
+   * @since Date: Apr 5, 2011
    * @param s the string that contains < type > < value >
    * @return the int that represents the < value >
    */
@@ -116,7 +116,7 @@ final class DateSpecialCharInterpreter {
    * <b>Note:</b> The string mustn't contain any invalid value, ensure that it contains < line >!
    * 
    * @author croesch
-   * @since Date: Apr 5, 2011 8:51:04 PM
+   * @since Date: Apr 5, 2011
    * @param line the {@link String} that contains < line >
    * @return an array that contains the parts of the < line > splitted by the < sep >. Optional values that are omitted
    *         are replaced with default values.
@@ -137,7 +137,7 @@ final class DateSpecialCharInterpreter {
    * <b>Note:</b> The string mustn't contain any invalid value, ensure that it contains < line >!
    * 
    * @author croesch
-   * @since Date: Apr 5, 2011 8:55:39 PM
+   * @since Date: Apr 5, 2011
    * @param line the {@link String} that contains < line >
    */
   private void addLine(final String line) {
@@ -155,7 +155,7 @@ final class DateSpecialCharInterpreter {
    * Returns the map of the definitions found in the input stream.
    * 
    * @author croesch
-   * @since Date: Apr 5, 2011 8:56:48 PM
+   * @since Date: Apr 5, 2011
    * @return a map that contains all found valid definitions of special chars with their values.
    */
   public Map<String, DateSpecialChar> getSpecialCharsMap() {

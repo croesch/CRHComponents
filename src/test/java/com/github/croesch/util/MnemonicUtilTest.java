@@ -34,7 +34,7 @@ import org.junit.Test;
  * Provides test cases for {@link MnemonicUtil}
  * 
  * @author croesch
- * @since Date: 09.02.2011 20:27:00
+ * @since Date: Feb 09, 2011
  */
 public class MnemonicUtilTest extends FestSwingJUnitTestCase {
 
@@ -46,7 +46,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * @author croesch
    * @throws InvocationTargetException
    * @throws InterruptedException
-   * @since Date: 09.02.2011 20:57:19
+   * @since Date: Feb 09, 2011
    */
   @Override
   public void onSetUp() {
@@ -67,7 +67,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests to pass an empty {@link String}
    * 
    * @author croesch
-   * @since Date: 09.02.2011 20:58:24
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilterMnemonic_Empty() {
@@ -80,7 +80,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests to pass a {@code null} value
    * 
    * @author croesch
-   * @since Date: 09.02.2011 20:58:49
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilterMnemonic_Null() {
@@ -93,7 +93,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests a single bracket
    * 
    * @author croesch
-   * @since Date: 09.02.2011 20:59:09
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilterMnemonic_SingleBracket1() {
@@ -106,7 +106,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests a single bracket
    * 
    * @author croesch
-   * @since Date: 09.02.2011 20:59:09
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilterMnemonic_SingleBracket2() {
@@ -119,7 +119,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests to pass a {@code $} sign
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:00:13
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilterMnemonic_Dollar() {
@@ -132,7 +132,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests to mark a space as mnemonic
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:00:39
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilterMnemonic_Space() {
@@ -145,7 +145,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests empty brackets
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:01:08
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilterMnemonic_EmptyBracket() {
@@ -158,7 +158,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests two bracket pairs
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:01:23
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilterMnemonic_TwoBracketPairs() {
@@ -171,7 +171,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests a non closed bracket
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:01:43
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilterMnemonic_NotClosed() {
@@ -184,7 +184,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests a non opened bracket
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:02:02
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilterMnemonic_NotOpened() {
@@ -197,7 +197,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests some brackets
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:02:23
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilterMnemonic_Brackets1() {
@@ -210,7 +210,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests some brackets
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:02:23
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilterMnemonic_Brackets2() {
@@ -223,7 +223,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests brackets in brackets
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:02:54
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilterMnemonic_BracketsInBrackets() {
@@ -236,7 +236,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests too many characters in brackets
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:05:46
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilerMnemonic_TooManyCharacters1() {
@@ -249,7 +249,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests too many characters in brackets
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:05:46
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilerMnemonic_TooManyCharacters2() {
@@ -262,7 +262,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests too many characters in brackets
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:05:46
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilerMnemonic_TooManyCharacters3() {
@@ -275,7 +275,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests too many characters in brackets
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:05:46
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testFilerMnemonic_TooManyCharacters4() {
@@ -288,7 +288,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * Tests that the constructor {@link MnemonicUtil} throws an exception to avoid being called
    * 
    * @author croesch
-   * @since Date: 19.02.2011 19:57:30
+   * @since Date: Feb 19, 2011
    */
   @Test
   public void testConstructorException() {

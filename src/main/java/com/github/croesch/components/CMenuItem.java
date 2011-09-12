@@ -28,7 +28,7 @@ import com.github.croesch.util.MnemonicUtil;
  * This menu item is able to set its mnemonic key automatically.
  * 
  * @author croesch
- * @since (Date: 2010/12/20 17:40:58)
+ * @since Date: Dec 20, 2010
  */
 public class CMenuItem extends JMenuItem {
 

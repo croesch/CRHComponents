@@ -36,7 +36,7 @@ import org.junit.Test;
  * - the mnemonic-behavior
  * 
  * @author croesch
- * @since Date: 2010/12/24 09:56:39
+ * @since Date: Dec 24, 2010
  */
 @SuppressWarnings("nls")
 public class CMenuTest extends FestSwingJUnitTestCase {

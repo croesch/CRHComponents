@@ -27,7 +27,7 @@ import org.junit.Test;
  * Provides some basic test methods for {@link StringUtil}
  * 
  * @author croesch
- * @since Date: 19.02.2011 15:22:35
+ * @since Date: Feb 19, 2011
  */
 public class StringUtilTest extends FestSwingJUnitTestCase {
   private static String arr1_1 = "";

@@ -35,7 +35,7 @@ import java.util.ResourceBundle;
  * when asking the value for a special key.
  * 
  * @author croesch
- * @since Date: 2010/12/23
+ * @since Date: Dec 23, 2010
  */
 @SuppressWarnings("nls")
 public final class FilePropertiesBundle {
@@ -49,7 +49,7 @@ public final class FilePropertiesBundle {
   /**
    * Don't call this! Hide constructor of utility class.
    * 
-   * @since Date: 12.02.2011
+   * @since Date: Feb 12, 2011
    */
   private FilePropertiesBundle() {
     throw new AssertionError();
@@ -59,7 +59,7 @@ public final class FilePropertiesBundle {
    * Creates a resource bundle of the given file name. And adds it to the map if the given name is not yet available in
    * the map of resource bundles. If an IOException occurs the bundle will be {@code null}.
    * 
-   * @since Date: 12.02.2011
+   * @since Date: Feb 12, 2011
    * @param name the file name <b>without</b> file extension
    */
   private static void registerBundle(final String name) {
@@ -77,7 +77,7 @@ public final class FilePropertiesBundle {
    * Returns the value for the given key from the given file name. {@code null} is returned if the key is not found. The
    * given file name will be extended by the default file extension.
    * 
-   * @since 12.02.2011
+   * @since Date: Feb 12, 2011
    * @param bundle base file name, without extension
    * @param key the key to lookup in the filename
    * @see #getText(String, String, Locale)
@@ -107,7 +107,7 @@ public final class FilePropertiesBundle {
    * bundles. If one contains the key the value will be returned. If not it will search in the next bundle. If no bundle
    * contains the key, it will return {@code null}. The locale to derive the file names will be the default locale.
    * 
-   * @since 12.02.2011
+   * @since Date: Feb 12, 2011
    * @param bundle the name of the properties file, without ".properties"!
    * @param key the key in the properties file
    * @see #getMessageFromSingleBundle(String, String)
@@ -124,7 +124,7 @@ public final class FilePropertiesBundle {
    * bundles. If one contains the key the value will be returned. If not it will search in the next bundle. If no bundle
    * contains the key, it will return {@code null}. The locale will be used to derive the file names.
    * 
-   * @since 12.02.2011
+   * @since Date: Feb 12, 2011
    * @param bundle the name of the properties file, without ".properties"!
    * @param key the key in the properties file
    * @param loc the locale to derive the file names from

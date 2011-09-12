@@ -32,7 +32,7 @@ import com.github.croesch.contents.date.DateSpecialChar.ValueType;
  * Provides test methods for {@link DateSpecialCharInterpreter}
  * 
  * @author croesch
- * @since Date: Apr 5, 2011 9:41:21 AM
+ * @since Date: Apr 5, 2011
  */
 public class DateSpecialCharInterpreterTest extends FestSwingJUnitTestCase {
 

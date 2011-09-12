@@ -32,7 +32,7 @@ import org.junit.Test;
  * Provides test methods for {@link Util}
  * 
  * @author croesch
- * @since Date: 17.02.2011
+ * @since Date: Feb 17, 2011
  */
 public class UtilTest extends FestSwingJUnitTestCase {
 

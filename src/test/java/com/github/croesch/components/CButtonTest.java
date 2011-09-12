@@ -39,7 +39,7 @@ import org.junit.Test;
  * <li>the mnemonic-behaviour</li><li>constructors</li>
  * 
  * @author croesch
- * @since Date: 2010/12/24 09:56:39
+ * @since Date: Dec 24, 2010
  */
 @SuppressWarnings("nls")
 public class CButtonTest extends FestSwingJUnitTestCase {

@@ -31,7 +31,7 @@ import com.github.croesch.logging.Log;
  * Utility class for Mnemonic operations
  * 
  * @author croesch
- * @since (Date: 2010/12/20 17:40:57 )
+ * @since Date: Dec 20, 2010
  */
 public final class MnemonicUtil {
 
@@ -39,7 +39,7 @@ public final class MnemonicUtil {
    * Hides the default constructor, cause this is a utility class. Don't call this constructor.
    * 
    * @author croesch
-   * @since Date: 08.02.2011 21:36:27
+   * @since Date: Feb 08, 2011
    */
   private MnemonicUtil() {
     throw new AssertionError();

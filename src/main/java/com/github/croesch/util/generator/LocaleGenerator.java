@@ -24,7 +24,7 @@ import java.util.Locale;
  * Generator for file names.
  * 
  * @author croesch
- * @since Date: 10.03.2011 19:14:05
+ * @since Date: Mar 10, 2011
  */
 public final class LocaleGenerator {
 
@@ -36,7 +36,7 @@ public final class LocaleGenerator {
   /**
    * Constructs a {@link LocaleGenerator} with the given {@link Locale}
    * 
-   * @since Date: 10.03.2011
+   * @since Date: Mar 10, 2011
    * @param locale the {@link Locale} that is used to generate things.
    */
   public LocaleGenerator(final Locale locale) {

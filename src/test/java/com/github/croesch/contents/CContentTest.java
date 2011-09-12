@@ -32,7 +32,7 @@ import com.github.croesch.listener.ErrorListener;
  * Provides test cases for {@link CContent}
  * 
  * @author croesch
- * @since Date: 09.02.2011 21:26:46
+ * @since Date: Feb 09, 2011
  */
 @SuppressWarnings("nls")
 public class CContentTest extends FestSwingJUnitTestCase {
@@ -45,7 +45,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * Initialises the {@link CContent} and the {@link #bool}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 18:48:12
+   * @since Date: Feb 10, 2011
    */
   @Override
   public void onSetUp() {
@@ -57,7 +57,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * Tests the {@link CContent#remove(int, int)}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 18:47:46
+   * @since Date: Feb 10, 2011
    */
   @Test
   public void testRemove() {
@@ -74,7 +74,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * Tests the {@link CContent#isValidInput(int, String)}
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:42:07
+   * @since Date: Feb 09, 2011
    * @throws BadLocationException if test fails
    */
   @Test
@@ -97,7 +97,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * Ensures that {@link CContent#isValidInput(int, String)} throws a {@link BadLocationException}
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:42:07
+   * @since Date: Feb 09, 2011
    */
   @Test(expected = BadLocationException.class)
   public void testIsValidInputIntString_BLE1() throws BadLocationException {
@@ -108,7 +108,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * Ensures that {@link CContent#isValidInput(int, String)} throws a {@link BadLocationException}
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:42:07
+   * @since Date: Feb 09, 2011
    */
   @Test(expected = BadLocationException.class)
   public void testIsValidInputIntString_BLE2() throws BadLocationException {
@@ -119,7 +119,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * Tests the {@link CContent#isValid()}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 18:41:38
+   * @since Date: Feb 10, 2011
    * @throws BadLocationException if something went wrong
    */
   @Test
@@ -157,7 +157,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * Tests the {@link CContent#isErrorsNotifying()} and {@link CContent#setErrorsNotifying(boolean)}
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:44:28
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testSetIsDisplayingErrors() {
@@ -183,7 +183,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * Tests adding and removing a listener
    * 
    * @author croesch
-   * @since Date: 09.02.2011 22:02:08
+   * @since Date: Feb 09, 2011
    * @throws BadLocationException if something went wrong
    */
   @Test
@@ -249,7 +249,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * Tests the {@link CContent#removeErrorListeners(ErrorListener...)}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 18:51:50
+   * @since Date: Feb 10, 2011
    * @throws BadLocationException if something went wrong
    */
   @Test
@@ -280,7 +280,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * Tests the {@link CContent#getMaximumInputLength()} and {@link CContent#setMaximumInputLength(int)}
    * 
    * @author croesch
-   * @since Date: 09.02.2011 21:47:33
+   * @since Date: Feb 09, 2011
    */
   @Test
   public void testGetSetMaximumInputLength() {
@@ -303,7 +303,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * Tests the {@link CContent#getText()}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 19:09:10
+   * @since Date: Feb 10, 2011
    * @throws BadLocationException if something went wrong
    */
   @Test
@@ -323,7 +323,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * Tests the {@link CContent#checkForErrors()}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 19:08:48
+   * @since Date: Feb 10, 2011
    * @throws BadLocationException if something went wrong
    */
   @Test
@@ -357,7 +357,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * Tests the {@link CContent#insertString(int, String, javax.swing.text.AttributeSet)}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 19:13:48
+   * @since Date: Feb 10, 2011
    * @throws BadLocationException if something went wrong
    */
   @Test
@@ -390,7 +390,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * {@link BadLocationException}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 19:13:48
+   * @since Date: Feb 10, 2011
    */
   @Test(expected = BadLocationException.class)
   public void testInsertStringIntStringAttributeSet_BLE1() throws BadLocationException {
@@ -402,7 +402,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * {@link BadLocationException}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 19:13:48
+   * @since Date: Feb 10, 2011
    */
   @Test(expected = BadLocationException.class)
   public void testInsertStringIntStringAttributeSet_BLE2() throws BadLocationException {
@@ -414,7 +414,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * 
    * @author croesch
    * @throws BadLocationException if something went wrong
-   * @since Date: 10.02.2011 19:20:40
+   * @since Date: Feb 10, 2011
    */
   @Test
   public void testReplaceIntIntStringAttributeSet() throws BadLocationException {
@@ -438,7 +438,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * {@link BadLocationException}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 19:13:48
+   * @since Date: Feb 10, 2011
    */
   @Test(expected = BadLocationException.class)
   public void testReplaceIntIntStringAttributeSet_BLE1() throws BadLocationException {
@@ -450,7 +450,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * {@link BadLocationException}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 19:13:48
+   * @since Date: Feb 10, 2011
    */
   @Test(expected = BadLocationException.class)
   public void testReplaceIntIntStringAttributeSet_BLE2() throws BadLocationException {
@@ -462,7 +462,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * {@link BadLocationException}
    * 
    * @author croesch
-   * @since Date: 10.02.2011 19:13:48
+   * @since Date: Feb 10, 2011
    */
   @Test(expected = BadLocationException.class)
   public void testReplaceIntIntStringAttributeSet_BLE3() throws BadLocationException {

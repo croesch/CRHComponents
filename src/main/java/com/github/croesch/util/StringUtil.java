@@ -22,7 +22,7 @@ package com.github.croesch.util;
  * A multiplier that is able to multiply a {@link String} n times
  * 
  * @author croesch
- * @since Date: 17.02.2011 19:45:31
+ * @since Date: Feb 17, 2011
  */
 public final class StringUtil {
 
@@ -32,7 +32,7 @@ public final class StringUtil {
   /**
    * Constructs a multiplier with the given {@link String}
    * 
-   * @since Date: 17.02.2011
+   * @since Date: Feb 17, 2011
    * @param s the {@link String} to prepare for being multiplied
    */
   StringUtil(final String s) {
@@ -46,7 +46,7 @@ public final class StringUtil {
   /**
    * Multiplies the {@link String} of this multiplier the given number of times and returns the result.
    * 
-   * @since Date: 15.02.2011
+   * @since Date: Feb 15, 2011
    * @param n how often the {@link String} should be repeated
    * @return the {@link String} repeated n times
    * @throws IllegalArgumentException if n is lower than zero

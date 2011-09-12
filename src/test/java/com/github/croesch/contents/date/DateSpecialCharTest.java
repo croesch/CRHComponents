@@ -30,7 +30,7 @@ import org.junit.Test;
  * Provides test methods for {@link DateSpecialChar}
  * 
  * @author croesch
- * @since Date: Apr 5, 2011 10:14:42 AM
+ * @since Date: Apr 5, 2011
  */
 public class DateSpecialCharTest extends FestSwingJUnitTestCase {
 

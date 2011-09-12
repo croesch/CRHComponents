@@ -24,7 +24,7 @@ import java.util.Arrays;
  * Provides utilities for {@link String} arrays
  * 
  * @author croesch
- * @since Date: 17.02.2011 20:58:03
+ * @since Date: Feb 17, 2011
  */
 @SuppressWarnings("nls")
 public final class StringArrayUtil {
@@ -38,7 +38,7 @@ public final class StringArrayUtil {
   /**
    * Constructs the utility class with the given array
    * 
-   * @since Date: 17.02.2011
+   * @since Date: Feb 17, 2011
    * @param s the array of {@link String}s
    * @throws IllegalArgumentException if the array or one entry is {@code null}
    * @see com.github.croesch.util.Util#of(String[])
@@ -58,7 +58,7 @@ public final class StringArrayUtil {
   /**
    * Constructs the utility class with the given array
    * 
-   * @since Date: 17.02.2011
+   * @since Date: Feb 17, 2011
    * @param s the array of {@link String}s
    * @param t if the given array is already trimmed
    * @throws IllegalArgumentException if the array or one entry is {@code null}
@@ -72,7 +72,7 @@ public final class StringArrayUtil {
   /**
    * Trims the stored lines of the array and returns the instance of this analyser.
    * 
-   * @since Date: 17.02.2011
+   * @since Date: Feb 17, 2011
    * @return this instance of the analyser
    * @see String#trim()
    */
@@ -99,7 +99,7 @@ public final class StringArrayUtil {
   /**
    * Returns the length of the longest line in the array of lines.
    * 
-   * @since Date: 17.02.2011
+   * @since Date: Feb 17, 2011
    * @return the length of the longest line
    */
   public int getMaxLineLength() {
@@ -117,7 +117,7 @@ public final class StringArrayUtil {
    * Returns the array stored in this utility class. But each row will have the same length and they will be filled up
    * with spaces, so that each entry is left aligned.
    * 
-   * @since Date: 19.02.2011
+   * @since Date: Feb 19, 2011
    * @return the array left aligned, each row has the same number of chars
    * @see #toCentreAlignedArray()
    * @see #toRightAlignedArray()
@@ -135,7 +135,7 @@ public final class StringArrayUtil {
    * Returns the array stored in this utility class. But each row will have the same length and they will be filled up
    * with spaces, so that each entry is right aligned.
    * 
-   * @since Date: 19.02.2011
+   * @since Date: Feb 19, 2011
    * @return the array right aligned, each row has the same number of chars
    * @see #toCentreAlignedArray()
    * @see #toLeftAlignedArray()
@@ -153,7 +153,7 @@ public final class StringArrayUtil {
    * Returns the array stored in this utility class. But each row will have the same length and they will be filled up
    * with spaces, so that each entry is centre aligned.
    * 
-   * @since Date: 19.02.2011
+   * @since Date: Feb 19, 2011
    * @return the array centre aligned, each row has the same number of chars
    * @see #toLeftAlignedArray()
    * @see #toRightAlignedArray()
