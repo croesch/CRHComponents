@@ -135,6 +135,7 @@ public final class FilePropertiesBundle {
   public static String getText(final String bundle, final String key, final Locale loc) {
 
     if (loc == null) {
+      // TODO #7 message
       throw new IllegalArgumentException();
     }
 

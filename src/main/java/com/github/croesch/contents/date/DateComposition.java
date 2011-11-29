@@ -39,6 +39,7 @@ final class DateComposition {
    * @since Date: Jul 3, 2011
    */
   private DateComposition() {
+    // TODO #10
     // not needed
   }
 
@@ -63,7 +64,7 @@ final class DateComposition {
    * 
    * @author croesch
    * @since Date: Jul 5, 2011
-   * @param l the locale to fetch the {@link IDateLazyPartEditor}s from
+   * @param l the locale to fetch the {@link IDateLazyPartEditor}s from TODO l is no good name (#7 general)
    * @param mode the {@link DateContent.MODE} for the editors
    * @param day the initial day value to pass to the editor
    * @param month the initial month value to pass to the editor
@@ -82,12 +83,15 @@ final class DateComposition {
     final int testMonth = 10;
     final int testDay = 22;
 
+    // TODO #12 in own method
     final DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, l);
     final Calendar cal = Calendar.getInstance();
     cal.set(testYear, testMonth, testDay);
     final String formated = df.format(cal.getTime());
 
+    // TODO #13 joda-time
     if (!formated.contains("22") || !formated.contains("11") || !formated.contains("33")) {
+      // TODO #12 own method
       final List<IDateLazyPartEditor> list = new ArrayList<IDateLazyPartEditor>();
       list.add(new DateLazyYearEditor(year));
       list.add(new DateSepEditor("-"));
@@ -101,7 +105,9 @@ final class DateComposition {
   }
 
   /**
-   * Recursively creates a list of editors that are able to edit the given formated date.
+   * Recursively creates a list of editors that are able to edit the given formated date. <br>
+   * TODO #7 formatted <br>
+   * TODO #9 improve comments!
    * 
    * @author croesch
    * @since Date: Jul 3, 2011

@@ -41,6 +41,7 @@ public final class LocaleGenerator {
    */
   public LocaleGenerator(final Locale locale) {
     if (locale == null) {
+      // TODO #7 message
       throw new IllegalArgumentException();
     }
     this.loc = locale;
@@ -48,16 +49,19 @@ public final class LocaleGenerator {
 
   /**
    * Generates file names from a given {@link Locale} with the given prefix. These filenames will be:<br>
-   * <li><code>prefix</code></li> <li><code>prefix_language</code></li> <li>
-   * <code>prefix_language_country</code></li>
-   * <li>
-   * <code>prefix_language_country_variant</code></li>
+   * <ul>
+   * <li><code>prefix</code></li>
+   * <li><code>prefix_language</code></li>
+   * <li><code>prefix_language_country</code></li>
+   * <li><code>prefix_language_country_variant</code></li>
+   * </ul>
    * 
    * @param prefix the prefix of the generated file names. If prefix is <code>null</code> this will return an array that
    *        contains only <code>null</code>-values.
    * @return an array that contains the generated file names
    */
   public String[] defaultNamesStartingWith(final String prefix) {
+    // TODO #9 comment
     final int numOfVariations = 4;
     final int posOfName = 3;
     final int posOfNameLng = 2;

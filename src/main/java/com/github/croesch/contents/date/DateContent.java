@@ -43,6 +43,7 @@ public abstract class DateContent extends CContent {
   /** generated */
   private static final long serialVersionUID = 6501226934436567798L;
 
+  //TODO #7 static final?
   /** the mode for entering date values */
   public enum MODE {
     /**
@@ -93,6 +94,7 @@ public abstract class DateContent extends CContent {
    * @return an instance of {@link DateContent} that is able to edit a date of the given locale in the given mode.
    */
   public static final DateContent createDateContent(final MODE mode, final JTextComponent tf, final Locale loc) {
+    // TODO #7 -final?
     return new DateLazyContent(tf, loc, getSpecialCharsMap());
   }
 
@@ -104,6 +106,7 @@ public abstract class DateContent extends CContent {
    */
   private static synchronized Map<String, DateSpecialChar> getSpecialCharsMap() {
     if (specialCharsMap == null) {
+      // TODO #7 too long..
       specialCharsMap = new DateSpecialCharInterpreter(new BufferedReader(new InputStreamReader(DateContent.class
         .getClassLoader().getResourceAsStream(DATECHARS_CFG_FILE)))).getSpecialCharsMap();
     }

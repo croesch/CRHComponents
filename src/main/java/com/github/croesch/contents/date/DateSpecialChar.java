@@ -30,10 +30,12 @@ final class DateSpecialChar {
 
   /** the type of the value, if it should be interpreted as a constant, offset or incremental value. */
   public static enum ValueType {
+    // TODO #7 extract to own class
     /** constant to interpret the value as a constant. */
     CONSTANT {
       @Override
       public String toString() {
+        // TODO #7 define as constant(s)
         return "c";
       }
     },
@@ -267,6 +269,7 @@ final class DateSpecialChar {
 
   @Override
   public String toString() {
+    // TODO #9 comment
     return this.specialChar + "|" + this.yearValueType + this.yearValue + "|" + this.monthValueType + this.monthValue
            + "|" + this.dayValueType + this.dayValue;
   }

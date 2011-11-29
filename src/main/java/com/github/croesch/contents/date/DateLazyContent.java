@@ -43,6 +43,7 @@ class DateLazyContent extends DateContent {
   /** generated */
   private static final long serialVersionUID = 530985421120602593L;
 
+  //TODO save also: which one is the year-, month- and day-editor.. (wrapper object)
   /** list of editors that will edit the different parts of the date */
   private List<IDateLazyPartEditor> editors;
 
@@ -75,11 +76,12 @@ class DateLazyContent extends DateContent {
 
   @Override
   public final void insertString(final int offs, final String str, final AttributeSet a) throws BadLocationException {
+    // TODO #9 comment!
     if (str != null && str.length() > 0) {
       if (str.length() == 1) {
         performInsert(offs, str, a);
       } else {
-        int o = offs;
+        int o = offs; // TODO #14 remove temp var
         for (int i = 0; i < str.length(); ++i) {
           if (this.textComponent != null) {
             insertString(o, str.substring(i, i + 1), a);
@@ -103,10 +105,12 @@ class DateLazyContent extends DateContent {
    * @throws BadLocationException if inserted on an invalid position
    */
   private void performInsert(final int offs, final String str, final AttributeSet a) throws BadLocationException {
+    // TODO #9 comment!
     int startPos = 0;
-    int tmpOfss = offs;
+    int tmpOfss = offs; // TODO #14 remove final var
     boolean inserted = false;
 
+    // TODO #7 foreach..
     for (int i = 0; i < this.editors.size() && !inserted; ++i) {
       final IDateLazyPartEditor editor = this.editors.get(i);
 
@@ -145,7 +149,8 @@ class DateLazyContent extends DateContent {
    */
   private synchronized void performEnterOfSpecialChar(final AttributeSet a, final DateSpecialChar sc)
                                                                                                      throws BadLocationException {
-    if (sc != null) {
+    if (sc != null) { // TODO #7 null value possible?
+      // TODO #7 create a field calendar to avoid multiple instances..
       final Calendar cal = new GregorianCalendar();
       int year = 1, month = 1, day = 1;
       for (final IDateLazyPartEditor e : this.editors) {

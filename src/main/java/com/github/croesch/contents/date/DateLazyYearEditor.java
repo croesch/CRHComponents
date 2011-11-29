@@ -60,14 +60,17 @@ class DateLazyYearEditor implements IDateLazyPartEditor {
    * @see #DateLazyDayEditor()
    */
   DateLazyYearEditor(final int initial) {
+    // TODO #14 simplify
     int year = initial;
     if (year <= 0 || year > HIGHEST) {
       year = Calendar.getInstance().get(Calendar.YEAR);
     }
+    // TODO #7 simplify
     final int first = year / (TEN * TEN * TEN);
     final int second = (year % (TEN * TEN * TEN)) / (TEN * TEN);
     final int third = (year % (TEN * TEN)) / TEN;
     final int fourth = year % TEN;
+    // TODO #9 comment
     this.value[0] = (char) ('0' + first);
     this.value[1] = (char) ('0' + second);
     this.value[2] = (char) ('0' + third);
@@ -81,6 +84,7 @@ class DateLazyYearEditor implements IDateLazyPartEditor {
 
   @Override
   public int enterValue(final String s, final int position) {
+    // TODO #9 comment
     if (s == null || s.length() != 1) {
       return -1;
     }
@@ -133,6 +137,7 @@ class DateLazyYearEditor implements IDateLazyPartEditor {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
+    // TODO #7 simplify
     result = prime * result + Arrays.hashCode(this.value);
     return result;
   }
@@ -143,6 +148,7 @@ class DateLazyYearEditor implements IDateLazyPartEditor {
       return true;
     }
     if (obj == null) {
+      // TODO #7 simplify
       return false;
     }
     if (!(obj instanceof DateLazyYearEditor)) {

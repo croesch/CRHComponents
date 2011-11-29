@@ -63,11 +63,13 @@ class DateLazyMonEditor extends DateLazyMonAndDayEditor {
 
   @Override
   protected String getValidForBoth() {
+    // TODO #9 comment
     return "01";
   }
 
   @Override
   protected String getValidOnlyForSecond() {
+    // TODO #9 comment
     return "23456789";
   }
 
@@ -75,6 +77,7 @@ class DateLazyMonEditor extends DateLazyMonAndDayEditor {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
+    // TODO #7 simplify
     result = prime * result + getValue().hashCode();
     return result;
   }
@@ -84,6 +87,7 @@ class DateLazyMonEditor extends DateLazyMonAndDayEditor {
     if (this == obj) {
       return true;
     }
+    // TODO #7 simplify
     if (obj == null) {
       return false;
     }

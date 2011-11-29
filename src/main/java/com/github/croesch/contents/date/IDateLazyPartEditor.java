@@ -46,6 +46,7 @@ interface IDateLazyPartEditor {
    * @return <code>-1</code>, if the given string cannot be inserted<br>
    *         the number of characters written / the cursor should be moved
    */
+  // TODO #7 char instead of String!?
   int enterValue(String s, int position);
 
   /**

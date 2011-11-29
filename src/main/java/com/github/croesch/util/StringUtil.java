@@ -19,6 +19,7 @@
 package com.github.croesch.util;
 
 /**
+ * TODO #9 improve comment .. <br>
  * A multiplier that is able to multiply a {@link String} n times
  * 
  * @author croesch

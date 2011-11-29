@@ -44,6 +44,7 @@ public final class DateUtil {
    */
   public DateUtil(final Date d) {
     if (d == null) {
+      // TODO #7 message
       // important, because we want to ensure that this.date is not null
       throw new IllegalArgumentException();
     }

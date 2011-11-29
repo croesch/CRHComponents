@@ -104,6 +104,7 @@ class DateSepEditor implements IDatePartEditor {
       return true;
     }
     if (obj == null) {
+      // TODO #7 simplify
       return false;
     }
     if (!(obj instanceof DateSepEditor)) {
@@ -115,6 +116,7 @@ class DateSepEditor implements IDatePartEditor {
 
   @Override
   public void setCurrentValue(final int day, final int month, final int year) {
+    // TODO #9 comment
     // do nothing, because value of others are not important
   }
 }

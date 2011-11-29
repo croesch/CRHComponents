@@ -53,6 +53,7 @@ public class CContent extends CDocument {
    * @throws BadLocationException if the given {@code offs} is invalid
    */
   protected final boolean isValidInput(final int offs, final String str) throws BadLocationException {
+    // TODO #9 comment
     return isValidInput(getText(0, offs) + str + getText(offs, getLength() - offs));
   }
 
@@ -105,6 +106,7 @@ public class CContent extends CDocument {
   public final void addErrorListeners(final ErrorListener ... listener) {
     for (final ErrorListener e : listener) {
       if (this.listeners.contains(e)) {
+        // TODO #7 handle with if else
         continue;
       }
       // to inform the listener about the initial state
@@ -133,6 +135,7 @@ public class CContent extends CDocument {
    */
   public final int getMaximumInputLength() {
     if (this.maxLength < 0) {
+      // TODO #7 handle in setter instead
       return 0;
     }
     return this.maxLength;
@@ -164,6 +167,7 @@ public class CContent extends CDocument {
    * @since Date: Jan 13, 2011
    */
   public final void checkForErrors() {
+    // TODO #9 comment or improve readability
     if (this.error == isValid() && isErrorsNotifying()) {
       this.error = !this.error;
       for (final ErrorListener l : this.listeners) {

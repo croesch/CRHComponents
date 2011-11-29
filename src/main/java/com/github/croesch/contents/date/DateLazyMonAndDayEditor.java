@@ -42,12 +42,14 @@ abstract class DateLazyMonAndDayEditor implements IDateLazyPartEditor {
    * @param highest the highest possible value of this editor
    */
   DateLazyMonAndDayEditor(final int initial, final int highest) {
-    int val = initial;
+    int val = initial; // TODO #14 remove temp var
     if (val <= 0 || val > highest) {
       val = getDefaultValue();
     }
+    // TODO #12 extract to Util (get value of position)
     final int first = val / TEN;
     final int second = val % TEN;
+    // TODO #9 comment
     this.value[0] = (char) ('0' + first);
     this.value[1] = (char) ('0' + second);
   }
@@ -86,6 +88,7 @@ abstract class DateLazyMonAndDayEditor implements IDateLazyPartEditor {
 
   @Override
   public final int enterValue(final String s, final int position) {
+    // TODO #9 comment
     if (s != null && s.length() == 1) {
 
       if (getValidOnlyForSecond().indexOf(s) >= 0) {

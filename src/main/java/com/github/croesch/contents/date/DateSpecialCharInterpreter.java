@@ -59,17 +59,22 @@ final class DateSpecialCharInterpreter {
    * @since Date: Apr 5, 2011
    * @param in the {@link BufferedReader} to read the definitions from
    */
+  //TODO #7 extract to method, make constructor private and create static method
   public DateSpecialCharInterpreter(final BufferedReader in) {
+    // TODO #11 check 'in' for null
     try {
       String line = in.readLine();
       while (line != null) {
+        // TODO #12 extract method
         line = line.trim().replaceFirst("[ \t]*#.*", "");
+        // TODO #12 extract method
         if (line.matches(".(\\|([oic]-?[0-9]+)?){3,3}")) {
           addLine(line);
         }
         line = in.readLine();
       }
     } catch (final IOException e) {
+      // TODO #9 comment, why we only log the error
       Log.error(e);
     }
   }
@@ -85,6 +90,7 @@ final class DateSpecialCharInterpreter {
    * @throws AssertionError if the < type > is unknown
    */
   private ValueType getValueType(final String s) throws AssertionError {
+    // TODO #7 move to enum class
     switch (s.charAt(0)) {
       case 'c':
         return ValueType.CONSTANT;
@@ -122,6 +128,7 @@ final class DateSpecialCharInterpreter {
    *         are replaced with default values.
    */
   private String[] splitLine(final String line) {
+    // TODO #9 comment
     final String[] splitted = new String[] { "", "i0", "i0", "i0" };
     final String[] tmpArray = line.split("\\|");
     for (int i = 0; i < tmpArray.length; ++i) {
@@ -142,6 +149,7 @@ final class DateSpecialCharInterpreter {
    */
   private void addLine(final String line) {
     final String[] arr = splitLine(line);
+    // TODO #9 comment
     this.specialCharsMap.put(line.substring(0, 1), new DateSpecialChar(line.charAt(0),
                                                                        getValueType(arr[1]),
                                                                        getValue(arr[1]),
