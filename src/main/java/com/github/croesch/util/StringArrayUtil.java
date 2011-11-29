@@ -26,7 +26,6 @@ import java.util.Arrays;
  * @author croesch
  * @since Date: Feb 17, 2011
  */
-@SuppressWarnings("nls")
 public final class StringArrayUtil {
 
   /** the array to work with */

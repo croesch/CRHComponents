@@ -37,7 +37,6 @@ import java.util.ResourceBundle;
  * @author croesch
  * @since Date: Dec 23, 2010
  */
-@SuppressWarnings("nls")
 public final class FilePropertiesBundle {
 
   /** the file extension of the property files */
