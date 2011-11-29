@@ -29,9 +29,8 @@ public class RegexContent extends CContent {
   /** generated version UID */
   private static final long serialVersionUID = -7202917896917725985L;
 
-  //TODO #7 remove default value
   /** the regular expression for the content, that should be matched */
-  private String regularExpression = ".*";
+  private String regularExpression;
 
   /**
    * Constructs a document with the given regular expression
