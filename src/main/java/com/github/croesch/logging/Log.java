@@ -36,7 +36,7 @@ public final class Log {
    * @since Date: Jul 6, 2011
    */
   private Log() {
-    // hide utility class constructor
+    throw new AssertionError("Invocation of utility class constructor.");
   }
 
   /**
