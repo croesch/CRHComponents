@@ -41,14 +41,13 @@ abstract class DateLazyMonAndDayEditor implements IDateLazyPartEditor {
    *        value will be the initial value.
    * @param highest the highest possible value of this editor
    */
-  DateLazyMonAndDayEditor(final int initial, final int highest) {
-    int val = initial; // TODO #14 remove temp var
-    if (val <= 0 || val > highest) {
-      val = getDefaultValue();
+  DateLazyMonAndDayEditor(int initial, final int highest) {
+    if (initial <= 0 || initial > highest) {
+      initial = getDefaultValue();
     }
     // TODO #12 extract to Util (get value of position)
-    final int first = val / TEN;
-    final int second = val % TEN;
+    final int first = initial / TEN;
+    final int second = initial % TEN;
     // store the calculated value, but with offset of character '0' because we store ASCII/char-values
     this.value[0] = (char) ('0' + first);
     this.value[1] = (char) ('0' + second);

@@ -59,17 +59,15 @@ class DateLazyYearEditor implements IDateLazyPartEditor {
    *        initial value.
    * @see #DateLazyDayEditor()
    */
-  DateLazyYearEditor(final int initial) {
-    // TODO #14 simplify
-    int year = initial;
-    if (year <= 0 || year > HIGHEST) {
-      year = Calendar.getInstance().get(Calendar.YEAR);
+  DateLazyYearEditor(int initial) {
+    if (initial <= 0 || initial > HIGHEST) {
+      initial = Calendar.getInstance().get(Calendar.YEAR);
     }
     // TODO #7 simplify
-    final int first = year / (TEN * TEN * TEN);
-    final int second = (year % (TEN * TEN * TEN)) / (TEN * TEN);
-    final int third = (year % (TEN * TEN)) / TEN;
-    final int fourth = year % TEN;
+    final int first = initial / (TEN * TEN * TEN);
+    final int second = (initial % (TEN * TEN * TEN)) / (TEN * TEN);
+    final int third = (initial % (TEN * TEN)) / TEN;
+    final int fourth = initial % TEN;
     // store the calculated value, but with offset of character '0' because we store ASCII/char-values
     this.value[0] = (char) ('0' + first);
     this.value[1] = (char) ('0' + second);

@@ -75,19 +75,18 @@ class DateLazyContent extends DateContent {
   }
 
   @Override
-  public final void insertString(final int offs, final String str, final AttributeSet a) throws BadLocationException {
+  public final void insertString(int offs, final String str, final AttributeSet a) throws BadLocationException {
     // TODO #9 comment!
     if (str != null && str.length() > 0) {
       if (str.length() == 1) {
         performInsert(offs, str, a);
       } else {
-        int o = offs; // TODO #14 remove temp var
         for (int i = 0; i < str.length(); ++i) {
           if (this.textComponent != null) {
-            insertString(o, str.substring(i, i + 1), a);
-            o = this.textComponent.getCaretPosition();
+            insertString(offs, str.substring(i, i + 1), a);
+            offs = this.textComponent.getCaretPosition();
           } else {
-            insertString(o + i, str.substring(i, i + 1), a);
+            insertString(offs + i, str.substring(i, i + 1), a);
           }
         }
       }
@@ -104,32 +103,31 @@ class DateLazyContent extends DateContent {
    * @param a the {@link AttributeSet}.
    * @throws BadLocationException if inserted on an invalid position
    */
-  private void performInsert(final int offs, final String str, final AttributeSet a) throws BadLocationException {
+  private void performInsert(int offs, final String str, final AttributeSet a) throws BadLocationException {
     // TODO #9 comment!
     int startPos = 0;
-    int tmpOfss = offs; // TODO #14 remove final var
     boolean inserted = false;
 
     // TODO #7 foreach..
     for (int i = 0; i < this.editors.size() && !inserted; ++i) {
       final IDateLazyPartEditor editor = this.editors.get(i);
 
-      if (tmpOfss - editor.getSize() < 0) {
-        final int z = editor.enterValue(str, tmpOfss);
+      if (offs - editor.getSize() < 0) {
+        final int z = editor.enterValue(str, offs);
         if (z == -1) {
-          tmpOfss = editor.getSize(); // pass to next editor
+          offs = editor.getSize(); // pass to next editor
         } else {
           remove(0, getLength());
           super.insertString(0, getDateContent(), a);
 
           if (this.textComponent != null) {
-            this.textComponent.setCaretPosition(tmpOfss + startPos + z);
+            this.textComponent.setCaretPosition(offs + startPos + z);
           }
           inserted = true;
         }
       }
 
-      tmpOfss -= editor.getSize();
+      offs -= editor.getSize();
       startPos += editor.getSize();
     }
 
