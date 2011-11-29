@@ -39,8 +39,7 @@ final class DateComposition {
    * @since Date: Jul 3, 2011
    */
   private DateComposition() {
-    // TODO #10
-    // not needed
+    throw new AssertionError("Invocation of utility class constructor.");
   }
 
   /**
