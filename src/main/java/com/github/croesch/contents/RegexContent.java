@@ -31,7 +31,7 @@ public class RegexContent extends CContent {
 
   //TODO #7 remove default value
   /** the regular expression for the content, that should be matched */
-  private String regularExpression = ".*"; //$NON-NLS-1$
+  private String regularExpression = ".*";
 
   /**
    * Constructs a document with the given regular expression

@@ -56,7 +56,7 @@ public final class StringUtil {
     if (n < 0) {
       throw new IllegalArgumentException();
     }
-    if ("".equals(this.string)) { //$NON-NLS-1$
+    if ("".equals(this.string)) {
       return this.string;
     }
     final StringBuilder sb = new StringBuilder();

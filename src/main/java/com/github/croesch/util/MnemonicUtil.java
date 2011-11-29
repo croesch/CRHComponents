@@ -57,7 +57,7 @@ public final class MnemonicUtil {
   public static String filterMnemonic(final String s, final AbstractButton b) {
     if (s != null) {
       String tmpS = s;
-      final Matcher m = Pattern.compile("\\[(.)\\]").matcher(tmpS); //$NON-NLS-1$
+      final Matcher m = Pattern.compile("\\[(.)\\]").matcher(tmpS);
       if (m.find()) {
         // define runnable to set the mnemonic
         final Runnable r = new Runnable() {
