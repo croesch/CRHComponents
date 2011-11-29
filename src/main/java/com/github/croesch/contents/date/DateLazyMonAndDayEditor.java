@@ -49,7 +49,7 @@ abstract class DateLazyMonAndDayEditor implements IDateLazyPartEditor {
     // TODO #12 extract to Util (get value of position)
     final int first = val / TEN;
     final int second = val % TEN;
-    // TODO #9 comment
+    // store the calculated value, but with offset of character '0' because we store ASCII/char-values
     this.value[0] = (char) ('0' + first);
     this.value[1] = (char) ('0' + second);
   }

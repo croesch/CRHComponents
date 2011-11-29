@@ -269,7 +269,7 @@ final class DateSpecialChar {
 
   @Override
   public String toString() {
-    // TODO #9 comment
+    // create an output that is equal to the input from the configuration file
     return this.specialChar + "|" + this.yearValueType + this.yearValue + "|" + this.monthValueType + this.monthValue
            + "|" + this.dayValueType + this.dayValue;
   }

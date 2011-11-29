@@ -74,7 +74,11 @@ final class DateSpecialCharInterpreter {
         line = in.readLine();
       }
     } catch (final IOException e) {
-      // TODO #9 comment, why we only log the error
+      /*
+       * We don't want the caller to notice an IO-Error, because this might be not relevant. The date field should
+       * simply work, but it wouldn't contain any special characters. So the impact of a wrong configuration file is
+       * that there are no special characters working. And that impact would be logged.
+       */
       Log.error(e);
     }
   }
@@ -128,10 +132,13 @@ final class DateSpecialCharInterpreter {
    *         are replaced with default values.
    */
   private String[] splitLine(final String line) {
-    // TODO #9 comment
+    // initialize default values (default, increment current value by zero)
     final String[] splitted = new String[] { "", "i0", "i0", "i0" };
+
+    // is ensured to return exactly four values, because the given string must be a valid < line >
     final String[] tmpArray = line.split("\\|");
     for (int i = 0; i < tmpArray.length; ++i) {
+      // copy each value that is not empty
       if (tmpArray[i] != null && !tmpArray[i].trim().equals("")) {
         splitted[i] = tmpArray[i];
       }
@@ -149,14 +156,20 @@ final class DateSpecialCharInterpreter {
    */
   private void addLine(final String line) {
     final String[] arr = splitLine(line);
-    // TODO #9 comment
-    this.specialCharsMap.put(line.substring(0, 1), new DateSpecialChar(line.charAt(0),
-                                                                       getValueType(arr[1]),
-                                                                       getValue(arr[1]),
-                                                                       getValueType(arr[2]),
-                                                                       getValue(arr[2]),
-                                                                       getValueType(arr[3]),
-                                                                       getValue(arr[3])));
+
+    final String yearPartOfDefinition = arr[1];
+    final String monthPartOfDefinition = arr[2];
+    final String dayPartOfDefinition = arr[3];
+    // construct the special character
+    final DateSpecialChar specialChar = new DateSpecialChar(line.charAt(0),
+                                                            getValueType(yearPartOfDefinition),
+                                                            getValue(yearPartOfDefinition),
+                                                            getValueType(monthPartOfDefinition),
+                                                            getValue(monthPartOfDefinition),
+                                                            getValueType(dayPartOfDefinition),
+                                                            getValue(dayPartOfDefinition));
+    // put the special character into the map of special characters
+    this.specialCharsMap.put(line.substring(0, 1), specialChar);
   }
 
   /**

@@ -116,7 +116,9 @@ class DateSepEditor implements IDatePartEditor {
 
   @Override
   public void setCurrentValue(final int day, final int month, final int year) {
-    // TODO #9 comment
-    // do nothing, because value of others are not important
+    /*
+     * We needn't to do anything here, since the value of a separating character is not depending on the values of
+     * either day, month or year. So this is just an empty implementation.
+     */
   }
 }

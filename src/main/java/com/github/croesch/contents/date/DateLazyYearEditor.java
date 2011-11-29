@@ -70,7 +70,7 @@ class DateLazyYearEditor implements IDateLazyPartEditor {
     final int second = (year % (TEN * TEN * TEN)) / (TEN * TEN);
     final int third = (year % (TEN * TEN)) / TEN;
     final int fourth = year % TEN;
-    // TODO #9 comment
+    // store the calculated value, but with offset of character '0' because we store ASCII/char-values
     this.value[0] = (char) ('0' + first);
     this.value[1] = (char) ('0' + second);
     this.value[2] = (char) ('0' + third);

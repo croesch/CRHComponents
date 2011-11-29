@@ -63,13 +63,13 @@ class DateLazyMonEditor extends DateLazyMonAndDayEditor {
 
   @Override
   protected String getValidForBoth() {
-    // TODO #9 comment
+    // in the month field 0-1 are valid on both positions
     return "01";
   }
 
   @Override
   protected String getValidOnlyForSecond() {
-    // TODO #9 comment
+    // in the month field 2-9 are only valid on the second position
     return "23456789";
   }
 
