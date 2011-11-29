@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.croesch.contents.date.DateSpecialChar.ValueType;
 import com.github.croesch.logging.Log;
 
 /**
@@ -91,20 +90,10 @@ final class DateSpecialCharInterpreter {
    * @since Date: Apr 5, 2011
    * @param s the string that contains < type > < value >
    * @return the enum that represents the < type >
-   * @throws AssertionError if the < type > is unknown
+   * @throws IllegalArgumentException if the < type > is unknown
    */
-  private ValueType getValueType(final String s) throws AssertionError {
-    // TODO #7 move to enum class
-    switch (s.charAt(0)) {
-      case 'c':
-        return ValueType.CONSTANT;
-      case 'i':
-        return ValueType.INCREMENT;
-      case 'o':
-        return ValueType.OFFSET;
-      default:
-        throw new AssertionError();
-    }
+  private ModificationType getValueType(final String s) throws IllegalArgumentException {
+    return ModificationType.typeOfUniqueChar(s.charAt(0));
   }
 
   /**
@@ -133,7 +122,8 @@ final class DateSpecialCharInterpreter {
    */
   private String[] splitLine(final String line) {
     // initialize default values (default, increment current value by zero)
-    final String[] splitted = new String[] { "", "i0", "i0", "i0" };
+    final String defaultValue = ModificationType.INCREMENT.uniqueCharacter() + "0";
+    final String[] splitted = new String[] { "", defaultValue, defaultValue, defaultValue };
 
     // is ensured to return exactly four values, because the given string must be a valid < line >
     final String[] tmpArray = line.split("\\|");

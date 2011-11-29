@@ -28,50 +28,23 @@ package com.github.croesch.contents.date;
  */
 final class DateSpecialChar {
 
-  /** the type of the value, if it should be interpreted as a constant, offset or incremental value. */
-  public static enum ValueType {
-    // TODO #7 extract to own class
-    /** constant to interpret the value as a constant. */
-    CONSTANT {
-      @Override
-      public String toString() {
-        // TODO #7 define as constant(s)
-        return "c";
-      }
-    },
-    /** constant to interpret the value as an offset from the current date. */
-    OFFSET {
-      @Override
-      public String toString() {
-        return "o";
-      }
-    },
-    /** constant to interpret the value as an increment of the current date value */
-    INCREMENT {
-      @Override
-      public String toString() {
-        return "i";
-      }
-    };
-  }
-
   /** the special character to access this definition */
   private final char specialChar;
 
   /** the type of the year value */
-  private final ValueType yearValueType;
+  private final ModificationType yearValueType;
 
   /** the value for the year */
   private final int yearValue;
 
   /** the type of the month value */
-  private final ValueType monthValueType;
+  private final ModificationType monthValueType;
 
   /** the value for the month */
   private final int monthValue;
 
   /** the type of the day value */
-  private final ValueType dayValueType;
+  private final ModificationType dayValueType;
 
   /** the value for the day */
   private final int dayValue;
@@ -90,11 +63,11 @@ final class DateSpecialChar {
    * @param dayVal the day value
    */
   public DateSpecialChar(final char c,
-                         final ValueType yearType,
+                         final ModificationType yearType,
                          final int yearVal,
-                         final ValueType monthType,
+                         final ModificationType monthType,
                          final int monthVal,
-                         final ValueType dayType,
+                         final ModificationType dayType,
                          final int dayVal) {
     if (yearType == null || monthType == null || dayType == null) {
       throw new IllegalArgumentException(this.toString());
@@ -126,7 +99,7 @@ final class DateSpecialChar {
    * @since Date: Apr 5, 2011
    * @return the enum that represents the type of the year value
    */
-  public ValueType getYearValueType() {
+  public ModificationType getYearValueType() {
     return this.yearValueType;
   }
 
@@ -148,7 +121,7 @@ final class DateSpecialChar {
    * @since Date: Apr 5, 2011
    * @return the enum that represents the type of the month value.
    */
-  public ValueType getMonthValueType() {
+  public ModificationType getMonthValueType() {
     return this.monthValueType;
   }
 
@@ -170,7 +143,7 @@ final class DateSpecialChar {
    * @since Date: Apr 5, 2011
    * @return the enum that represents the type of the day value.
    */
-  public ValueType getDayValueType() {
+  public ModificationType getDayValueType() {
     return this.dayValueType;
   }
 

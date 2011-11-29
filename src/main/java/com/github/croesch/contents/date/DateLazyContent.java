@@ -29,7 +29,6 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
 
-import com.github.croesch.contents.date.DateSpecialChar.ValueType;
 import com.github.croesch.logging.Log;
 
 /**
@@ -186,7 +185,7 @@ class DateLazyContent extends DateContent {
    * @param type the type of the value fetched from the special character
    * @return the calculated new value
    */
-  private int calculateNewValue(final int curVal, final int todayVal, final int value, final ValueType type) {
+  private int calculateNewValue(final int curVal, final int todayVal, final int value, final ModificationType type) {
     switch (type) {
       case CONSTANT:
         return value;

@@ -26,8 +26,6 @@ import java.io.StringReader;
 import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
-import com.github.croesch.contents.date.DateSpecialChar.ValueType;
-
 /**
  * Provides test methods for {@link DateSpecialCharInterpreter}
  * 
@@ -143,18 +141,41 @@ public class DateSpecialCharInterpreterTest extends FestSwingJUnitTestCase {
   @Test
   public void testFirstListEntry() {
     DateSpecialChar specialChar = new DateSpecialChar('t',
-                                                      ValueType.OFFSET,
+                                                      ModificationType.OFFSET,
                                                       0,
-                                                      ValueType.OFFSET,
+                                                      ModificationType.OFFSET,
                                                       0,
-                                                      ValueType.OFFSET,
+                                                      ModificationType.OFFSET,
                                                       0);
     DateSpecialCharInterpreter interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("t|o0|o0|o0")));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
     assertThat(interpreter.getSpecialCharsMap().get("t")).isEqualTo(specialChar);
 
-    specialChar = new DateSpecialChar('i', ValueType.INCREMENT, 1, ValueType.INCREMENT, 2, ValueType.INCREMENT, -3);
+    specialChar = new DateSpecialChar('i',
+                                      ModificationType.INCREMENT,
+                                      1,
+                                      ModificationType.INCREMENT,
+                                      2,
+                                      ModificationType.INCREMENT,
+                                      -3);
     interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("i|i1|i2|i-3")));
+    assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
+    assertThat(interpreter.getSpecialCharsMap().get("i")).isEqualTo(specialChar);
+  }
+
+  /**
+   * Test method for {@link DateSpecialCharInterpreter#getSpecialCharsMap()}
+   */
+  @Test
+  public void testEmptySpecialCharacter() {
+    final DateSpecialChar specialChar = new DateSpecialChar('i',
+                                                            ModificationType.INCREMENT,
+                                                            0,
+                                                            ModificationType.INCREMENT,
+                                                            0,
+                                                            ModificationType.INCREMENT,
+                                                            0);
+    final DateSpecialCharInterpreter interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("i|||")));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
     assertThat(interpreter.getSpecialCharsMap().get("i")).isEqualTo(specialChar);
   }
@@ -167,14 +188,26 @@ public class DateSpecialCharInterpreterTest extends FestSwingJUnitTestCase {
     final String testString = "# key for today\n" + "t|o1|o2|o3\n" + "#another key\n" + "m|o0|o0|o1 # (tomorrow)\n"
                               + "...\n" + "# duplicate key \n" + "t|o0|o0|o0\n" + "# no duplicate key\n" + "T|c1|c2|c3";
 
-    final DateSpecialChar sc1 = new DateSpecialChar('t', ValueType.OFFSET, 0, ValueType.OFFSET, 0, ValueType.OFFSET, 0);
-    final DateSpecialChar sc2 = new DateSpecialChar('m', ValueType.OFFSET, 0, ValueType.OFFSET, 0, ValueType.OFFSET, 1);
+    final DateSpecialChar sc1 = new DateSpecialChar('t',
+                                                    ModificationType.OFFSET,
+                                                    0,
+                                                    ModificationType.OFFSET,
+                                                    0,
+                                                    ModificationType.OFFSET,
+                                                    0);
+    final DateSpecialChar sc2 = new DateSpecialChar('m',
+                                                    ModificationType.OFFSET,
+                                                    0,
+                                                    ModificationType.OFFSET,
+                                                    0,
+                                                    ModificationType.OFFSET,
+                                                    1);
     final DateSpecialChar sc3 = new DateSpecialChar('T',
-                                                    ValueType.CONSTANT,
+                                                    ModificationType.CONSTANT,
                                                     1,
-                                                    ValueType.CONSTANT,
+                                                    ModificationType.CONSTANT,
                                                     2,
-                                                    ValueType.CONSTANT,
+                                                    ModificationType.CONSTANT,
                                                     3);
     final DateSpecialCharInterpreter interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader(testString)));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
