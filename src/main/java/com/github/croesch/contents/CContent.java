@@ -53,8 +53,9 @@ public class CContent extends CDocument {
    * @throws BadLocationException if the given {@code offs} is invalid
    */
   protected final boolean isValidInput(final int offs, final String str) throws BadLocationException {
-    // TODO #9 comment
-    return isValidInput(getText(0, offs) + str + getText(offs, getLength() - offs));
+    // create new text and check if this would be valid.
+    final String newText = getText(0, offs) + str + getText(offs, getLength() - offs);
+    return isValidInput(newText);
   }
 
   @Override
