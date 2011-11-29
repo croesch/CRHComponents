@@ -41,7 +41,6 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Dec 24, 2010
  */
-@SuppressWarnings("nls")
 public class CMenuItemTest extends FestSwingJUnitTestCase {
 
   private CMenuItem item;

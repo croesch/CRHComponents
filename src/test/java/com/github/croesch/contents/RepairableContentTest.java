@@ -31,7 +31,6 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Feb 10, 2011
  */
-@SuppressWarnings("nls")
 public class RepairableContentTest extends FestSwingJUnitTestCase {
 
   private RepairableContent cont;

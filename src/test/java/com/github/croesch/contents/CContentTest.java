@@ -34,7 +34,6 @@ import com.github.croesch.listener.ErrorListener;
  * @author croesch
  * @since Date: Feb 09, 2011
  */
-@SuppressWarnings("nls")
 public class CContentTest extends FestSwingJUnitTestCase {
 
   private CContent cont;
@@ -202,7 +201,6 @@ public class CContentTest extends FestSwingJUnitTestCase {
       }
     };
     final ErrorListener l2 = new ErrorListener() {
-      @SuppressWarnings("synthetic-access")
       @Override
       public void errorStateChanged(final boolean error) {
         CContentTest.this.bool = error;
@@ -332,7 +330,6 @@ public class CContentTest extends FestSwingJUnitTestCase {
     final ErrorListener el = new ErrorListener() {
       private boolean invoked = false;
 
-      @SuppressWarnings("synthetic-access")
       @Override
       public void errorStateChanged(final boolean error) {
         // should be invoked only once
