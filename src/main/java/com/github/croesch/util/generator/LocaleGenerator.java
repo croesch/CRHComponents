@@ -41,8 +41,7 @@ public final class LocaleGenerator {
    */
   public LocaleGenerator(final Locale locale) {
     if (locale == null) {
-      // TODO #7 message
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException(">null< is not allowed.");
     }
     this.loc = locale;
   }

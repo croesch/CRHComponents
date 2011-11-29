@@ -44,11 +44,11 @@ public final class StringArrayUtil {
    */
   StringArrayUtil(final String[] s) throws IllegalArgumentException {
     if (s == null) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException(">null< is not allowed.");
     }
     for (final String str : s) {
       if (str == null) {
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(">null< is not allowed.");
       }
     }
     this.lines = s.clone();

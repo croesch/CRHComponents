@@ -36,7 +36,7 @@ public final class Generator {
    * @since Date: Mar 10, 2011
    */
   private Generator() {
-    throw new AssertionError();
+    throw new AssertionError("Invocation of utility class constructor.");
   }
 
   /**

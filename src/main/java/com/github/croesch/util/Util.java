@@ -34,8 +34,7 @@ public final class Util {
    * @since Date: Feb 15, 2011
    */
   private Util() {
-    // TODO #7 message
-    throw new AssertionError();
+    throw new AssertionError("Invocation of utility class constructor.");
   }
 
   /**

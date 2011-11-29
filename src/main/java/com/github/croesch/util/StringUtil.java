@@ -38,7 +38,7 @@ public final class StringUtil {
   StringUtil(final String s) {
     if (s == null) {
       // important, because we want to ensure that this.string is not null
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException(">null< is not allowed.");
     }
     this.string = s;
   }
@@ -53,7 +53,7 @@ public final class StringUtil {
    */
   public String toStringMultipliedWith(final int n) throws IllegalArgumentException {
     if (n < 0) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("cannot repeat string less than zero times.");
     }
     if ("".equals(this.string)) {
       return this.string;

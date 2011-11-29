@@ -70,7 +70,7 @@ final class DateSpecialChar {
                          final ModificationType dayType,
                          final int dayVal) {
     if (yearType == null || monthType == null || dayType == null) {
-      throw new IllegalArgumentException(this.toString());
+      throw new IllegalArgumentException(">null< is not allowed.");
     }
     this.specialChar = c;
     this.yearValueType = yearType;

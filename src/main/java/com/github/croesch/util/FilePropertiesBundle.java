@@ -51,7 +51,7 @@ public final class FilePropertiesBundle {
    * @since Date: Feb 12, 2011
    */
   private FilePropertiesBundle() {
-    throw new AssertionError();
+    throw new AssertionError("Invocation of utility class constructor.");
   }
 
   /**
@@ -134,8 +134,7 @@ public final class FilePropertiesBundle {
   public static String getText(final String bundle, final String key, final Locale loc) {
 
     if (loc == null) {
-      // TODO #7 message
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException(">null< is not allowed.");
     }
 
     final String[] names = Generator.generateFrom(loc).defaultNamesStartingWith(bundle);
