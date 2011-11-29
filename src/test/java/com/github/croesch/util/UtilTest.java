@@ -23,6 +23,7 @@ import static org.fest.assertions.Assertions.assertThat;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
@@ -40,7 +41,7 @@ public class UtilTest extends FestSwingJUnitTestCase {
    * Tests that {@link Util#of(String)} returns an object that is equal to the self created object
    */
   @Test
-  public void testMultiply() {
+  public void testUtil_String() {
     assertThat(Util.of("")).isEqualTo(new StringUtil(""));
     assertThat(Util.of("")).isNotEqualTo(new StringUtil("a"));
     assertThat(Util.of("a")).isEqualTo(new StringUtil("a"));
@@ -48,10 +49,34 @@ public class UtilTest extends FestSwingJUnitTestCase {
   }
 
   /**
+   * Tests that {@link Util#of(String)} throws an {@link IllegalArgumentException} if called with <code>null</code>.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void testUtil_String_IAE() {
+    Util.of((String) null);
+  }
+
+  /**
+   * Tests that {@link Util#of(String[])} throws an {@link IllegalArgumentException} if called with <code>null</code>.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void testUtil_StringArray_IAE() {
+    Util.of((String[]) null);
+  }
+
+  /**
+   * Tests that {@link Util#of(Date)} throws an {@link IllegalArgumentException} if called with <code>null</code>.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void testUtil_Date_IAE() {
+    Util.of((Date) null);
+  }
+
+  /**
    * Tests that {@link Util#of(String[])} returns an object that is equal to the self created object
    */
   @Test
-  public void testAnalyseLengthOf() {
+  public void testUtil_StringArray() {
     assertThat(Util.of(new String[] { "" })).isEqualTo(new StringArrayUtil(new String[] { "" }));
     assertThat(Util.of(new String[] { "" })).isNotEqualTo(new StringArrayUtil(new String[] { "a" }));
     assertThat(Util.of(new String[] { "a" })).isEqualTo(new StringArrayUtil(new String[] { "a" }));
