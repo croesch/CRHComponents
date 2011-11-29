@@ -132,21 +132,26 @@ class DateLazyContent extends DateContent {
 
     // we were not able to insert this character, so maybe we have a special char
     if (!inserted) {
+      /*
+       * Don't care about null being return from the get-method, because this is no problem for the method that tries to
+       * enter the special character
+       */
       performEnterOfSpecialChar(a, this.specialCharactersMap.get(str));
     }
   }
 
   /**
-   * Performs to enter the given special character.
+   * Performs to enter the given special character. Will do nothing, if the given special character is <code>null</code>
    * 
    * @since Date: Sep 8, 2011
    * @param a the {@link AttributeSet} to enter text in the field
-   * @param sc the special character to enter
+   * @param sc the special character to enter, can be <code>null</code>
    * @throws BadLocationException if something went wrong
    */
   private synchronized void performEnterOfSpecialChar(final AttributeSet a, final DateSpecialChar sc)
                                                                                                      throws BadLocationException {
-    if (sc != null) { // TODO #7 null value possible?
+    // do nothing if the special character is null
+    if (sc != null) {
       // TODO #7 create a field calendar to avoid multiple instances..
       final Calendar cal = new GregorianCalendar();
       int year = 1, month = 1, day = 1;

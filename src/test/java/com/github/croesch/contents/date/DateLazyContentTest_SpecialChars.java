@@ -45,6 +45,20 @@ public class DateLazyContentTest_SpecialChars extends FestSwingJUnitTestCase {
     .getClassLoader().getResourceAsStream("datechars.cfg")))).getSpecialCharsMap();
 
   @Test
+  public void testUnknownCharacters() throws BadLocationException {
+    final DateLazyContent content = new DateLazyContent(null, Locale.GERMAN, this.specCharMap);
+
+    content.insertString(0, "12.03.1903", null);
+    assertThat(content.getText()).isEqualTo("12.03.1903");
+
+    content.insertString(0, "²", null);
+    assertThat(content.getText()).isEqualTo("12.03.1903");
+
+    content.insertString(0, "µ", null);
+    assertThat(content.getText()).isEqualTo("12.03.1903");
+  }
+
+  @Test
   public void testIncrementDay() throws BadLocationException {
     final DateLazyContent content = new DateLazyContent(null, Locale.GERMAN, this.specCharMap);
 
