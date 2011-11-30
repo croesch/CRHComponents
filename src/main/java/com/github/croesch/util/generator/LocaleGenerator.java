@@ -60,32 +60,42 @@ public final class LocaleGenerator {
    * @return an array that contains the generated file names
    */
   public String[] defaultNamesStartingWith(final String prefix) {
-    // TODO #9 comment
+    // the number of variations that'll be generated
     final int numOfVariations = 4;
+    // the position of the 'prefix'
     final int posOfName = 3;
+    // the position of the 'prefix_language'
     final int posOfNameLng = 2;
+    // the position of the 'prefix_language_country'
     final int posOfNameLngCountry = 1;
+    // the position of the 'prefix_language_country_variant'
     final int posOfNameLngCountryVar = 0;
-
-    final String lang = this.loc.getLanguage();
-    final String coun = this.loc.getCountry();
-    final String vari = this.loc.getVariant();
 
     final String[] names = new String[numOfVariations];
 
     if (prefix == null) {
+      // if we have null as prefix, return the empty array
       return names;
     }
 
+    final String lang = this.loc.getLanguage();
+    final String country = this.loc.getCountry();
+    final String variant = this.loc.getVariant();
+
+    // put the pure 'prefix' into the array
     names[posOfName] = prefix;
+
     if (!"".equals(lang)) {
+      // put the 'prefix_language' into the array, if the necessary information exists
       names[posOfNameLng] = prefix + "_" + lang;
     }
-    if (!"".equals(lang) && !"".equals(coun)) {
-      names[posOfNameLngCountry] = prefix + "_" + lang + "_" + coun;
+    if (!"".equals(lang) && !"".equals(country)) {
+      // put the 'prefix_language_country' into the array, if the necessary information exists
+      names[posOfNameLngCountry] = prefix + "_" + lang + "_" + country;
     }
-    if (!"".equals(lang) && !"".equals(coun) && !"".equals(vari)) {
-      names[posOfNameLngCountryVar] = prefix + "_" + lang + "_" + coun + "_" + vari;
+    if (!"".equals(lang) && !"".equals(country) && !"".equals(variant)) {
+      // put the 'prefix_language_country_variant' into the array, if the necessary information exists
+      names[posOfNameLngCountryVar] = prefix + "_" + lang + "_" + country + "_" + variant;
     }
     return names;
   }

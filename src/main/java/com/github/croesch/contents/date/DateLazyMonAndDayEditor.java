@@ -90,22 +90,35 @@ abstract class DateLazyMonAndDayEditor implements IDateLazyPartEditor {
 
   @Override
   public final int enterValue(final char c, final int position) {
-    // TODO #9 comment
+    // first position: left character; second position: right character
 
     if (getValidOnlyForSecond().indexOf(c) >= 0) {
+      // we have a character that is only valid at the second position in the day/month
+
       if (position == 0) {
+        // the character should be inserted at the first position, invalid --> change the second character
         this.value[1] = c;
+        // so return that we changed two characters
         return 2;
       }
       if (position == 1) {
+        // the character should be inserted at the second position --> fine, change the second character
         this.value[1] = c;
+        // and return that we successfully wrote one character
         return 1;
       }
     }
+
     if (getValidForBoth().indexOf(c) >= 0 && (position == 0 || position == 1)) {
+      // we have a character that is valid at both positions in the day/month
+      // and we want to insert it at one of the two positions, so do it
       this.value[position] = c;
+      // and return that we successfully wrote one character
       return 1;
     }
+
+    // either the character is not valid for month/day (no digit), or the position is invalid
+    // so return, that we couldn't insert the character
     return -1;
   }
 

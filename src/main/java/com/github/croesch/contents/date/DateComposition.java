@@ -89,7 +89,7 @@ final class DateComposition {
       return createDefaultEditorList(day, month, year);
     }
 
-    return getEditorListOfFormattedDate(formatted, day, month, year);
+    return getEditorListOfFormattedDate(new ArrayList<IDateLazyPartEditor>(), formatted, day, month, year);
   }
 
   /**
@@ -133,38 +133,51 @@ final class DateComposition {
   }
 
   /**
-   * Recursively creates a list of editors that are able to edit the given formatted date. <br>
-   * TODO #9 improve comments!
+   * Recursively creates a list of editors that are able to edit the given formatted date.
    * 
    * @author croesch
    * @since Date: Jul 3, 2011
-   * @param formatted the {@link String} that contains the formatted date
+   * @param list the {@link List} of editors previously converted
+   * @param formatted the {@link String} that contains the formatted date (day=22, month=11, year=3333)
    * @param day the initial day to pass to the editor
    * @param month the initial month to pass to the editor
    * @param year the initial year to pass to the editor
    * @return a {@link List} of {@link IDateLazyPartEditor} that are able to edit a date as the given formatted one.
    */
-  private static List<IDateLazyPartEditor> getEditorListOfFormattedDate(final String formatted,
+  private static List<IDateLazyPartEditor> getEditorListOfFormattedDate(final List<IDateLazyPartEditor> list,
+                                                                        final String formatted,
                                                                         final int day,
                                                                         final int month,
                                                                         final int year) {
-    final List<IDateLazyPartEditor> list = new ArrayList<IDateLazyPartEditor>();
     if (formatted == null || formatted.length() == 0) {
+      // stop condition, we have no more text to convert into editors
       return list;
     }
+
+    // contains the string for the following iteration
+    String nextFormatted;
     if (formatted.startsWith("2")) {
+      // the current part to convert into an editor is the day part
       list.add(new DateLazyDayEditor(day));
-      list.addAll(getEditorListOfFormattedDate(formatted.replaceAll("2", ""), day, month, year));
+      // remove day information from the string for following iterations
+      nextFormatted = formatted.replaceAll("2", "");
     } else if (formatted.startsWith("1")) {
+      // the current part to convert into an editor is the month part
       list.add(new DateLazyMonEditor(month));
-      list.addAll(getEditorListOfFormattedDate(formatted.replaceAll("1", ""), day, month, year));
+      // remove month information from the string for following iterations
+      nextFormatted = formatted.replaceAll("1", "");
     } else if (formatted.startsWith("3")) {
+      // the current part to convert into an editor is the year part
       list.add(new DateLazyYearEditor(year));
-      list.addAll(getEditorListOfFormattedDate(formatted.replaceAll("3", ""), day, month, year));
+      // remove year information from the string for following iterations
+      nextFormatted = formatted.replaceAll("3", "");
     } else {
+      // the current part to convert into an editor is a separating part
       list.add(new DateSepEditor(formatted.substring(0, 1)));
-      list.addAll(getEditorListOfFormattedDate(formatted.substring(1), day, month, year));
+      // remove the character converted into an editor from the string for following iterations
+      nextFormatted = formatted.substring(1);
     }
-    return list;
+    // recursively convert the rest of the string and return the full generated list
+    return getEditorListOfFormattedDate(list, nextFormatted, day, month, year);
   }
 }

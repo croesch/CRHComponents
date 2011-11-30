@@ -162,9 +162,12 @@ public class CContent extends CDocument {
    * @since Date: Jan 13, 2011
    */
   public final void checkForErrors() {
-    // TODO #9 comment or improve readability
     if (this.error == isValid() && isErrorsNotifying()) {
+      // the error state has changed and we should notify the listeners
+
+      // update the error state
       this.error = !this.error;
+      // inform the listeners
       for (final ErrorListener l : this.listeners) {
         l.errorStateChanged(this.error);
       }

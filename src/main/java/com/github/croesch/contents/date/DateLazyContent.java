@@ -78,16 +78,23 @@ class DateLazyContent extends DateContent {
 
   @Override
   public final void insertString(int offs, final String str, final AttributeSet a) throws BadLocationException {
-    // TODO #9 comment!
+    // perform insertion into our really good date field :)
     if (str != null && str.length() > 0) {
+      // we are sure that we have something to insert
       if (str.length() == 1) {
+        // it's a single character ..
         performInsert(offs, str.charAt(0), a);
       } else {
+        // there are several characters to insert
         for (int i = 0; i < str.length(); ++i) {
+          // insert them on by one
           if (this.textComponent != null) {
+            // if we have a text field (normal case)
             insertString(offs, str.substring(i, i + 1), a);
+            // update the new offset to the new caret position
             offs = this.textComponent.getCaretPosition();
           } else {
+            // if we have no textfield (unusual), we increment the offset by one per character
             insertString(offs + i, str.substring(i, i + 1), a);
           }
         }
@@ -106,29 +113,42 @@ class DateLazyContent extends DateContent {
    * @throws BadLocationException if inserted on an invalid position
    */
   private void performInsert(int offs, final char c, final AttributeSet a) throws BadLocationException {
-    // TODO #9 comment!
-    int startPos = 0;
-    boolean inserted = false;
 
+    boolean inserted = false;
+    // the starting position of the current editor
+    int startPos = 0;
     for (final IDateLazyPartEditor editor : this.editors) {
+      // iterate over our editors .. and find the correct one to insert the character
 
       if (offs - editor.getSize() < 0) {
+        // we have the editor that belongs to our offset, so try to insert
         final int z = editor.enterValue(c, offs);
         if (z == -1) {
-          offs = editor.getSize(); // pass to next editor
+          // the editor refused to insert the character
+          // maybe there is another editor in the list that is able to insert the value
+          offs = editor.getSize();
         } else {
+          // the editor has inserted our character, so update the text representation (GUI)
+          // simply, remove all and paste our generated text
           remove(0, getLength());
           super.insertString(0, getDateContent(), a);
 
           if (this.textComponent != null) {
+            /*
+             * the cursor position is the position where to insert the character (offs+startPos) + z (the number of
+             * characters written)
+             */
             this.textComponent.setCaretPosition(offs + startPos + z);
           }
           inserted = true;
+          // we can end here
           break;
         }
       }
 
+      // decrease the offs in the next editor
       offs -= editor.getSize();
+      // and store the decreased value in startPos, so the original offs = (offs+startPos)
       startPos += editor.getSize();
     }
 

@@ -85,38 +85,59 @@ class DateLazyYearEditor implements IDateLazyPartEditor {
 
   @Override
   public int enterValue(final char c, final int position) {
-    // TODO #9 comment
     if ("0123456789".indexOf(c) < 0) {
+      // the character is invalid, so return that we cannot insert it
       return -1;
     }
+
+    // the character is valid, so the behavior depends on the position where to insert
     switch (position) {
+    // The position is numbered from the left to the right (0 is the left character, 3 the right ch.).
+    // position: yyyy -> [0123]
+    /**
+     * The characters won't be written from the left to the right! Normally one inserts four characters successive. Each
+     * character will be pushed from the right into the year-value. This is hard to understand from the code, so check
+     * the behavior of the input field, if in doubt.<br>
+     * Example: Inserting 1,2,3,4 will result in XXX1, 1912, 1123, 1234
+     */
       case 0:
+        // push the character at the right position
         this.value[3] = c;
         return 1;
       case 1:
         if ("0123".indexOf(this.value[3]) >= 0) {
+          // change the century to 20 if decade < 40
           this.value[0] = '2';
           this.value[1] = '0';
         } else {
+          // change the century to 19 if decade >= 40
           this.value[0] = '1';
           this.value[1] = '9';
         }
+        // move last character one to the left
         this.value[2] = this.value[3];
+        // set last (right) character
         this.value[3] = c;
         return 1;
       case 2:
+        // set first (left) character to one
         this.value[0] = '1';
+        // move each position one to the left
         this.value[1] = this.value[2];
         this.value[2] = this.value[3];
+        // set last (right) character
         this.value[3] = c;
         return 1;
       case 3:
+        // move each position one to the left
         this.value[0] = this.value[1];
         this.value[1] = this.value[2];
         this.value[2] = this.value[3];
+        // set last (right) character
         this.value[3] = c;
         return 1;
       default:
+        // the position is invalid, so return that we cannot insert the character
         return -1;
     }
   }
