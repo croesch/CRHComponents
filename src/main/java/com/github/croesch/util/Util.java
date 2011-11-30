@@ -67,12 +67,24 @@ public final class Util {
    * Returns a {@link DateUtil} to access utilities for a {@link Date}s
    * 
    * @since Date: Sep 11, 2011
-   * @param d the {@link Date} should be used for the utilities
+   * @param d the {@link Date} that should be used for the utilities
    * @return the instance of {@link DateUtil}
    * @throws IllegalArgumentException if the given date is {@code null}
    * @see DateUtil#DateUtil(Date)
    */
   public static DateUtil of(final Date d) throws IllegalArgumentException {
     return new DateUtil(d);
+  }
+
+  /**
+   * Returns a {@link IntUtil} to access utilities for a integers
+   * 
+   * @since Date: Nov 30, 2011
+   * @param i the integer that should be used for the utilities
+   * @return the instance of {@link IntUtil}
+   * @see IntUtil#IntUtil(int)
+   */
+  public static IntUtil of(final int i) {
+    return new IntUtil(i);
   }
 }

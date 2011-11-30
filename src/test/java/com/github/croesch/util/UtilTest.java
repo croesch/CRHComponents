@@ -48,6 +48,15 @@ public class UtilTest extends FestSwingJUnitTestCase {
     assertThat(Util.of("a")).isNotEqualTo(new StringUtil(""));
   }
 
+  @Test
+  public void testUtil_Integer() {
+    assertThat(Util.of(1)).isEqualTo(new IntUtil(1));
+    assertThat(Util.of(-1)).isEqualTo(new IntUtil(-1));
+    assertThat(Util.of(0)).isEqualTo(new IntUtil(0));
+    assertThat(Util.of(Integer.MAX_VALUE)).isEqualTo(new IntUtil(Integer.MAX_VALUE));
+    assertThat(Util.of(Integer.MIN_VALUE)).isEqualTo(new IntUtil(Integer.MIN_VALUE));
+  }
+
   /**
    * Tests that {@link Util#of(String)} throws an {@link IllegalArgumentException} if called with <code>null</code>.
    */

@@ -21,6 +21,9 @@ package com.github.croesch.contents.date;
 import java.util.Arrays;
 import java.util.Calendar;
 
+import com.github.croesch.util.IntUtil;
+import com.github.croesch.util.Util;
+
 /**
  * An <i>lazy</i> editor for the year part of a date. It will allow all entries except invalid characters or characters
  * that are not allowed at that position. But it won't use the other parts of date for a validity check.
@@ -29,9 +32,6 @@ import java.util.Calendar;
  * @since Date: Jul 2, 2011
  */
 class DateLazyYearEditor implements IDateLazyPartEditor {
-
-  /** constant for number ten */
-  private static final int TEN = 10;
 
   /** constant of the highest value */
   private static final int HIGHEST = 9999;
@@ -63,11 +63,14 @@ class DateLazyYearEditor implements IDateLazyPartEditor {
     if (initial <= 0 || initial > HIGHEST) {
       initial = Calendar.getInstance().get(Calendar.YEAR);
     }
-    // TODO #7 simplify
-    final int first = initial / (TEN * TEN * TEN);
-    final int second = (initial % (TEN * TEN * TEN)) / (TEN * TEN);
-    final int third = (initial % (TEN * TEN)) / TEN;
-    final int fourth = initial % TEN;
+
+    // extract single digits from the initial value
+    final IntUtil util = Util.of(initial);
+    final int first = util.getDigit(3);
+    final int second = util.getDigit(2);
+    final int third = util.getDigit(1);
+    final int fourth = util.getDigit(0);
+
     // store the calculated value, but with offset of character '0' because we store ASCII/char-values
     this.value[0] = (char) ('0' + first);
     this.value[1] = (char) ('0' + second);

@@ -18,6 +18,9 @@
  */
 package com.github.croesch.contents.date;
 
+import com.github.croesch.util.IntUtil;
+import com.github.croesch.util.Util;
+
 /**
  * Class that contains logic for both, lazy day and lazy month editor.
  * 
@@ -25,9 +28,6 @@ package com.github.croesch.contents.date;
  * @since Date: Jul 6, 2011
  */
 abstract class DateLazyMonAndDayEditor implements IDateLazyPartEditor {
-
-  /** constant for number ten */
-  private static final int TEN = 10;
 
   /** the current value */
   private final char[] value = { '0', '0' };
@@ -45,9 +45,12 @@ abstract class DateLazyMonAndDayEditor implements IDateLazyPartEditor {
     if (initial <= 0 || initial > highest) {
       initial = getDefaultValue();
     }
-    // TODO #12 extract to Util (get value of position)
-    final int first = initial / TEN;
-    final int second = initial % TEN;
+
+    // extract single digits from the initial value
+    final IntUtil util = Util.of(initial);
+    final int first = util.getDigit(1);
+    final int second = util.getDigit(0);
+
     // store the calculated value, but with offset of character '0' because we store ASCII/char-values
     this.value[0] = (char) ('0' + first);
     this.value[1] = (char) ('0' + second);
