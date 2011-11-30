@@ -55,6 +55,9 @@ class DateLazyContent extends DateContent {
   /** the map that contains all available special characters */
   private final Map<String, DateSpecialChar> specialCharactersMap;
 
+  /** instance to avoid masses of calendar instances */
+  private final Calendar calendar = new GregorianCalendar();
+
   /**
    * Creates a new {@link DateLazyContent} that gives special support for date values. The given text component is used
    * to set the cursor to the correct position. The locale is used to fetch the format for the date.
@@ -152,8 +155,6 @@ class DateLazyContent extends DateContent {
                                                                                                      throws BadLocationException {
     // do nothing if the special character is null
     if (sc != null) {
-      // TODO #7 create a field calendar to avoid multiple instances..
-      final Calendar cal = new GregorianCalendar();
       int year = 1, month = 1, day = 1;
       for (final IDateLazyPartEditor e : this.editors) {
         if (e instanceof DateLazyYearEditor) {
@@ -165,15 +166,17 @@ class DateLazyContent extends DateContent {
         }
       }
 
+      this.calendar.setTimeInMillis(System.currentTimeMillis());
       // perform the update of the current date with values fetched from special char
-      year = calculateNewValue(year, cal.get(Calendar.YEAR), sc.getYearValue(), sc.getYearValueType());
-      month = calculateNewValue(month, cal.get(Calendar.MONTH) + 1, sc.getMonthValue(), sc.getMonthValueType()) - 1;
-      day = calculateNewValue(day, cal.get(Calendar.DAY_OF_MONTH), sc.getDayValue(), sc.getDayValueType());
+      year = calculateNewValue(year, this.calendar.get(Calendar.YEAR), sc.getYearValue(), sc.getYearValueType());
+      month = calculateNewValue(month, this.calendar.get(Calendar.MONTH) + 1, sc.getMonthValue(),
+                                sc.getMonthValueType()) - 1;
+      day = calculateNewValue(day, this.calendar.get(Calendar.DAY_OF_MONTH), sc.getDayValue(), sc.getDayValueType());
 
       // calculate valid date from special char
-      cal.set(year, month, day);
+      this.calendar.set(year, month, day);
       // set the calculated date
-      setDate(cal.getTime());
+      setDate(this.calendar.getTime());
       // insert the date into the text field
       remove(0, getLength());
       super.insertString(0, getDateContent(), a);
