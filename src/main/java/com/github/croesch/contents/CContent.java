@@ -40,7 +40,7 @@ public class CContent extends CDocument {
   /** the current state of error */
   private boolean error = false;
 
-  /** maximum input length - <= 0 equals infinity */
+  /** maximum input length - == 0 equals infinity - is ensured to be greater or equal than zero */
   private int maxLength = 0;
 
   /**
@@ -106,13 +106,11 @@ public class CContent extends CDocument {
    */
   public final void addErrorListeners(final ErrorListener ... listener) {
     for (final ErrorListener e : listener) {
-      if (this.listeners.contains(e)) {
-        // TODO #7 handle with if else
-        continue;
+      if (!this.listeners.contains(e)) {
+        // to inform the listener about the initial state
+        e.errorStateChanged(this.error);
+        this.listeners.add(e);
       }
-      // to inform the listener about the initial state
-      e.errorStateChanged(this.error);
-      this.listeners.add(e);
     }
   }
 
@@ -135,10 +133,6 @@ public class CContent extends CDocument {
    * @return the number of maximum chars, or {@code 0} if there is no maximum
    */
   public final int getMaximumInputLength() {
-    if (this.maxLength < 0) {
-      // TODO #7 handle in setter instead
-      return 0;
-    }
     return this.maxLength;
   }
 
@@ -149,7 +143,7 @@ public class CContent extends CDocument {
    * @param max the maximum number of chars, or {@code 0} for no maximum
    */
   public final void setMaximumInputLength(final int max) {
-    this.maxLength = max;
+    this.maxLength = Math.max(0, max);
     checkForErrors();
   }
 
