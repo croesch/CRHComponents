@@ -284,6 +284,14 @@ public class DateLazyMonEditorTest extends FestSwingJUnitTestCase {
     assertThat(new DateLazyMonEditor(9)).isNotEqualTo(new DateLazyMonEditor(10));
     assertThat(new DateLazyMonEditor(7)).isNotEqualTo(new DateLazyMonEditor(8));
     assertThat(new DateLazyMonEditor(4)).isNotEqualTo(new DateLazyMonEditor(3));
+
+    assertThat(new DateLazyMonEditor(11)).isNotEqualTo(new FakeEditor(11));
+  }
+
+  private static class FakeEditor extends DateLazyMonEditor {
+    public FakeEditor(final int i) {
+      super(i);
+    }
   }
 
   /**

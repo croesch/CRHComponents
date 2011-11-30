@@ -104,10 +104,9 @@ class DateSepEditor implements IDatePartEditor {
       return true;
     }
     if (obj == null) {
-      // TODO #7 simplify
       return false;
     }
-    if (!(obj instanceof DateSepEditor)) {
+    if (getClass() != obj.getClass()) {
       return false;
     }
     final DateSepEditor other = (DateSepEditor) obj;

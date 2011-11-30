@@ -137,10 +137,7 @@ class DateLazyYearEditor implements IDateLazyPartEditor {
   @Override
   public int hashCode() {
     final int prime = 31;
-    int result = 1;
-    // TODO #7 simplify
-    result = prime * result + Arrays.hashCode(this.value);
-    return result;
+    return prime + Arrays.hashCode(this.value);
   }
 
   @Override
@@ -149,10 +146,9 @@ class DateLazyYearEditor implements IDateLazyPartEditor {
       return true;
     }
     if (obj == null) {
-      // TODO #7 simplify
       return false;
     }
-    if (!(obj instanceof DateLazyYearEditor)) {
+    if (getClass() != obj.getClass()) {
       return false;
     }
     final DateLazyYearEditor other = (DateLazyYearEditor) obj;

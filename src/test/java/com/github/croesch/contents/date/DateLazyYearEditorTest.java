@@ -567,6 +567,14 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     assertThat(new DateLazyYearEditor(1909)).isNotEqualTo(new DateLazyYearEditor(1910));
     assertThat(new DateLazyYearEditor(1907)).isNotEqualTo(new DateLazyYearEditor(1908));
     assertThat(new DateLazyYearEditor(2014)).isNotEqualTo(new DateLazyYearEditor(2013));
+
+    assertThat(new DateLazyYearEditor(2011)).isNotEqualTo(new FakeEditor(2011));
+  }
+
+  private static class FakeEditor extends DateLazyYearEditor {
+    public FakeEditor(final int i) {
+      super(i);
+    }
   }
 
   /**

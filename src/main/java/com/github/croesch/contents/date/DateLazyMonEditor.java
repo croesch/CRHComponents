@@ -76,10 +76,7 @@ class DateLazyMonEditor extends DateLazyMonAndDayEditor {
   @Override
   public int hashCode() {
     final int prime = 31;
-    int result = 1;
-    // TODO #7 simplify
-    result = prime * result + getValue().hashCode();
-    return result;
+    return prime + getValue().hashCode();
   }
 
   @Override
@@ -87,11 +84,10 @@ class DateLazyMonEditor extends DateLazyMonAndDayEditor {
     if (this == obj) {
       return true;
     }
-    // TODO #7 simplify
     if (obj == null) {
       return false;
     }
-    if (!(obj instanceof DateLazyMonEditor)) {
+    if (getClass() != obj.getClass()) {
       return false;
     }
     final DateLazyMonEditor other = (DateLazyMonEditor) obj;

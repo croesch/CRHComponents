@@ -252,8 +252,17 @@ public class DateSepEditorTest extends FestSwingJUnitTestCase {
     assertThat(this.editor).isNotEqualTo(null);
 
     assertThat(new DateSepEditor("xyz")).isNotEqualTo("xyz");
+    assertThat(new DateSepEditor("xyz")).isNotEqualTo("xy");
 
     assertThat(new DateSepEditor("")).isEqualTo(new DateSepEditor(""));
     assertThat(new DateSepEditor("").hashCode()).isEqualTo(new DateSepEditor("").hashCode());
+
+    assertThat(new DateSepEditor("20")).isNotEqualTo(new FakeEditor("20"));
+  }
+
+  private static class FakeEditor extends DateSepEditor {
+    public FakeEditor(final String initial) {
+      super(initial);
+    }
   }
 }
