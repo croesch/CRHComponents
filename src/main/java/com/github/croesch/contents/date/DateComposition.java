@@ -89,7 +89,7 @@ final class DateComposition {
       return createDefaultEditorList(day, month, year);
     }
 
-    return getEditorListOfFormatedDate(formatted, day, month, year);
+    return getEditorListOfFormattedDate(formatted, day, month, year);
   }
 
   /**
@@ -133,38 +133,37 @@ final class DateComposition {
   }
 
   /**
-   * Recursively creates a list of editors that are able to edit the given formated date. <br>
-   * TODO #7 formatted <br>
+   * Recursively creates a list of editors that are able to edit the given formatted date. <br>
    * TODO #9 improve comments!
    * 
    * @author croesch
    * @since Date: Jul 3, 2011
-   * @param formated the {@link String} that contains the formated date
+   * @param formatted the {@link String} that contains the formatted date
    * @param day the initial day to pass to the editor
    * @param month the initial month to pass to the editor
    * @param year the initial year to pass to the editor
-   * @return a {@link List} of {@link IDateLazyPartEditor} that are able to edit a date as the given formated one.
+   * @return a {@link List} of {@link IDateLazyPartEditor} that are able to edit a date as the given formatted one.
    */
-  private static List<IDateLazyPartEditor> getEditorListOfFormatedDate(final String formated,
-                                                                       final int day,
-                                                                       final int month,
-                                                                       final int year) {
+  private static List<IDateLazyPartEditor> getEditorListOfFormattedDate(final String formatted,
+                                                                        final int day,
+                                                                        final int month,
+                                                                        final int year) {
     final List<IDateLazyPartEditor> list = new ArrayList<IDateLazyPartEditor>();
-    if (formated == null || formated.length() == 0) {
+    if (formatted == null || formatted.length() == 0) {
       return list;
     }
-    if (formated.startsWith("2")) {
+    if (formatted.startsWith("2")) {
       list.add(new DateLazyDayEditor(day));
-      list.addAll(getEditorListOfFormatedDate(formated.replaceAll("2", ""), day, month, year));
-    } else if (formated.startsWith("1")) {
+      list.addAll(getEditorListOfFormattedDate(formatted.replaceAll("2", ""), day, month, year));
+    } else if (formatted.startsWith("1")) {
       list.add(new DateLazyMonEditor(month));
-      list.addAll(getEditorListOfFormatedDate(formated.replaceAll("1", ""), day, month, year));
-    } else if (formated.startsWith("3")) {
+      list.addAll(getEditorListOfFormattedDate(formatted.replaceAll("1", ""), day, month, year));
+    } else if (formatted.startsWith("3")) {
       list.add(new DateLazyYearEditor(year));
-      list.addAll(getEditorListOfFormatedDate(formated.replaceAll("3", ""), day, month, year));
+      list.addAll(getEditorListOfFormattedDate(formatted.replaceAll("3", ""), day, month, year));
     } else {
-      list.add(new DateSepEditor(formated.substring(0, 1)));
-      list.addAll(getEditorListOfFormatedDate(formated.substring(1), day, month, year));
+      list.add(new DateSepEditor(formatted.substring(0, 1)));
+      list.addAll(getEditorListOfFormattedDate(formatted.substring(1), day, month, year));
     }
     return list;
   }
