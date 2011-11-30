@@ -110,9 +110,7 @@ class DateLazyContent extends DateContent {
     int startPos = 0;
     boolean inserted = false;
 
-    // TODO #7 foreach..
-    for (int i = 0; i < this.editors.size() && !inserted; ++i) {
-      final IDateLazyPartEditor editor = this.editors.get(i);
+    for (final IDateLazyPartEditor editor : this.editors) {
 
       if (offs - editor.getSize() < 0) {
         final int z = editor.enterValue(c, offs);
@@ -126,6 +124,7 @@ class DateLazyContent extends DateContent {
             this.textComponent.setCaretPosition(offs + startPos + z);
           }
           inserted = true;
+          break;
         }
       }
 
