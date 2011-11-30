@@ -42,6 +42,11 @@ public class DateSpecialCharInterpreterTest extends FestSwingJUnitTestCase {
     new DateSpecialCharInterpreter(new BufferedReader(new StringReader("..")));
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructor_IAE() {
+    new DateSpecialCharInterpreter(null);
+  }
+
   /**
    * Test method for {@link DateSpecialCharInterpreter#getSpecialCharsMap()}
    */

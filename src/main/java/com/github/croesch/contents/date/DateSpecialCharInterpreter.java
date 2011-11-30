@@ -57,10 +57,14 @@ final class DateSpecialCharInterpreter {
    * @author croesch
    * @since Date: Apr 5, 2011
    * @param in the {@link BufferedReader} to read the definitions from
+   * @throws IllegalArgumentException if the given reader is <code>null</code>
    */
   //TODO #7 extract to method, make constructor private and create static method
-  public DateSpecialCharInterpreter(final BufferedReader in) {
-    // TODO #11 check 'in' for null
+  public DateSpecialCharInterpreter(final BufferedReader in) throws IllegalArgumentException {
+    if (in == null) {
+      throw new IllegalArgumentException(">null< is not allowed.");
+    }
+
     try {
       String line = in.readLine();
       while (line != null) {
