@@ -78,7 +78,7 @@ class DateLazyContent extends DateContent {
     // TODO #9 comment!
     if (str != null && str.length() > 0) {
       if (str.length() == 1) {
-        performInsert(offs, str, a);
+        performInsert(offs, str.charAt(0), a);
       } else {
         for (int i = 0; i < str.length(); ++i) {
           if (this.textComponent != null) {
@@ -93,16 +93,16 @@ class DateLazyContent extends DateContent {
   }
 
   /**
-   * Performs the insertion of a string not <code>null</code> and being one char long.
+   * Performs the insertion of a single character.
    * 
    * @author croesch
    * @since Date: Jul 4, 2011
    * @param offs the offset where to insert basically
-   * @param str the string to insert, not <code>null</code>, single character
+   * @param c the single character to insert
    * @param a the {@link AttributeSet}.
    * @throws BadLocationException if inserted on an invalid position
    */
-  private void performInsert(int offs, final String str, final AttributeSet a) throws BadLocationException {
+  private void performInsert(int offs, final char c, final AttributeSet a) throws BadLocationException {
     // TODO #9 comment!
     int startPos = 0;
     boolean inserted = false;
@@ -112,7 +112,7 @@ class DateLazyContent extends DateContent {
       final IDateLazyPartEditor editor = this.editors.get(i);
 
       if (offs - editor.getSize() < 0) {
-        final int z = editor.enterValue(str, offs);
+        final int z = editor.enterValue(c, offs);
         if (z == -1) {
           offs = editor.getSize(); // pass to next editor
         } else {
@@ -136,7 +136,7 @@ class DateLazyContent extends DateContent {
        * Don't care about null being return from the get-method, because this is no problem for the method that tries to
        * enter the special character
        */
-      performEnterOfSpecialChar(a, this.specialCharactersMap.get(str));
+      performEnterOfSpecialChar(a, this.specialCharactersMap.get(String.valueOf(c)));
     }
   }
 

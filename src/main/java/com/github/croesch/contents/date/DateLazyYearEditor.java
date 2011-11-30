@@ -84,17 +84,14 @@ class DateLazyYearEditor implements IDateLazyPartEditor {
   }
 
   @Override
-  public int enterValue(final String s, final int position) {
+  public int enterValue(final char c, final int position) {
     // TODO #9 comment
-    if (s == null || s.length() != 1) {
-      return -1;
-    }
-    if ("0123456789".indexOf(s) < 0) {
+    if ("0123456789".indexOf(c) < 0) {
       return -1;
     }
     switch (position) {
       case 0:
-        this.value[3] = s.charAt(0);
+        this.value[3] = c;
         return 1;
       case 1:
         if ("0123".indexOf(this.value[3]) >= 0) {
@@ -105,19 +102,19 @@ class DateLazyYearEditor implements IDateLazyPartEditor {
           this.value[1] = '9';
         }
         this.value[2] = this.value[3];
-        this.value[3] = s.charAt(0);
+        this.value[3] = c;
         return 1;
       case 2:
         this.value[0] = '1';
         this.value[1] = this.value[2];
         this.value[2] = this.value[3];
-        this.value[3] = s.charAt(0);
+        this.value[3] = c;
         return 1;
       case 3:
         this.value[0] = this.value[1];
         this.value[1] = this.value[2];
         this.value[2] = this.value[3];
-        this.value[3] = s.charAt(0);
+        this.value[3] = c;
         return 1;
       default:
         return -1;

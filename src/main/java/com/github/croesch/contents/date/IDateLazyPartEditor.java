@@ -37,17 +37,16 @@ interface IDateLazyPartEditor {
   int getSize();
 
   /**
-   * Performs to enter the given string into that editor.
+   * Performs to enter the given character into that editor.
    * 
    * @author croesch
    * @since Date: Jul 2, 2011
-   * @param s the string to enter.
-   * @param position the position to enter the {@link String} at.
-   * @return <code>-1</code>, if the given string cannot be inserted<br>
+   * @param c the single character to enter.
+   * @param position the position to enter the character at.
+   * @return <code>-1</code>, if the given character cannot be inserted<br>
    *         the number of characters written / the cursor should be moved
    */
-  // TODO #7 char instead of String!?
-  int enterValue(String s, int position);
+  int enterValue(char c, int position);
 
   /**
    * Returns the current value of the editor.

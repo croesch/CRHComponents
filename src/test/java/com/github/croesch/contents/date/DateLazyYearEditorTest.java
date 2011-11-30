@@ -97,55 +97,55 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
   }
 
   /**
-   * Test method for {@link DateLazyYearEditor#enterValue(String, int)}.
+   * Test method for {@link DateLazyYearEditor#enterValue(char, int)}.
    */
   @Test
   public final void testEnterValue_SingleCharacter_First() {
-    assertThat(this.editor.enterValue("0", 0)).isEqualTo(1);
+    assertThat(this.editor.enterValue('0', 0)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('0');
 
-    assertThat(this.editor.enterValue("1", 0)).isEqualTo(1);
+    assertThat(this.editor.enterValue('1', 0)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('1');
 
-    assertThat(this.editor.enterValue("2", 0)).isEqualTo(1);
+    assertThat(this.editor.enterValue('2', 0)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('2');
 
-    assertThat(this.editor.enterValue("3", 0)).isEqualTo(1);
+    assertThat(this.editor.enterValue('3', 0)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('3');
 
-    assertThat(this.editor.enterValue("4", 0)).isEqualTo(1);
+    assertThat(this.editor.enterValue('4', 0)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('4');
 
-    assertThat(this.editor.enterValue("5", 0)).isEqualTo(1);
+    assertThat(this.editor.enterValue('5', 0)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('5');
 
-    assertThat(this.editor.enterValue("6", 0)).isEqualTo(1);
+    assertThat(this.editor.enterValue('6', 0)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('6');
 
-    assertThat(this.editor.enterValue("7", 0)).isEqualTo(1);
+    assertThat(this.editor.enterValue('7', 0)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('7');
 
-    assertThat(this.editor.enterValue("8", 0)).isEqualTo(1);
+    assertThat(this.editor.enterValue('8', 0)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('8');
 
-    assertThat(this.editor.enterValue("9", 0)).isEqualTo(1);
+    assertThat(this.editor.enterValue('9', 0)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('9');
 
-    assertThat(this.editor.enterValue("a", 0)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('a', 0)).isEqualTo(-1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('9');
 
-    assertThat(this.editor.enterValue("b", 0)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('b', 0)).isEqualTo(-1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('9');
 
   }
 
   /**
-   * Test method for {@link DateLazyYearEditor#enterValue(String, int)}.
+   * Test method for {@link DateLazyYearEditor#enterValue(char, int)}.
    */
   @Test
   public final void testEnterValue_SingleCharacter_Second() {
     char c3 = this.editor.getValue().charAt(3);
-    assertThat(this.editor.enterValue("0", 1)).isEqualTo(1);
+    assertThat(this.editor.enterValue('0', 1)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('0');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     if (c3 == '0' || c3 == '1' || c3 == '2' || c3 == '3') {
@@ -157,7 +157,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     }
 
     c3 = this.editor.getValue().charAt(3);
-    assertThat(this.editor.enterValue("1", 1)).isEqualTo(1);
+    assertThat(this.editor.enterValue('1', 1)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('1');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     if (c3 == '0' || c3 == '1' || c3 == '2' || c3 == '3') {
@@ -169,7 +169,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     }
 
     c3 = this.editor.getValue().charAt(3);
-    assertThat(this.editor.enterValue("2", 1)).isEqualTo(1);
+    assertThat(this.editor.enterValue('2', 1)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('2');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     if (c3 == '0' || c3 == '1' || c3 == '2' || c3 == '3') {
@@ -181,7 +181,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     }
 
     c3 = this.editor.getValue().charAt(3);
-    assertThat(this.editor.enterValue("3", 1)).isEqualTo(1);
+    assertThat(this.editor.enterValue('3', 1)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('3');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     if (c3 == '0' || c3 == '1' || c3 == '2' || c3 == '3') {
@@ -193,7 +193,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     }
 
     c3 = this.editor.getValue().charAt(3);
-    assertThat(this.editor.enterValue("4", 1)).isEqualTo(1);
+    assertThat(this.editor.enterValue('4', 1)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('4');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     if (c3 == '0' || c3 == '1' || c3 == '2' || c3 == '3') {
@@ -205,7 +205,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     }
 
     c3 = this.editor.getValue().charAt(3);
-    assertThat(this.editor.enterValue("5", 1)).isEqualTo(1);
+    assertThat(this.editor.enterValue('5', 1)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('5');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     if (c3 == '0' || c3 == '1' || c3 == '2' || c3 == '3') {
@@ -217,7 +217,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     }
 
     c3 = this.editor.getValue().charAt(3);
-    assertThat(this.editor.enterValue("6", 1)).isEqualTo(1);
+    assertThat(this.editor.enterValue('6', 1)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('6');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     if (c3 == '0' || c3 == '1' || c3 == '2' || c3 == '3') {
@@ -229,7 +229,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     }
 
     c3 = this.editor.getValue().charAt(3);
-    assertThat(this.editor.enterValue("7", 1)).isEqualTo(1);
+    assertThat(this.editor.enterValue('7', 1)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('7');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     if (c3 == '0' || c3 == '1' || c3 == '2' || c3 == '3') {
@@ -241,7 +241,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     }
 
     c3 = this.editor.getValue().charAt(3);
-    assertThat(this.editor.enterValue("8", 1)).isEqualTo(1);
+    assertThat(this.editor.enterValue('8', 1)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('8');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     if (c3 == '0' || c3 == '1' || c3 == '2' || c3 == '3') {
@@ -253,7 +253,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     }
 
     c3 = this.editor.getValue().charAt(3);
-    assertThat(this.editor.enterValue("9", 1)).isEqualTo(1);
+    assertThat(this.editor.enterValue('9', 1)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('9');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     if (c3 == '0' || c3 == '1' || c3 == '2' || c3 == '3') {
@@ -264,21 +264,21 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
       assertThat(this.editor.getValue().charAt(1)).isEqualTo('9');
     }
 
-    assertThat(this.editor.enterValue("a", 1)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('a', 1)).isEqualTo(-1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('9');
 
-    assertThat(this.editor.enterValue("b", 1)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('b', 1)).isEqualTo(-1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('9');
   }
 
   /**
-   * Test method for {@link DateLazyYearEditor#enterValue(String, int)}.
+   * Test method for {@link DateLazyYearEditor#enterValue(char, int)}.
    */
   @Test
   public final void testEnterValue_SingleCharacter_Third() {
     char c3 = this.editor.getValue().charAt(3);
     char c2 = this.editor.getValue().charAt(2);
-    assertThat(this.editor.enterValue("0", 2)).isEqualTo(1);
+    assertThat(this.editor.enterValue('0', 2)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('0');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -286,7 +286,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
 
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
-    assertThat(this.editor.enterValue("1", 2)).isEqualTo(1);
+    assertThat(this.editor.enterValue('1', 2)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('1');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -294,7 +294,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
 
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
-    assertThat(this.editor.enterValue("2", 2)).isEqualTo(1);
+    assertThat(this.editor.enterValue('2', 2)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('2');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -302,7 +302,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
 
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
-    assertThat(this.editor.enterValue("3", 2)).isEqualTo(1);
+    assertThat(this.editor.enterValue('3', 2)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('3');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -310,7 +310,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
 
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
-    assertThat(this.editor.enterValue("4", 2)).isEqualTo(1);
+    assertThat(this.editor.enterValue('4', 2)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('4');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -318,7 +318,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
 
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
-    assertThat(this.editor.enterValue("5", 2)).isEqualTo(1);
+    assertThat(this.editor.enterValue('5', 2)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('5');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -326,7 +326,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
 
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
-    assertThat(this.editor.enterValue("6", 2)).isEqualTo(1);
+    assertThat(this.editor.enterValue('6', 2)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('6');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -334,7 +334,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
 
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
-    assertThat(this.editor.enterValue("7", 2)).isEqualTo(1);
+    assertThat(this.editor.enterValue('7', 2)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('7');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -342,7 +342,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
 
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
-    assertThat(this.editor.enterValue("8", 2)).isEqualTo(1);
+    assertThat(this.editor.enterValue('8', 2)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('8');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -350,28 +350,28 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
 
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
-    assertThat(this.editor.enterValue("9", 2)).isEqualTo(1);
+    assertThat(this.editor.enterValue('9', 2)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('9');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
     assertThat(this.editor.getValue().charAt(0)).isEqualTo('1');
 
-    assertThat(this.editor.enterValue("a", 2)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('a', 2)).isEqualTo(-1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('9');
 
-    assertThat(this.editor.enterValue("b", 2)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('b', 2)).isEqualTo(-1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('9');
   }
 
   /**
-   * Test method for {@link DateLazyYearEditor#enterValue(String, int)}.
+   * Test method for {@link DateLazyYearEditor#enterValue(char, int)}.
    */
   @Test
   public final void testEnterValue_SingleCharacter_Fourth() {
     char c3 = this.editor.getValue().charAt(3);
     char c2 = this.editor.getValue().charAt(2);
     char c1 = this.editor.getValue().charAt(1);
-    assertThat(this.editor.enterValue("0", 3)).isEqualTo(1);
+    assertThat(this.editor.enterValue('0', 3)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('0');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -380,7 +380,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
     c1 = this.editor.getValue().charAt(1);
-    assertThat(this.editor.enterValue("1", 3)).isEqualTo(1);
+    assertThat(this.editor.enterValue('1', 3)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('1');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -389,7 +389,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
     c1 = this.editor.getValue().charAt(1);
-    assertThat(this.editor.enterValue("2", 3)).isEqualTo(1);
+    assertThat(this.editor.enterValue('2', 3)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('2');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -398,7 +398,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
     c1 = this.editor.getValue().charAt(1);
-    assertThat(this.editor.enterValue("3", 3)).isEqualTo(1);
+    assertThat(this.editor.enterValue('3', 3)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('3');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -407,7 +407,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
     c1 = this.editor.getValue().charAt(1);
-    assertThat(this.editor.enterValue("4", 3)).isEqualTo(1);
+    assertThat(this.editor.enterValue('4', 3)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('4');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -416,7 +416,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
     c1 = this.editor.getValue().charAt(1);
-    assertThat(this.editor.enterValue("5", 3)).isEqualTo(1);
+    assertThat(this.editor.enterValue('5', 3)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('5');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -425,7 +425,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
     c1 = this.editor.getValue().charAt(1);
-    assertThat(this.editor.enterValue("6", 3)).isEqualTo(1);
+    assertThat(this.editor.enterValue('6', 3)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('6');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -434,7 +434,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
     c1 = this.editor.getValue().charAt(1);
-    assertThat(this.editor.enterValue("7", 3)).isEqualTo(1);
+    assertThat(this.editor.enterValue('7', 3)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('7');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -443,7 +443,7 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
     c1 = this.editor.getValue().charAt(1);
-    assertThat(this.editor.enterValue("8", 3)).isEqualTo(1);
+    assertThat(this.editor.enterValue('8', 3)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('8');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
@@ -452,16 +452,16 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
     c3 = this.editor.getValue().charAt(3);
     c2 = this.editor.getValue().charAt(2);
     c1 = this.editor.getValue().charAt(1);
-    assertThat(this.editor.enterValue("9", 3)).isEqualTo(1);
+    assertThat(this.editor.enterValue('9', 3)).isEqualTo(1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('9');
     assertThat(this.editor.getValue().charAt(2)).isEqualTo(c3);
     assertThat(this.editor.getValue().charAt(1)).isEqualTo(c2);
     assertThat(this.editor.getValue().charAt(0)).isEqualTo(c1);
 
-    assertThat(this.editor.enterValue("a", 3)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('a', 3)).isEqualTo(-1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('9');
 
-    assertThat(this.editor.enterValue("b", 3)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('b', 3)).isEqualTo(-1);
     assertThat(this.editor.getValue().charAt(3)).isEqualTo('9');
   }
 
@@ -470,81 +470,51 @@ public class DateLazyYearEditorTest extends FestSwingJUnitTestCase {
   @Test
   public final void testEnterValue_SingleCharacter_Invalid() {
     final String val = this.editor.getValue();
-    assertThat(this.editor.enterValue("0", -1)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('0', -1)).isEqualTo(-1);
     assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("1", -1)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('1', -1)).isEqualTo(-1);
     assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("2", 4)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('2', 4)).isEqualTo(-1);
     assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("3", 4)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('3', 4)).isEqualTo(-1);
     assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("4", 5)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('4', 5)).isEqualTo(-1);
     assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("5", 5)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('5', 5)).isEqualTo(-1);
     assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("6", -2)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('6', -2)).isEqualTo(-1);
     assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("7", -2)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('7', -2)).isEqualTo(-1);
     assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("8", -3)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('8', -3)).isEqualTo(-1);
     assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("9", -3)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('9', -3)).isEqualTo(-1);
     assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("a", 10)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('a', 10)).isEqualTo(-1);
     assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("b", 11)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('b', 11)).isEqualTo(-1);
     assertThat(this.editor.getValue()).isEqualTo(val);
-  }
-
-  /**
-   * Test method for {@link DateLazyYearEditor#enterValue(String, int)}.
-   */
-  @Test
-  public final void testEnterValue_MultiCharacter() {
-    final String val = this.editor.getValue();
-    assertThat(this.editor.enterValue("01", 0)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('?', 1)).isEqualTo(-1);
     assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("01", 1)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('?', 0)).isEqualTo(-1);
     assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("02", 0)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('+', 1)).isEqualTo(-1);
     assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("03", 1)).isEqualTo(-1);
-    assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("04", 1)).isEqualTo(-1);
-    assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("05", 0)).isEqualTo(-1);
-    assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("06", 2)).isEqualTo(-1);
-    assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("07", 7)).isEqualTo(-1);
-    assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("08", -1)).isEqualTo(-1);
-    assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("09", 2)).isEqualTo(-1);
-    assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("0a", 0)).isEqualTo(-1);
-    assertThat(this.editor.getValue()).isEqualTo(val);
-    assertThat(this.editor.enterValue("0b", 3)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('+', 0)).isEqualTo(-1);
     assertThat(this.editor.getValue()).isEqualTo(val);
   }
 
   /**
-   * Test method for {@link DateLazyYearEditor#enterValue(String, int)}.
+   * Test method for {@link DateLazyYearEditor#enterValue(char, int)}.
    */
   @Test
   public final void testEnterValue_Nothing() {
-    assertThat(this.editor.enterValue("", 0)).isEqualTo(-1);
-    assertThat(this.editor.enterValue("", 1)).isEqualTo(-1);
-    assertThat(this.editor.enterValue(" ", 0)).isEqualTo(-1);
-    assertThat(this.editor.enterValue(" ", 1)).isEqualTo(-1);
-    assertThat(this.editor.enterValue(null, 1)).isEqualTo(-1);
-    assertThat(this.editor.enterValue(null, 0)).isEqualTo(-1);
-    assertThat(this.editor.enterValue("\n", 2)).isEqualTo(-1);
-    assertThat(this.editor.enterValue("\t", 7)).isEqualTo(-1);
-    assertThat(this.editor.enterValue(null, -1)).isEqualTo(-1);
-    assertThat(this.editor.enterValue(null, 2)).isEqualTo(-1);
-    assertThat(this.editor.enterValue("\n", 0)).isEqualTo(-1);
-    assertThat(this.editor.enterValue("\n", 3)).isEqualTo(-1);
+    assertThat(this.editor.enterValue(' ', 0)).isEqualTo(-1);
+    assertThat(this.editor.enterValue(' ', 1)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('\n', 2)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('\t', 7)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('\n', 0)).isEqualTo(-1);
+    assertThat(this.editor.enterValue('\n', 3)).isEqualTo(-1);
   }
 
   /**

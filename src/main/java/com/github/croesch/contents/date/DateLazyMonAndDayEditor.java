@@ -89,24 +89,22 @@ abstract class DateLazyMonAndDayEditor implements IDateLazyPartEditor {
   }
 
   @Override
-  public final int enterValue(final String s, final int position) {
+  public final int enterValue(final char c, final int position) {
     // TODO #9 comment
-    if (s != null && s.length() == 1) {
 
-      if (getValidOnlyForSecond().indexOf(s) >= 0) {
-        if (position == 0) {
-          this.value[1] = s.charAt(0);
-          return 2;
-        }
-        if (position == 1) {
-          this.value[1] = s.charAt(0);
-          return 1;
-        }
+    if (getValidOnlyForSecond().indexOf(c) >= 0) {
+      if (position == 0) {
+        this.value[1] = c;
+        return 2;
       }
-      if (getValidForBoth().indexOf(s) >= 0 && (position == 0 || position == 1)) {
-        this.value[position] = s.charAt(0);
+      if (position == 1) {
+        this.value[1] = c;
         return 1;
       }
+    }
+    if (getValidForBoth().indexOf(c) >= 0 && (position == 0 || position == 1)) {
+      this.value[position] = c;
+      return 1;
     }
     return -1;
   }
