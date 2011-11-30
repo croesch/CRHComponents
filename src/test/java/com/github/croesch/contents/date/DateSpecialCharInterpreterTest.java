@@ -168,9 +168,6 @@ public class DateSpecialCharInterpreterTest extends FestSwingJUnitTestCase {
     assertThat(interpreter.getSpecialCharsMap().get("i")).isEqualTo(specialChar);
   }
 
-  /**
-   * Test method for {@link DateSpecialCharInterpreter#getSpecialCharsMap()}
-   */
   @Test
   public void testEmptySpecialCharacter() {
     final DateSpecialChar specialChar = new DateSpecialChar('i',
