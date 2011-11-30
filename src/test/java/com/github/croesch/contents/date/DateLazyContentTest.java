@@ -21,7 +21,6 @@ package com.github.croesch.contents.date;
 import static com.github.croesch.TestUtil.assertDateHasValues;
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -54,8 +53,9 @@ public class DateLazyContentTest extends FestSwingJUnitTestCase {
 
   private int todaysYear;
 
-  private final Map<String, DateSpecialChar> specCharMapEmpty = new DateSpecialCharInterpreter(new BufferedReader(new InputStreamReader(DateContent.class
-    .getClassLoader().getResourceAsStream("datechars_empty.cfg")))).getSpecialCharsMap();
+  private final Map<String, DateSpecialChar> specCharMapEmpty = DateSpecialCharInterpreter
+    .createFrom(new InputStreamReader(DateContent.class.getClassLoader().getResourceAsStream("datechars_empty.cfg")))
+    .getSpecialCharsMap();
 
   /**
    * Sets up the {@link DateLazyContent}.

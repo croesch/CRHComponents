@@ -20,6 +20,7 @@ package com.github.croesch.contents.date;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,11 +60,7 @@ final class DateSpecialCharInterpreter {
    * @param in the {@link BufferedReader} to read the definitions from
    * @throws IllegalArgumentException if the given reader is <code>null</code>
    */
-  //TODO #7 extract to method, make constructor private and create static method
-  public DateSpecialCharInterpreter(final BufferedReader in) throws IllegalArgumentException {
-    if (in == null) {
-      throw new IllegalArgumentException(">null< is not allowed.");
-    }
+  private DateSpecialCharInterpreter(final BufferedReader in) throws IllegalArgumentException {
 
     try {
       // read the file
@@ -84,6 +81,22 @@ final class DateSpecialCharInterpreter {
        */
       Log.error(e);
     }
+  }
+
+  /**
+   * Constructs a new {@link DateSpecialCharInterpreter}. The given {@link Reader} should contain the special characters
+   * configuration to interpret.
+   * 
+   * @since Date: Nov 30, 2011
+   * @param reader the {@link Reader} that contains the configuration of the special characters
+   * @return the interpreter containing the information read from the given reader
+   */
+  static DateSpecialCharInterpreter createFrom(final Reader reader) {
+    if (reader == null) {
+      throw new IllegalArgumentException(">null< is not allowed.");
+    }
+
+    return new DateSpecialCharInterpreter(new BufferedReader(reader));
   }
 
   /**

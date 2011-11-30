@@ -20,7 +20,6 @@ package com.github.croesch.contents.date;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Calendar;
 import java.util.Date;
@@ -41,8 +40,9 @@ import org.junit.Test;
  */
 public class DateLazyContentTest_SpecialChars extends FestSwingJUnitTestCase {
 
-  private final Map<String, DateSpecialChar> specCharMap = new DateSpecialCharInterpreter(new BufferedReader(new InputStreamReader(DateContent.class
-    .getClassLoader().getResourceAsStream("datechars.cfg")))).getSpecialCharsMap();
+  private final Map<String, DateSpecialChar> specCharMap = DateSpecialCharInterpreter
+    .createFrom(new InputStreamReader(DateContent.class.getClassLoader().getResourceAsStream("datechars.cfg")))
+    .getSpecialCharsMap();
 
   @Test
   public void testUnknownCharacters() throws BadLocationException {

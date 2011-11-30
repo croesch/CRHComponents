@@ -20,7 +20,6 @@ package com.github.croesch.contents.date;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.io.BufferedReader;
 import java.io.StringReader;
 
 import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
@@ -39,12 +38,12 @@ public class DateSpecialCharInterpreterTest extends FestSwingJUnitTestCase {
    */
   @Test
   public void testConstructor() {
-    new DateSpecialCharInterpreter(new BufferedReader(new StringReader("..")));
+    DateSpecialCharInterpreter.createFrom(new StringReader(".."));
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testConstructor_IAE() {
-    new DateSpecialCharInterpreter(null);
+    DateSpecialCharInterpreter.createFrom(null);
   }
 
   /**
@@ -52,34 +51,34 @@ public class DateSpecialCharInterpreterTest extends FestSwingJUnitTestCase {
    */
   @Test
   public void testEmptyList() {
-    DateSpecialCharInterpreter interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("# no content")));
+    DateSpecialCharInterpreter interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("# no content"));
     assertThat(interpreter.getSpecialCharsMap()).isEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("# no content\n # comment ")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("# no content\n # comment "));
     assertThat(interpreter.getSpecialCharsMap()).isEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader(""));
     assertThat(interpreter.getSpecialCharsMap()).isEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("...\n\n...")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("...\n\n..."));
     assertThat(interpreter.getSpecialCharsMap()).isEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("asd\n")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("asd\n"));
     assertThat(interpreter.getSpecialCharsMap()).isEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("#|c11|i12|o13")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("#|c11|i12|o13"));
     assertThat(interpreter.getSpecialCharsMap()).isEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("a|c1|i1|p3")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("a|c1|i1|p3"));
     assertThat(interpreter.getSpecialCharsMap()).isEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("a|c1|p1|i3")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("a|c1|p1|i3"));
     assertThat(interpreter.getSpecialCharsMap()).isEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("a|p1|i1|c3")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("a|p1|i1|c3"));
     assertThat(interpreter.getSpecialCharsMap()).isEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("a|O1|i1|c3")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("a|O1|i1|c3"));
     assertThat(interpreter.getSpecialCharsMap()).isEmpty();
   }
 
@@ -88,55 +87,59 @@ public class DateSpecialCharInterpreterTest extends FestSwingJUnitTestCase {
    */
   @Test
   public void testListIsNotEmpty() {
-    DateSpecialCharInterpreter interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("t|o0|o0|o0")));
+    DateSpecialCharInterpreter interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("t|o0|o0|o0"));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("# no content\n # comment \nt|o0|o0|o0")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("# no content\n # comment \nt|o0|o0|o0"));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("# no content\n # comment \nt|o0|o0|o0 # today")));
+    interpreter = DateSpecialCharInterpreter
+      .createFrom(new StringReader("# no content\n # comment \nt|o0|o0|o0 # today"));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("# no content\n # comment \nt|o0|o0|o0\t#\ttoday")));
+    interpreter = DateSpecialCharInterpreter
+      .createFrom(new StringReader("# no content\n # comment \nt|o0|o0|o0\t#\ttoday"));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("# no content\n # comment \n t|o0|o0|o0\t#\ttoday")));
+    interpreter = DateSpecialCharInterpreter
+      .createFrom(new StringReader("# no content\n # comment \n t|o0|o0|o0\t#\ttoday"));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("# no content\n # comment \n t|o0|o0|o0\t#\ttoday ")));
+    interpreter = DateSpecialCharInterpreter
+      .createFrom(new StringReader("# no content\n # comment \n t|o0|o0|o0\t#\ttoday "));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("\tt|o0|o0|o0 ")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("\tt|o0|o0|o0 "));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("\tc|o1|o2|o3 ")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("\tc|o1|o2|o3 "));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("\tc|c1|i2|o3 ")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("\tc|c1|i2|o3 "));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("\tc|c11|i12|o13 ")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("\tc|c11|i12|o13 "));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("\tZ|c11|i12|o13 ")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("\tZ|c11|i12|o13 "));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("\t Z||i12|o13 \t")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("\t Z||i12|o13 \t"));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("\tZ|c11||o13 ")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("\tZ|c11||o13 "));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("\tZ|c11|i12| ")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("\tZ|c11|i12| "));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("\tZ|c11|i12|o-13 ")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("\tZ|c11|i12|o-13 "));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("\tZ|c11|i-12|o13 ")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("\tZ|c11|i-12|o13 "));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("\tZ|c-11|i12|o13 ")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("\tZ|c-11|i12|o13 "));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
   }
 
@@ -152,7 +155,7 @@ public class DateSpecialCharInterpreterTest extends FestSwingJUnitTestCase {
                                                       0,
                                                       ModificationType.OFFSET,
                                                       0);
-    DateSpecialCharInterpreter interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("t|o0|o0|o0")));
+    DateSpecialCharInterpreter interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("t|o0|o0|o0"));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
     assertThat(interpreter.getSpecialCharsMap().get("t")).isEqualTo(specialChar);
 
@@ -163,7 +166,7 @@ public class DateSpecialCharInterpreterTest extends FestSwingJUnitTestCase {
                                       2,
                                       ModificationType.INCREMENT,
                                       -3);
-    interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("i|i1|i2|i-3")));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("i|i1|i2|i-3"));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
     assertThat(interpreter.getSpecialCharsMap().get("i")).isEqualTo(specialChar);
   }
@@ -177,7 +180,7 @@ public class DateSpecialCharInterpreterTest extends FestSwingJUnitTestCase {
                                                             0,
                                                             ModificationType.INCREMENT,
                                                             0);
-    final DateSpecialCharInterpreter interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader("i|||")));
+    final DateSpecialCharInterpreter interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("i|||"));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
     assertThat(interpreter.getSpecialCharsMap().get("i")).isEqualTo(specialChar);
   }
@@ -211,7 +214,7 @@ public class DateSpecialCharInterpreterTest extends FestSwingJUnitTestCase {
                                                     2,
                                                     ModificationType.CONSTANT,
                                                     3);
-    final DateSpecialCharInterpreter interpreter = new DateSpecialCharInterpreter(new BufferedReader(new StringReader(testString)));
+    final DateSpecialCharInterpreter interpreter = DateSpecialCharInterpreter.createFrom(new StringReader(testString));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
     assertThat(interpreter.getSpecialCharsMap().values()).containsOnly(sc1, sc2, sc3);
   }
