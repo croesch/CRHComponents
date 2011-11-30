@@ -66,15 +66,15 @@ final class DateSpecialCharInterpreter {
     }
 
     try {
-      String line = in.readLine();
-      while (line != null) {
-        // TODO #12 extract method
-        line = line.trim().replaceFirst("[ \t]*#.*", "");
-        // TODO #12 extract method
-        if (line.matches(".(\\|([oic]-?[0-9]+)?){3,3}")) {
+      // read the file
+      String line;
+      while ((line = in.readLine()) != null) {
+        // remove comments and leading/trailing whitespaces
+        line = removeComments(line.trim());
+        // if line without comments is valid, add it..
+        if (isCorrectConfigurationLine(line)) {
           addLine(line);
         }
-        line = in.readLine();
       }
     } catch (final IOException e) {
       /*
@@ -84,6 +84,28 @@ final class DateSpecialCharInterpreter {
        */
       Log.error(e);
     }
+  }
+
+  /**
+   * Returns whether the given {@link String} is a correct line for configuration.
+   * 
+   * @since Date: Nov 30, 2011
+   * @param line the {@link String} to test, if it's a correct configuration entry
+   * @return <code>true</code>, if the {@link String} is a valid configuration entry
+   */
+  private boolean isCorrectConfigurationLine(final String line) {
+    return line.matches(".(\\|([oic]-?[0-9]+)?){3,3}");
+  }
+
+  /**
+   * Removes comments in the given line.
+   * 
+   * @since Date: Nov 30, 2011
+   * @param line the line that could contain a comment
+   * @return the line without comments.
+   */
+  private String removeComments(final String line) {
+    return line.replaceFirst("[ \t]*#.*", "");
   }
 
   /**
@@ -149,6 +171,7 @@ final class DateSpecialCharInterpreter {
    * @param line the {@link String} that contains < line >
    */
   private void addLine(final String line) {
+    // parse the line
     final String[] arr = splitLine(line);
 
     final String yearPartOfDefinition = arr[1];

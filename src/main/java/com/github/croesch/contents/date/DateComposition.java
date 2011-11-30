@@ -63,7 +63,7 @@ final class DateComposition {
    * 
    * @author croesch
    * @since Date: Jul 5, 2011
-   * @param l the locale to fetch the {@link IDateLazyPartEditor}s from TODO l is no good name (#7 general)
+   * @param loc the locale to fetch the {@link IDateLazyPartEditor}s from TODO l is no good name (#7 general)
    * @param mode the {@link DateContent.MODE} for the editors
    * @param day the initial day value to pass to the editor
    * @param month the initial month value to pass to the editor
@@ -72,35 +72,64 @@ final class DateComposition {
    *         of the locale cannot be parsed correctly then it returns a list of editors that are able to edit YYYY-MM-DD
    *         date.
    */
-  static List<IDateLazyPartEditor> getComposition(final Locale l,
+  static List<IDateLazyPartEditor> getComposition(final Locale loc,
                                                   final DateContent.MODE mode,
                                                   final int day,
                                                   final int month,
                                                   final int year) {
 
     final int testYear = 3333;
-    final int testMonth = 10;
+    final int testMonth = 11;
     final int testDay = 22;
 
-    // TODO #12 in own method
-    final DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, l);
-    final Calendar cal = Calendar.getInstance();
-    cal.set(testYear, testMonth, testDay);
-    final String formated = df.format(cal.getTime());
+    final String formatted = constructFormattedTestDate(loc, testYear, testMonth, testDay);
 
     // TODO #13 joda-time
-    if (!formated.contains("22") || !formated.contains("11") || !formated.contains("33")) {
-      // TODO #12 own method
-      final List<IDateLazyPartEditor> list = new ArrayList<IDateLazyPartEditor>();
-      list.add(new DateLazyYearEditor(year));
-      list.add(new DateSepEditor("-"));
-      list.add(new DateLazyMonEditor(month));
-      list.add(new DateSepEditor("-"));
-      list.add(new DateLazyDayEditor(day));
-      return list;
+    if (!formatted.contains("22") || !formatted.contains("11") || !formatted.contains("33")) {
+      return createDefaultEditorList(day, month, year);
     }
 
-    return getEditorListOfFormatedDate(formated, day, month, year);
+    return getEditorListOfFormatedDate(formatted, day, month, year);
+  }
+
+  /**
+   * Constructs the default list of editors for a date. The editors are some to edit ISO-formatted dates.
+   * 
+   * @since Date: Nov 30, 2011
+   * @param day the initial value of the day
+   * @param month the initial value of the month
+   * @param year the initial value of the year
+   * @return the {@link List} that contains the editors to edit ISO-formatted dates.
+   */
+  private static List<IDateLazyPartEditor> createDefaultEditorList(final int day, final int month, final int year) {
+    final List<IDateLazyPartEditor> list = new ArrayList<IDateLazyPartEditor>();
+
+    list.add(new DateLazyYearEditor(year));
+    list.add(new DateSepEditor("-"));
+    list.add(new DateLazyMonEditor(month));
+    list.add(new DateSepEditor("-"));
+    list.add(new DateLazyDayEditor(day));
+
+    return list;
+  }
+
+  /**
+   * Uses the given {@link Locale} to format a test date to identify the different parts of the date and their order.
+   * 
+   * @since Date: Nov 30, 2011
+   * @param loc the {@link Locale} to use for construction
+   * @param year the year that the formatted date should have.
+   * @param month the month the formatted date should have (1=January)
+   * @param day the day the formatted date should have
+   * @return the date formatted in the way of the {@link Locale}
+   */
+  private static String constructFormattedTestDate(final Locale loc, final int year, final int month, final int day) {
+
+    final DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, loc);
+    final Calendar cal = Calendar.getInstance();
+    cal.set(year, month - 1, day);
+
+    return df.format(cal.getTime());
   }
 
   /**
