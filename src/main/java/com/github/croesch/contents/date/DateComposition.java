@@ -63,7 +63,7 @@ final class DateComposition {
    * 
    * @author croesch
    * @since Date: Jul 5, 2011
-   * @param loc the locale to fetch the {@link IDateLazyPartEditor}s from TODO l is no good name (#7 general)
+   * @param loc the locale to fetch the {@link IDateLazyPartEditor}s from
    * @param mode the {@link DateContent.MODE} for the editors
    * @param day the initial day value to pass to the editor
    * @param month the initial month value to pass to the editor
