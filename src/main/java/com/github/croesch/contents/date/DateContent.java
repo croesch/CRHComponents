@@ -19,6 +19,7 @@
 package com.github.croesch.contents.date;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.HashMap;
@@ -104,9 +105,11 @@ public abstract class DateContent extends CContent {
    */
   private static synchronized Map<String, DateSpecialChar> getSpecialCharsMap() {
     if (specialCharsMap == null) {
-      // TODO #7 too long..
-      specialCharsMap = new DateSpecialCharInterpreter(new BufferedReader(new InputStreamReader(DateContent.class
-        .getClassLoader().getResourceAsStream(DATECHARS_CFG_FILE)))).getSpecialCharsMap();
+      // fetch the input stream for the configuration file
+      final InputStream configFileStream = DateContent.class.getClassLoader().getResourceAsStream(DATECHARS_CFG_FILE);
+      final BufferedReader configFileReader = new BufferedReader(new InputStreamReader(configFileStream));
+
+      specialCharsMap = new DateSpecialCharInterpreter(configFileReader).getSpecialCharsMap();
     }
     return new HashMap<String, DateSpecialChar>(specialCharsMap);
 
