@@ -22,7 +22,6 @@ import static com.github.croesch.TestUtil.assertDateHasValues;
 import static org.fest.assertions.Assertions.assertThat;
 
 import java.awt.Dimension;
-import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -335,9 +334,7 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     assertThat(this.field.target.getCaretPosition()).isEqualTo(0);
     assertDateHasValues(this.target.getDate(), 10, 1, 1988);
 
-    this.field.enterText("55");
-    this.field.pressAndReleaseKeys(KeyEvent.VK_SLASH);
-    this.field.enterText("302");
+    this.field.enterText("55/302");
     this.field.requireText("1955/03/02");
     assertDateHasValues(this.target.getDate(), 2, 3, 1955);
 
@@ -618,10 +615,8 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
   @Test
   public final void testGetDateWithoutTime() {
     this.field.enterText("010100");
-    assertThat(((CDateField) this.field.target).getDateWithoutTime()).isEqualTo(Util
-                                                                                  .of(((CDateField) this.field.target)
-                                                                                        .getDate())
-                                                                                  .getDateWithoutTime());
+    assertThat(((CDateField) this.field.target).getDateWithoutTime()).isEqualTo(Util.of(((CDateField) this.field.target).getDate())
+                                                                                    .getDateWithoutTime());
     final Calendar cal = new GregorianCalendar();
     cal.setTime(((CDateField) this.field.target).getDateWithoutTime());
     assertThat(cal.get(Calendar.HOUR_OF_DAY)).isZero();
@@ -630,17 +625,15 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
     assertThat(cal.get(Calendar.MILLISECOND)).isZero();
 
     this.field.deleteText();
-    assertThat(((CDateField) this.field.target).getDateWithoutTime()).isEqualTo(Util
-                                                                                  .of(((CDateField) this.field.target)
-                                                                                        .getDate())
-                                                                                  .getDateWithoutTime());
+    assertThat(((CDateField) this.field.target).getDateWithoutTime()).isEqualTo(Util.of(((CDateField) this.field.target).getDate())
+                                                                                    .getDateWithoutTime());
   }
 
   @Test
   public final void testGetDateWithoutTimeOrNull() {
     this.field.enterText("010100");
-    assertThat(((CDateField) this.field.target).getDateWithoutTimeOrNull())
-      .isEqualTo(Util.of(((CDateField) this.field.target).getDate()).getDateWithoutTime());
+    assertThat(((CDateField) this.field.target).getDateWithoutTimeOrNull()).isEqualTo(Util.of(((CDateField) this.field.target).getDate())
+                                                                                          .getDateWithoutTime());
     final Calendar cal = new GregorianCalendar();
     cal.setTime(((CDateField) this.field.target).getDateWithoutTimeOrNull());
     assertThat(cal.get(Calendar.HOUR_OF_DAY)).isZero();
