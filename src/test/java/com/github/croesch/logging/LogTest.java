@@ -20,8 +20,9 @@ package com.github.croesch.logging;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
  * Provides test methods for {@link Log}.
@@ -29,7 +30,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Jul 6, 2011
  */
-public class LogTest extends FestSwingJUnitTestCase {
+public class LogTest extends DefaultTestCase {
 
   private Throwable t = null;
 
@@ -53,10 +54,5 @@ public class LogTest extends FestSwingJUnitTestCase {
 
     Log.error(new AssertionError());
     assertThat(this.t).isNotNull();
-  }
-
-  @Override
-  protected void onSetUp() {
-    // nothing to be set up
   }
 }

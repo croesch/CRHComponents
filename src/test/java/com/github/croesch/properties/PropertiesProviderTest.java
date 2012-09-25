@@ -16,17 +16,27 @@
  * You should have received a copy of the GNU General Public License
  * along with crhcomponents.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.croesch.annotate;
+package com.github.croesch.properties;
 
-import java.lang.annotation.Documented;
+import static org.fest.assertions.Assertions.assertThat;
+
+import java.util.Properties;
+
+import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
- * The annotated element mustn't be <code>null</code>. Clients can be sure that it is ensured that the annotated element
- * never becomes <code>null</code>.
+ * Provides test cases for {@link PropertiesProvider}.
  * 
  * @author croesch
- * @since Date: Apr 6, 2012
+ * @since Date: Jul 11, 2012
  */
-@Documented
-public @interface NotNull {
+public class PropertiesProviderTest extends DefaultTestCase {
+
+  @Test
+  public void testFileNotFound() {
+    final Properties props = PropertiesProvider.getInstance().createNewProperties("hui-does-this-exist");
+    assertThat(props.isEmpty()).isTrue();
+  }
 }

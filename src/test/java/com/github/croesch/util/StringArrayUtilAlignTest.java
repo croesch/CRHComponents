@@ -20,8 +20,9 @@ package com.github.croesch.util;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
  * Provides test cases for:<br>
@@ -31,7 +32,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Feb 15, 2011
  */
-public class StringArrayUtilAlignTest extends FestSwingJUnitTestCase {
+public class StringArrayUtilAlignTest extends DefaultTestCase {
 
   /**
    * Tests the behaviour of left alignment without trimming the lines.
@@ -269,10 +270,5 @@ public class StringArrayUtilAlignTest extends FestSwingJUnitTestCase {
     text = new String[] { "     A", "             b ", "c", "delta   ", "länger" };
     expected = new String[] { "   A  ", "   b  ", "   c  ", " delta", "länger" };
     assertThat(Util.of(text).trim().toCentreAlignedArray()).isEqualTo(expected);
-  }
-
-  @Override
-  protected void onSetUp() {
-    // nothing to be set up
   }
 }

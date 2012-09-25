@@ -20,8 +20,9 @@ package com.github.croesch.util;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
  * Provides some basic test methods for {@link StringUtil}
@@ -29,7 +30,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Feb 19, 2011
  */
-public class StringUtilTest extends FestSwingJUnitTestCase {
+public class StringUtilTest extends DefaultTestCase {
   private static String arr1_1 = "";
 
   private static String arr1_2 = "";
@@ -299,9 +300,15 @@ public class StringUtilTest extends FestSwingJUnitTestCase {
 
     su1 = new StringUtil(arr1_1);
     su2 = new StringUtil(arr3_1);
-    assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2))
-      .isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2))
-      .isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
+    assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2));
     assertThat(su1).isNotEqualTo(su2);
 
     su1 = new StringUtil(arr2_1);
@@ -331,9 +338,14 @@ public class StringUtilTest extends FestSwingJUnitTestCase {
 
     su1 = new StringUtil(arr3_1);
     su2 = new StringUtil(arr3_1);
-    assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2))
-      .isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2))
-      .isEqualTo(su1.equals(su2));
+    assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2));
     assertThat(su1).isEqualTo(su2);
   }
 
@@ -383,10 +395,5 @@ public class StringUtilTest extends FestSwingJUnitTestCase {
 
     su = new StringUtil(arr3_2);
     assertThat(su).isNotEqualTo(arr3_2);
-  }
-
-  @Override
-  protected void onSetUp() {
-    // nothing to be set up
   }
 }

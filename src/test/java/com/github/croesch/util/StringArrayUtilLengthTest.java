@@ -20,8 +20,9 @@ package com.github.croesch.util;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
  * Provides methods to test {@link StringArrayUtil#getMaxLineLength()}
@@ -29,7 +30,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Feb 17, 2011
  */
-public class StringArrayUtilLengthTest extends FestSwingJUnitTestCase {
+public class StringArrayUtilLengthTest extends DefaultTestCase {
 
   /**
    * Test method for {@link StringArrayUtil#StringArrayUtil(String[])}.
@@ -112,13 +113,10 @@ public class StringArrayUtilLengthTest extends FestSwingJUnitTestCase {
     assertThat(new StringArrayUtil(new String[] { "a", "", "", "", "" }).getMaxLineLength()).isEqualTo(1);
     assertThat(new StringArrayUtil(new String[] { ",", "ab", "bb", "." }).getMaxLineLength()).isEqualTo(2);
     assertThat(new StringArrayUtil(new String[] { "a", "ab", "abc", " " }).getMaxLineLength()).isEqualTo(3);
-    assertThat(new StringArrayUtil(new String[] { "null", "0", "$", "%", "€€€€", "abcd" }).getMaxLineLength())
-      .isEqualTo(4);
-    assertThat(new StringArrayUtil(new String[] { "!!!!!", "????", "...", "''", "-", "" }).getMaxLineLength())
-      .isEqualTo(5);
+    assertThat(new StringArrayUtil(new String[] { "null", "0", "$", "%", "€€€€", "abcd" }).getMaxLineLength()).isEqualTo(4);
+    assertThat(new StringArrayUtil(new String[] { "!!!!!", "????", "...", "''", "-", "" }).getMaxLineLength()).isEqualTo(5);
     assertThat(new StringArrayUtil(new String[] { "", "", "", "", "", "abcdef" }).getMaxLineLength()).isEqualTo(6);
-    assertThat(new StringArrayUtil(new String[] { "", "", "", "", "", "abcdef", "", "", "" }).getMaxLineLength())
-      .isEqualTo(6);
+    assertThat(new StringArrayUtil(new String[] { "", "", "", "", "", "abcdef", "", "", "" }).getMaxLineLength()).isEqualTo(6);
   }
 
   /**
@@ -149,20 +147,18 @@ public class StringArrayUtilLengthTest extends FestSwingJUnitTestCase {
   public void testGetMaxLineLength_Trimmed2() {
     assertThat(new StringArrayUtil(new String[] { "\t\t\t\t\t\t\t\t", "  " }).trim().getMaxLineLength()).isZero();
     assertThat(new StringArrayUtil(new String[] { " ", "\t", "\n", "\r", "" }).trim().getMaxLineLength()).isZero();
-    assertThat(new StringArrayUtil(new String[] { "a", "", "  ", "\n", "\r\n" }).trim().getMaxLineLength())
-      .isEqualTo(1);
-    assertThat(new StringArrayUtil(new String[] { " , ", "\tab\n", "\rbb ", "  .  " }).trim().getMaxLineLength())
-      .isEqualTo(2);
+    assertThat(new StringArrayUtil(new String[] { "a", "", "  ", "\n", "\r\n" }).trim().getMaxLineLength()).isEqualTo(1);
+    assertThat(new StringArrayUtil(new String[] { " , ", "\tab\n", "\rbb ", "  .  " }).trim().getMaxLineLength()).isEqualTo(2);
     assertThat(new StringArrayUtil(new String[] { "a", "ab   ", "abc ", "  " }).trim().getMaxLineLength()).isEqualTo(3);
     assertThat(
                new StringArrayUtil(new String[] { "null\n\n", "\n0 ", "\t\r$\n", "%   ", "  €€€€  ", " abcd " }).trim()
-                 .getMaxLineLength()).isEqualTo(4);
+                                                                                                                .getMaxLineLength()).isEqualTo(4);
     assertThat(
                new StringArrayUtil(new String[] { "  !!!!!", "  ????", "   ...", "''  ", "- ", "   " }).trim()
-                 .getMaxLineLength()).isEqualTo(5);
+                                                                                                       .getMaxLineLength()).isEqualTo(5);
     assertThat(
                new StringArrayUtil(new String[] { "          ", "", "       ", "", " ", "abcdef" }).trim()
-                 .getMaxLineLength()).isEqualTo(6);
+                                                                                                   .getMaxLineLength()).isEqualTo(6);
     assertThat(
                new StringArrayUtil(new String[] { "",
                                                  "  \r  ",
@@ -173,10 +169,5 @@ public class StringArrayUtilLengthTest extends FestSwingJUnitTestCase {
                                                  "",
                                                  "   ",
                                                  "   " }).trim().getMaxLineLength()).isEqualTo(6);
-  }
-
-  @Override
-  protected void onSetUp() {
-    // nothing to be set up
   }
 }

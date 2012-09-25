@@ -22,8 +22,9 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import javax.swing.text.BadLocationException;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
  * Provides test methods for {@link RepairableContent}
@@ -31,7 +32,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Feb 10, 2011
  */
-public class RepairableContentTest extends FestSwingJUnitTestCase {
+public class RepairableContentTest extends DefaultTestCase {
 
   private RepairableContent cont;
 
@@ -42,7 +43,7 @@ public class RepairableContentTest extends FestSwingJUnitTestCase {
    * @since Date: Feb 10, 2011
    */
   @Override
-  public void onSetUp() {
+  public void setUpDetails() {
     this.cont = new RepairableContent();
   }
 

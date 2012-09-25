@@ -32,9 +32,9 @@ import java.util.Map;
 
 import javax.swing.text.BadLocationException;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
+import com.github.croesch.DefaultTestCase;
 import com.github.croesch.util.Util;
 
 /**
@@ -43,7 +43,7 @@ import com.github.croesch.util.Util;
  * @author croesch
  * @since Date: Jul 3, 2011
  */
-public class DateLazyContentTest extends FestSwingJUnitTestCase {
+public class DateLazyContentTest extends DefaultTestCase {
 
   private DateLazyContent content;
 
@@ -53,9 +53,9 @@ public class DateLazyContentTest extends FestSwingJUnitTestCase {
 
   private int todaysYear;
 
-  private final Map<String, DateSpecialChar> specCharMapEmpty = DateSpecialCharInterpreter
-    .createFrom(new InputStreamReader(DateContent.class.getClassLoader().getResourceAsStream("datechars_empty.cfg")))
-    .getSpecialCharsMap();
+  private final Map<String, DateSpecialChar> specCharMapEmpty = DateSpecialCharInterpreter.createFrom(new InputStreamReader(DateContent.class.getClassLoader()
+                                                                                                                                             .getResourceAsStream("datechars_empty.cfg")))
+                                                                                          .getSpecialCharsMap();
 
   /**
    * Sets up the {@link DateLazyContent}.
@@ -64,7 +64,7 @@ public class DateLazyContentTest extends FestSwingJUnitTestCase {
    * @since Date: Jul 3, 2011
    */
   @Override
-  public void onSetUp() {
+  public void setUpDetails() {
     this.content = new DateLazyContent(null, Locale.GERMAN, this.specCharMapEmpty);
 
     final Calendar cal = new GregorianCalendar();

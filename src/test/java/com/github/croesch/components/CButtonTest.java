@@ -31,8 +31,9 @@ import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.SwingUtilities;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
  * Tests the CButton:<br>
@@ -41,15 +42,12 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Dec 24, 2010
  */
-public class CButtonTest extends FestSwingJUnitTestCase {
+public class CButtonTest extends DefaultTestCase {
 
   private CButton button;
 
-  /**
-   * initializes this button
-   */
   @Override
-  public void onSetUp() {
+  public void setUpDetails() {
     try {
       SwingUtilities.invokeAndWait(new Runnable() {
 

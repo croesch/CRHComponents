@@ -29,8 +29,9 @@ import java.util.Map;
 
 import javax.swing.text.BadLocationException;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
  * Provides tests for the special chars defined in the special chars file.
@@ -38,11 +39,11 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Sep 8, 2011
  */
-public class DateLazyContentTest_SpecialChars extends FestSwingJUnitTestCase {
+public class DateLazyContentTest_SpecialChars extends DefaultTestCase {
 
-  private final Map<String, DateSpecialChar> specCharMap = DateSpecialCharInterpreter
-    .createFrom(new InputStreamReader(DateContent.class.getClassLoader().getResourceAsStream("datechars.cfg")))
-    .getSpecialCharsMap();
+  private final Map<String, DateSpecialChar> specCharMap = DateSpecialCharInterpreter.createFrom(new InputStreamReader(DateContent.class.getClassLoader()
+                                                                                                                                        .getResourceAsStream("datechars.cfg")))
+                                                                                     .getSpecialCharsMap();
 
   @Test
   public void testUnknownCharacters() throws BadLocationException {
@@ -400,10 +401,5 @@ public class DateLazyContentTest_SpecialChars extends FestSwingJUnitTestCase {
 
     content.insertString(0, "NNNNNNNNNNNNNNNNNNNNNNNNNN", null);
     assertThat(content.getText()).isEqualTo("01.01." + year);
-  }
-
-  @Override
-  protected void onSetUp() {
-    // nothing to be setup
   }
 }

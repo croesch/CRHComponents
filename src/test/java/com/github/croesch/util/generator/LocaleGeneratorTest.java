@@ -22,9 +22,9 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.util.Locale;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
+import com.github.croesch.DefaultTestCase;
 import com.github.croesch.util.Generator;
 
 /**
@@ -33,7 +33,7 @@ import com.github.croesch.util.Generator;
  * @author croesch
  * @since Date: Mar 10, 2011
  */
-public class LocaleGeneratorTest extends FestSwingJUnitTestCase {
+public class LocaleGeneratorTest extends DefaultTestCase {
 
   private static Locale loc1_1 = new Locale("");
 
@@ -390,9 +390,15 @@ public class LocaleGeneratorTest extends FestSwingJUnitTestCase {
 
     su1 = new LocaleGenerator(loc1_1);
     su2 = new LocaleGenerator(loc3_1);
-    assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2))
-      .isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2))
-      .isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2));
+    assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2));
     assertThat(su1).isNotEqualTo(su2);
 
     su1 = new LocaleGenerator(loc2_1);
@@ -422,9 +428,14 @@ public class LocaleGeneratorTest extends FestSwingJUnitTestCase {
 
     su1 = new LocaleGenerator(loc3_1);
     su2 = new LocaleGenerator(loc3_1);
-    assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2))
-      .isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2)).isEqualTo(su1.equals(su2))
-      .isEqualTo(su1.equals(su2));
+    assertThat(su1.equals(su2)).isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2))
+                               .isEqualTo(su1.equals(su2));
     assertThat(su1).isEqualTo(su2);
   }
 
@@ -474,10 +485,5 @@ public class LocaleGeneratorTest extends FestSwingJUnitTestCase {
 
     su = new LocaleGenerator(loc3_2);
     assertThat(su).isNotEqualTo(loc3_2);
-  }
-
-  @Override
-  protected void onSetUp() {
-    // nothing to be set up
   }
 }

@@ -25,9 +25,10 @@ import static org.fest.assertions.Assertions.assertThat;
 import java.lang.reflect.Constructor;
 import java.util.Locale;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
  * Provides test methods for {@link FilePropertiesBundle}
@@ -35,7 +36,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Feb 12, 2011
  */
-public class FilePropertiesBundleTest extends FestSwingJUnitTestCase {
+public class FilePropertiesBundleTest extends DefaultTestCase {
 
   private static final String SINGLE = "testfiles/single";
 
@@ -134,10 +135,5 @@ public class FilePropertiesBundleTest extends FestSwingJUnitTestCase {
     for (final Constructor<?> c : FilePropertiesBundle.class.getDeclaredConstructors()) {
       assertThat(c.getModifiers()).as(c.toString()).isEqualTo(2);
     }
-  }
-
-  @Override
-  protected void onSetUp() {
-    // nothing to be set up
   }
 }

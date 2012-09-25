@@ -27,8 +27,9 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
  * Provides test cases for {@link MnemonicUtil}
@@ -36,7 +37,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Feb 09, 2011
  */
-public class MnemonicUtilTest extends FestSwingJUnitTestCase {
+public class MnemonicUtilTest extends DefaultTestCase {
 
   private JButton button;
 
@@ -49,7 +50,7 @@ public class MnemonicUtilTest extends FestSwingJUnitTestCase {
    * @since Date: Feb 09, 2011
    */
   @Override
-  public void onSetUp() {
+  public void setUpDetails() {
     try {
       SwingUtilities.invokeAndWait(new Runnable() {
 

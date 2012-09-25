@@ -23,9 +23,9 @@ import static org.junit.Assert.fail;
 
 import javax.swing.text.BadLocationException;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
+import com.github.croesch.DefaultTestCase;
 import com.github.croesch.listener.ErrorListener;
 
 /**
@@ -34,7 +34,7 @@ import com.github.croesch.listener.ErrorListener;
  * @author croesch
  * @since Date: Feb 09, 2011
  */
-public class CContentTest extends FestSwingJUnitTestCase {
+public class CContentTest extends DefaultTestCase {
 
   private CContent cont;
 
@@ -47,7 +47,7 @@ public class CContentTest extends FestSwingJUnitTestCase {
    * @since Date: Feb 10, 2011
    */
   @Override
-  public void onSetUp() {
+  public void setUpDetails() {
     this.cont = new CContent();
     this.bool = false;
   }

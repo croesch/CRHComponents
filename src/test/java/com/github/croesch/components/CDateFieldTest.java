@@ -35,9 +35,9 @@ import org.fest.swing.edt.GuiQuery;
 import org.fest.swing.edt.GuiTask;
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JTextComponentFixture;
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
+import com.github.croesch.DefaultTestCase;
 import com.github.croesch.util.Util;
 
 /**
@@ -46,7 +46,7 @@ import com.github.croesch.util.Util;
  * @author croesch
  * @since Date: Jul 3, 2011
  */
-public class CDateFieldTest extends FestSwingJUnitTestCase {
+public class CDateFieldTest extends DefaultTestCase {
 
   private JTextComponentFixture field;
 
@@ -55,7 +55,7 @@ public class CDateFieldTest extends FestSwingJUnitTestCase {
   private Locale l;
 
   @Override
-  public void onSetUp() {
+  public void setUpDetails() {
     this.l = Locale.getDefault();
     Locale.setDefault(Locale.GERMAN);
 

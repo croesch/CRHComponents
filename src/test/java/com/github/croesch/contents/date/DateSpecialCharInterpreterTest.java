@@ -22,8 +22,9 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.io.StringReader;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
  * Provides test methods for {@link DateSpecialCharInterpreter}
@@ -31,7 +32,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Apr 5, 2011
  */
-public class DateSpecialCharInterpreterTest extends FestSwingJUnitTestCase {
+public class DateSpecialCharInterpreterTest extends DefaultTestCase {
 
   /**
    * Test method for {@link DateSpecialCharInterpreter#DateSpecialCharInterpreter()}
@@ -93,20 +94,16 @@ public class DateSpecialCharInterpreterTest extends FestSwingJUnitTestCase {
     interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("# no content\n # comment \nt|o0|o0|o0"));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = DateSpecialCharInterpreter
-      .createFrom(new StringReader("# no content\n # comment \nt|o0|o0|o0 # today"));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("# no content\n # comment \nt|o0|o0|o0 # today"));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = DateSpecialCharInterpreter
-      .createFrom(new StringReader("# no content\n # comment \nt|o0|o0|o0\t#\ttoday"));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("# no content\n # comment \nt|o0|o0|o0\t#\ttoday"));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = DateSpecialCharInterpreter
-      .createFrom(new StringReader("# no content\n # comment \n t|o0|o0|o0\t#\ttoday"));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("# no content\n # comment \n t|o0|o0|o0\t#\ttoday"));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
-    interpreter = DateSpecialCharInterpreter
-      .createFrom(new StringReader("# no content\n # comment \n t|o0|o0|o0\t#\ttoday "));
+    interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("# no content\n # comment \n t|o0|o0|o0\t#\ttoday "));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
 
     interpreter = DateSpecialCharInterpreter.createFrom(new StringReader("\tt|o0|o0|o0 "));
@@ -217,10 +214,5 @@ public class DateSpecialCharInterpreterTest extends FestSwingJUnitTestCase {
     final DateSpecialCharInterpreter interpreter = DateSpecialCharInterpreter.createFrom(new StringReader(testString));
     assertThat(interpreter.getSpecialCharsMap()).isNotEmpty();
     assertThat(interpreter.getSpecialCharsMap().values()).containsOnly(sc1, sc2, sc3);
-  }
-
-  @Override
-  protected void onSetUp() {
-    // nothing to be set up
   }
 }

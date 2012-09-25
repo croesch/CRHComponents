@@ -31,8 +31,9 @@ import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.SwingUtilities;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
  * Tests the CMenuItem:<br>
@@ -41,7 +42,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Dec 24, 2010
  */
-public class CMenuItemTest extends FestSwingJUnitTestCase {
+public class CMenuItemTest extends DefaultTestCase {
 
   private CMenuItem item;
 
@@ -52,7 +53,7 @@ public class CMenuItemTest extends FestSwingJUnitTestCase {
    * @throws InterruptedException
    */
   @Override
-  public void onSetUp() {
+  public void setUpDetails() {
     try {
       SwingUtilities.invokeAndWait(new Runnable() {
 

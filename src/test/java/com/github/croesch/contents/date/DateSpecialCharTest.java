@@ -23,8 +23,9 @@ import static com.github.croesch.contents.date.ModificationType.INCREMENT;
 import static com.github.croesch.contents.date.ModificationType.OFFSET;
 import static org.fest.assertions.Assertions.assertThat;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
  * Provides test methods for {@link DateSpecialChar}
@@ -32,7 +33,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Apr 5, 2011
  */
-public class DateSpecialCharTest extends FestSwingJUnitTestCase {
+public class DateSpecialCharTest extends DefaultTestCase {
 
   /**
    * Test method for
@@ -257,10 +258,5 @@ public class DateSpecialCharTest extends FestSwingJUnitTestCase {
 
     assertThat(dsc1).isEqualTo(dsc1);
     assertThat(dsc1.hashCode()).isEqualTo(dsc1.hashCode());
-  }
-
-  @Override
-  protected void onSetUp() {
-    // nothing to be set up
   }
 }

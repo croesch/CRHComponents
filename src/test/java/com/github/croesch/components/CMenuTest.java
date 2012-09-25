@@ -28,8 +28,9 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.SwingUtilities;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
  * Tests the CMenu:<br>
@@ -38,7 +39,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Dec 24, 2010
  */
-public class CMenuTest extends FestSwingJUnitTestCase {
+public class CMenuTest extends DefaultTestCase {
 
   private CMenu menu;
 
@@ -49,7 +50,7 @@ public class CMenuTest extends FestSwingJUnitTestCase {
    * @throws InterruptedException
    */
   @Override
-  public void onSetUp() {
+  public void setUpDetails() {
     try {
       SwingUtilities.invokeAndWait(new Runnable() {
 

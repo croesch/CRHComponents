@@ -26,8 +26,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
  * Provides test methods for {@link Util}
@@ -35,7 +36,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Feb 17, 2011
  */
-public class UtilTest extends FestSwingJUnitTestCase {
+public class UtilTest extends DefaultTestCase {
 
   /**
    * Tests that {@link Util#of(String)} returns an object that is equal to the self created object
@@ -123,10 +124,5 @@ public class UtilTest extends FestSwingJUnitTestCase {
     for (final Constructor<?> c : Util.class.getDeclaredConstructors()) {
       assertThat(c.getModifiers()).as(c.toString()).isEqualTo(Modifier.PRIVATE);
     }
-  }
-
-  @Override
-  protected void onSetUp() {
-    // nothing to be set up
   }
 }

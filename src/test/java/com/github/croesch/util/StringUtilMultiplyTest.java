@@ -20,8 +20,9 @@ package com.github.croesch.util;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
  * Provides test methods for {@link StringUtil}
@@ -29,7 +30,7 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Feb 17, 2011
  */
-public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
+public class StringUtilMultiplyTest extends DefaultTestCase {
 
   /**
    * Tests the constructor {@link StringUtil#StringUtil(String)}
@@ -151,8 +152,8 @@ public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
     assertThat(sm.toStringMultipliedWith(1)).isEqualTo("two words");
     assertThat(sm.toStringMultipliedWith(3)).isEqualTo("two wordstwo wordstwo words");
     assertThat(sm.toStringMultipliedWith(3)).isEqualTo("two wordstwo wordstwo words");
-    assertThat(sm.toStringMultipliedWith(9))
-      .isEqualTo("two wordstwo wordstwo words" + "two wordstwo wordstwo wordstwo wordstwo wordstwo words");
+    assertThat(sm.toStringMultipliedWith(9)).isEqualTo("two wordstwo wordstwo words"
+                                                               + "two wordstwo wordstwo wordstwo wordstwo wordstwo words");
   }
 
   /**
@@ -169,10 +170,9 @@ public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
     assertThat(sm.toStringMultipliedWith(1)).isEqualTo("  Not trimmed\t  \n\t  ");
     assertThat(sm.toStringMultipliedWith(3)).isEqualTo("  Not trimmed\t  \n\t  "
                                                                + "  Not trimmed\t  \n\t    Not trimmed\t  \n\t  ");
-    assertThat(sm.toStringMultipliedWith(9))
-      .isEqualTo("  Not trimmed\t  \n\t    Not trimmed\t  \n\t    Not trimmed\t  \n\t  "
-                         + "  Not trimmed\t  \n\t    Not trimmed\t  \n\t    Not trimmed\t  \n\t  "
-                         + "  Not trimmed\t  \n\t    Not trimmed\t  \n\t    Not trimmed\t  \n\t  ");
+    assertThat(sm.toStringMultipliedWith(9)).isEqualTo("  Not trimmed\t  \n\t    Not trimmed\t  \n\t    Not trimmed\t  \n\t  "
+                                                               + "  Not trimmed\t  \n\t    Not trimmed\t  \n\t    Not trimmed\t  \n\t  "
+                                                               + "  Not trimmed\t  \n\t    Not trimmed\t  \n\t    Not trimmed\t  \n\t  ");
   }
 
   /**
@@ -232,10 +232,5 @@ public class StringUtilMultiplyTest extends FestSwingJUnitTestCase {
     public String getResult() {
       return this.result;
     }
-  }
-
-  @Override
-  protected void onSetUp() {
-    // nothing to be set up
   }
 }

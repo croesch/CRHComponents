@@ -24,8 +24,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
+
+import com.github.croesch.DefaultTestCase;
 
 /**
  * Test methods for {@link DateUtil}
@@ -33,12 +34,12 @@ import org.junit.Test;
  * @author croesch
  * @since Date: Sep 11, 2011
  */
-public class DateUtilTest extends FestSwingJUnitTestCase {
+public class DateUtilTest extends DefaultTestCase {
 
   private DateUtil util;
 
   @Override
-  protected void onSetUp() {
+  protected void setUpDetails() {
     this.util = new DateUtil(new Date());
   }
 

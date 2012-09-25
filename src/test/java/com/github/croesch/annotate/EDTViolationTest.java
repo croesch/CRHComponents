@@ -24,9 +24,9 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
 import org.junit.Test;
 
+import com.github.croesch.DefaultTestCase;
 import com.github.croesch.components.CDateField;
 import com.github.croesch.util.MnemonicUtil;
 
@@ -36,12 +36,7 @@ import com.github.croesch.util.MnemonicUtil;
  * @author croesch
  * @since Date: Sep 10, 2011
  */
-public class EDTViolationTest extends FestSwingJUnitTestCase {
-
-  @Override
-  protected void onSetUp() {
-    // nothing needed to be set up
-  }
+public class EDTViolationTest extends DefaultTestCase {
 
   private CDateField field;
 

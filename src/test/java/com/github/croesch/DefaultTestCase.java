@@ -1,3 +1,11 @@
+package com.github.croesch;
+
+import java.util.Locale;
+
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+
 /*
  * Copyright (C) 2011-2012  Christian Roesch
  * 
@@ -16,17 +24,27 @@
  * You should have received a copy of the GNU General Public License
  * along with crhcomponents.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.croesch.annotate;
-
-import java.lang.annotation.Documented;
 
 /**
- * The annotated element mustn't be <code>null</code>. Clients can be sure that it is ensured that the annotated element
- * never becomes <code>null</code>.
+ * Default test case to be extended by all test classes.
  * 
  * @author croesch
- * @since Date: Apr 6, 2012
+ * @since Date: Jan 22, 2012
  */
-@Documented
-public @interface NotNull {
+@Ignore("Just default case")
+public class DefaultTestCase extends FestSwingJUnitTestCase {
+
+  @BeforeClass
+  public static void setUpBeforeClass() throws Exception {
+    Locale.setDefault(new Locale("test", "tst", " "));
+  }
+
+  @Override
+  protected final void onSetUp() {
+    setUpDetails();
+  }
+
+  protected void setUpDetails() {
+    // let that be defined by subclasses
+  }
 }

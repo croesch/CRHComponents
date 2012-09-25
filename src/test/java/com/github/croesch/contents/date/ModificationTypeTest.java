@@ -25,13 +25,15 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.github.croesch.DefaultTestCase;
+
 /**
  * Contains test cases for {@link ModificationType}.
  * 
  * @author croesch
  * @since Date: Nov 29, 2011
  */
-public class ModificationTypeTest {
+public class ModificationTypeTest extends DefaultTestCase {
 
   @Test
   public void testUniqueCharacter() {
