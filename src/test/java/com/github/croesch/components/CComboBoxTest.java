@@ -20,9 +20,6 @@ package com.github.croesch.components;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.util.Arrays;
-import java.util.Vector;
-
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 
@@ -60,15 +57,6 @@ public class CComboBoxTest extends DefaultTestCase {
   }
 
   public static CComboBox getComboBox(final String name, final Object[] items) {
-    return GuiActionRunner.execute(new GuiQuery<CComboBox>() {
-      @Override
-      protected CComboBox executeInEDT() throws Throwable {
-        return new CComboBox(name, items);
-      }
-    });
-  }
-
-  public static CComboBox getComboBox(final String name, final Vector<?> items) {
     return GuiActionRunner.execute(new GuiQuery<CComboBox>() {
       @Override
       protected CComboBox executeInEDT() throws Throwable {
@@ -140,28 +128,5 @@ public class CComboBoxTest extends DefaultTestCase {
     assertThat(cb.valueAt(0)).isEqualTo("Peter");
     assertThat(cb.valueAt(1)).isEqualTo("15");
     assertThat(cb.valueAt(2)).isEqualTo("Hans");
-  }
-
-  @Test
-  @SuppressWarnings("unchecked")
-  public void testCstr_StringVector() {
-    JComboBoxFixture cb = new JComboBoxFixture(robot(), getComboBox("cb", new Vector<Object>()));
-    assertThat(cb.component().getName()).isEqualTo("cb");
-    cb.requireItemCount(0);
-
-    cb = new JComboBoxFixture(robot(), getComboBox("", new Vector<Object>(Arrays.asList(12, "c", null))));
-    assertThat(cb.component().getName()).isEqualTo("");
-    cb.requireItemCount(3);
-    assertThat(cb.valueAt(0)).isEqualTo("12");
-    assertThat(cb.valueAt(1)).isEqualTo("c");
-    assertThat(cb.valueAt(2)).isEqualTo("");
-
-    cb = new JComboBoxFixture(robot(), getComboBox(null, new Vector<Object>(Arrays.asList("Peter", 15, "Hans", true))));
-    assertThat(cb.component().getName()).isNull();
-    cb.requireItemCount(4);
-    assertThat(cb.valueAt(0)).isEqualTo("Peter");
-    assertThat(cb.valueAt(1)).isEqualTo("15");
-    assertThat(cb.valueAt(2)).isEqualTo("Hans");
-    assertThat(cb.valueAt(3)).isEqualTo("true");
   }
 }

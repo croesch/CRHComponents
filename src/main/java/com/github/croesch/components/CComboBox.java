@@ -18,8 +18,6 @@
  */
 package com.github.croesch.components;
 
-import java.util.Vector;
-
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 
@@ -64,18 +62,6 @@ public class CComboBox extends JComboBox {
    * @param items the items for the combobox
    */
   public CComboBox(final String name, final Object[] items) {
-    super(items);
-    setName(name);
-  }
-
-  /**
-   * Constructs a new combobox with the given name and the given objects for the list.
-   * 
-   * @since Date: Nov 2, 2012
-   * @param name the name of the component
-   * @param items the items for the combobox
-   */
-  public CComboBox(final String name, final Vector<?> items) {
     super(items);
     setName(name);
   }

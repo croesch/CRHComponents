@@ -18,8 +18,6 @@
  */
 package com.github.croesch.components;
 
-import java.util.Vector;
-
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableColumnModel;
@@ -81,19 +79,6 @@ public class CTable extends JTable {
    */
   public CTable(final String name, final int numRows, final int numColumns) {
     super(numRows, numColumns);
-    setName(name);
-  }
-
-  /**
-   * Constructs a new table with the given name, the given rows and names of columns.
-   * 
-   * @since Date: Nov 2, 2012
-   * @param name the name of this component
-   * @param rowData the data for the rows
-   * @param columnNames the names of the table columns
-   */
-  public CTable(final String name, final Vector<?> rowData, final Vector<?> columnNames) {
-    super(rowData, columnNames);
     setName(name);
   }
 

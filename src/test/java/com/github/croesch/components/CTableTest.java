@@ -20,9 +20,6 @@ package com.github.croesch.components;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.util.Arrays;
-import java.util.Vector;
-
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableColumnModel;
@@ -85,15 +82,6 @@ public class CTableTest extends DefaultTestCase {
   }
 
   public static CTable getTable(final String name, final int rows, final int columns) {
-    return GuiActionRunner.execute(new GuiQuery<CTable>() {
-      @Override
-      protected CTable executeInEDT() {
-        return new CTable(name, rows, columns);
-      }
-    });
-  }
-
-  public static CTable getTable(final String name, final Vector<?> rows, final Vector<?> columns) {
     return GuiActionRunner.execute(new GuiQuery<CTable>() {
       @Override
       protected CTable executeInEDT() {
@@ -216,28 +204,6 @@ public class CTableTest extends DefaultTestCase {
   @Test(expected = IllegalArgumentException.class)
   public void testTable_LessThanZeroColumnsNotAllowed() {
     getTable("table", 7, -1);
-  }
-
-  @Test
-  @SuppressWarnings("unchecked")
-  public void testTable_StringVectorVector() {
-    CTable table = getTable("hugo", null, new Vector<Object>());
-    assertThat(table.getName()).isEqualTo("hugo");
-    assertThat(table.getRowCount()).isEqualTo(0);
-    assertThat(table.getColumnCount()).isEqualTo(0);
-
-    table = getTable("tabelle", new Vector<Object>(), null);
-    assertThat(table.getName()).isEqualTo("tabelle");
-    assertThat(table.getRowCount()).isEqualTo(0);
-    assertThat(table.getColumnCount()).isEqualTo(0);
-
-    table = getTable(null,
-                     new Vector<Vector<String>>(Arrays.asList(new Vector<String>(Arrays.asList("tach")),
-                                                              new Vector<String>(Arrays.asList("hi")))),
-                     new Vector<Object>(Arrays.asList("meldung")));
-    assertThat(table.getName()).isNull();
-    assertThat(table.getRowCount()).isEqualTo(2);
-    assertThat(table.getColumnCount()).isEqualTo(1);
   }
 
   @Test
