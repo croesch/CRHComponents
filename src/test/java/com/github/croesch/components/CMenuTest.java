@@ -26,8 +26,10 @@ import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.SwingUtilities;
 
+import org.fest.swing.edt.GuiActionRunner;
+import org.fest.swing.edt.GuiQuery;
+import org.fest.swing.edt.GuiTask;
 import org.junit.Test;
 
 import com.github.croesch.DefaultTestCase;
@@ -41,141 +43,45 @@ import com.github.croesch.DefaultTestCase;
  */
 public class CMenuTest extends DefaultTestCase {
 
-  private CMenu menu;
-
-  /**
-   * initializes this menu
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
-  @Override
-  public void setUpDetails() {
-    try {
-      SwingUtilities.invokeAndWait(new Runnable() {
-
-        @Override
-        public void run() {
-          CMenuTest.this.menu = new CMenu();
-        }
-      });
-    } catch (final Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  /**
-   * sets this menu to null
-   */
-  @Override
-  public void onTearDown() {
-    this.menu = null;
-  }
-
-  /**
-   * Test method for {@link CMenu#CMenu(String)}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
-  public void testCMenuString() throws InterruptedException, InvocationTargetException {
-    SwingUtilities.invokeAndWait(new Runnable() {
+  public void testMenu_String() throws InterruptedException, InvocationTargetException {
+    CMenu menu = getMenu("St[a]rt");
 
-      @Override
-      public void run() {
-        CMenuTest.this.menu = new CMenu("St[a]rt");
-      }
-    });
-    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_A);
-    assertThat(this.menu.getText()).isEqualTo("Start");
+    assertThat(menu.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(menu.getText()).isEqualTo("Start");
 
-    SwingUtilities.invokeAndWait(new Runnable() {
+    menu = getMenu("St[ar]t");
+    assertThat(menu.getText()).isEqualTo("St[ar]t");
 
-      @Override
-      public void run() {
-        CMenuTest.this.menu = new CMenu("St[ar]t");
-      }
-    });
-    assertThat(this.menu.getText()).isEqualTo("St[ar]t");
+    menu = getMenu("Star[t]");
+    assertThat(menu.getMnemonic()).isEqualTo(KeyEvent.VK_T);
+    assertThat(menu.getText()).isEqualTo("Start");
 
-    SwingUtilities.invokeAndWait(new Runnable() {
-
-      @Override
-      public void run() {
-        CMenuTest.this.menu = new CMenu("Star[t]");
-      }
-    });
-    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_T);
-    assertThat(this.menu.getText()).isEqualTo("Start");
-
-    SwingUtilities.invokeAndWait(new Runnable() {
-
-      @Override
-      public void run() {
-        CMenuTest.this.menu = new CMenu("[S]tart");
-      }
-    });
-    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_S);
-    assertThat(this.menu.getText()).isEqualTo("Start");
+    menu = getMenu("[S]tart");
+    assertThat(menu.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(menu.getText()).isEqualTo("Start");
   }
 
-  /**
-   * Test method for {@link CMenu#CMenu(String, boolean)}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
-  public void testCMenuStringBoolean() throws InterruptedException, InvocationTargetException {
-    SwingUtilities.invokeAndWait(new Runnable() {
+  public void testMenu_StringBoolean() throws InterruptedException, InvocationTargetException {
+    CMenu menu = getMenu("St[a]rt", false);
+    assertThat(menu.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(menu.getText()).isEqualTo("Start");
 
-      @Override
-      public void run() {
-        CMenuTest.this.menu = new CMenu("St[a]rt", false);
-      }
-    });
-    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_A);
-    assertThat(this.menu.getText()).isEqualTo("Start");
+    menu = getMenu("St[ar]t", false);
+    assertThat(menu.getText()).isEqualTo("St[ar]t");
 
-    SwingUtilities.invokeAndWait(new Runnable() {
+    menu = getMenu("Star[t]", false);
+    assertThat(menu.getMnemonic()).isEqualTo(KeyEvent.VK_T);
+    assertThat(menu.getText()).isEqualTo("Start");
 
-      @Override
-      public void run() {
-        CMenuTest.this.menu = new CMenu("St[ar]t", false);
-      }
-    });
-    assertThat(this.menu.getText()).isEqualTo("St[ar]t");
-
-    SwingUtilities.invokeAndWait(new Runnable() {
-
-      @Override
-      public void run() {
-        CMenuTest.this.menu = new CMenu("Star[t]", false);
-      }
-    });
-    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_T);
-    assertThat(this.menu.getText()).isEqualTo("Start");
-
-    SwingUtilities.invokeAndWait(new Runnable() {
-
-      @Override
-      public void run() {
-        CMenuTest.this.menu = new CMenu("[S]tart", false);
-      }
-    });
-    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_S);
-    assertThat(this.menu.getText()).isEqualTo("Start");
+    menu = getMenu("[S]tart", false);
+    assertThat(menu.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(menu.getText()).isEqualTo("Start");
   }
 
-  /**
-   * Test method for {@link CMenu#CMenu(Action)}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
-  public void testCMenuAction() throws InterruptedException, InvocationTargetException {
+  public void testMenu_Action() throws InterruptedException, InvocationTargetException {
     final Action act = new AbstractAction() {
       /** serial version UID */
       private static final long serialVersionUID = -2312442386490910405L;
@@ -185,76 +91,170 @@ public class CMenuTest extends DefaultTestCase {
         // do nothing, stupid stub
       }
     };
-    SwingUtilities.invokeAndWait(new Runnable() {
+    CMenu menu = getMenu(act);
+    assertThat(menu.getAction()).isSameAs(act);
 
-      @Override
-      public void run() {
-        CMenuTest.this.menu = new CMenu(act);
-      }
-    });
-    assertThat(this.menu.getAction()).isSameAs(act);
-
-    SwingUtilities.invokeAndWait(new Runnable() {
-
-      @Override
-      public void run() {
-        CMenuTest.this.menu = new CMenu((AbstractAction) null);
-      }
-    });
-    assertThat(this.menu.getAction()).isNull();
+    menu = getMenu((AbstractAction) null);
+    assertThat(menu.getAction()).isNull();
   }
 
-  /**
-   * Test method for {@link CMenu#setText(String)}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
-  public void testSetTextString() throws InterruptedException, InvocationTargetException {
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        CMenuTest.this.menu.setText("St[a]rt");
-      }
-    });
-    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_A);
-    assertThat(this.menu.getText()).isEqualTo("Start");
+  public void testSetText() throws InterruptedException, InvocationTargetException {
+    final CMenu menu = getMenu();
+    setText(menu, "St[a]rt");
+    assertThat(menu.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(menu.getText()).isEqualTo("Start");
 
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        CMenuTest.this.menu.setText("St[ar]t");
-      }
-    });
-    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_A);
-    assertThat(this.menu.getText()).isEqualTo("St[ar]t");
+    setText(menu, "St[ar]t");
+    assertThat(menu.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(menu.getText()).isEqualTo("St[ar]t");
 
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        CMenuTest.this.menu.setText("Star[t]");
-      }
-    });
-    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_T);
-    assertThat(this.menu.getText()).isEqualTo("Start");
+    setText(menu, "Star[t]");
+    assertThat(menu.getMnemonic()).isEqualTo(KeyEvent.VK_T);
+    assertThat(menu.getText()).isEqualTo("Start");
 
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        CMenuTest.this.menu.setText("[S]tart");
-      }
-    });
-    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_S);
-    assertThat(this.menu.getText()).isEqualTo("Start");
+    setText(menu, "[S]tart");
+    assertThat(menu.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(menu.getText()).isEqualTo("Start");
 
-    SwingUtilities.invokeAndWait(new Runnable() {
+    setText(menu, null);
+    assertThat(menu.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(menu.getText()).isNull();
+  }
+
+  public static CMenu getMenu() {
+    return GuiActionRunner.execute(new GuiQuery<CMenu>() {
       @Override
-      public void run() {
-        CMenuTest.this.menu.setText(null);
+      protected CMenu executeInEDT() {
+        return new CMenu();
       }
     });
-    assertThat(this.menu.getMnemonic()).isEqualTo(KeyEvent.VK_S);
-    assertThat(this.menu.getText()).isNull();
+  }
+
+  public static CMenu getMenu(final String name) {
+    return GuiActionRunner.execute(new GuiQuery<CMenu>() {
+      @Override
+      protected CMenu executeInEDT() {
+        return new CMenu(name);
+      }
+    });
+  }
+
+  public static CMenu getMenu(final String name, final String text) {
+    return GuiActionRunner.execute(new GuiQuery<CMenu>() {
+      @Override
+      protected CMenu executeInEDT() {
+        return new CMenu(name, text);
+      }
+    });
+  }
+
+  public static CMenu getMenu(final Action a) {
+    return GuiActionRunner.execute(new GuiQuery<CMenu>() {
+      @Override
+      protected CMenu executeInEDT() {
+        return new CMenu(a);
+      }
+    });
+  }
+
+  public static CMenu getMenu(final String name, final Action a) {
+    return GuiActionRunner.execute(new GuiQuery<CMenu>() {
+      @Override
+      protected CMenu executeInEDT() {
+        return new CMenu(name, a);
+      }
+    });
+  }
+
+  public static CMenu getMenu(final String name, final String text, final boolean tornOff) {
+    return GuiActionRunner.execute(new GuiQuery<CMenu>() {
+      @Override
+      protected CMenu executeInEDT() {
+        return new CMenu(name, text, tornOff);
+      }
+    });
+  }
+
+  public static CMenu getMenu(final String text, final boolean tornOff) {
+    return GuiActionRunner.execute(new GuiQuery<CMenu>() {
+      @Override
+      protected CMenu executeInEDT() {
+        return new CMenu(text, tornOff);
+      }
+    });
+  }
+
+  @Test
+  public void testMenu_StringString() {
+
+    CMenu menu = getMenu("menu", (String) null);
+    assertThat(menu.getName()).isEqualTo("menu");
+    assertThat(menu.getText()).isEmpty();
+
+    menu = getMenu("", "txt");
+    assertThat(menu.getName()).isEmpty();
+    assertThat(menu.getText()).isEqualTo("txt");
+
+    menu = getMenu(null, "");
+    assertThat(menu.getName()).isNull();
+    assertThat(menu.getText()).isEmpty();
+
+    menu = getMenu(" .. ", "12 <-> 34");
+    assertThat(menu.getName()).isEqualTo(" .. ");
+    assertThat(menu.getText()).isEqualTo("12 <-> 34");
+  }
+
+  @Test
+  public void testMenu_StringStringBoolean() {
+    // TODO uncomment if 'tear off' is implemented
+
+    CMenu menu = getMenu("menu", (String) null, true);
+    assertThat(menu.getName()).isEqualTo("menu");
+    assertThat(menu.getText()).isEmpty();
+    //    assertThat(menu.isTearOff()).isTrue();
+
+    menu = getMenu("", "txt", false);
+    assertThat(menu.getName()).isEmpty();
+    assertThat(menu.getText()).isEqualTo("txt");
+    //    assertThat(menu.isTearOff()).isFalse();
+
+    menu = getMenu(null, "", true);
+    assertThat(menu.getName()).isNull();
+    assertThat(menu.getText()).isEmpty();
+    //    assertThat(menu.isTearOff()).isTrue();
+
+    menu = getMenu(" .. ", "12 <-> 34", false);
+    assertThat(menu.getName()).isEqualTo(" .. ");
+    assertThat(menu.getText()).isEqualTo("12 <-> 34");
+    //    assertThat(menu.isTearOff()).isFalse();
+  }
+
+  @Test
+  public void testMenu_StringAction() {
+
+    CMenu menu = getMenu("menu", (Action) null);
+    assertThat(menu.getName()).isEqualTo("menu");
+    assertThat(menu.getAction()).isNull();
+
+    menu = getMenu("", new AbstractAction("ACTION") {
+      /** ... */
+      private static final long serialVersionUID = 1L;
+
+      @Override
+      public void actionPerformed(final ActionEvent e) {}
+    });
+    assertThat(menu.getName()).isEmpty();
+    assertThat(menu.getText()).isEqualTo("ACTION");
+    assertThat(menu.getAction()).isInstanceOf(AbstractAction.class);
+  }
+
+  private void setText(final CMenu button, final String text) {
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        button.setText(text);
+      }
+    });
   }
 }

@@ -35,38 +35,84 @@ public class CMenu extends JMenu {
   private static final long serialVersionUID = -8285015108385978148L;
 
   /**
-   * Simply calls {@link JMenu#JMenu()}
+   * Constructs a new menu.
+   * 
+   * @deprecated use a constructor with name attribute, such as {@link #CMenu(String, String)}.
    */
+  @Deprecated
   public CMenu() {
-    super();
+    this(null, (String) null);
   }
 
   /**
-   * Simply calls {@link JMenu#JMenu(Action)}
+   * Constructs a new menu with the given action.
    * 
-   * @param a parameter Action that is given to {@link JMenu#JMenu(Action)}
+   * @param action the {@link Action} that provides some properties for this menu.
+   * @deprecated use {@link #CMenu(String, Action)} instead.
    */
-  public CMenu(final Action a) {
-    super(a);
+  @Deprecated
+  public CMenu(final Action action) {
+    this(null, action);
   }
 
   /**
-   * Simply calls {@link JMenu#JMenu(String, boolean)}
+   * Constructs a new menu with the given text.
    * 
-   * @param s parameter String that is given to {@link JMenu#JMenu(String, boolean)}
-   * @param b parameter boolean that is given to {@link JMenu#JMenu(String, boolean)}
+   * @param s the text for the menu label
+   * @param b <code>true</code>, if the menu can be torn off
+   * @deprecated use {@link #CMenu(String, String, boolean)} instead.
    */
+  @Deprecated
   public CMenu(final String s, final boolean b) {
-    super(s, b);
+    this(null, s, b);
   }
 
   /**
-   * Simply calls {@link JMenu#JMenu(String)}
+   * Constructs a new menu with the given text.
    * 
-   * @param s parameter that is given to {@link JMenu#JMenu(String)}
+   * @param s the text for the menu label
+   * @deprecated use {@link #CMenu(String, String)} instead.
    */
+  @Deprecated
   public CMenu(final String s) {
-    super(s);
+    this(null, s);
+  }
+
+  /**
+   * Constructs a new {@link CMenu} with the given name and the given text.
+   * 
+   * @since Date: May 14, 2012
+   * @param name the name of this {@link CMenu}.
+   * @param text the text for the menu label
+   */
+  public CMenu(final String name, final String text) {
+    super(text);
+    setName(name);
+  }
+
+  /**
+   * Constructs a new {@link CMenu} with the given name and other properties fetched from the given {@link Action}.
+   * 
+   * @since Date: May 14, 2012
+   * @param name the name of this {@link CMenu}.
+   * @param a the {@link Action} that provides some properties for this menu.
+   */
+  public CMenu(final String name, final Action a) {
+    super(a);
+    setName(name);
+  }
+
+  /**
+   * Constructs a new {@link CMenu} with the given name and the given text.
+   * 
+   * @since Date: May 14, 2012
+   * @param name the name of this {@link CMenu}.
+   * @param text the text for the menu label
+   * @param b <code>true</code>, if the menu can be torn off
+   */
+  public CMenu(final String name, final String text, final boolean b) {
+    super(text, b);
+    setName(name);
   }
 
   @Override
