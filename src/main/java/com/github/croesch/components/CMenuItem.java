@@ -36,64 +36,126 @@ public class CMenuItem extends JMenuItem {
   private static final long serialVersionUID = 3614702957338710920L;
 
   /**
-   * Simply calls {@link JMenuItem#JMenuItem()}
+   * Constructs a new menu item.
    * 
-   * @see JMenuItem#JMenuItem()
+   * @deprecated use another constructor instead - in a future release this should be replaced by
+   *             {@link #CMenuItem(String)}, to set the name of the menu item. But currently this constructor is used to
+   *             set the text of the menu item. So choose a good alternative to this constructor.
    */
+  @Deprecated
   public CMenuItem() {
-    super();
+    this(null, (String) null);
   }
 
   /**
-   * Simply calls {@link JMenuItem#JMenuItem(Icon)}
+   * Constructs a new menu item with the given icon.
    * 
-   * @see JMenuItem#JMenuItem(Icon)
-   * @param icon the parameter Icon that is given to superclass constructor
+   * @param icon the icon for this menu item
+   * @deprecated use another constructor instead - in a future release this should be replaced by
+   *             {@link #CMenuItem(String,Icon)}, to set the name of the menu item. But currently this constructor is
+   *             used to set the text of the menu item. So choose a good alternative to this constructor.
    */
+  @Deprecated
   public CMenuItem(final Icon icon) {
-    super(icon);
+    this(null, icon);
   }
 
   /**
-   * Simply calls {@link JMenuItem#JMenuItem(String)}
+   * Constructs a new menu item with the given text.
    * 
-   * @see JMenuItem#JMenuItem(String)
-   * @param text the parameter String that is given to superclass constructor
+   * @param text the text of the menu item
+   * @deprecated <b>CAUTION!</b> will change behavior!<br>
+   *             Use {@link #CMenuItem(String, String)} instead!
    */
+  @Deprecated
   public CMenuItem(final String text) {
-    super(text);
+    this(null, text);
   }
 
   /**
-   * Simply calls {@link JMenuItem#JMenuItem(Action)}
+   * Constructs a new menu item with the given action.
    * 
-   * @see JMenuItem#JMenuItem(Action)
-   * @param a the parameter Action that is given to superclass constructor
+   * @param a the {@link Action} to fetch properties from
+   * @deprecated use {@link #CMenuItem(String, Action)} instead
    */
+  @Deprecated
   public CMenuItem(final Action a) {
-    super(a);
+    this(null, a);
   }
 
   /**
-   * Simply calls {@link JMenuItem#JMenuItem(String, Icon)}
+   * Constructs a new menu item with the given text and icon.
    * 
-   * @see JMenuItem#JMenuItem(String, Icon)
-   * @param text the parameter String that is given to superclass constructor
-   * @param icon the parameter Icon that is given to superclass constructor
+   * @param text the text of the menu item
+   * @param icon the icon for this menu item
+   * @deprecated <b>CAUTION!</b> will change behavior!<br>
+   *             use {@link #CMenuItem(String, String, Icon)} instead
    */
+  @Deprecated
   public CMenuItem(final String text, final Icon icon) {
-    super(text, icon);
+    this(null, text, icon);
   }
 
   /**
-   * Simply calls {@link JMenuItem#JMenuItem(String, int)}
+   * Constructs a new menu item with the given text and mnemonic.
    * 
-   * @see JMenuItem#JMenuItem(String, int)
-   * @param text the parameter String that is given to superclass constructor
-   * @param mnemonic the parameter int that is given to superclass constructor
+   * @param text the text of the menu item
+   * @param mnemonic the mnemonic for this menu item
+   * @deprecated use {@link #CMenuItem(String, String, int)} instead
    */
+  @Deprecated
   public CMenuItem(final String text, final int mnemonic) {
+    this(null, text, mnemonic);
+  }
+
+  /**
+   * Creates a new {@link CMenuItem} with the given name and the given text.
+   * 
+   * @since Date: May 14, 2012
+   * @param name the name of this {@link MDMenu}.
+   * @param text the text of the menu item
+   */
+  public CMenuItem(final String name, final String text) {
+    super(text);
+    setName(name);
+  }
+
+  /**
+   * Creates a new {@link CMenuItem} with the given name and other properties're fetched from the given {@link Action}.
+   * 
+   * @since Date: May 14, 2012
+   * @param name the name of this {@link MDMenu}.
+   * @param a the {@link Action} to fetch properties from
+   */
+  public CMenuItem(final String name, final Action a) {
+    super(a);
+    setName(name);
+  }
+
+  /**
+   * Creates a new {@link CMenuItem} with the given name, text and icon.
+   * 
+   * @since Date: May 14, 2012
+   * @param name the name of this {@link MDMenu}.
+   * @param text the text for this menu item
+   * @param icon the icon for this menu item
+   */
+  public CMenuItem(final String name, final String text, final Icon icon) {
+    super(text, icon);
+    setName(name);
+  }
+
+  /**
+   * Creates a new {@link CMenuItem} with the given name, text and mnemonic.
+   * 
+   * @since Date: May 14, 2012
+   * @param name the name of this {@link MDMenu}.
+   * @param text the text for this menu item
+   * @param mnemonic the mnemonic for this menu item
+   */
+  public CMenuItem(final String name, final String text, final int mnemonic) {
     super(text, mnemonic);
+    setName(name);
   }
 
   @Override
