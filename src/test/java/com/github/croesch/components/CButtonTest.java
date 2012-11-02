@@ -29,8 +29,11 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Icon;
-import javax.swing.SwingUtilities;
+import javax.swing.ImageIcon;
 
+import org.fest.swing.edt.GuiActionRunner;
+import org.fest.swing.edt.GuiQuery;
+import org.fest.swing.edt.GuiTask;
 import org.junit.Test;
 
 import com.github.croesch.DefaultTestCase;
@@ -44,39 +47,85 @@ import com.github.croesch.DefaultTestCase;
  */
 public class CButtonTest extends DefaultTestCase {
 
-  private CButton button;
-
-  @Override
-  public void setUpDetails() {
-    try {
-      SwingUtilities.invokeAndWait(new Runnable() {
-
-        @Override
-        public void run() {
-          CButtonTest.this.button = new CButton();
-        }
-      });
-    } catch (final Exception e) {
-      e.printStackTrace();
-    }
+  public static CButton getButton() {
+    return GuiActionRunner.execute(new GuiQuery<CButton>() {
+      @Override
+      @SuppressWarnings("deprecation")
+      protected CButton executeInEDT() {
+        return new CButton();
+      }
+    });
   }
 
-  /**
-   * sets this button to null
-   */
-  @Override
-  public void onTearDown() {
-    this.button = null;
+  public static CButton getButton(final String name) {
+    return GuiActionRunner.execute(new GuiQuery<CButton>() {
+      @Override
+      @SuppressWarnings("deprecation")
+      protected CButton executeInEDT() {
+        return new CButton(name);
+      }
+    });
   }
 
-  /**
-   * Test method for {@link CButton#CButton(Icon)}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
+  public static CButton getButton(final String name, final String text) {
+    return GuiActionRunner.execute(new GuiQuery<CButton>() {
+      @Override
+      protected CButton executeInEDT() {
+        return new CButton(name, text);
+      }
+    });
+  }
+
+  public static CButton getButton(final String name, final Action a) {
+    return GuiActionRunner.execute(new GuiQuery<CButton>() {
+      @Override
+      protected CButton executeInEDT() {
+        return new CButton(name, a);
+      }
+    });
+  }
+
+  public static CButton getButton(final Action a) {
+    return GuiActionRunner.execute(new GuiQuery<CButton>() {
+      @Override
+      @SuppressWarnings("deprecation")
+      protected CButton executeInEDT() {
+        return new CButton(a);
+      }
+    });
+  }
+
+  public static CButton getButton(final String name, final Icon icon) {
+    return GuiActionRunner.execute(new GuiQuery<CButton>() {
+      @Override
+      @SuppressWarnings("deprecation")
+      protected CButton executeInEDT() {
+        return new CButton(name, icon);
+      }
+    });
+  }
+
+  public static CButton getButton(final Icon icon) {
+    return GuiActionRunner.execute(new GuiQuery<CButton>() {
+      @Override
+      @SuppressWarnings("deprecation")
+      protected CButton executeInEDT() {
+        return new CButton(icon);
+      }
+    });
+  }
+
+  public static CButton getButton(final String name, final String text, final Icon icon) {
+    return GuiActionRunner.execute(new GuiQuery<CButton>() {
+      @Override
+      protected CButton executeInEDT() {
+        return new CButton(name, text, icon);
+      }
+    });
+  }
+
   @Test
-  public void testCButtonIcon() throws InterruptedException, InvocationTargetException {
+  public void testCButton_Icon() throws InterruptedException, InvocationTargetException {
     final Icon icon = new Icon() {
 
       @Override
@@ -95,84 +144,34 @@ public class CButtonTest extends DefaultTestCase {
       }
     };
 
-    SwingUtilities.invokeAndWait(new Runnable() {
+    CButton button = getButton(icon);
+    assertThat(button.getIcon()).isSameAs(icon);
 
-      @Override
-      public void run() {
-        CButtonTest.this.button = new CButton(icon);
-      }
-    });
-
-    assertThat(this.button.getIcon()).isSameAs(icon);
-
-    SwingUtilities.invokeAndWait(new Runnable() {
-
-      @Override
-      public void run() {
-        CButtonTest.this.button = new CButton((Icon) null);
-      }
-    });
-
-    assertThat(this.button.getIcon()).isNull();
+    button = getButton((Icon) null);
+    assertThat(button.getIcon()).isNull();
   }
 
-  /**
-   * Test method for {@link CButton#CButton(java.lang.String)}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
-  public void testCButtonString() throws InterruptedException, InvocationTargetException {
-    SwingUtilities.invokeAndWait(new Runnable() {
+  public void testCButton_String() throws InterruptedException, InvocationTargetException {
+    CButton button = getButton("St[a]rt");
 
-      @Override
-      public void run() {
-        CButtonTest.this.button = new CButton("St[a]rt");
-      }
-    });
+    assertThat(button.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(button.getText()).isEqualTo("Start");
 
-    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_A);
-    assertThat(this.button.getText()).isEqualTo("Start");
+    button = getButton("St[ar]t");
+    assertThat(button.getText()).isEqualTo("St[ar]t");
 
-    SwingUtilities.invokeAndWait(new Runnable() {
+    button = getButton("Star[t]");
+    assertThat(button.getMnemonic()).isEqualTo(KeyEvent.VK_T);
+    assertThat(button.getText()).isEqualTo("Start");
 
-      @Override
-      public void run() {
-        CButtonTest.this.button = new CButton("St[ar]t");
-      }
-    });
-    assertThat(this.button.getText()).isEqualTo("St[ar]t");
-
-    SwingUtilities.invokeAndWait(new Runnable() {
-
-      @Override
-      public void run() {
-        CButtonTest.this.button = new CButton("Star[t]");
-      }
-    });
-    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_T);
-    assertThat(this.button.getText()).isEqualTo("Start");
-
-    SwingUtilities.invokeAndWait(new Runnable() {
-
-      @Override
-      public void run() {
-        CButtonTest.this.button = new CButton("[S]tart");
-      }
-    });
-    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_S);
-    assertThat(this.button.getText()).isEqualTo("Start");
+    button = getButton("[S]tart");
+    assertThat(button.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(button.getText()).isEqualTo("Start");
   }
 
-  /**
-   * Test method for {@link CButton#CButton(Action)}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
-  public void testCButtonAction() throws InterruptedException, InvocationTargetException {
+  public void testCButton_Action() throws InterruptedException, InvocationTargetException {
     final Action act = new AbstractAction() {
       /** serial version UID */
       private static final long serialVersionUID = -2312442386490910405L;
@@ -182,129 +181,124 @@ public class CButtonTest extends DefaultTestCase {
         // do nothing, stupid stub
       }
     };
-    SwingUtilities.invokeAndWait(new Runnable() {
+    CButton button = getButton(act);
+    assertThat(button.getAction()).isSameAs(act);
 
-      @Override
-      public void run() {
-        CButtonTest.this.button = new CButton(act);
-      }
-    });
-    assertThat(this.button.getAction()).isSameAs(act);
-
-    SwingUtilities.invokeAndWait(new Runnable() {
-
-      @Override
-      public void run() {
-        CButtonTest.this.button = new CButton((AbstractAction) null);
-      }
-    });
-    assertThat(this.button.getAction()).isNull();
+    button = getButton((AbstractAction) null);
+    assertThat(button.getAction()).isNull();
   }
 
-  /**
-   * Test method for {@link CButton#CButton(java.lang.String, javax.swing.Icon)}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
-  public void testCButtonStringIcon() throws InterruptedException, InvocationTargetException {
-    SwingUtilities.invokeAndWait(new Runnable() {
+  public void testCButton_StringIcon() throws InterruptedException, InvocationTargetException {
+    CButton button = getButton("St[a]rt", (Icon) null);
+    assertThat(button.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(button.getText()).isEqualTo("Start");
 
-      @Override
-      public void run() {
-        CButtonTest.this.button = new CButton("St[a]rt", null);
-      }
-    });
-    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_A);
-    assertThat(this.button.getText()).isEqualTo("Start");
+    button = getButton("St[ar]t", (Icon) null);
+    assertThat(button.getText()).isEqualTo("St[ar]t");
 
-    SwingUtilities.invokeAndWait(new Runnable() {
+    button = getButton("Star[t]", (Icon) null);
+    assertThat(button.getMnemonic()).isEqualTo(KeyEvent.VK_T);
+    assertThat(button.getText()).isEqualTo("Start");
 
-      @Override
-      public void run() {
-        CButtonTest.this.button = new CButton("St[ar]t", null);
-      }
-    });
-    assertThat(this.button.getText()).isEqualTo("St[ar]t");
-
-    SwingUtilities.invokeAndWait(new Runnable() {
-
-      @Override
-      public void run() {
-        CButtonTest.this.button = new CButton("Star[t]", null);
-      }
-    });
-    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_T);
-    assertThat(this.button.getText()).isEqualTo("Start");
-
-    SwingUtilities.invokeAndWait(new Runnable() {
-
-      @Override
-      public void run() {
-        CButtonTest.this.button = new CButton("[S]tart", null);
-      }
-    });
-    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_S);
-    assertThat(this.button.getText()).isEqualTo("Start");
+    button = getButton("[S]tart", (Icon) null);
+    assertThat(button.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(button.getText()).isEqualTo("Start");
   }
 
-  /**
-   * Test method for {@link CButton#setText(java.lang.String)}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
   public void testSetTextString() throws InterruptedException, InvocationTargetException {
-    SwingUtilities.invokeAndWait(new Runnable() {
+    final CButton button = getButton();
+    setText(button, "St[a]rt");
+    assertThat(button.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(button.getText()).isEqualTo("Start");
 
+    setText(button, "St[ar]t");
+    assertThat(button.getMnemonic()).isEqualTo(KeyEvent.VK_A);
+    assertThat(button.getText()).isEqualTo("St[ar]t");
+
+    setText(button, "Star[t]");
+    assertThat(button.getMnemonic()).isEqualTo(KeyEvent.VK_T);
+    assertThat(button.getText()).isEqualTo("Start");
+
+    setText(button, "[S]tart");
+    assertThat(button.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(button.getText()).isEqualTo("Start");
+
+    setText(button, null);
+    assertThat(button.getMnemonic()).isEqualTo(KeyEvent.VK_S);
+    assertThat(button.getText()).isNull();
+  }
+
+  private void setText(final CButton button, final String text) {
+    GuiActionRunner.execute(new GuiTask() {
       @Override
-      public void run() {
-        CButtonTest.this.button.setText("St[a]rt");
+      protected void executeInEDT() throws Throwable {
+        button.setText(text);
       }
     });
-    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_A);
-    assertThat(this.button.getText()).isEqualTo("Start");
+  }
 
-    SwingUtilities.invokeAndWait(new Runnable() {
+  @Test
+  public void testCButton_StringString() {
+    CButton item = getButton("item", (String) null);
+    assertThat(item.getName()).isEqualTo("item");
+    assertThat(item.getText()).isEmpty();
+
+    item = getButton("", "txt");
+    assertThat(item.getName()).isEmpty();
+    assertThat(item.getText()).isEqualTo("txt");
+
+    item = getButton(null, "");
+    assertThat(item.getName()).isNull();
+    assertThat(item.getText()).isEmpty();
+
+    item = getButton(" .. ", "12 <-> 34");
+    assertThat(item.getName()).isEqualTo(" .. ");
+    assertThat(item.getText()).isEqualTo("12 <-> 34");
+  }
+
+  @Test
+  public void testCButton_StringStringIcon() {
+    Icon icon = new ImageIcon(new byte[214]);
+    CButton item = getButton("item", (String) null, icon);
+    assertThat(item.getName()).isEqualTo("item");
+    assertThat(item.getText()).isEmpty();
+    assertThat(item.getIcon()).isEqualTo(icon);
+
+    item = getButton("", "txt", icon);
+    assertThat(item.getName()).isEmpty();
+    assertThat(item.getText()).isEqualTo("txt");
+    assertThat(item.getIcon()).isEqualTo(icon);
+
+    icon = new ImageIcon(new byte[42]);
+    item = getButton(null, "", icon);
+    assertThat(item.getName()).isNull();
+    assertThat(item.getText()).isEmpty();
+    assertThat(item.getIcon()).isEqualTo(icon);
+
+    icon = new ImageIcon();
+    item = getButton(" .. ", "12 <-> 34", icon);
+    assertThat(item.getName()).isEqualTo(" .. ");
+    assertThat(item.getText()).isEqualTo("12 <-> 34");
+    assertThat(item.getIcon()).isEqualTo(icon);
+  }
+
+  @Test
+  public void testCButton_StringAction() {
+    CButton item = getButton("item", (Action) null);
+    assertThat(item.getName()).isEqualTo("item");
+    assertThat(item.getAction()).isNull();
+
+    item = getButton("", new AbstractAction("ACTION") {
+      /** ... */
+      private static final long serialVersionUID = 1L;
 
       @Override
-      public void run() {
-        CButtonTest.this.button.setText("St[ar]t");
-      }
+      public void actionPerformed(final ActionEvent e) {}
     });
-    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_A);
-    assertThat(this.button.getText()).isEqualTo("St[ar]t");
-
-    SwingUtilities.invokeAndWait(new Runnable() {
-
-      @Override
-      public void run() {
-        CButtonTest.this.button.setText("Star[t]");
-      }
-    });
-    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_T);
-    assertThat(this.button.getText()).isEqualTo("Start");
-
-    SwingUtilities.invokeAndWait(new Runnable() {
-
-      @Override
-      public void run() {
-        CButtonTest.this.button.setText("[S]tart");
-      }
-    });
-    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_S);
-    assertThat(this.button.getText()).isEqualTo("Start");
-
-    SwingUtilities.invokeAndWait(new Runnable() {
-
-      @Override
-      public void run() {
-        CButtonTest.this.button.setText(null);
-      }
-    });
-    assertThat(this.button.getMnemonic()).isEqualTo(KeyEvent.VK_S);
-    assertThat(this.button.getText()).isNull();
+    assertThat(item.getName()).isEmpty();
+    assertThat(item.getText()).isEqualTo("ACTION");
+    assertThat(item.getAction()).isInstanceOf(AbstractAction.class);
   }
 }

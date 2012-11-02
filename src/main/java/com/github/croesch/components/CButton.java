@@ -36,53 +36,106 @@ public class CButton extends JButton {
   private static final long serialVersionUID = 2951525102559877588L;
 
   /**
-   * Simply calls {@link JButton#JButton()}
+   * Constructs the button.
    * 
-   * @see JButton#JButton()
+   * @deprecated use another constructor instead - in a future release this should be replaced by
+   *             {@link #CButton(String)}, to set the name of the button. But currently this constructor is used to set
+   *             the text of the button. So choose a good alternative to this constructor.
    */
+  @Deprecated
   public CButton() {
+    /* TODO move this to {@link #CButton(String)} */
     super();
+    setName(null);
   }
 
   /**
-   * Simply calls {@link JButton#JButton(Icon)}
+   * Constructs the button with the given icon.
    * 
-   * @see JButton#JButton(Icon)
-   * @param icon the parameter Icon that is given to superclass constructor
+   * @param icon the icon of the button
+   * @deprecated use another constructor instead - in a future release this should be replaced by
+   *             {@link #CButton(String, Icon)}, to set the name and icon of the button. But currently this constructor
+   *             is used to set the text and icon of the button. So choose a good alternative to this constructor.
    */
+  @Deprecated
   public CButton(final Icon icon) {
+    /* TODO move this to {@link #CButton(String,Icon)} */
     super(icon);
+    setName(null);
   }
 
   /**
-   * Simply calls {@link JButton#JButton(String)}
+   * Constructs the button with the given name and the given text.
    * 
-   * @see JButton#JButton(String)
-   * @param text the parameter String that is given to superclass constructor
+   * @param text the text of the button
+   * @deprecated use {@link #CButton(String, String)} instead
    */
+  @Deprecated
   public CButton(final String text) {
-    super(text);
+    this(null, text);
   }
 
   /**
-   * Simply calls {@link JButton#JButton(Action)}
+   * Constructs the button with the given action.
    * 
-   * @see JButton#JButton(Action)
-   * @param a the parameter Action that is given to superclass constructor
+   * @param action the {@link Action} for this button
+   * @deprecated use {@link #CButton(String, Action)} instead
    */
-  public CButton(final Action a) {
-    super(a);
+  @Deprecated
+  public CButton(final Action action) {
+    this(null, action);
   }
 
   /**
-   * Simply calls {@link JButton#JButton(String, Icon)}
+   * Construct the button with the given text and icon.
    * 
-   * @see JButton#JButton(String, Icon)
-   * @param text the parameter String that is given to superclass constructor
-   * @param icon the parameter Icon that is given to superclass constructor
+   * @param text the text of the button
+   * @param icon the icon of the button
+   * @deprecated use {@link #CButton(String, String, Icon)} instead
    */
+  @Deprecated
   public CButton(final String text, final Icon icon) {
+    this(null, text, icon);
+  }
+
+  /**
+   * Constructs the button with the given name, text and icon.
+   * 
+   * @since Date: Nov 2, 2012
+   * @param name the name of the component to set via {@link #setName(String)}
+   * @param text the text of the button
+   * @param icon the icon of the button
+   * @see #setName(String)
+   */
+  public CButton(final String name, final String text, final Icon icon) {
     super(text, icon);
+    setName(name);
+  }
+
+  /**
+   * Constructs the button with the given name and the given text.
+   * 
+   * @since Date: Mar 9, 2012
+   * @param name the name of the component to set via {@link #setName(String)}
+   * @param text the text of the button
+   * @see #setName(String)
+   */
+  public CButton(final String name, final String text) {
+    super(text);
+    setName(name);
+  }
+
+  /**
+   * Constructs the button with the given name and the given action.
+   * 
+   * @since Date: Mar 9, 2012
+   * @param name the name of the component to set via {@link #setName(String)}
+   * @param action the {@link Action} for this button
+   * @see #setName(String)
+   */
+  public CButton(final String name, final Action action) {
+    super(action);
+    setName(name);
   }
 
   @Override
