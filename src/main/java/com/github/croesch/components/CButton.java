@@ -68,7 +68,8 @@ public class CButton extends JButton {
    * Constructs the button with the given name and the given text.
    * 
    * @param text the text of the button
-   * @deprecated use {@link #CButton(String, String)} instead
+   * @deprecated <b>CAUTION!</b> will change behavior!<br>
+   *             use {@link #CButton(String, String)} instead
    */
   @Deprecated
   public CButton(final String text) {
@@ -91,7 +92,8 @@ public class CButton extends JButton {
    * 
    * @param text the text of the button
    * @param icon the icon of the button
-   * @deprecated use {@link #CButton(String, String, Icon)} instead
+   * @deprecated <b>CAUTION!</b> will change behavior!<br>
+   *             use {@link #CButton(String, String, Icon)} instead
    */
   @Deprecated
   public CButton(final String text, final Icon icon) {

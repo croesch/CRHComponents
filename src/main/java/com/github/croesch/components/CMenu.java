@@ -37,7 +37,9 @@ public class CMenu extends JMenu {
   /**
    * Constructs a new menu.
    * 
-   * @deprecated use a constructor with name attribute, such as {@link #CMenu(String, String)}.
+   * @deprecated use another constructor instead - in a future release this should be replaced by {@link #CMenu(String)}
+   *             , to set the name of the menu. But currently this constructor is used to set the text of the menu. So
+   *             choose a good alternative to this constructor.
    */
   @Deprecated
   public CMenu() {
@@ -71,7 +73,8 @@ public class CMenu extends JMenu {
    * Constructs a new menu with the given text.
    * 
    * @param s the text for the menu label
-   * @deprecated use {@link #CMenu(String, String)} instead.
+   * @deprecated <b>CAUTION!</b> will change behavior!<br>
+   *             use {@link #CMenu(String, String)} instead.
    */
   @Deprecated
   public CMenu(final String s) {
